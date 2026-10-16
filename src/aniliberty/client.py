@@ -15,6 +15,7 @@ from aniliberty._http import (
     HttpClient,
 )
 from aniliberty.resources.app import AppResource
+from aniliberty.resources.catalog import CatalogResource
 from aniliberty.resources.episodes import EpisodesResource
 from aniliberty.resources.releases import ReleasesResource
 
@@ -32,6 +33,8 @@ class AniLiberty:
         app: Service endpoints — API status and quick release search.
         releases: Anime releases — latest, random, recommended, by ID/alias, members.
         episodes: Episodes of releases, with HLS links.
+        catalog: The release catalog; ``catalog.references`` lists the values its filters
+            accept.
 
     Example:
         ```python
@@ -85,6 +88,7 @@ class AniLiberty:
         self.app = AppResource(self.http)
         self.releases = ReleasesResource(self.http)
         self.episodes = EpisodesResource(self.http)
+        self.catalog = CatalogResource(self.http)
 
     async def __aenter__(self) -> Self:
         if self.http.closed:

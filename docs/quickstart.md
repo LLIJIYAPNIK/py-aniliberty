@@ -22,6 +22,7 @@ The API is grouped into namespaces that follow the tags of its OpenAPI spec:
 | `client.app` | API status, quick search |
 | `client.releases` | latest, random and recommended releases; a release by ID or alias; its team members; several releases at once |
 | `client.episodes` | an episode with its HLS playlists |
+| `client.catalog.references` | the values catalog filters accept: genres, types, seasons, years, age ratings, statuses, sorting |
 | `client.http` | the low-level client — `client.http.request(...)` returns raw JSON for endpoints not covered yet |
 
 ## A tour

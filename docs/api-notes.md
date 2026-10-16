@@ -338,6 +338,26 @@ empty `query` and none at all.
 **Conclusion:** `client.app.search_releases(query)` returns `list[Release]`; the empty-query
 check is left to the API (`ValidationError`), like `limit` on the release endpoints.
 
+## Catalog references (checked 2026-10-16)
+
+Requests: `GET /anime/catalog/references/{age-ratings,genres,production-statuses,publish-statuses,seasons,sorting,types,years}`.
+
+All eight match the spec exactly, with no `null`s:
+
+- `types`, `seasons`, `publish-statuses`, `production-statuses`: `[{"value", "description"}]`,
+  values identical to the spec enums (8 types, 4 seasons, 2 + 2 statuses).
+- `age-ratings`: `[{"value", "label", "description"}]` — the same as a release's `age_rating`
+  minus `is_adult`.
+- `sorting`: `[{"value", "label", "description"}]`, the 6 values of the spec enum.
+- `genres`: `[{"id", "name"}]` — 35 genres, the same IDs as `GET /anime/genres` returns.
+- `years`: a plain array of integers, ascending, **only years that have releases**
+  (`1995`…`2026` without `1997`, `2000`, `2002`).
+- A data quirk: the description of `ONA` starts with a Cyrillic "О" (`"ОNA"`).
+
+**Conclusion:** the references reuse existing models — `Genre` (without image/count),
+`AgeRating` (with `is_adult=None`), `ValueDescription[str]` — plus `SortingOption` for the
+sorting list's `label`.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent

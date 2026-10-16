@@ -18,14 +18,14 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/app/status` | Приложение.Статус | API status |  | `client.app.status()` | 1.1 |
 | `GET` | `/anime/catalog/releases` | Аниме.Каталог | Catalog releases with filters (query string, paginated) |  |  | 2.2 |
 | `POST` | `/anime/catalog/releases` | Аниме.Каталог | Catalog releases with filters (JSON body, paginated) |  |  | 2.2 |
-| `GET` | `/anime/catalog/references/age-ratings` | Аниме.Каталог.Справочники | Catalog reference: age ratings |  |  | 2.1 |
-| `GET` | `/anime/catalog/references/genres` | Аниме.Каталог.Справочники | Catalog reference: genres |  |  | 2.1 |
-| `GET` | `/anime/catalog/references/production-statuses` | Аниме.Каталог.Справочники | Catalog reference: production (dubbing) statuses |  |  | 2.1 |
-| `GET` | `/anime/catalog/references/publish-statuses` | Аниме.Каталог.Справочники | Catalog reference: publish (airing) statuses |  |  | 2.1 |
-| `GET` | `/anime/catalog/references/seasons` | Аниме.Каталог.Справочники | Catalog reference: seasons |  |  | 2.1 |
-| `GET` | `/anime/catalog/references/sorting` | Аниме.Каталог.Справочники | Catalog reference: sorting options |  |  | 2.1 |
-| `GET` | `/anime/catalog/references/types` | Аниме.Каталог.Справочники | Catalog reference: release types |  |  | 2.1 |
-| `GET` | `/anime/catalog/references/years` | Аниме.Каталог.Справочники | Catalog reference: years |  |  | 2.1 |
+| `GET` | `/anime/catalog/references/age-ratings` | Аниме.Каталог.Справочники | Catalog reference: age ratings |  | `client.catalog.references.age_ratings()` | 2.1 |
+| `GET` | `/anime/catalog/references/genres` | Аниме.Каталог.Справочники | Catalog reference: genres |  | `client.catalog.references.genres()` | 2.1 |
+| `GET` | `/anime/catalog/references/production-statuses` | Аниме.Каталог.Справочники | Catalog reference: production (dubbing) statuses |  | `client.catalog.references.production_statuses()` | 2.1 |
+| `GET` | `/anime/catalog/references/publish-statuses` | Аниме.Каталог.Справочники | Catalog reference: publish (airing) statuses |  | `client.catalog.references.publish_statuses()` | 2.1 |
+| `GET` | `/anime/catalog/references/seasons` | Аниме.Каталог.Справочники | Catalog reference: seasons |  | `client.catalog.references.seasons()` | 2.1 |
+| `GET` | `/anime/catalog/references/sorting` | Аниме.Каталог.Справочники | Catalog reference: sorting options |  | `client.catalog.references.sorting()` | 2.1 |
+| `GET` | `/anime/catalog/references/types` | Аниме.Каталог.Справочники | Catalog reference: release types |  | `client.catalog.references.types()` | 2.1 |
+| `GET` | `/anime/catalog/references/years` | Аниме.Каталог.Справочники | Catalog reference: years |  | `client.catalog.references.years()` | 2.1 |
 | `GET` | `/anime/franchises` | Аниме.Франшизы | All franchises |  |  | 3.3 |
 | `GET` | `/anime/franchises/random` | Аниме.Франшизы | Random franchises |  |  | 3.3 |
 | `GET` | `/anime/franchises/release/{releaseId}` | Аниме.Франшизы | Franchises a release belongs to |  |  | 3.3 |

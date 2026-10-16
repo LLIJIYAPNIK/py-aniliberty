@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.1.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/catalog/references/types
+  response:
+    body:
+      string: '[{"value":"TV","description":"\u0422\u0412"},{"value":"ONA","description":"\u041eNA"},{"value":"WEB","description":"WEB"},{"value":"OVA","description":"OVA"},{"value":"OAD","description":"OAD"},{"value":"MOVIE","description":"\u0424\u0438\u043b\u044c\u043c"},{"value":"DORAMA","description":"\u0414\u043e\u0440\u0430\u043c\u0430"},{"value":"SPECIAL","description":"\u0421\u043f\u0435\u0448\u043b"}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b4ca0799026624-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '398'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 05:50:59 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=DsfMf4HKBkysiu6kWm2N%2Bb8%2B9GfjpEjbO%2FSAnccaIIFIuck6iRkI9VTcwvIW31wM7u0HvOWQYVDMxWt6CmghT6tDyeaffzo5yp0DZloCkI6cuq3ub5r5rsve5NZ%2BRoyRYg%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
