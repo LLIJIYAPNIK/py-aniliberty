@@ -20,6 +20,7 @@ from aniliberty.models.genre import Genre
 from aniliberty.models.release import AgeRating, Release
 from aniliberty.pagination import Page, iterate_pages
 from aniliberty.resources._base import BaseResource
+from aniliberty.resources._filters import enum_value, enum_values, genre_ids
 
 
 class CatalogReferencesResource(BaseResource):
@@ -355,54 +356,22 @@ def _catalog_params(
     if year_from is not None and year_to is not None and year_from > year_to:
         raise ValueError(f"year_from ({year_from}) is after year_to ({year_to})")
     sorting_value = (
-        None if sorting is None else _enum_value("sorting", sorting, get_args(CatalogSorting))
+        None if sorting is None else enum_value("sorting", sorting, get_args(CatalogSorting))
     )
     return {
         "f": {
-            "genres": _genre_ids(genres),
-            "types": _enum_values("types", types, get_args(ReleaseType)),
-            "seasons": _enum_values("seasons", seasons, get_args(Season)),
+            "genres": genre_ids(genres),
+            "types": enum_values("types", types, get_args(ReleaseType)),
+            "seasons": enum_values("seasons", seasons, get_args(Season)),
             "years": {"from_year": year_from, "to_year": year_to},
             "search": search,
             "sorting": sorting_value,
-            "age_ratings": _enum_values("age_ratings", age_ratings, get_args(AgeRatingValue)),
-            "publish_statuses": _enum_values(
+            "age_ratings": enum_values("age_ratings", age_ratings, get_args(AgeRatingValue)),
+            "publish_statuses": enum_values(
                 "publish_statuses", publish_statuses, get_args(PublishStatus)
             ),
-            "production_statuses": _enum_values(
+            "production_statuses": enum_values(
                 "production_statuses", production_statuses, get_args(ProductionStatus)
             ),
         }
     }
-
-
-def _enum_values(
-    name: str, values: Sequence[str | ValueDescription[str]] | None, allowed: tuple[str, ...]
-) -> list[str] | None:
-    """Turn ``values`` (strings or reference items) into strings the API knows, or raise."""
-    if values is None:
-        return None
-    if isinstance(values, str):
-        raise TypeError(f"{name} must be a list, e.g. {name}=[{values!r}]")
-    return [_enum_value(name, item, allowed) for item in values]
-
-
-def _enum_value(name: str, item: str | ValueDescription[str], allowed: tuple[str, ...]) -> str:
-    """Turn one string or reference item into a string the API knows, or raise."""
-    value = item.value if isinstance(item, ValueDescription) else item
-    if value not in allowed:
-        raise ValueError(f"Unknown {name} value {value!r}; expected one of: {', '.join(allowed)}")
-    return value
-
-
-def _genre_ids(genres: Sequence[int | Genre] | None) -> list[int] | None:
-    """Turn genre IDs or ``Genre`` objects into IDs, or raise."""
-    if genres is None:
-        return None
-    ids = []
-    for genre in genres:
-        genre_id = genre.id if isinstance(genre, Genre) else genre
-        if isinstance(genre_id, bool) or not isinstance(genre_id, int):
-            raise TypeError(f"genres must be genre IDs or Genre objects, got {genre!r}")
-        ids.append(genre_id)
-    return ids
