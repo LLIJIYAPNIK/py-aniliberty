@@ -30,7 +30,7 @@
       `AccessBlockedError` для HTML), `exceptions.py`, `client.py` (`AniLiberty` как async
       context manager), `resources/_base.py`, `client.app.status()`. VCR-инфраструктура
       в `conftest.py`. **Первый функциональный PR → добавить `ci.yml`.**
-- [ ] **1.2 Retry, пейсинг, конкурентность.** Семафор, `request_delay`, экспоненциальный
+- [x] **1.2 Retry, пейсинг, конкурентность.** Семафор, `request_delay`, экспоненциальный
       backoff, `Retry-After`, инъекция `sleep`/`clock`, unit-тесты на `MockTransport`.
 - [ ] **1.3 Общие модели и пагинация.** `models/common.py` (`ValueDescription`, постер/
       изображения, абсолютные URL), `pagination.py` (`Page[T]`, хелпер для `iter_*`),

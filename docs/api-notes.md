@@ -237,6 +237,30 @@ and the 401/403 bodies are left for step 4.1.
 /anime/torrents/rss` and `/rss/release/{releaseId}` return `application/xml`. All three take an
 optional `pk` (user passkey) query parameter. Not called live yet (step 3.4).
 
+## Rate limiting (probed 2026-10-16)
+
+To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent
+from one IP — first 120 times sequentially, then 180 more in batches of 10 concurrent requests
+(300 in total), stopping at the first 429.
+
+No request got a 429, and no response carried `Retry-After`, `X-RateLimit-*` or `RateLimit-*`
+headers. The probe was deliberately not pushed further.
+
+**Conclusion:** the limit for `/app/status`, if there is one, is above that rate; other
+endpoints may be limited differently. The shape of a 429 response is still unknown, so the
+SDK handles it the generic way:
+
+- 429 is retried up to 3 times for any method (the request wasn't processed). The delay is
+  `Retry-After` (seconds or an HTTP date, measured from the response's `Date`), or exponential
+  backoff of 1 s, 2 s, 4 s if there's none. A `Retry-After` above 60 s isn't waited out:
+  `RateLimitError` is raised at once with that value in `retry_after`.
+- 5xx and network errors/timeouts are retried the same way, but only for idempotent methods
+  (`GET`, `HEAD`, `OPTIONS`, `PUT`, `DELETE`): after those it's unknown whether a `POST`
+  already took effect.
+- Besides retries, the client keeps at most 5 requests in flight (`max_concurrency`) and
+  starts consecutive requests at least 0.1 s apart, so even a large `asyncio.gather` stays
+  around 10 requests per second.
+
 ## How the SDK maps responses to exceptions
 
 Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in the
@@ -249,7 +273,7 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 | 2xx with an invalid JSON body | `ResponseParseError` (body text in `payload`) |
 | 404 | `NotFoundError` (`message` is `"Not found"`, the Laravel string stays in `payload`) |
 | 422 | `ValidationError` (`errors` from the body) |
-| 429 | `RateLimitError` (`retry_after` from a numeric `Retry-After`, if any) |
+| 429 | `RateLimitError` (`retry_after` from `Retry-After` — seconds or an HTTP date — if any) |
 | 401, 403 (JSON) | `AuthRequiredError` |
 | other 5xx | `ServerError` |
 | any other error status | `APIError` |
@@ -257,8 +281,8 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 
 ## Open questions
 
-- **429 / `Retry-After` / rate limits.** No rate-limit headers were seen on any response
-  (`X-RateLimit-*`, `Retry-After`). 429 was not provoked on purpose. Unknown.
+- **429 response shape.** Not triggered by 300 requests to `/app/status` (see "Rate
+  limiting"); body and headers of a real 429 are unknown.
 - **5xx body shape.** Not observed.
 - **WAF/challenge behaviour.** Not observed from the maintainer's network; Cloudflare is in front.
   What a challenge looks like (status, headers) is unknown.
