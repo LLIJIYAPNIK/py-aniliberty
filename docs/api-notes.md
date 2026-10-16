@@ -466,6 +466,44 @@ missing release.
 alias fails with a clear `TypeError` instead of the misleading 404. `random()`'s docstring warns
 that leaving `limit` out returns everything.
 
+## Torrents (checked 2026-10-16)
+
+Requests: `GET /anime/torrents` (`limit` 20, 50, 51, 100; two pages of 50), `/anime/torrents/{id}`
+and `/{hash}` (lower and upper case), a missing ID and hash, `/anime/torrents/release/{id}` (by
+ID, by alias, missing), `/anime/torrents/{hash}/file` (by hash and by ID, with
+`Accept: application/json` and `*/*`, missing), `/anime/torrents/rss` and `/rss/release/{id}`.
+
+- **List:** paginated (3128 torrents), `limit` **1–50**. Items include `release` (without
+  `genres`/`episodes`) and `torrent_members`.
+- **Fields over 100 torrents:** `bitrate` was `null` on 87; everything else was always set.
+  `codec` is a value + description with `label`, `label_color`, `label_is_visible`
+  (`x265/HEVC` → `"HEVC"`, `#FFEB3B`, visible; `x264/AVC` → `"AVC"`, no color, hidden).
+  `size` is the size of the video files (e.g. 40535930212), not of the `.torrent` file.
+  `torrent_members` was non-empty on 28 of 100, every role `HEVC`; `user` was `null` on 8 and
+  `external_url` on 9 of those 28.
+- **`/{hashOrId}`** accepts the numeric ID or the info hash in any letter case; unknown → JSON
+  404.
+- **`/release/{releaseId}`:** **numeric ID only** — an alias (`one-piece`) gives the 404
+  "release not found", like the franchises endpoint. A missing release → 404.
+- **The file:** `200 application/x-bittorrent` with
+  `Content-Disposition: attachment; filename="<label>.torrent"`, **also with
+  `Accept: application/json`**, no redirect. Files seen: 22 792 and 388 202 bytes. A missing
+  torrent with the JSON `Accept` → JSON 404; with `*/*` → the HTML 404 page (the same Laravel
+  behaviour as everywhere).
+- **RSS:** `200 application/xml` (also with the JSON `Accept`), RSS 2.0. Each `<item>` has
+  `<title>`, `<guid>` (the hash), `<pubDate>`, `<torrentId>`, `<releaseId>`, an HTML
+  `<description>` with the poster, and an `<enclosure>` pointing to the `.torrent` file with
+  `type="application/x-bittorrent"` and `length` = `size`. `/rss` without `limit` has 10 items.
+  A missing release → JSON 404.
+- The `pk` (user passkey) parameter of the file and RSS endpoints isn't used: it's for
+  authenticated users (phase 4).
+
+**Conclusion:** the SDK reads the file and the feeds through two new low-level calls,
+`client.http.request_raw()` (whole body) and `client.http.stream()` (chunks), with the same
+limits, retries and error mapping as JSON requests. `torrents.download()` streams to
+`<name>.part` and renames it when complete. `for_release()`/`rss_for_release()` accept only an
+`int` or a `Release`, like `franchises.for_release()`.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent
@@ -515,8 +553,8 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 - **5xx body shape.** Not observed.
 - **WAF/challenge behaviour.** Not observed from the maintainer's network; Cloudflare is in front.
   What a challenge looks like (status, headers) is unknown.
-- **Maximum `limit`** on `/torrents`, `/media/videos` (known so far: the catalog and the release
-  endpoints 50, `/genres/{id}/releases` 30; `/genres/random` and `/franchises/random` return
-  everything when `limit` is out of range).
+- **Maximum `limit`** on `/media/videos` and `/anime/torrents/rss` (known so far: the catalog,
+  the release endpoints and `/torrents` 50, `/genres/{id}/releases` 30; `/genres/random` and
+  `/franchises/random` return everything when `limit` is out of range).
 - **Authentication details** (token lifetime, refresh, 401/403 bodies) — step 4.1.
 - **Schedule time zone** — whether `/schedule/now`'s "today" is UTC or Moscow time.

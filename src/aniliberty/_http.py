@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import logging
 import time
-from collections.abc import Awaitable, Callable, Mapping
+from collections.abc import AsyncIterator, Awaitable, Callable, Mapping
 from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
 from typing import Any, NoReturn
@@ -239,6 +240,96 @@ class HttpClient:
             roles = await client.http.request("GET", "/teams/roles")
             ```
         """
+        response = await self._send_with_retries(method, path, params=params, json=json)
+        return _handle_response(response)
+
+    async def request_raw(
+        self, method: str, path: str, *, params: Mapping[str, Any] | None = None
+    ) -> httpx.Response:
+        """Send a request for a non-JSON resource (a file, an XML feed) and return the response.
+
+        Same limits, retries and error handling as ``request()``; the body is fully read, so
+        use ``stream()`` instead for large downloads.
+
+        Args:
+            method: HTTP method, e.g. ``"GET"``.
+            path: Path relative to ``base_url``.
+            params: Query parameters, passed to ``httpx`` as is.
+
+        Returns:
+            The successful ``httpx.Response``, with ``content``/``text`` and headers.
+
+        Raises:
+            APIError: The API answered with an error status — see ``request()``.
+            TransportError: The request failed without a response.
+            RuntimeError: The client has been closed.
+
+        Example:
+            ```python
+            response = await client.http.request_raw("GET", "/anime/torrents/rss")
+            print(response.headers["Content-Type"], len(response.text))
+            ```
+        """
+        response = await self._send_with_retries(method, path, params=params, json=None)
+        _raise_if_failed(response)
+        return response
+
+    @contextlib.asynccontextmanager
+    async def stream(
+        self, method: str, path: str, *, params: Mapping[str, Any] | None = None
+    ) -> AsyncIterator[httpx.Response]:
+        """Send a request and stream the response body, for downloads.
+
+        Limits and retries apply until the response headers arrive: a 429/5xx is retried
+        before anything is yielded, and an error status raises like ``request()``. The body is
+        then read by the caller (``response.aiter_bytes()``); the response is closed when the
+        ``async with`` block exits.
+
+        Args:
+            method: HTTP method, e.g. ``"GET"``.
+            path: Path relative to ``base_url``.
+            params: Query parameters, passed to ``httpx`` as is.
+
+        Yields:
+            The successful ``httpx.Response``, body not read yet.
+
+        Raises:
+            APIError: The API answered with an error status — see ``request()``.
+            TransportError: The request failed without a response.
+            RuntimeError: The client has been closed.
+
+        Example:
+            ```python
+            async with client.http.stream("GET", "/anime/torrents/40407/file") as response:
+                async for chunk in response.aiter_bytes():
+                    ...
+            ```
+        """
+        response = await self._send_with_retries(
+            method, path, params=params, json=None, stream=True
+        )
+        try:
+            if not response.is_success or _media_type(response) == "text/html":
+                await response.aread()
+                _raise_if_failed(response)
+            yield response
+        finally:
+            await response.aclose()
+
+    async def _send_with_retries(
+        self,
+        method: str,
+        path: str,
+        *,
+        params: Mapping[str, Any] | None,
+        json: Any,
+        stream: bool = False,
+    ) -> httpx.Response:
+        """Send a request, retrying as described on the class; return the final response.
+
+        With ``stream=True`` the returned response's body is not read yet, and responses
+        that are retried are closed before the next attempt.
+        """
         if self._closed:
             raise RuntimeError("This client has been closed; create a new AniLiberty instance.")
         method = method.upper()
@@ -246,7 +337,7 @@ class HttpClient:
         attempt = 0
         while True:
             try:
-                response = await self._send(method, url, params=params, json=json)
+                response = await self._send(method, url, params=params, json=json, stream=stream)
             except httpx.TransportError as exc:
                 logger.debug("%s %s failed: %r", method, url, exc)
                 if method in IDEMPOTENT_METHODS and attempt < self._max_retries:
@@ -261,21 +352,34 @@ class HttpClient:
             logger.debug("%s %s -> %d", method, response.request.url, response.status_code)
             delay = self._retry_delay(response, method, attempt)
             if delay is None:
-                return _handle_response(response)
+                return response
+            if stream:
+                await response.aclose()
             await self._wait_before_retry(
                 delay, attempt, method, url, f"HTTP {response.status_code}"
             )
             attempt += 1
 
     async def _send(
-        self, method: str, url: str, *, params: Mapping[str, Any] | None, json: Any
+        self,
+        method: str,
+        url: str,
+        *,
+        params: Mapping[str, Any] | None,
+        json: Any,
+        stream: bool = False,
     ) -> httpx.Response:
-        """Send one attempt, within the concurrency limit and after the pacing delay."""
+        """Send one attempt, within the concurrency limit and after the pacing delay.
+
+        The concurrency slot is held until the response headers arrive; a streamed body is
+        read afterwards, outside of it.
+        """
         async with self._semaphore:
             await self._pace()
-            return await self._client.request(
+            request = self._client.build_request(
                 method, url, params=params, json=json, headers=self._headers
             )
+            return await self._client.send(request, stream=stream)
 
     async def _pace(self) -> None:
         """Wait, if needed, so this request starts at least ``request_delay`` after the last."""
@@ -322,6 +426,19 @@ class HttpClient:
 
 def _handle_response(response: httpx.Response) -> Any:
     """Return the decoded JSON body of a successful response, or raise the matching error."""
+    _raise_if_failed(response)
+    if not response.content:
+        return None
+    try:
+        return response.json()
+    except ValueError as exc:  # json.JSONDecodeError and UnicodeDecodeError
+        raise ResponseParseError(
+            "Response body is not valid JSON", url=str(response.request.url), payload=response.text
+        ) from exc
+
+
+def _raise_if_failed(response: httpx.Response) -> None:
+    """Raise the matching error for an HTML page or an error status; do nothing otherwise."""
     method = response.request.method
     url = str(response.request.url)
     if _media_type(response) == "text/html" and not response.is_server_error:
@@ -334,16 +451,8 @@ def _handle_response(response: httpx.Response) -> Any:
             url=url,
             payload=response.text,
         )
-    if response.is_success:
-        if not response.content:
-            return None
-        try:
-            return response.json()
-        except ValueError as exc:  # json.JSONDecodeError and UnicodeDecodeError
-            raise ResponseParseError(
-                "Response body is not valid JSON", url=url, payload=response.text
-            ) from exc
-    _raise_for_error(response, method=method, url=url)
+    if not response.is_success:
+        _raise_for_error(response, method=method, url=url)
 
 
 def _raise_for_error(response: httpx.Response, *, method: str, url: str) -> NoReturn:

@@ -26,6 +26,7 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`09_schedule.py`](09_schedule.py) | `schedule.now()` / `week()` — today's releases and episode status, the week grouped by weekday |
 | [`10_genres.py`](10_genres.py) | `genres.list()` / `get()` / `random()` / `releases()` / `iter_releases()` |
 | [`11_franchises.py`](11_franchises.py) | `franchises.list()` / `get()` / `for_release()` / `random()` — a franchise's releases in watch order |
+| [`12_torrents_and_download.py`](12_torrents_and_download.py) | `torrents.for_release()` / `file()` / `download()` / `get()` / `rss_for_release()` |
 
 See the [API reference](https://llijiyapnik.github.io/py-aniliberty/reference/) for every
 public class and method.
