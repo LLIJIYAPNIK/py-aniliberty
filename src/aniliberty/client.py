@@ -8,7 +8,12 @@ from typing import Self
 
 import httpx
 
-from aniliberty._http import DEFAULT_BASE_URL, DEFAULT_TIMEOUT, HttpClient
+from aniliberty._http import (
+    DEFAULT_BASE_URL,
+    DEFAULT_MAX_CONCURRENCY,
+    DEFAULT_TIMEOUT,
+    HttpClient,
+)
 from aniliberty.resources.app import AppResource
 
 
@@ -46,6 +51,7 @@ class AniLiberty:
         *,
         base_url: str = DEFAULT_BASE_URL,
         timeout: float = DEFAULT_TIMEOUT,
+        max_concurrency: int = DEFAULT_MAX_CONCURRENCY,
         headers: Mapping[str, str] | None = None,
         http_client: httpx.AsyncClient | None = None,
     ) -> None:
@@ -56,13 +62,21 @@ class AniLiberty:
                 ``https://aniliberty.top/api/v1``; ``https://anilibria.top/api/v1`` is a
                 mirror.
             timeout: Per-request timeout, in seconds. Ignored when ``http_client`` is given.
+            max_concurrency: Maximum number of requests in flight at once, no matter how many
+                coroutines share this client. Requests over the limit wait for a free slot.
+                Consecutive requests are also spaced at least 0.1 s apart, and 429/5xx/network
+                failures are retried with backoff — see ``HttpClient``.
             headers: Extra headers sent with every request, merged over the SDK's defaults
                 (``Accept: application/json`` and the SDK's ``User-Agent``).
             http_client: A ready ``httpx.AsyncClient`` to send requests with, e.g. to set up
                 a proxy. The SDK doesn't close a client it didn't create.
         """
         self.http = HttpClient(
-            base_url=base_url, timeout=timeout, headers=headers, http_client=http_client
+            base_url=base_url,
+            timeout=timeout,
+            headers=headers,
+            http_client=http_client,
+            max_concurrency=max_concurrency,
         )
         self.app = AppResource(self.http)
 
