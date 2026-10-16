@@ -1,6 +1,7 @@
 """Pydantic models of API responses."""
 
 from aniliberty.models.app import ApiStatus, RequestInfo
+from aniliberty.models.auth import AuthToken, IssuedOtp, Otp, SocialLogin, SocialProvider
 from aniliberty.models.catalog import (
     AgeRatingValue,
     CatalogSorting,
@@ -35,6 +36,7 @@ __all__ = [
     "AgeRatingValue",
     "CatalogSorting",
     "ApiStatus",
+    "AuthToken",
     "Episode",
     "ExternalRating",
     "Franchise",
@@ -42,6 +44,8 @@ __all__ = [
     "Genre",
     "Image",
     "ImageSet",
+    "IssuedOtp",
+    "Otp",
     "ProductionStatus",
     "Promotion",
     "PublishStatus",
@@ -56,6 +60,8 @@ __all__ = [
     "ScheduledRelease",
     "Season",
     "SkipRange",
+    "SocialLogin",
+    "SocialProvider",
     "SortingOption",
     "Sponsor",
     "Team",

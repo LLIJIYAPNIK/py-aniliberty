@@ -62,15 +62,15 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/teams/` | Команды | All AniLibria teams |  | `client.teams.list()` | 3.5 |
 | `GET` | `/teams/roles` | Команды | Team roles |  | `client.teams.roles()` | 3.5 |
 | `GET` | `/teams/users` | Команды | Team members |  | `client.teams.users()` | 3.5 |
-| `POST` | `/accounts/otp/accept` | Аккаунты.ОдноразовыеПароли | Attach the current user to an issued OTP | yes |  | 4.2 |
-| `POST` | `/accounts/otp/get` | Аккаунты.ОдноразовыеПароли | Request a one-time password (OTP) |  |  | 4.2 |
-| `POST` | `/accounts/otp/login` | Аккаунты.ОдноразовыеПароли | Log in with an OTP |  |  | 4.2 |
-| `POST` | `/accounts/users/auth/login` | Аккаунты.Пользователи.Авторизация | Log in |  |  | 4.2 |
-| `POST` | `/accounts/users/auth/logout` | Аккаунты.Пользователи.Авторизация | Log out | yes |  | 4.2 |
-| `GET` | `/accounts/users/auth/social/authenticate` | Аккаунты.Пользователи.Авторизация.СоциальныеСети | Complete social-network login |  |  | 4.2 |
-| `GET` | `/accounts/users/auth/social/{provider}/login` | Аккаунты.Пользователи.Авторизация.СоциальныеСети | Start social-network login |  |  | 4.2 |
-| `POST` | `/accounts/users/auth/password/forget` | Аккаунты.Пользователи.Авторизация.Пароль | Request a password reset |  |  | 4.2 |
-| `POST` | `/accounts/users/auth/password/reset` | Аккаунты.Пользователи.Авторизация.Пароль | Reset and set a new password |  |  | 4.2 |
+| `POST` | `/accounts/otp/accept` | Аккаунты.ОдноразовыеПароли | Attach the current user to an issued OTP | yes | `client.auth.otp.accept()` | 4.2 |
+| `POST` | `/accounts/otp/get` | Аккаунты.ОдноразовыеПароли | Request a one-time password (OTP) |  | `client.auth.otp.get()` | 4.2 |
+| `POST` | `/accounts/otp/login` | Аккаунты.ОдноразовыеПароли | Log in with an OTP |  | `client.auth.otp.login()` | 4.2 |
+| `POST` | `/accounts/users/auth/login` | Аккаунты.Пользователи.Авторизация | Log in |  | `client.auth.login()` | 4.2 |
+| `POST` | `/accounts/users/auth/logout` | Аккаунты.Пользователи.Авторизация | Log out | yes | `client.auth.logout()` | 4.2 |
+| `GET` | `/accounts/users/auth/social/authenticate` | Аккаунты.Пользователи.Авторизация.СоциальныеСети | Complete social-network login |  | `client.auth.social.authenticate()` | 4.2 |
+| `GET` | `/accounts/users/auth/social/{provider}/login` | Аккаунты.Пользователи.Авторизация.СоциальныеСети | Start social-network login |  | `client.auth.social.login()` | 4.2 |
+| `POST` | `/accounts/users/auth/password/forget` | Аккаунты.Пользователи.Авторизация.Пароль | Request a password reset |  | `client.auth.password.forget()` | 4.2 |
+| `POST` | `/accounts/users/auth/password/reset` | Аккаунты.Пользователи.Авторизация.Пароль | Reset and set a new password |  | `client.auth.password.reset()` | 4.2 |
 | `GET` | `/accounts/users/me/collections/references/age-ratings` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Age ratings present in the user's collections | yes |  | 4.5 |
 | `GET` | `/accounts/users/me/collections/references/genres` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Genres present in the user's collections | yes |  | 4.5 |
 | `GET` | `/accounts/users/me/collections/references/types` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Release types present in the user's collections | yes |  | 4.5 |
