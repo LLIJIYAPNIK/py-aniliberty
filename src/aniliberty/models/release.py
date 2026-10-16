@@ -14,7 +14,13 @@ from typing import Annotated
 from pydantic import Field
 
 from aniliberty.models._base import AniLibertyModel
-from aniliberty.models.common import EMPTY_VALUE_AS_NONE, Image, ImageSet, ValueDescription
+from aniliberty.models.common import (
+    EMPTY_VALUE_AS_NONE,
+    Image,
+    ImageSet,
+    LinkedAccount,
+    ValueDescription,
+)
 from aniliberty.models.episode import Episode
 from aniliberty.models.genre import Genre
 
@@ -94,18 +100,6 @@ class UserRating(AniLibertyModel):
     score: int | None = None
 
 
-class ReleaseMemberUser(AniLibertyModel):
-    """The site account linked to a release member.
-
-    Attributes:
-        id: User ID.
-        avatar: User avatar.
-    """
-
-    id: int
-    avatar: Image | None = None
-
-
 class ReleaseMember(AniLibertyModel):
     """A person who worked on a release (voice actor, translator, timer, ...).
 
@@ -123,7 +117,7 @@ class ReleaseMember(AniLibertyModel):
     id: str
     nickname: str
     role: Annotated[ValueDescription[str] | None, EMPTY_VALUE_AS_NONE] = None
-    user: ReleaseMemberUser | None = None
+    user: LinkedAccount | None = None
 
 
 class Sponsor(AniLibertyModel):

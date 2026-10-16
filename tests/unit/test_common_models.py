@@ -1,4 +1,4 @@
-"""ValueDescription, EMPTY_VALUE_AS_NONE, Image/ImageSet URL resolution."""
+"""ValueDescription, EMPTY_VALUE_AS_NONE, Image/ImageSet URL resolution, LinkedAccount."""
 
 from __future__ import annotations
 
@@ -7,7 +7,15 @@ from typing import Annotated, Any
 import pydantic
 import pytest
 
-from aniliberty import HttpClient, Image, ValueDescription
+from aniliberty import (
+    HttpClient,
+    Image,
+    LinkedAccount,
+    ReleaseMember,
+    TeamMember,
+    TorrentMember,
+    ValueDescription,
+)
 from aniliberty.models import EMPTY_VALUE_AS_NONE
 from aniliberty.models._base import AniLibertyModel
 
@@ -133,3 +141,27 @@ def test_models_are_frozen() -> None:
 )
 def test_http_client_site_url_is_the_origin_of_base_url(base_url: str, site_url: str) -> None:
     assert HttpClient(base_url=base_url).site_url == site_url
+
+
+def test_members_of_releases_torrents_and_teams_share_the_linked_account_model() -> None:
+    user = {"id": 7, "avatar": {"preview": "/storage/users/avatars/7/a.jpg"}}
+    release_member = ReleaseMember.model_validate({"id": "m1", "nickname": "Amikiri", "user": user})
+    torrent_member = TorrentMember.model_validate({"id": "m2", "nickname": "Amikiri", "user": user})
+    team_member = TeamMember.model_validate(
+        {
+            "id": "m3",
+            "nickname": "Amikiri",
+            "sort_order": 1,
+            "team": {"id": "t", "title": "II Лига", "sort_order": 2},
+            "user": {**user, "nickname": "amikiri-site"},
+        }
+    )
+
+    accounts = [release_member.user, torrent_member.user, team_member.user]
+    assert all(isinstance(account, LinkedAccount) for account in accounts)
+    assert release_member.user is not None and release_member.user.nickname is None
+    assert team_member.user is not None and team_member.user.nickname == "amikiri-site"
+    assert release_member.user.avatar is not None
+    assert release_member.user.avatar.preview_url == (
+        "https://aniliberty.top/storage/users/avatars/7/a.jpg"
+    )

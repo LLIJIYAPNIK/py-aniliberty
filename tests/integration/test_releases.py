@@ -49,7 +49,7 @@ async def test_random() -> None:
 @pytest.mark.vcr
 async def test_recommended_for_a_release() -> None:
     async with AniLiberty() as client:
-        releases = await client.releases.recommended(release_id=RELEASE_ID, limit=2)
+        releases = await client.releases.recommended(release=RELEASE_ID, limit=2)
 
     assert len(releases) == 2
     assert RELEASE_ID not in {r.id for r in releases}

@@ -544,7 +544,7 @@ release → JSON 404. `GET /anime/releases/episodes/{id}/timecode` → one recor
 (no record yet, or no such episode). Both need a session (403 without), although they sit
 under the public `anime/*` tags.
 
-**SDK** — `client.me.views.timecodes()` / `save_timecodes()` / `delete_timecodes()` /
+**SDK** — `client.me.views.timecodes()` / `save_timecodes()` / `remove_timecodes()` /
 `history()` / `iter_history()`, `client.episodes.timecode()`, `client.releases.timecodes()`.
 Triples become `Timecode` models, records `EpisodeView`, history entries `HistoryEntry`.
 `since` must be timezone-aware (a naive `datetime` raises `ValueError` rather than being

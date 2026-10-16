@@ -135,7 +135,7 @@ async def test_saved_token_reuses_the_session(credentials: Credentials) -> None:
 @pytest.mark.vcr
 async def test_otp_flow(credentials: Credentials) -> None:
     async with AniLiberty() as device, AniLiberty() as phone:
-        issued = await device.auth.otp.get(device_id=DEVICE_ID)
+        issued = await device.auth.otp.issue(device_id=DEVICE_ID)
 
         await phone.auth.login(login=credentials.login, password=credentials.password)
         await phone.auth.otp.accept(issued.otp.code)

@@ -125,3 +125,23 @@ class Image(ImageSet):
     """
 
     optimized: ImageSet | None = None
+
+
+class LinkedAccount(AniLibertyModel):
+    """The site account linked to a person in the credits or in a team.
+
+    The ``user`` of ``ReleaseMember``, ``TorrentMember`` and ``TeamMember`` — set when the
+    person has an account on the site, ``None`` otherwise. Spec schemas:
+    ``models.teams.v1.team.user.account`` and the ``user`` of release/torrent members.
+
+    Attributes:
+        id: User ID on the site.
+        nickname: The account's nickname. Only team members' accounts have it (it can differ
+            from the team nickname); for release and torrent members it's ``None`` — their
+            own ``nickname`` is on the member.
+        avatar: The account's avatar (its paths can be ``None``).
+    """
+
+    id: int
+    nickname: str | None = None
+    avatar: Image | None = None

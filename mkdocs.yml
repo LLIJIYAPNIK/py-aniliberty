@@ -36,6 +36,7 @@ nav:
   - API reference: reference.md
   - Endpoints: endpoints.md
   - API notes: api-notes.md
+  - Upgrading to 1.0: upgrading.md
   - Changelog: changelog.md
 
 plugins:

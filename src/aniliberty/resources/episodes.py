@@ -19,12 +19,13 @@ class EpisodesResource(BaseResource):
         ("GET", "/anime/releases/episodes/{releaseEpisodeId}/timecode"),
     )
 
-    async def get(self, episode_id: str) -> Episode:
+    async def get(self, episode: str | Episode) -> Episode:
         """Get one episode, with its HLS links and its release.
 
         Args:
-            episode_id: Episode ID, a UUID string such as
-                ``"a159552a-9fa7-4737-867b-d22cf7115602"``.
+            episode: Episode ID, a UUID string such as
+                ``"a159552a-9fa7-4737-867b-d22cf7115602"``, or an ``Episode`` (e.g. from
+                ``Release.episodes``, to get it with its release).
 
         Returns:
             The episode, with ``release`` filled in — the release (without ``genres``) and
@@ -43,18 +44,16 @@ class EpisodesResource(BaseResource):
             print(episode.ordinal, episode.hls_1080 or episode.hls_720)
             ```
         """
-        return await self._get(
-            f"/anime/releases/episodes/{path_segment(episode_id, what='episode ID')}", Episode
-        )
+        return await self._get(f"/anime/releases/episodes/{_episode_segment(episode)}", Episode)
 
-    async def timecode(self, episode_id: str) -> EpisodeView:
+    async def timecode(self, episode: str | Episode) -> EpisodeView:
         """Get the logged-in user's watch record of an episode. Needs a session.
 
         Records appear about a minute after ``client.me.views.save_timecodes()``; for the
         positions saved just now use ``client.me.views.timecodes()``.
 
         Args:
-            episode_id: Episode ID, a UUID string.
+            episode: Episode ID (a UUID string), or an ``Episode``.
 
         Returns:
             Where the user stopped in the episode and whether they finished it.
@@ -73,5 +72,13 @@ class EpisodesResource(BaseResource):
             print(view.time, view.is_watched)
             ```
         """
-        segment = path_segment(episode_id, what="episode ID")
-        return await self._get(f"/anime/releases/episodes/{segment}/timecode", EpisodeView)
+        return await self._get(
+            f"/anime/releases/episodes/{_episode_segment(episode)}/timecode", EpisodeView
+        )
+
+
+def _episode_segment(episode: str | Episode) -> str:
+    """The path segment of an episode given by ID or ``Episode``."""
+    if isinstance(episode, Episode):
+        return episode.id
+    return path_segment(episode, what="episode ID")

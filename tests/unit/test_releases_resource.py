@@ -102,6 +102,36 @@ async def test_optional_params_are_not_sent() -> None:
     assert recorder.requests[0].url.query == b""
 
 
+async def test_release_objects_are_accepted_wherever_a_release_is_identified() -> None:
+    release = Release.model_validate({**MINIMAL_RELEASE, "id": 9542})
+    recorder = Recorder([])
+    async with make_client(recorder) as client:
+        recorder.payload = MINIMAL_RELEASE
+        await client.releases.get(release)
+        recorder.payload = []
+        await client.releases.members(release)
+        await client.releases.timecodes(release)
+        await client.releases.recommended(release=release)
+
+    paths = [request.url.path for request in recorder.requests]
+    assert paths[:3] == [
+        "/api/v1/anime/releases/9542",
+        "/api/v1/anime/releases/9542/members",
+        "/api/v1/anime/releases/9542/episodes/timecodes",
+    ]
+    assert recorder.requests[3].url.params["release_id"] == "9542"
+
+
+@pytest.mark.parametrize("bad", ["sousou-no-frieren", True])
+async def test_recommended_takes_only_numeric_ids(bad: Any) -> None:
+    recorder = Recorder([])
+    async with make_client(recorder) as client:
+        with pytest.raises(TypeError, match="Expected a release ID"):
+            await client.releases.recommended(release=bad)
+
+    assert recorder.requests == []
+
+
 @pytest.mark.parametrize("kwargs", [{}, {"ids": []}, {"aliases": []}])
 async def test_list_requires_ids_or_aliases(kwargs: dict[str, Any]) -> None:
     async with AniLiberty() as client:

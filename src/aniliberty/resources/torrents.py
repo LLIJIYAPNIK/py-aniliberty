@@ -51,6 +51,13 @@ class TorrentsResource(BaseResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``Torrent``.
+
+        Example:
+            ```python
+            page = await client.torrents.list(limit=10)
+            for torrent in page.items:
+                print(torrent.label, torrent.size)
+            ```
         """
         return await self._get(
             "/anime/torrents", Page[Torrent], params={"page": page, "limit": limit}
@@ -64,6 +71,17 @@ class TorrentsResource(BaseResource):
 
         Returns:
             An async iterator over the torrents.
+
+        Raises:
+            ValidationError: ``limit`` is out of range — raised once iteration starts.
+            APIError: The API answered with another error, while iterating.
+            TransportError: A request failed without a response, while iterating.
+
+        Example:
+            ```python
+            async for torrent in client.torrents.iter_list(limit=50):
+                print(torrent.hash, torrent.seeders)
+            ```
         """
 
         async def fetch(page: int) -> Page[Torrent]:
@@ -85,6 +103,12 @@ class TorrentsResource(BaseResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``Torrent``.
+
+        Example:
+            ```python
+            torrent = await client.torrents.get("17ceda4b3c2b8823b7f1139dca0b49aea5fff933")
+            print(torrent.label, torrent.release.name.main if torrent.release else None)
+            ```
         """
         return await self._get(f"/anime/torrents/{_torrent_key(torrent)}", Torrent)
 
@@ -132,13 +156,19 @@ class TorrentsResource(BaseResource):
             NotFoundError: No torrent with this ID or hash.
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
+
+        Example:
+            ```python
+            torrent_file = await client.torrents.file(torrent)
+            Path(torrent_file.filename or "release.torrent").write_bytes(torrent_file.content)
+            ```
         """
         response = await self._http.request_raw(
             "GET", f"/anime/torrents/{_torrent_key(torrent)}/file"
         )
         return TorrentFile(filename=_suggested_filename(response), content=response.content)
 
-    async def download(self, torrent: int | str | Torrent, path: str | os.PathLike[str]) -> Path:
+    async def download(self, torrent: int | str | Torrent, *, path: str | os.PathLike[str]) -> Path:
         """Download a ``.torrent`` file to disk, streaming it in chunks.
 
         The file is written to a temporary ``<name>.part`` next to the target and renamed
@@ -161,7 +191,7 @@ class TorrentsResource(BaseResource):
 
         Example:
             ```python
-            saved = await client.torrents.download(torrent, "downloads/")
+            saved = await client.torrents.download(torrent, path="downloads/")
             print(saved)  # downloads/One Piece - AniLiberty.TOP [WEBRip 1080p][AVC][1-24].torrent
             ```
         """
@@ -197,6 +227,12 @@ class TorrentsResource(BaseResource):
         Raises:
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
+
+        Example:
+            ```python
+            xml = await client.torrents.rss(limit=10)
+            print(xml[:60])  # <?xml version="1.0" encoding="UTF-8"?>...
+            ```
         """
         response = await self._http.request_raw(
             "GET", "/anime/torrents/rss", params={"limit": limit} if limit is not None else None
@@ -218,6 +254,11 @@ class TorrentsResource(BaseResource):
             NotFoundError: No release with this ID.
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
+
+        Example:
+            ```python
+            xml = await client.torrents.rss_for_release(release)
+            ```
         """
         response = await self._http.request_raw(
             "GET", f"/anime/torrents/rss/release/{numeric_release_id(release)}"

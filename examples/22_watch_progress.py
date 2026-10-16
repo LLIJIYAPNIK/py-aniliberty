@@ -88,9 +88,9 @@ async def main() -> None:
             # that — hence the second round.
             new = ours - {t.release_episode_id for t in before}
             if new:
-                await views.delete_timecodes(*new)
+                await views.remove_timecodes(*new)
                 await wait_for(lambda: _gone(client, new))
-                await views.delete_timecodes(*new)
+                await views.remove_timecodes(*new)
             if before:
                 await views.save_timecodes(*before)
             left = {t.release_episode_id for t in await views.timecodes()} & ours

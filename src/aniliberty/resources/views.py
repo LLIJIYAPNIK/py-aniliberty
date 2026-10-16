@@ -24,7 +24,7 @@ class ViewsResource(BaseResource):
     - ``save_timecodes()`` shows up in ``timecodes()`` at once, but in ``history()``,
       ``client.episodes.timecode()`` and ``client.releases.timecodes()`` only about a minute
       later.
-    - ``delete_timecodes()`` likewise takes about a minute to reach the history, and
+    - ``remove_timecodes()`` likewise takes about a minute to reach the history, and
       ``timecodes()`` can keep listing the deleted entries after that; deleting them once more
       after the minute clears them.
 
@@ -102,7 +102,7 @@ class ViewsResource(BaseResource):
         body = [timecode.model_dump(mode="json") for timecode in timecodes]
         await self._http.request("POST", f"{_PATH}/timecodes", json=body)
 
-    async def delete_timecodes(self, *episodes: str | Episode | Timecode) -> None:
+    async def remove_timecodes(self, *episodes: str | Episode | Timecode) -> None:
         """Delete the saved position in one or more episodes (and their history entries).
 
         Episodes without a timecode are skipped. See the class docs: the deletion takes about
@@ -121,7 +121,7 @@ class ViewsResource(BaseResource):
 
         Example:
             ```python
-            await client.me.views.delete_timecodes(*await client.me.views.timecodes())
+            await client.me.views.remove_timecodes(*await client.me.views.timecodes())
             ```
         """
         if not episodes:
@@ -168,6 +168,12 @@ class ViewsResource(BaseResource):
 
         Returns:
             An async iterator over the entries, most recent first.
+
+        Raises:
+            AuthRequiredError: No valid session — raised once iteration starts.
+            ValidationError: ``limit`` is out of range — raised once iteration starts.
+            APIError: The API answered with another error, while iterating.
+            TransportError: A request failed without a response, while iterating.
 
         Example:
             ```python

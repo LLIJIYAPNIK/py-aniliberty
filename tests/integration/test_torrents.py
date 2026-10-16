@@ -68,7 +68,7 @@ async def test_file_and_download(tmp_path: Path) -> None:
         release = await client.releases.get(FRIEREN)
         [torrent, *_] = await client.torrents.for_release(release)
         in_memory = await client.torrents.file(torrent)
-        saved = await client.torrents.download(torrent, tmp_path)
+        saved = await client.torrents.download(torrent, path=tmp_path)
 
     assert in_memory.content.startswith(b"d8:announce")  # a bencoded dictionary
     assert in_memory.filename is not None

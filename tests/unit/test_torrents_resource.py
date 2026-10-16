@@ -111,7 +111,7 @@ async def test_file_returns_bytes_and_a_safe_suggested_name(
 async def test_download_into_a_directory_uses_the_suggested_name(tmp_path: Path) -> None:
     client, seen = client_for(torrent_file())
     async with client:
-        saved = await client.torrents.download(Torrent.model_validate(TORRENT), tmp_path)
+        saved = await client.torrents.download(Torrent.model_validate(TORRENT), path=tmp_path)
 
     assert saved == tmp_path / "One Piece [AVC].torrent"
     assert saved.read_bytes() == TORRENT_BYTES
@@ -122,7 +122,9 @@ async def test_download_into_a_directory_uses_the_suggested_name(tmp_path: Path)
 async def test_download_into_a_directory_without_a_suggested_name(tmp_path: Path) -> None:
     client, _ = client_for(torrent_file(None))
     async with client:
-        saved = await client.torrents.download("17ceda4b3c2b8823b7f1139dca0b49aea5fff933", tmp_path)
+        saved = await client.torrents.download(
+            "17ceda4b3c2b8823b7f1139dca0b49aea5fff933", path=tmp_path
+        )
 
     assert saved.name == "17ceda4b3c2b8823b7f1139dca0b49aea5fff933.torrent"
 
@@ -132,7 +134,7 @@ async def test_download_to_a_file_path_overwrites_it(tmp_path: Path) -> None:
     target.write_bytes(b"old")
     client, _ = client_for(torrent_file())
     async with client:
-        saved = await client.torrents.download(40407, str(target))
+        saved = await client.torrents.download(40407, path=str(target))
 
     assert saved == target
     assert target.read_bytes() == TORRENT_BYTES
@@ -153,7 +155,7 @@ async def test_interrupted_download_leaves_no_files(tmp_path: Path) -> None:
     )
     async with client:
         with pytest.raises(httpx.ReadError):
-            await client.torrents.download(40407, target)
+            await client.torrents.download(40407, path=target)
 
     assert list(tmp_path.iterdir()) == []
 
@@ -162,7 +164,7 @@ async def test_download_of_a_missing_torrent_writes_nothing(tmp_path: Path) -> N
     client, _ = client_for(lambda request: httpx.Response(404, json={"message": "No query"}))
     async with client:
         with pytest.raises(NotFoundError):
-            await client.torrents.download(1, tmp_path)
+            await client.torrents.download(1, path=tmp_path)
 
     assert list(tmp_path.iterdir()) == []
 
@@ -226,3 +228,9 @@ async def test_iter_list_walks_all_pages() -> None:
 
     assert ids == [1, 2, 3]
     assert [r.url.params["page"] for r in seen] == ["1", "2"]
+
+
+async def test_download_path_is_keyword_only(tmp_path: Path) -> None:
+    async with AniLiberty() as client:
+        with pytest.raises(TypeError):
+            await client.torrents.download(1, tmp_path)  # type: ignore[misc]

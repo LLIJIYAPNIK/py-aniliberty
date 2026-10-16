@@ -10,6 +10,7 @@ from aniliberty.models.release import Release, ReleaseMember
 from aniliberty.models.view import EpisodeView
 from aniliberty.pagination import Page, iterate_pages
 from aniliberty.resources._base import BaseResource, path_segment
+from aniliberty.resources._filters import numeric_release_id
 from aniliberty.resources.ratings import RatingsResource
 
 
@@ -91,19 +92,21 @@ class ReleasesResource(BaseResource):
         )
 
     async def recommended(
-        self, *, release_id: int | None = None, limit: int | None = None
+        self, *, release: int | Release | None = None, limit: int | None = None
     ) -> builtins.list[Release]:
         """Get recommended releases, optionally ones similar to a given release.
 
         Args:
-            release_id: ID of the release to base recommendations on. Without it, the API
-                returns general recommendations.
+            release: Release ID, or a ``Release``, to base recommendations on. Without it,
+                the API returns general recommendations.
             limit: How many releases to return, 1 to 50.
 
         Returns:
             The releases, with ``genres`` filled in.
 
         Raises:
+            TypeError: ``release`` is not an ``int`` or a ``Release`` (aliases don't work
+                here).
             ValidationError: ``limit`` is out of range.
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
@@ -111,9 +114,10 @@ class ReleasesResource(BaseResource):
 
         Example:
             ```python
-            similar = await client.releases.recommended(release_id=release.id, limit=5)
+            similar = await client.releases.recommended(release=release, limit=5)
             ```
         """
+        release_id = None if release is None else numeric_release_id(release)
         return await self._get(
             "/anime/releases/recommended",
             builtins.list[Release],
@@ -203,11 +207,12 @@ class ReleasesResource(BaseResource):
 
         return iterate_pages(fetch)
 
-    async def get(self, id_or_alias: int | str) -> Release:
+    async def get(self, release: int | str | Release) -> Release:
         """Get one release by its ID or alias.
 
         Args:
-            id_or_alias: Release ID (``10297``) or alias (``"sousou-no-frieren"``).
+            release: Release ID (``10297``), alias (``"sousou-no-frieren"``), or a
+                ``Release`` (e.g. from a list, to get its full details).
 
         Returns:
             The release, with ``genres``, ``members``, ``sponsors`` and
@@ -225,15 +230,13 @@ class ReleasesResource(BaseResource):
             print(release.name.main, release.episodes_total)
             ```
         """
-        return await self._get(
-            f"/anime/releases/{path_segment(id_or_alias, what='release ID or alias')}", Release
-        )
+        return await self._get(f"/anime/releases/{_release_segment(release)}", Release)
 
-    async def members(self, id_or_alias: int | str) -> builtins.list[ReleaseMember]:
+    async def members(self, release: int | str | Release) -> builtins.list[ReleaseMember]:
         """Get the people who worked on a release (voice actors, translators, ...).
 
         Args:
-            id_or_alias: Release ID or alias.
+            release: Release ID, alias, or a ``Release``.
 
         Returns:
             The release's members.
@@ -251,17 +254,16 @@ class ReleasesResource(BaseResource):
             ```
         """
         return await self._get(
-            f"/anime/releases/{path_segment(id_or_alias, what='release ID or alias')}/members",
-            builtins.list[ReleaseMember],
+            f"/anime/releases/{_release_segment(release)}/members", builtins.list[ReleaseMember]
         )
 
-    async def timecodes(self, id_or_alias: int | str) -> builtins.list[EpisodeView]:
+    async def timecodes(self, release: int | str | Release) -> builtins.list[EpisodeView]:
         """Get the logged-in user's watch records of a release's episodes. Needs a session.
 
         Records appear about a minute after ``client.me.views.save_timecodes()``.
 
         Args:
-            id_or_alias: Release ID or alias.
+            release: Release ID, alias, or a ``Release``.
 
         Returns:
             One record per episode the user has started; empty if none.
@@ -279,7 +281,14 @@ class ReleasesResource(BaseResource):
                        if v.is_watched}
             ```
         """
-        segment = path_segment(id_or_alias, what="release ID or alias")
         return await self._get(
-            f"/anime/releases/{segment}/episodes/timecodes", builtins.list[EpisodeView]
+            f"/anime/releases/{_release_segment(release)}/episodes/timecodes",
+            builtins.list[EpisodeView],
         )
+
+
+def _release_segment(release: int | str | Release) -> str:
+    """The path segment of a release given by ID, alias or ``Release``."""
+    if isinstance(release, Release):
+        return str(release.id)
+    return path_segment(release, what="release ID or alias")

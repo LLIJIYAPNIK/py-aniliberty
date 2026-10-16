@@ -38,7 +38,7 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`16_teams.py`](16_teams.py) | `teams.list()` / `roles()` / `users()` — members per team, roles, joining with release credits |
 | [`17_media.py`](17_media.py) | `media.promotions()` / `videos()` — kinds of promo banners, latest YouTube videos and `limit` |
 | [`18_authentication.py`](18_authentication.py) | `auth.login()` / `logout()`, `client.token` and `AniLiberty(token=...)`, `me.profile()`, 401 vs 403 |
-| [`19_otp_device_login.py`](19_otp_device_login.py) | `auth.otp.get()` / `accept()` / `login()` — logging a device in with a one-time code |
+| [`19_otp_device_login.py`](19_otp_device_login.py) | `auth.otp.issue()` / `accept()` / `login()` — logging a device in with a one-time code |
 | [`20_favorites.py`](20_favorites.py) | `me.favorites.add()` / `remove()` / `ids()` / `releases()` / `iter_releases()` / `references` |
 | [`21_collections.py`](21_collections.py) | `me.collections.add(..., to=...)` / `remove()` / `ids()` / `releases(collection)` — moving between collections |
 | [`22_watch_progress.py`](22_watch_progress.py) | `me.views.save_timecodes()` / `timecodes()` / `history()`, `episodes.timecode()`, `releases.timecodes()` — and the API's delay |

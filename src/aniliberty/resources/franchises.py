@@ -54,6 +54,13 @@ class FranchisesResource(BaseResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``Franchise``.
+
+        Example:
+            ```python
+            franchise = (await client.franchises.list())[0]
+            full = await client.franchises.get(franchise)
+            print(full.name, [fr.release.name.main for fr in full.franchise_releases])
+            ```
         """
         franchise_id = franchise.id if isinstance(franchise, Franchise) else franchise
         if not isinstance(franchise_id, str):
@@ -76,6 +83,12 @@ class FranchisesResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``Franchise``.
+
+        Example:
+            ```python
+            for franchise in await client.franchises.random(limit=3):
+                print(franchise.name, franchise.first_year, franchise.last_year)
+            ```
         """
         return await self._get(
             "/anime/franchises/random", builtins.list[Franchise], params={"limit": limit}

@@ -38,12 +38,12 @@ async def main() -> None:
             print(f"  {release.name.main} ({release.year}) [{genres}]")
 
         # --- recommended --------------------------------------------------------------
-        # With release_id, the API recommends releases similar to that one; without it,
+        # With release=..., the API recommends releases similar to that one; without it,
         # general recommendations. (In the runs checked, the release itself was never
         # among its own recommendations.)
         frieren = await client.releases.get("sousou-no-frieren")
         print(f"Similar to {frieren.name.main}:")
-        for release in await client.releases.recommended(release_id=frieren.id, limit=3):
+        for release in await client.releases.recommended(release=frieren, limit=3):
             print(f"  {release.name.main}")
 
         # --- limits -------------------------------------------------------------------
@@ -62,12 +62,12 @@ if __name__ == "__main__":
 # Expected output (real run against the live API, 2026-10-16):
 #
 # Latest:
+#   2026-10-16 15:11 Ван-Пис — episode 24
 #   2026-10-15 22:02 О моём перерождении в меч 2 — episode 3
 #   2026-10-15 13:48 Во всеоружии: Сила артефактов — episode 3
-#   2026-10-14 17:30 Операция: Семейка Ёдзакура 2. Часть 2 — episode 1
 # Random:
-#   Ди-сайд: Грёзы (2021) [Экшен, Фэнтези, Приключения]
-#   Страж перерождения (2017) [Фэнтези, Приключения, Романтика]
+#   Холмс на Тэрамати-Сандзё, Киото (2018) [Детектив, Сёдзе]
+#   Школьная форма Акэби (2022) [Повседневность, Школа]
 # Similar to Провожающая в последний путь Фрирен:
 #   Ди-сайд: Грёзы
 #   Волчица и пряности: Торговец встречает мудрую волчицу

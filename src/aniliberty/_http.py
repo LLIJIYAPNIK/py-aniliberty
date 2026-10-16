@@ -203,7 +203,7 @@ class HttpClient:
     def token(self, value: str | None) -> None:
         self._token = value or None
 
-    def discard_cookie(self, name: str) -> None:
+    def _discard_cookie(self, name: str) -> None:
         """Remove a cookie the API has set from the underlying client's cookie jar.
 
         Login responses also set the session token as the ``_al1`` cookie, which httpx

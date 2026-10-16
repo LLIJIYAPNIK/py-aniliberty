@@ -103,6 +103,31 @@ async def test_get_requests_the_episode_path() -> None:
     await http_client.aclose()
 
 
+async def test_episode_objects_are_accepted() -> None:
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        if request.url.path.endswith("/timecode"):
+            return httpx.Response(
+                200,
+                json={"id": 1, "release_episode_id": EPISODE["id"], "time": 1, "is_watched": False},
+            )
+        return httpx.Response(200, json=EPISODE)
+
+    episode = Episode.model_validate(EPISODE)
+    http_client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    async with AniLiberty(http_client=http_client) as client:
+        await client.episodes.get(episode)
+        await client.episodes.timecode(episode)
+    await http_client.aclose()
+
+    assert [r.url.path for r in seen] == [
+        f"/api/v1/anime/releases/episodes/{EPISODE['id']}",
+        f"/api/v1/anime/releases/episodes/{EPISODE['id']}/timecode",
+    ]
+
+
 @pytest.mark.parametrize("bad", ["", "a/b", "..", 5.0, None])
 async def test_get_rejects_invalid_ids_before_sending(bad: Any) -> None:
     async with AniLiberty() as client:

@@ -12,8 +12,8 @@ from typing import Annotated
 from pydantic import Field
 
 from aniliberty.models._base import AniLibertyModel
-from aniliberty.models.common import EMPTY_VALUE_AS_NONE, ValueDescription
-from aniliberty.models.release import Release, ReleaseMemberUser
+from aniliberty.models.common import EMPTY_VALUE_AS_NONE, LinkedAccount, ValueDescription
+from aniliberty.models.release import Release
 
 
 class TorrentCodec(ValueDescription[str]):
@@ -48,7 +48,7 @@ class TorrentMember(AniLibertyModel):
     nickname: str
     role: Annotated[ValueDescription[str] | None, EMPTY_VALUE_AS_NONE] = None
     external_url: str | None = None
-    user: ReleaseMemberUser | None = None
+    user: LinkedAccount | None = None
 
 
 class Torrent(AniLibertyModel):
