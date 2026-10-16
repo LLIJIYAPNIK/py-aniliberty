@@ -9,6 +9,21 @@ project follows [Semantic Versioning](https://semver.org/). Entries are generate
 `main` whenever a GitHub Release is published — don't hand-edit released sections, fix the
 underlying commit message instead and let the next release regenerate this file.
 
+## [1.0.0] - 2026-10-16
+
+### Breaking changes
+
+- Name identifier parameters release/episode and accept model objects
+- Make the path of torrents.download() keyword-only
+- Rename client.auth.otp.get() to issue()
+- Rename client.me.views.delete_timecodes() to remove_timecodes()
+- One LinkedAccount model for the site account of release, torrent and team members
+- Make HttpClient.discard_cookie() private
+
+### Added
+
+- Export the Literal types (ReleaseType, CollectionType, ...) from the package root
+
 ## [0.4.0] - 2026-10-16
 
 ### Added
@@ -72,6 +87,7 @@ underlying commit message instead and let the next release regenerate this file.
 - Publish to PyPI from GitHub Releases via Trusted Publishing
 - Regenerate CHANGELOG.md with git-cliff when a release is published
 
+[1.0.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.4.0..v1.0.0
 [0.4.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.3.0..v0.4.0
 [0.3.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.2.0..v0.3.0
 [0.2.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.1.0..v0.2.0
