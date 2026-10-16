@@ -48,6 +48,12 @@ asyncio.run(main())
 
 More in the [Quickstart](https://llijiyapnik.github.io/py-aniliberty/quickstart/) of the docs.
 
+## Examples
+
+[`examples/`](examples/) has a runnable, heavily commented script per feature — releases,
+episodes and HLS links, quick search, ... — each ending with the output of a real run. See
+[`examples/README.md`](examples/README.md) for the list.
+
 ## License
 
 [MIT](LICENSE)
