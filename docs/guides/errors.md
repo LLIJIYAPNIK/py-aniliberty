@@ -29,7 +29,7 @@ AniLibertyError
 | [`RateLimitError`][aniliberty.RateLimitError] | 429 | yes | slow down; `error.retry_after` if the API sent it |
 | [`ServerError`][aniliberty.ServerError] | 5xx | yes | try again later |
 | [`AccessBlockedError`][aniliberty.AccessBlockedError] | an HTML page instead of JSON | **never** | try the [mirror](custom-http-client.md#mirrors) or another network |
-| [`AuthRequiredError`][aniliberty.AuthRequiredError] | 401 / 403 | no | account endpoints aren't supported yet |
+| [`AuthRequiredError`][aniliberty.AuthRequiredError] | 401 wrong credentials, 403 no valid session | no | log in again — see [Authentication](authentication.md#when-a-session-is-missing-or-invalid) |
 | [`APIError`][aniliberty.APIError] | any other error status, e.g. 405 | no | — |
 | [`TransportError`][aniliberty.TransportError] | connection error, timeout | yes | check the network; `error.__cause__` is the `httpx` exception |
 | [`ResponseParseError`][aniliberty.ResponseParseError] | the response didn't fit the SDK's model | no | [report it](#responseparseerror); the raw data is in `error.payload` |
