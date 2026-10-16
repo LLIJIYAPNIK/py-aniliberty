@@ -21,6 +21,7 @@ from aniliberty.resources.franchises import FranchisesResource
 from aniliberty.resources.genres import GenresResource
 from aniliberty.resources.releases import ReleasesResource
 from aniliberty.resources.schedule import ScheduleResource
+from aniliberty.resources.torrents import TorrentsResource
 
 
 class AniLiberty:
@@ -41,6 +42,7 @@ class AniLiberty:
         schedule: The weekly airing schedule.
         genres: Genres, and the releases of each.
         franchises: Franchises — groups of related releases.
+        torrents: Torrents, ``.torrent`` file downloads and RSS feeds.
 
     Example:
         ```python
@@ -98,6 +100,7 @@ class AniLiberty:
         self.schedule = ScheduleResource(self.http)
         self.genres = GenresResource(self.http)
         self.franchises = FranchisesResource(self.http)
+        self.torrents = TorrentsResource(self.http)
 
     async def __aenter__(self) -> Self:
         if self.http.closed:

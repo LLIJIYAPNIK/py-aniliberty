@@ -25,6 +25,7 @@ from aniliberty.models.release import (
     Sponsor,
 )
 from aniliberty.models.schedule import ScheduledRelease, ScheduleNow
+from aniliberty.models.torrent import Torrent, TorrentCodec, TorrentFile, TorrentMember
 
 __all__ = [
     "EMPTY_VALUE_AS_NONE",
@@ -54,5 +55,9 @@ __all__ = [
     "SkipRange",
     "SortingOption",
     "Sponsor",
+    "Torrent",
+    "TorrentCodec",
+    "TorrentFile",
+    "TorrentMember",
     "ValueDescription",
 ]

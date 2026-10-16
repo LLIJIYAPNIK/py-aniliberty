@@ -36,6 +36,10 @@ from aniliberty.models import (
     SkipRange,
     SortingOption,
     Sponsor,
+    Torrent,
+    TorrentCodec,
+    TorrentFile,
+    TorrentMember,
     ValueDescription,
 )
 from aniliberty.pagination import Page
@@ -72,6 +76,10 @@ __all__ = [
     "SkipRange",
     "SortingOption",
     "Sponsor",
+    "Torrent",
+    "TorrentCodec",
+    "TorrentFile",
+    "TorrentMember",
     "TransportError",
     "ValidationError",
     "ValueDescription",
