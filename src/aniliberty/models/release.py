@@ -80,6 +80,20 @@ class ReleaseRating(AniLibertyModel):
     distribution: dict[int, int] = Field(default_factory=dict)
 
 
+class UserRating(AniLibertyModel):
+    """The logged-in user's own score for a release, from ``client.releases.ratings``.
+
+    Spec schema: ``models.anime.releases.v1.release.rating.own``.
+
+    Attributes:
+        release_id: Release ID.
+        score: The user's score, 1 to 10; ``None`` if they haven't rated the release.
+    """
+
+    release_id: int
+    score: int | None = None
+
+
 class ReleaseMemberUser(AniLibertyModel):
     """The site account linked to a release member.
 

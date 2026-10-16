@@ -46,9 +46,9 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/anime/releases/{idOrAlias}/members` | Аниме.Релизы | Team members who worked on a release |  | `client.releases.members()` | 1.4 |
 | `GET` | `/anime/releases/episodes/{releaseEpisodeId}` | Аниме.Релизы.Эпизоды | A single episode (HLS links) |  | `client.episodes.get()` | 1.5 |
 | `GET` | `/anime/releases/episodes/{releaseEpisodeId}/timecode` | Аниме.Релизы.Эпизоды | User's watch timecode for an episode | yes | `client.episodes.timecode()` | 4.6 |
-| `DELETE` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Remove the user's rating of a release | yes |  | 4.7 |
-| `GET` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | User's own rating of a release | yes |  | 4.7 |
-| `POST` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Rate a release (score up to 10) | yes |  | 4.7 |
+| `DELETE` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Remove the user's rating of a release | yes | `client.releases.ratings.remove()` | 4.7 |
+| `GET` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | User's own rating of a release | yes | `client.releases.ratings.get()` | 4.7 |
+| `POST` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Rate a release (score up to 10) | yes | `client.releases.ratings.set()` | 4.7 |
 | `GET` | `/anime/schedule/now` | Аниме.Релизы.РасписаниеРелизов | Release schedule for today |  | `client.schedule.now()` | 3.1 |
 | `GET` | `/anime/schedule/week` | Аниме.Релизы.РасписаниеРелизов | Release schedule for the current week |  | `client.schedule.week()` | 3.1 |
 | `GET` | `/anime/torrents` | Аниме.Торренты | Latest torrents (paginated) |  | `client.torrents.list()`, `client.torrents.iter_list()` | 3.4 |

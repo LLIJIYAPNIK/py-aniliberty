@@ -18,6 +18,7 @@ from aniliberty.resources.franchises import FranchisesResource
 from aniliberty.resources.genres import GenresResource
 from aniliberty.resources.me import MeResource
 from aniliberty.resources.media import MediaResource
+from aniliberty.resources.ratings import RatingsResource
 from aniliberty.resources.releases import ReleasesResource
 from aniliberty.resources.schedule import ScheduleResource
 from aniliberty.resources.teams import TeamsResource
@@ -40,6 +41,7 @@ __all__ = [
     "MediaResource",
     "OtpResource",
     "PasswordResource",
+    "RatingsResource",
     "ReleasesResource",
     "ScheduleResource",
     "SocialAuthResource",

@@ -25,6 +25,7 @@ from aniliberty.models.release import (
     ReleaseName,
     ReleaseRating,
     Sponsor,
+    UserRating,
 )
 from aniliberty.models.schedule import ScheduledRelease, ScheduleNow
 from aniliberty.models.team import Team, TeamMember, TeamMemberAccount, TeamRole
@@ -87,6 +88,7 @@ __all__ = [
     "TorrentFile",
     "TorrentMember",
     "TorrentStats",
+    "UserRating",
     "UserProfile",
     "ValueDescription",
     "Video",
