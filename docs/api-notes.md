@@ -390,6 +390,31 @@ values, the SDK validates them itself: list filters and `sorting` against the sp
 `year_from <= year_to`, and list-vs-string mistakes. Ranges of `page`/`limit` are left to the
 API's 422.
 
+## Schedule (checked 2026-10-16, a Friday)
+
+Requests: `GET /anime/schedule/now`, `GET /anime/schedule/week` (twice, a few minutes apart).
+
+- **`/week` doesn't match the spec:** the spec documents `{"data": [...]}`, the live API returns
+  the array itself (37 items). Not ordered by weekday.
+- **`/now`** is `{"yesterday": [...], "today": [...], "tomorrow": [...]}` as documented; each list
+  holds the releases whose `publish_day` is that weekday (Thursday, Friday, Saturday on a
+  Friday). Every release of `/now` is also in `/week`. Whether "today" follows UTC or Moscow
+  time is still open — both were Friday at the time.
+- **Items:** `{release, published_release_episode, next_release_episode_number,
+  full_season_is_released}`; `release` comes with `genres`, and one had the empty
+  `{"value": null}` `season` seen before.
+- **`published_release_episode`** was `null` on 15 of 37. Every non-null one was dated within
+  the current calendar week starting on Monday (2026-10-12 onwards), including one for a
+  Saturday release whose episode came out on Tuesday; Sunday releases whose episodes were out
+  the previous Sunday had `null`. So it means "the episode published this week", not "the
+  episode of this publish day".
+- **`next_release_episode_number`** was `null` only for the one release with
+  `full_season_is_released: true`.
+
+**Conclusion:** `client.schedule.week()` accepts both the live array and the spec's envelope;
+`ScheduledRelease.full_season_is_released` is required (present on all 45 items seen), the
+episode and next number are optional.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent
@@ -442,3 +467,4 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 - **Maximum `limit`** on `/genres/{id}/releases`, `/torrents`, `/franchises/random`,
   `/genres/random`, `/media/videos` (the catalog and the release endpoints: 50).
 - **Authentication details** (token lifetime, refresh, 401/403 bodies) — step 4.1.
+- **Schedule time zone** — whether `/schedule/now`'s "today" is UTC or Moscow time.

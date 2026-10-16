@@ -46,8 +46,8 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `DELETE` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Remove the user's rating of a release | yes |  | 4.7 |
 | `GET` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | User's own rating of a release | yes |  | 4.7 |
 | `POST` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Rate a release (score up to 10) | yes |  | 4.7 |
-| `GET` | `/anime/schedule/now` | Аниме.Релизы.РасписаниеРелизов | Release schedule for today |  |  | 3.1 |
-| `GET` | `/anime/schedule/week` | Аниме.Релизы.РасписаниеРелизов | Release schedule for the current week |  |  | 3.1 |
+| `GET` | `/anime/schedule/now` | Аниме.Релизы.РасписаниеРелизов | Release schedule for today |  | `client.schedule.now()` | 3.1 |
+| `GET` | `/anime/schedule/week` | Аниме.Релизы.РасписаниеРелизов | Release schedule for the current week |  | `client.schedule.week()` | 3.1 |
 | `GET` | `/anime/torrents` | Аниме.Торренты | Latest torrents (paginated) |  |  | 3.4 |
 | `GET` | `/anime/torrents/release/{releaseId}` | Аниме.Торренты | Torrents of a release |  |  | 3.4 |
 | `GET` | `/anime/torrents/rss` | Аниме.Торренты | RSS feed of the latest torrents (XML) |  |  | 3.4 |

@@ -23,6 +23,7 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`06_catalog_filters.py`](06_catalog_filters.py) | `catalog.releases()` — how filters combine (AND/OR), years, sorting, search, invalid values |
 | [`07_catalog_pagination.py`](07_catalog_pagination.py) | `Page` vs `iter_releases()` — request counts, early break, fetching pages concurrently |
 | [`08_catalog_references.py`](08_catalog_references.py) | `catalog.references.*()` — every reference list, and their items as filter values |
+| [`09_schedule.py`](09_schedule.py) | `schedule.now()` / `week()` — today's releases and episode status, the week grouped by weekday |
 
 See the [API reference](https://llijiyapnik.github.io/py-aniliberty/reference/) for every
 public class and method.

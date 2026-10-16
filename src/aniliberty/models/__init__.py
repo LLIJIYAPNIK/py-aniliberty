@@ -23,6 +23,7 @@ from aniliberty.models.release import (
     ReleaseRating,
     Sponsor,
 )
+from aniliberty.models.schedule import ScheduledRelease, ScheduleNow
 
 __all__ = [
     "EMPTY_VALUE_AS_NONE",
@@ -44,6 +45,8 @@ __all__ = [
     "ReleaseName",
     "ReleaseRating",
     "RequestInfo",
+    "ScheduleNow",
+    "ScheduledRelease",
     "Season",
     "SkipRange",
     "SortingOption",
