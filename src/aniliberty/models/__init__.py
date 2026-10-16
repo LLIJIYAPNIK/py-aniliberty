@@ -36,6 +36,7 @@ from aniliberty.models.user import (
     TorrentStats,
     UserProfile,
 )
+from aniliberty.models.view import EpisodeView, HistoryEntry, Timecode
 
 __all__ = [
     "EMPTY_VALUE_AS_NONE",
@@ -47,11 +48,13 @@ __all__ = [
     "ApiStatus",
     "AuthToken",
     "Episode",
+    "EpisodeView",
     "ExternalRating",
     "FavoritesSorting",
     "Franchise",
     "FranchiseRelease",
     "Genre",
+    "HistoryEntry",
     "Image",
     "ImageSet",
     "IssuedOtp",
@@ -78,6 +81,7 @@ __all__ = [
     "TeamMember",
     "TeamMemberAccount",
     "TeamRole",
+    "Timecode",
     "Torrent",
     "TorrentCodec",
     "TorrentFile",

@@ -42,10 +42,10 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/anime/releases/random` | Аниме.Релизы | Random releases |  | `client.releases.random()` | 1.4 |
 | `GET` | `/anime/releases/recommended` | Аниме.Релизы | Recommended releases |  | `client.releases.recommended()` | 1.4 |
 | `GET` | `/anime/releases/{idOrAlias}` | Аниме.Релизы | A single release by ID or alias |  | `client.releases.get()` | 1.4 |
-| `GET` | `/anime/releases/{idOrAlias}/episodes/timecodes` | Аниме.Релизы | User's watch timecodes for a release's episodes | yes |  | 4.6 |
+| `GET` | `/anime/releases/{idOrAlias}/episodes/timecodes` | Аниме.Релизы | User's watch timecodes for a release's episodes | yes | `client.releases.timecodes()` | 4.6 |
 | `GET` | `/anime/releases/{idOrAlias}/members` | Аниме.Релизы | Team members who worked on a release |  | `client.releases.members()` | 1.4 |
 | `GET` | `/anime/releases/episodes/{releaseEpisodeId}` | Аниме.Релизы.Эпизоды | A single episode (HLS links) |  | `client.episodes.get()` | 1.5 |
-| `GET` | `/anime/releases/episodes/{releaseEpisodeId}/timecode` | Аниме.Релизы.Эпизоды | User's watch timecode for an episode | yes |  | 4.6 |
+| `GET` | `/anime/releases/episodes/{releaseEpisodeId}/timecode` | Аниме.Релизы.Эпизоды | User's watch timecode for an episode | yes | `client.episodes.timecode()` | 4.6 |
 | `DELETE` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Remove the user's rating of a release | yes |  | 4.7 |
 | `GET` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | User's own rating of a release | yes |  | 4.7 |
 | `POST` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Rate a release (score up to 10) | yes |  | 4.7 |
@@ -91,9 +91,9 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/accounts/users/me/favorites/releases` | Аккаунты.Пользователи.Мое.Избранное | Releases in the user's favorites (query-string filters) | yes | `client.me.favorites.releases()`, `client.me.favorites.iter_releases()` | 4.4 |
 | `POST` | `/accounts/users/me/favorites/releases` | Аккаунты.Пользователи.Мое.Избранное | Releases in the user's favorites (JSON-body filters) | yes | — (same as `GET`; the SDK uses `GET`) | 4.4 |
 | `GET` | `/accounts/users/me/profile` | Аккаунты.Пользователи.Мое.Профиль | Profile of the authenticated user | yes | `client.me.profile()` | 4.3 |
-| `GET` | `/accounts/users/me/views/history` | Аккаунты.Пользователи.Мое.Просмотры | Watch history (episodes) | yes |  | 4.6 |
-| `DELETE` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Delete watch-progress timecodes | yes |  | 4.6 |
-| `GET` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Watch-progress timecodes | yes |  | 4.6 |
-| `POST` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Update watch-progress timecodes | yes |  | 4.6 |
+| `GET` | `/accounts/users/me/views/history` | Аккаунты.Пользователи.Мое.Просмотры | Watch history (episodes) | yes | `client.me.views.history()`, `client.me.views.iter_history()` | 4.6 |
+| `DELETE` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Delete watch-progress timecodes | yes | `client.me.views.delete_timecodes()` | 4.6 |
+| `GET` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Watch-progress timecodes | yes | `client.me.views.timecodes()` | 4.6 |
+| `POST` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Update watch-progress timecodes | yes | `client.me.views.save_timecodes()` | 4.6 |
 | `GET` | `/media/manifest.xml` | Реклама.Vasts | VAST XML ad chain |  |  | out of scope (ads) |
 | `GET` | `/media/vasts` | Реклама.Vasts | List of VAST ads |  |  | out of scope (ads) |
