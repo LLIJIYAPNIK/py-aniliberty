@@ -38,12 +38,12 @@ async def main() -> None:
             print(f"  {release.name.main} ({release.year}) [{genres}]")
 
         # --- recommended --------------------------------------------------------------
-        # With release_id, the API recommends releases similar to that one; without it,
+        # With release=..., the API recommends releases similar to that one; without it,
         # general recommendations. (In the runs checked, the release itself was never
         # among its own recommendations.)
         frieren = await client.releases.get("sousou-no-frieren")
         print(f"Similar to {frieren.name.main}:")
-        for release in await client.releases.recommended(release_id=frieren.id, limit=3):
+        for release in await client.releases.recommended(release=frieren, limit=3):
             print(f"  {release.name.main}")
 
         # --- limits -------------------------------------------------------------------
