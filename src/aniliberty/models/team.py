@@ -5,7 +5,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from aniliberty.models._base import AniLibertyModel
-from aniliberty.models.common import Image
+from aniliberty.models.common import LinkedAccount
 
 
 class Team(AniLibertyModel):
@@ -46,23 +46,6 @@ class TeamRole(AniLibertyModel):
     sort_order: int
 
 
-class TeamMemberAccount(AniLibertyModel):
-    """The site account linked to a team member.
-
-    Spec schema: ``models.teams.v1.team.user.account``.
-
-    Attributes:
-        id: User ID on the site.
-        nickname: The account's nickname — can differ from the member's team nickname, or
-            be ``None``.
-        avatar: The account's avatar (its paths can be ``None``).
-    """
-
-    id: int
-    nickname: str | None = None
-    avatar: Image | None = None
-
-
 class TeamMember(AniLibertyModel):
     """A member of an AniLibria team, with the team and their roles.
 
@@ -94,4 +77,4 @@ class TeamMember(AniLibertyModel):
     sort_order: int
     team: Team
     roles: list[TeamRole] = Field(default_factory=list)
-    user: TeamMemberAccount | None = None
+    user: LinkedAccount | None = None

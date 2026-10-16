@@ -82,8 +82,6 @@ for type annotations.
 
 ::: aniliberty.ReleaseMember
 
-::: aniliberty.ReleaseMemberUser
-
 ::: aniliberty.Sponsor
 
 ::: aniliberty.Genre
@@ -117,8 +115,6 @@ for type annotations.
 ::: aniliberty.TeamRole
 
 ::: aniliberty.TeamMember
-
-::: aniliberty.TeamMemberAccount
 
 ### Media
 
@@ -157,6 +153,8 @@ for type annotations.
 ::: aniliberty.Image
 
 ::: aniliberty.ImageSet
+
+::: aniliberty.LinkedAccount
 
 ### Service
 

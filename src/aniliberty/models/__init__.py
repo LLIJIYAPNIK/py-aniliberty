@@ -11,7 +11,13 @@ from aniliberty.models.catalog import (
     Season,
     SortingOption,
 )
-from aniliberty.models.common import EMPTY_VALUE_AS_NONE, Image, ImageSet, ValueDescription
+from aniliberty.models.common import (
+    EMPTY_VALUE_AS_NONE,
+    Image,
+    ImageSet,
+    LinkedAccount,
+    ValueDescription,
+)
 from aniliberty.models.episode import Episode, SkipRange
 from aniliberty.models.franchise import Franchise, FranchiseRelease
 from aniliberty.models.genre import Genre
@@ -21,14 +27,13 @@ from aniliberty.models.release import (
     ExternalRating,
     Release,
     ReleaseMember,
-    ReleaseMemberUser,
     ReleaseName,
     ReleaseRating,
     Sponsor,
     UserRating,
 )
 from aniliberty.models.schedule import ScheduledRelease, ScheduleNow
-from aniliberty.models.team import Team, TeamMember, TeamMemberAccount, TeamRole
+from aniliberty.models.team import Team, TeamMember, TeamRole
 from aniliberty.models.torrent import Torrent, TorrentCodec, TorrentFile, TorrentMember
 from aniliberty.models.user import (
     CollectionItem,
@@ -59,6 +64,7 @@ __all__ = [
     "Image",
     "ImageSet",
     "IssuedOtp",
+    "LinkedAccount",
     "Otp",
     "ProductionStatus",
     "Promotion",
@@ -66,7 +72,6 @@ __all__ = [
     "Release",
     "ReleaseType",
     "ReleaseMember",
-    "ReleaseMemberUser",
     "ReleaseName",
     "ReleaseRating",
     "RequestInfo",
@@ -80,7 +85,6 @@ __all__ = [
     "Sponsor",
     "Team",
     "TeamMember",
-    "TeamMemberAccount",
     "TeamRole",
     "Timecode",
     "Torrent",
