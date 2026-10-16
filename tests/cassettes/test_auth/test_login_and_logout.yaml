@@ -1,0 +1,221 @@
+interactions:
+- request:
+    body: '{"login": "test-login", "password": "test-password"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '45'
+      content-type:
+      - application/json
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.3.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: POST
+    uri: https://aniliberty.top/api/v1/accounts/users/auth/login
+  response:
+    body:
+      string: '{"token":"scrubbed-session-token"}'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b899b31ca49fee-AMS
+      connection:
+      - keep-alive
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 16:57:03 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=7srlwP2SSYEAvcyq5YXLS3paEzeBt5eSbNyhb%2FrV38Btyx0tqccSAqA3uJPVi4y6v8lCWv49xFSqu0mb9NosfifJ6S118KbpLNKijc5GXoKnpeYIBlegE5tUg0f3ss2Ubw%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.3.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/accounts/users/me/profile
+  response:
+    body:
+      string: '{"id":799331,"login":"test-login","email":"user@example.com","avatar":{"preview":null,"thumbnail":null,"optimized":{"preview":null,"thumbnail":null}},"nickname":"test-login","torrents":{"passkey":"scrubbed-passkey","uploaded":null,"downloaded":null},"is_banned":false,"created_at":"2026-10-16T16:31:01+00:00","is_with_video_ads":true,"is_with_content_ads":true,"is_with_video_ads_always":false}'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b899b56f529fee-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '399'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 16:57:03 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=tkJNEYTfdVdE%2Ft5H13pbnhuCsFurOc57fLSaVr2e8QguZ01DY%2Bu0c9qpepcTDLteb9bjULnZwfYj%2BLzN0fMc8GKkTc26TNY9p3lAwgJmgJvT8yudkB99zeH53r7JqwlC%2BA%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '0'
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.3.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: POST
+    uri: https://aniliberty.top/api/v1/accounts/users/auth/logout
+  response:
+    body:
+      string: '{"token":null}'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b899b678a99fee-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '14'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 16:57:03 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=9SHelYbHGsvZCR9aC26OEjWNb75fT%2BesM088IKmevZLVwZhBZwkd%2FNNc5hMPZpSc37aSmfC5LcqnUCXohWJKCYiMXY0YtJssUCGbSQURxlL%2FzqWFzZVVIDyUENiXzb5VRA%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      vary:
+      - Origin
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.3.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/accounts/users/me/profile
+  response:
+    body:
+      string: "{\n    \"message\": \"This action is unauthorized.\"\n}"
+    headers:
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b899b749bb9fee-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '49'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 16:57:03 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=3ZOtJAc2DWRJl6bUjr7SWEkdJAq1IBZuv464uKPAY0%2B7qZbprcFErsMPrHQ9MS1y2MJ7q0IEsXzDhc5B1cIdlmQ%2BbQpocK2CPmpQi3Qh%2FE%2BgUsG8QcwzgGcjIMVNPGo7lQ%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 403
+      message: Forbidden
+version: 1
