@@ -17,6 +17,7 @@ from aniliberty._http import (
 from aniliberty.resources.app import AppResource
 from aniliberty.resources.catalog import CatalogResource
 from aniliberty.resources.episodes import EpisodesResource
+from aniliberty.resources.franchises import FranchisesResource
 from aniliberty.resources.genres import GenresResource
 from aniliberty.resources.releases import ReleasesResource
 from aniliberty.resources.schedule import ScheduleResource
@@ -39,6 +40,7 @@ class AniLiberty:
             accept.
         schedule: The weekly airing schedule.
         genres: Genres, and the releases of each.
+        franchises: Franchises — groups of related releases.
 
     Example:
         ```python
@@ -95,6 +97,7 @@ class AniLiberty:
         self.catalog = CatalogResource(self.http)
         self.schedule = ScheduleResource(self.http)
         self.genres = GenresResource(self.http)
+        self.franchises = FranchisesResource(self.http)
 
     async def __aenter__(self) -> Self:
         if self.http.closed:

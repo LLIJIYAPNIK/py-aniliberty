@@ -12,6 +12,7 @@ from aniliberty.models.catalog import (
 )
 from aniliberty.models.common import EMPTY_VALUE_AS_NONE, Image, ImageSet, ValueDescription
 from aniliberty.models.episode import Episode, SkipRange
+from aniliberty.models.franchise import Franchise, FranchiseRelease
 from aniliberty.models.genre import Genre
 from aniliberty.models.release import (
     AgeRating,
@@ -33,6 +34,8 @@ __all__ = [
     "ApiStatus",
     "Episode",
     "ExternalRating",
+    "Franchise",
+    "FranchiseRelease",
     "Genre",
     "Image",
     "ImageSet",
