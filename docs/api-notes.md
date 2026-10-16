@@ -415,6 +415,30 @@ Requests: `GET /anime/schedule/now`, `GET /anime/schedule/week` (twice, a few mi
 `ScheduledRelease.full_season_is_released` is required (present on all 45 items seen), the
 episode and next number are optional.
 
+## Genres (checked 2026-10-16)
+
+Requests: `GET /anime/genres`, `/anime/genres/14`, `/999999`, `/abc`, `/anime/genres/random` with
+`limit` 1, 3, 35, 36, 50, 51, 0, `abc`, and `/anime/genres/14/releases` with various `page`/`limit`.
+
+- **List and single genre** match the spec: `{id, name, image, total_releases}`, no `null`s.
+  35 genres, in the API's own order (not by name or ID).
+- **Missing genre:** `/genres/999999`, `/genres/abc` and `/genres/999999/releases` → the JSON 404.
+- **`/random`:** `limit` 1–35 returns that many; **0 or anything above the number of genres
+  silently returns all 35**; a non-number is a 422.
+- **`/{id}/releases`:**
+  - `limit` is **1 to 30** here (`31` → `422 "Поле limit не может быть больше 30."`) —
+    unlike 50 in the catalog and the release endpoints; `limit=0` gives the default page
+    size, 15;
+  - **`page` ≤ 0 is treated as 1** (200, `current_page: 1`), unlike the catalog's 422;
+  - `total` equals the catalog's `f[genres]=<id>` total and the genre's `total_releases`
+    (699 for genre 14); items come with `genres`, and every item has the genre;
+  - the order is the API's own — neither by `fresh_at` nor by `created_at`.
+- A release with **`fresh_at: null`** appeared here (the model already allows it).
+
+**Conclusion:** `client.genres` has `list()`, `get()`, `random()`, `releases()`/`iter_releases()`,
+accepting a genre ID or a `Genre`. The silent clamping of `random`'s `limit` and of `page` is
+harmless and only documented, not validated.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent
@@ -464,7 +488,8 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 - **5xx body shape.** Not observed.
 - **WAF/challenge behaviour.** Not observed from the maintainer's network; Cloudflare is in front.
   What a challenge looks like (status, headers) is unknown.
-- **Maximum `limit`** on `/genres/{id}/releases`, `/torrents`, `/franchises/random`,
-  `/genres/random`, `/media/videos` (the catalog and the release endpoints: 50).
+- **Maximum `limit`** on `/torrents`, `/franchises/random`, `/media/videos` (known so far: the
+  catalog and the release endpoints 50, `/genres/{id}/releases` 30, `/genres/random` clamps to
+  the number of genres).
 - **Authentication details** (token lifetime, refresh, 401/403 bodies) — step 4.1.
 - **Schedule time zone** — whether `/schedule/now`'s "today" is UTC or Moscow time.

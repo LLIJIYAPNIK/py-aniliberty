@@ -23,6 +23,7 @@ The API is grouped into namespaces that follow the tags of its OpenAPI spec:
 | `client.releases` | latest, random and recommended releases; a release by ID or alias; its team members; several releases at once |
 | `client.episodes` | an episode with its HLS playlists |
 | `client.catalog` | the release catalog with filters, sorting and pagination — see [Catalog filters](guides/catalog-filters.md) |
+| `client.genres` | genres with images and counts, random genres, the releases of a genre |
 | `client.schedule` | the airing schedule — yesterday/today/tomorrow and the whole week |
 | `client.catalog.references` | the values catalog filters accept: genres, types, seasons, years, age ratings, statuses, sorting |
 | `client.http` | the low-level client — `client.http.request(...)` returns raw JSON for endpoints not covered yet |
