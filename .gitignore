@@ -30,3 +30,6 @@ site/
 .idea/
 .vscode/
 .DS_Store
+
+# Local secrets (test account credentials)
+.env
