@@ -358,6 +358,38 @@ All eight match the spec exactly, with no `null`s:
 `AgeRating` (with `is_adult=None`), `ValueDescription[str]` — plus `SortingOption` for the
 sorting list's `label`.
 
+## Catalog filters (checked 2026-10-16)
+
+Requests: about 50 `GET /anime/catalog/releases` calls with `limit=1` (to compare `total`) or
+`limit=50` (to inspect items), trimmed with `include=`, plus one `POST` with the same filters.
+
+- **`f[genres]` is AND:** genre 14 → 699, genre 29 → 629, both → 314, and all 50 items of the
+  first page have both genres. (Genres 15 + 24 → 0: no release has both.)
+- **Every other list filter is OR:** `f[types]=TV` 1533 + `MOVIE` 148 = `TV,MOVIE` 1681; the
+  same arithmetic holds for `seasons`, `age_ratings`, `publish_statuses`,
+  `production_statuses`.
+- **Years are inclusive:** `from_year=2020&to_year=2020` → 106 releases, all from 2020;
+  `from_year=2020` 1006 + `to_year=2020` 1008 − 106 = 1908 = the whole catalog. `from > to` → 0.
+- **`f[search]`** gives exactly the same counts as `/app/search/releases` for five queries
+  (`а` 16, `и` 18, `the` 18, `магия` 20, `сезон` 11) — same engine, same ~20 cap. An empty
+  `f[search]=` returns the whole catalog.
+- **Sorting:** without `f[sorting]` the order equals `FRESH_AT_DESC`. `RATING_DESC` followed
+  `added_in_users_favorites` (38933, 37905, 37427, …), i.e. popularity, not `rating.average`.
+- **Invalid values are not reported:** `f[types]=FOO`, `f[genres]=abc` and `f[genres]=999999`
+  → `total: 0`; `f[sorting]=NOPE`, `f[years][from_year]=abc` and unknown keys like
+  `f[unknown]=x` are ignored (the whole catalog). Only `page=0` (and `limit` outside 1–50) is a
+  422.
+- **A page past the end** (`page=100000`) → `200` with `"data": []`.
+- **Items** are bare releases plus `genres`.
+- **`POST` with a JSON body** (`{"page", "limit", "f": {...}}`) returned the same IDs and total
+  as `GET` with the same filters.
+
+**Conclusion:** `client.catalog.releases()` uses `GET`. Because the API silently swallows wrong
+values, the SDK validates them itself: list filters and `sorting` against the spec `enum`s (the
+`Literal` types in `aniliberty.models.catalog`, kept in sync with the spec by a test),
+`year_from <= year_to`, and list-vs-string mistakes. Ranges of `page`/`limit` are left to the
+API's 422.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent
