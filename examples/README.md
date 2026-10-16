@@ -20,6 +20,9 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`03_release_details.py`](03_release_details.py) | `releases.get()` — names, value + description fields, ratings, images, team; `members()`; `list()` / `iter_list()` |
 | [`04_episodes_and_hls_links.py`](04_episodes_and_hls_links.py) | `episodes.get()` — HLS playlists, opening/ending timings, previews, `NotFoundError` |
 | [`05_quick_search.py`](05_quick_search.py) | `app.search_releases()` — what it matches and what it doesn't |
+| [`06_catalog_filters.py`](06_catalog_filters.py) | `catalog.releases()` — how filters combine (AND/OR), years, sorting, search, invalid values |
+| [`07_catalog_pagination.py`](07_catalog_pagination.py) | `Page` vs `iter_releases()` — request counts, early break, fetching pages concurrently |
+| [`08_catalog_references.py`](08_catalog_references.py) | `catalog.references.*()` — every reference list, and their items as filter values |
 
 See the [API reference](https://llijiyapnik.github.io/py-aniliberty/reference/) for every
 public class and method.
