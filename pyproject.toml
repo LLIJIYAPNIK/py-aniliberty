@@ -70,6 +70,11 @@ extend-exclude = ["CLAUDE.md"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "C4"]
 
+[tool.ruff.lint.per-file-ignores]
+# The "Expected output" block at the end of each example is a verbatim copy of a real run;
+# its lines can't be wrapped. Code in examples is still formatted by `ruff format`.
+"examples/*" = ["E501"]
+
 [tool.ruff.format]
 quote-style = "double"
 
