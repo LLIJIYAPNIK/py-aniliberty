@@ -10,8 +10,8 @@
 Async Python SDK for the public [AniLibria](https://aniliberty.top) API (v1): releases,
 episodes (HLS links), catalog with filters, schedule, franchises, genres, and torrents.
 
-> **Status:** early development. Releases, episodes (HLS links) and quick search are
-> implemented; the catalog, schedule, genres, franchises and torrents are next — see
+> **Status:** early development. Releases, episodes (HLS links), quick search and the
+> catalog with filters are implemented; schedule, genres, franchises and torrents are next — see
 > [`ROADMAP.md`](https://github.com/LLIJIYAPNIK/py-aniliberty/blob/main/ROADMAP.md).
 
 **Documentation:** <https://llijiyapnik.github.io/py-aniliberty/>
