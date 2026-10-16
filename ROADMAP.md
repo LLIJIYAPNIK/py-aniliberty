@@ -56,7 +56,7 @@
 
 - [x] **2.1 Справочники каталога.** `client.catalog.references.*` (жанры, типы, сезоны,
       годы, возрастные рейтинги, статусы публикации/производства, сортировки).
-- [ ] **2.2 Каталог с фильтрами.** `client.catalog.releases(...)` → `Page[Release]`,
+- [x] **2.2 Каталог с фильтрами.** `client.catalog.releases(...)` → `Page[Release]`,
       `client.catalog.iter_releases(...)` → `AsyncIterator[Release]`. Все фильтры из спеки,
       типизированные параметры. Гайд `docs/guides/catalog-filters.md`.
 - [ ] **2.3 Гайд по пагинации** + `docs/guides/pagination.md`.

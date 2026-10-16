@@ -2,11 +2,23 @@
 
 from __future__ import annotations
 
+from collections.abc import AsyncIterator, Sequence
+from typing import Any, get_args
+
 from aniliberty._http import HttpClient
-from aniliberty.models.catalog import SortingOption
+from aniliberty.models.catalog import (
+    AgeRatingValue,
+    CatalogSorting,
+    ProductionStatus,
+    PublishStatus,
+    ReleaseType,
+    Season,
+    SortingOption,
+)
 from aniliberty.models.common import ValueDescription
 from aniliberty.models.genre import Genre
-from aniliberty.models.release import AgeRating
+from aniliberty.models.release import AgeRating, Release
+from aniliberty.pagination import Page, iterate_pages
 from aniliberty.resources._base import BaseResource
 
 
@@ -151,12 +163,246 @@ class CatalogReferencesResource(BaseResource):
 
 
 class CatalogResource(BaseResource):
-    """The release catalog, available as ``client.catalog``.
+    """The release catalog with filters and sorting, available as ``client.catalog``.
+
+    How the filters combine (checked against the live API, see ``docs/api-notes.md``):
+
+    - ``genres``: a release must have **all** of the given genres (AND);
+    - ``types``, ``seasons``, ``age_ratings``, ``publish_statuses``,
+      ``production_statuses``: **any** of the given values (OR);
+    - different filters: all of them must match (AND);
+    - ``year_from``/``year_to``: inclusive on both ends;
+    - ``search``: the same matching as ``client.app.search_releases()``, and likewise
+      capped at about 20 matches in total, whatever the other filters and the page size.
+
+    Without ``sorting``, releases come in ``"FRESH_AT_DESC"`` order (recently updated first).
 
     Attributes:
         references: Values the catalog filters accept.
     """
 
+    ENDPOINTS = (("GET", "/anime/catalog/releases"),)
+
     def __init__(self, http: HttpClient) -> None:
         super().__init__(http)
         self.references = CatalogReferencesResource(http)
+
+    async def releases(
+        self,
+        *,
+        genres: Sequence[int | Genre] | None = None,
+        types: Sequence[ReleaseType | ValueDescription[str]] | None = None,
+        seasons: Sequence[Season | ValueDescription[str]] | None = None,
+        year_from: int | None = None,
+        year_to: int | None = None,
+        search: str | None = None,
+        sorting: CatalogSorting | SortingOption | None = None,
+        age_ratings: Sequence[AgeRatingValue | ValueDescription[str]] | None = None,
+        publish_statuses: Sequence[PublishStatus | ValueDescription[str]] | None = None,
+        production_statuses: Sequence[ProductionStatus | ValueDescription[str]] | None = None,
+        page: int | None = None,
+        limit: int | None = None,
+    ) -> Page[Release]:
+        """Get one page of catalog releases matching the filters.
+
+        Every filter is optional; without any, this is the whole catalog. Values can be
+        passed as plain strings/IDs or as the items ``client.catalog.references`` returns.
+        To go through all pages, use ``iter_releases()``.
+
+        Args:
+            genres: Genre IDs (or ``Genre`` objects); a release must have all of them.
+            types: Release types, e.g. ``["TV", "MOVIE"]``; any of them.
+            seasons: Seasons, e.g. ``["winter"]``; any of them.
+            year_from: Earliest release year, inclusive.
+            year_to: Latest release year, inclusive.
+            search: Text to search in names (capped at about 20 matches by the API).
+            sorting: Sort order, e.g. ``"RATING_DESC"``. Default: ``"FRESH_AT_DESC"``.
+            age_ratings: Age ratings, e.g. ``["R16_PLUS"]``; any of them.
+            publish_statuses: ``"IS_ONGOING"`` and/or ``"IS_NOT_ONGOING"``.
+            production_statuses: ``"IS_IN_PRODUCTION"`` and/or ``"IS_NOT_IN_PRODUCTION"``.
+            page: Page number, starting at 1. A page past the last one is empty.
+            limit: Page size, 1 to 50.
+
+        Returns:
+            One page of releases, with ``genres`` filled in.
+
+        Raises:
+            ValueError: A filter value isn't one the API knows, or ``year_from`` is after
+                ``year_to``. The API itself would silently return no releases (or ignore
+                the filter) instead of reporting these, so they are checked here.
+            TypeError: A list filter got a single string (``types="TV"``) or a value of
+                the wrong type.
+            ValidationError: ``page`` or ``limit`` is out of range.
+            APIError: The API answered with another error.
+            TransportError: The request failed without a response.
+            ResponseParseError: The response didn't match ``Release``.
+
+        Example:
+            ```python
+            page = await client.catalog.releases(
+                genres=[14], types=["TV"], year_from=2020, sorting="RATING_DESC", limit=25
+            )
+            print(f"{page.total} releases, page 1 of {page.total_pages}")
+            ```
+        """
+        params = _catalog_params(
+            genres=genres,
+            types=types,
+            seasons=seasons,
+            year_from=year_from,
+            year_to=year_to,
+            search=search,
+            sorting=sorting,
+            age_ratings=age_ratings,
+            publish_statuses=publish_statuses,
+            production_statuses=production_statuses,
+        )
+        return await self._fetch_page(params, page=page, limit=limit)
+
+    def iter_releases(
+        self,
+        *,
+        genres: Sequence[int | Genre] | None = None,
+        types: Sequence[ReleaseType | ValueDescription[str]] | None = None,
+        seasons: Sequence[Season | ValueDescription[str]] | None = None,
+        year_from: int | None = None,
+        year_to: int | None = None,
+        search: str | None = None,
+        sorting: CatalogSorting | SortingOption | None = None,
+        age_ratings: Sequence[AgeRatingValue | ValueDescription[str]] | None = None,
+        publish_statuses: Sequence[PublishStatus | ValueDescription[str]] | None = None,
+        production_statuses: Sequence[ProductionStatus | ValueDescription[str]] | None = None,
+        limit: int | None = None,
+    ) -> AsyncIterator[Release]:
+        """Iterate over all catalog releases matching the filters, fetching page by page.
+
+        Takes the same filters as ``releases()``. The next page is requested only once the
+        current one has been consumed, so breaking out of the loop early stops the requests.
+        The whole catalog is a couple of thousand releases — iterate all of it only when you
+        really need everything.
+
+        Args:
+            genres: See ``releases()``.
+            types: See ``releases()``.
+            seasons: See ``releases()``.
+            year_from: See ``releases()``.
+            year_to: See ``releases()``.
+            search: See ``releases()``.
+            sorting: See ``releases()``.
+            age_ratings: See ``releases()``.
+            publish_statuses: See ``releases()``.
+            production_statuses: See ``releases()``.
+            limit: Page size, 1 to 50 — affects how many requests are made, not the result.
+
+        Returns:
+            An async iterator over the releases.
+
+        Raises:
+            ValueError: Invalid filter values — raised right away, not when iteration starts.
+            TypeError: A list filter got a single string or a value of the wrong type.
+
+        Example:
+            ```python
+            async for release in client.catalog.iter_releases(types=["MOVIE"], limit=50):
+                print(release.year, release.name.main)
+            ```
+        """
+        params = _catalog_params(
+            genres=genres,
+            types=types,
+            seasons=seasons,
+            year_from=year_from,
+            year_to=year_to,
+            search=search,
+            sorting=sorting,
+            age_ratings=age_ratings,
+            publish_statuses=publish_statuses,
+            production_statuses=production_statuses,
+        )
+
+        async def fetch(page: int) -> Page[Release]:
+            return await self._fetch_page(params, page=page, limit=limit)
+
+        return iterate_pages(fetch)
+
+    async def _fetch_page(
+        self, params: dict[str, Any], *, page: int | None, limit: int | None
+    ) -> Page[Release]:
+        return await self._get(
+            "/anime/catalog/releases",
+            Page[Release],
+            params={**params, "page": page, "limit": limit},
+        )
+
+
+def _catalog_params(
+    *,
+    genres: Sequence[int | Genre] | None,
+    types: Sequence[str | ValueDescription[str]] | None,
+    seasons: Sequence[str | ValueDescription[str]] | None,
+    year_from: int | None,
+    year_to: int | None,
+    search: str | None,
+    sorting: str | SortingOption | None,
+    age_ratings: Sequence[str | ValueDescription[str]] | None,
+    publish_statuses: Sequence[str | ValueDescription[str]] | None,
+    production_statuses: Sequence[str | ValueDescription[str]] | None,
+) -> dict[str, Any]:
+    """Validate the filters and arrange them the way ``build_query`` turns into ``f[...]``."""
+    for name, year in (("year_from", year_from), ("year_to", year_to)):
+        if year is not None and (isinstance(year, bool) or not isinstance(year, int)):
+            raise TypeError(f"{name} must be an int, got {year!r}")
+    if year_from is not None and year_to is not None and year_from > year_to:
+        raise ValueError(f"year_from ({year_from}) is after year_to ({year_to})")
+    sorting_value = (
+        None if sorting is None else _enum_value("sorting", sorting, get_args(CatalogSorting))
+    )
+    return {
+        "f": {
+            "genres": _genre_ids(genres),
+            "types": _enum_values("types", types, get_args(ReleaseType)),
+            "seasons": _enum_values("seasons", seasons, get_args(Season)),
+            "years": {"from_year": year_from, "to_year": year_to},
+            "search": search,
+            "sorting": sorting_value,
+            "age_ratings": _enum_values("age_ratings", age_ratings, get_args(AgeRatingValue)),
+            "publish_statuses": _enum_values(
+                "publish_statuses", publish_statuses, get_args(PublishStatus)
+            ),
+            "production_statuses": _enum_values(
+                "production_statuses", production_statuses, get_args(ProductionStatus)
+            ),
+        }
+    }
+
+
+def _enum_values(
+    name: str, values: Sequence[str | ValueDescription[str]] | None, allowed: tuple[str, ...]
+) -> list[str] | None:
+    """Turn ``values`` (strings or reference items) into strings the API knows, or raise."""
+    if values is None:
+        return None
+    if isinstance(values, str):
+        raise TypeError(f"{name} must be a list, e.g. {name}=[{values!r}]")
+    return [_enum_value(name, item, allowed) for item in values]
+
+
+def _enum_value(name: str, item: str | ValueDescription[str], allowed: tuple[str, ...]) -> str:
+    """Turn one string or reference item into a string the API knows, or raise."""
+    value = item.value if isinstance(item, ValueDescription) else item
+    if value not in allowed:
+        raise ValueError(f"Unknown {name} value {value!r}; expected one of: {', '.join(allowed)}")
+    return value
+
+
+def _genre_ids(genres: Sequence[int | Genre] | None) -> list[int] | None:
+    """Turn genre IDs or ``Genre`` objects into IDs, or raise."""
+    if genres is None:
+        return None
+    ids = []
+    for genre in genres:
+        genre_id = genre.id if isinstance(genre, Genre) else genre
+        if isinstance(genre_id, bool) or not isinstance(genre_id, int):
+            raise TypeError(f"genres must be genre IDs or Genre objects, got {genre!r}")
+        ids.append(genre_id)
+    return ids
