@@ -1,7 +1,7 @@
 # py-aniliberty
 
 Async Python SDK for the public [AniLibria](https://aniliberty.top) API (v1): releases,
-episodes with HLS links, quick search — and, in upcoming versions, the catalog with filters,
+episodes with HLS links, quick search, the catalog with filters — and, in upcoming versions,
 schedule, genres, franchises and torrents.
 
 - **Async only**, built on [`httpx`](https://www.python-httpx.org/); every response is a typed,
