@@ -92,7 +92,7 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `POST` | `/accounts/users/me/favorites/releases` | Аккаунты.Пользователи.Мое.Избранное | Releases in the user's favorites (JSON-body filters) | yes | — (same as `GET`; the SDK uses `GET`) | 4.4 |
 | `GET` | `/accounts/users/me/profile` | Аккаунты.Пользователи.Мое.Профиль | Profile of the authenticated user | yes | `client.me.profile()` | 4.3 |
 | `GET` | `/accounts/users/me/views/history` | Аккаунты.Пользователи.Мое.Просмотры | Watch history (episodes) | yes | `client.me.views.history()`, `client.me.views.iter_history()` | 4.6 |
-| `DELETE` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Delete watch-progress timecodes | yes | `client.me.views.delete_timecodes()` | 4.6 |
+| `DELETE` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Delete watch-progress timecodes | yes | `client.me.views.remove_timecodes()` | 4.6 |
 | `GET` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Watch-progress timecodes | yes | `client.me.views.timecodes()` | 4.6 |
 | `POST` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Update watch-progress timecodes | yes | `client.me.views.save_timecodes()` | 4.6 |
 | `GET` | `/media/manifest.xml` | Реклама.Vasts | VAST XML ad chain |  |  | out of scope (ads) |

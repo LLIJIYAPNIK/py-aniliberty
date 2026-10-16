@@ -178,13 +178,13 @@ async def test_save_timecodes_checks_arguments_before_sending(
     assert api.requests == []
 
 
-async def test_delete_timecodes_takes_ids_episodes_and_timecodes() -> None:
+async def test_remove_timecodes_takes_ids_episodes_and_timecodes() -> None:
     api = FakeApi(respond=empty_html)
     episode = Episode.model_validate({**EPISODE, "id": E2})
 
     await call(
         api,
-        "me.views.delete_timecodes",
+        "me.views.remove_timecodes",
         E1,
         episode,
         Timecode(release_episode_id="c83264c3-0000-0000-0000-000000000000", time=1),
@@ -207,12 +207,12 @@ async def test_delete_timecodes_takes_ids_episodes_and_timecodes() -> None:
         (("",), TypeError, "Expected an episode ID"),
     ],
 )
-async def test_delete_timecodes_checks_arguments_before_sending(
+async def test_remove_timecodes_checks_arguments_before_sending(
     args: tuple[Any, ...], error: type[Exception], match: str
 ) -> None:
     api = FakeApi(respond=empty_html)
     with pytest.raises(error, match=match):
-        await call(api, "me.views.delete_timecodes", *args)
+        await call(api, "me.views.remove_timecodes", *args)
 
     assert api.requests == []
 

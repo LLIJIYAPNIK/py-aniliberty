@@ -81,7 +81,7 @@ async def test_timecodes_lifecycle(credentials: Credentials, live_wait: Wait) ->
             future = datetime(2030, 1, 1, tzinfo=UTC)
             assert await views.timecodes(since=future) == []
 
-            await views.delete_timecodes(e1, e3)
+            await views.remove_timecodes(e1, e3)
             await until(lambda: _equals(history_total(), 0), live_wait)
             with pytest.raises(NotFoundError):
                 await client.episodes.timecode(e1.id)
@@ -101,7 +101,7 @@ async def _clear_timecodes(client: AniLiberty, live_wait: Wait) -> None:
         left = await views.timecodes()
         if not left:
             return
-        await views.delete_timecodes(*left)
+        await views.remove_timecodes(*left)
         await live_wait(POLL_INTERVAL)
     raise AssertionError("timecodes weren't cleared")
 
