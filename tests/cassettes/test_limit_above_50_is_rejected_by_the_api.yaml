@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.1.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/catalog/releases?limit=51
+  response:
+    body:
+      string: '{"errors":{"limit":["\u041f\u043e\u043b\u0435 limit \u043d\u0435 \u043c\u043e\u0436\u0435\u0442
+        \u0431\u044b\u0442\u044c \u0431\u043e\u043b\u044c\u0448\u0435 50."]}}'
+    headers:
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b4d255eb8afea7-AMS
+      connection:
+      - keep-alive
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 05:56:40 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=jWZuhXjUSF6Zt%2BXsiFNlmNV6lDyaB7UXVl%2BVBTawxml1jqTJkj%2BQw1yaA4ZBxf2UAgM1LPAA%2FIKsvVepN95XfNzRX0Scpyaa06SgOktUy8zctx8ptbu2Jb4sCD11%2BqFz8w%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1
