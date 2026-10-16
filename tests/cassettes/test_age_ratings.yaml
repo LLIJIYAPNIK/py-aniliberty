@@ -1,0 +1,71 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.1.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/catalog/references/age-ratings
+  response:
+    body:
+      string: '[{"value":"R0_PLUS","label":"0+","description":"\u0414\u043b\u044f
+        \u0434\u0435\u0442\u0435\u0439, \u043d\u0435 \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u0438
+        \u043b\u0435\u0442 (0+)"},{"value":"R6_PLUS","label":"6+","description":"\u0414\u043b\u044f
+        \u0434\u0435\u0442\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u0438
+        \u043b\u0435\u0442 (6+)"},{"value":"R12_PLUS","label":"12+","description":"\u0414\u043b\u044f
+        \u0434\u0435\u0442\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0434\u0432\u0435\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (12+)"},{"value":"R16_PLUS","label":"16+","description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},{"value":"R18_PLUS","label":"18+","description":"\u0417\u0430\u043f\u0440\u0435\u0449\u0435\u043d\u043e
+        \u0434\u043b\u044f \u0440\u0430\u0441\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0435\u043d\u0438\u044f
+        \u0441\u0440\u0435\u0434\u0438 \u0434\u0435\u0442\u0435\u0439 (18+)"}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b4ca0bff01dfa7-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '1406'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 05:51:00 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=dR4BXltdu%2BGB8KpFeIRQpUYFjTc11wkbs6Kf9LfiVJOc%2FuM0SVZtM9XDmji33IZmcZPahE1OhyPfB4aBoBCwW1J8flb8CXtxazA4M72GmpdapuUrNvbGx65%2Br%2FZaN%2BGclQ%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
