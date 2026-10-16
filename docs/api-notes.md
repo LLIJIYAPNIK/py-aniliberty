@@ -532,6 +532,28 @@ Triples become `Timecode` models, records `EpisodeView`, history entries `Histor
 sent in an unknown zone). The delays aren't hidden: the docstrings describe them, and the
 recorded test polls until the API settles.
 
+## Release ratings (checked 2026-10-16)
+
+With the test account's session, on release 8030; the score was withdrawn afterwards.
+
+- `GET /anime/releases/{releaseId}/rating` → `{"release_id": 8030, "score": null}` without a
+  score, `{"release_id": 8030, "score": 7}` with one.
+- `POST` with `{"score": 7}` → 200 and the saved rating; posting again **replaces** the
+  score. `score` must be a whole number 1..10: `0`, `11`, `-1` → 422 "между 1 и 10", `7.5`
+  and `"abc"` → 422 "целым числом", missing/`null` → 422; the string `"7"` is accepted. The
+  SDK takes only an `int` and checks the range before sending.
+- `DELETE` → 200 `{"release_id": 8030, "score": null}`; again without a score — the same
+  (no-op).
+- `releaseId` is a **numeric ID only**: an alias → JSON 404 "The route ... could not be
+  found" (the route doesn't match). A release that doesn't exist → JSON 404 "No query
+  results for model [...Release]". The SDK rejects a `str` like it does for franchises and
+  torrents.
+- Without a session → the usual 403.
+- The release's overall `rating` (`average`, `votes`, `distribution`) **didn't change** within
+  3 minutes of a score being set, neither with nor without the session; the own score isn't
+  shown in the release itself. Ratings look new: in the 400 best-rated catalog releases only
+  2 had any votes (one each).
+
 ## Torrent and RSS endpoints (spec only)
 
 `GET /anime/torrents/{hashOrId}/file` returns `application/x-bittorrent`; `GET

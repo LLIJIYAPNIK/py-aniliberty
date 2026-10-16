@@ -100,8 +100,8 @@
 - [x] **4.6 Таймкоды и история просмотра.** `client.me.views.*` (`timecodes()`,
       `save_timecodes()`, `delete_timecodes()`, `history()`/`iter_history()`),
       `client.releases.timecodes()`, `client.episodes.timecode()`. Пример — в 4.8.
-- [ ] **4.7 Оценки релизов.** `GET`/`POST`/`DELETE /anime/releases/{releaseId}/rating`
-      (своя оценка, `score` ≤ 10 по спеке). Найдено в спеке на шаге 0.2.
+- [x] **4.7 Оценки релизов.** `client.releases.ratings.get()`/`set(score=...)`/`remove()`
+      → `UserRating`. Пример — в 4.8.
 - [ ] **4.8 Примеры и гайд по авторизации.**
 
 ## Фаза 5 — стабилизация (`1.0.0`)
