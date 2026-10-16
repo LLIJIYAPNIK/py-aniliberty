@@ -17,6 +17,7 @@ from aniliberty.resources import (
     CatalogResource,
     EpisodesResource,
     ReleasesResource,
+    ScheduleResource,
 )
 
 SPEC = json.loads((Path(__file__).parents[2] / "spec" / "openapi.json").read_text("utf-8"))
@@ -134,7 +135,15 @@ async def test_get_rejects_invalid_ids_before_sending(bad: Any) -> None:
 
 
 @pytest.mark.parametrize(
-    "resource", [AppResource, ReleasesResource, EpisodesResource, CatalogReferencesResource]
+    "resource",
+    [
+        AppResource,
+        ReleasesResource,
+        EpisodesResource,
+        CatalogReferencesResource,
+        CatalogResource,
+        ScheduleResource,
+    ],
 )
 def test_declared_endpoints_exist_in_the_spec(resource: type[AppResource]) -> None:
     for method, path in resource.ENDPOINTS:
