@@ -1,0 +1,53 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - anilibria.top
+      user-agent:
+      - py-aniliberty/0.0.1 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://anilibria.top/api/v1/app/status
+  response:
+    body:
+      string: '{"request":{"ip":"203.0.113.10","country":"The Netherlands","iso_code":"NL","timezone":"Europe\/Amsterdam"},"is_alive":true,"available_api_endpoints":["https:\/\/aniliberty.top"]}'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b45e38488cfeac-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '180'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 04:37:23 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Tz15jTUY0ZlodK74YLVIHScvBAbt2AJaWychYC2Jw4S%2BFt%2FzP2sjLbtMBFayUIIuCaxlhYf3gpu3ruAVTFLJuLAz70rfy%2BNMHPwxjAJiTDW9vvxe3BB5sG%2BKKSn1dFnV"}]}'
+      server:
+      - cloudflare
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+    status:
+      code: 200
+      message: OK
+version: 1
