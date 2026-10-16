@@ -242,6 +242,10 @@ async with AniLiberty(
   `accept` → 500, **с действующим токеном → 403** (только для гостей — SDK шлёт его без
   токена). Соцсети — только 4 значения enum в нижнем регистре, иное → 500 (SDK проверяет
   сам). `password/forget` на несуществующий e-mail → тот же 200.
+- **Профиль** (`/accounts/users/me/profile`): `is_with_ads` из спеки не приходит, вместо него —
+  недокументированные `is_with_video_ads`, `is_with_content_ads`, `is_with_video_ads_always`;
+  без сессии — 403 (спека: 404). `email` и `torrents.passkey` — секреты (passkey вне `repr`
+  модели, оба вычищаются из кассет). `include`/`exclude` спеки SDK не выставляет.
   Учётные данные — только из переменных окружения; `tests/conftest.py` вычищает из кассет
   пароль/логин в теле запроса, `token`/`passkey`/`email` и `?pk=` в ответах, все
   `Set-Cookie`, заголовки `Authorization`/`Cookie`.

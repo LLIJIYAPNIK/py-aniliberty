@@ -29,6 +29,7 @@ from aniliberty.models.release import (
 from aniliberty.models.schedule import ScheduledRelease, ScheduleNow
 from aniliberty.models.team import Team, TeamMember, TeamMemberAccount, TeamRole
 from aniliberty.models.torrent import Torrent, TorrentCodec, TorrentFile, TorrentMember
+from aniliberty.models.user import TorrentStats, UserProfile
 
 __all__ = [
     "EMPTY_VALUE_AS_NONE",
@@ -72,6 +73,8 @@ __all__ = [
     "TorrentCodec",
     "TorrentFile",
     "TorrentMember",
+    "TorrentStats",
+    "UserProfile",
     "ValueDescription",
     "Video",
     "VideoOrigin",
