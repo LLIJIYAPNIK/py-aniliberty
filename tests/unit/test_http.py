@@ -224,6 +224,26 @@ async def test_401_and_json_403_raise_auth_required(status: int) -> None:
     assert error.message == "Unauthenticated."
 
 
+async def test_message_falls_back_to_error_field() -> None:
+    # A failed login answers 401 with {"token": null, "error": ...}, without "message".
+    body = {"token": None, "error": "Wrong login/password"}
+    error = await request_error(httpx.Response(401, json=body))
+
+    assert type(error) is AuthRequiredError
+    assert error.message == "Wrong login/password"
+    assert error.payload == body
+
+
+@pytest.mark.parametrize(
+    "body",
+    [{"message": "", "error": None}, {"message": 1}, {"error": ["x"]}, ["not", "a", "dict"]],
+)
+async def test_message_falls_back_to_reason_phrase_without_usable_text(body: object) -> None:
+    error = await request_error(httpx.Response(403, json=body))
+
+    assert error.message == "Forbidden"
+
+
 @pytest.mark.parametrize("status", [200, 403, 404])
 async def test_html_page_raises_access_blocked(status: int) -> None:
     response = httpx.Response(
