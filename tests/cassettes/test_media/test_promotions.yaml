@@ -1,0 +1,328 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/media/promotions
+  response:
+    body:
+      string: '[{"id":"a0b926ae-019a-4ce0-b5ff-e97abc11f503","url":"https:\/\/funpay.com\/go\/anilib26","image":{"preview":"\/storage\/media\/promotions\/images\/a0b926ae-019a-4ce0-b5ff-e97abc11f503\/W5JkXwVwMNzJDdq2OONSMMqpi2wjyiks.jpg","thumbnail":"\/storage\/media\/promotions\/images\/a0b926ae-019a-4ce0-b5ff-e97abc11f503\/5k36sDPJLF4ivVgd5QgAYBWJgZMAxATm.jpg","optimized":{"preview":"\/storage\/media\/promotions\/images\/a0b926ae-019a-4ce0-b5ff-e97abc11f503\/Q1dvzdCvV20Fqa2UCeb5QFkk3i6kFWzn.webp","thumbnail":"\/storage\/media\/promotions\/images\/a0b926ae-019a-4ce0-b5ff-e97abc11f503\/bScSw5E2IGaSLzT0H9dQSXwoveXwd0PJ.webp"}},"title":null,"is_ad":true,"ad_erid":null,"ad_origin":null,"url_label":"\u0417\u0430\u043b\u0435\u0442\u0430\u0439!","description":null,"has_overlay":false,"release":null},{"id":"9eca3ce3-3530-4d17-89f6-deacb6705d34","url":null,"image":{"preview":"\/storage\/media\/promotions\/images\/9eca3ce3-3530-4d17-89f6-deacb6705d34\/crPoCEKKAGpxAr4xU4CZoQspQrOUmK4M.jpg","thumbnail":"\/storage\/media\/promotions\/images\/9eca3ce3-3530-4d17-89f6-deacb6705d34\/GWYULbxGns4JbAunHH5hYxi6UtpGLmdw.jpg","optimized":{"preview":"\/storage\/media\/promotions\/images\/9eca3ce3-3530-4d17-89f6-deacb6705d34\/cQQMGJkQWiemen9KCEHlhYUbOpKiynYb.webp","thumbnail":"\/storage\/media\/promotions\/images\/9eca3ce3-3530-4d17-89f6-deacb6705d34\/5FAU2TfRa2Vs2nuLjGBpnUL5xm9Fjy2y.webp"}},"title":"\u0423\u0432\u0430\u0436\u0430\u0435\u043c\u044b\u0435
+        \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438!","is_ad":false,"ad_erid":null,"ad_origin":null,"url_label":null,"description":"\u0412
+        \u043d\u0430\u0441\u0442\u043e\u044f\u0449\u0435\u0435 \u0432\u0440\u0435\u043c\u044f
+        \u043d\u0430\u0448\u0438 \u0441\u0438\u043b\u044b \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u044b
+        \u043d\u0430 \u0442\u043e, \u0447\u0442\u043e\u0431\u044b \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e
+        \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0442\u044c \u0441\u043e\u0431\u043b\u044e\u0434\u0435\u043d\u0438\u0435
+        \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u0439 \u0440\u043e\u0441\u0441\u0438\u0439\u0441\u043a\u043e\u0433\u043e
+        \u0437\u0430\u043a\u043e\u043d\u043e\u0434\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u0430.
+        \r\n\r\n\u0412 \u044d\u0442\u043e\u0439 \u0441\u0432\u044f\u0437\u0438 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0435\u0439
+        \u0441\u0430\u0439\u0442\u0430 \u043f\u0440\u043e\u0432\u043e\u0434\u0438\u0442\u0441\u044f
+        \u0440\u0435\u0433\u0443\u043b\u044f\u0440\u043d\u0430\u044f \u043c\u043e\u0434\u0435\u0440\u0430\u0446\u0438\u044f
+        \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430. \u0420\u043e\u043b\u0438\u043a\u0438,
+        \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043f\u043e-\u043d\u0430\u0448\u0435\u043c\u0443
+        \u043c\u043d\u0435\u043d\u0438\u044e \u043c\u043e\u0433\u0443\u0442 \u0441\u043e\u0434\u0435\u0440\u0436\u0430\u0442\u044c
+        \u0437\u0430\u043f\u0440\u0435\u0449\u0435\u043d\u043d\u0443\u044e \u043a
+        \u0440\u0430\u0441\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0435\u043d\u0438\u044e
+        \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u2014 \u0443\u0434\u0430\u043b\u0435\u043d\u044b.","has_overlay":true,"release":null},{"id":"a0d57a25-01a9-4bdd-a4db-7565dc2c6e57","url":"https:\/\/youtube.com\/@anilibertytv?si=5VrmzRfJc0GfcS4r","image":{"preview":"\/storage\/media\/promotions\/images\/a0d57a25-01a9-4bdd-a4db-7565dc2c6e57\/qvqDeoema1UUKV9BPQ4C51ynLnd3HXwp.jpg","thumbnail":"\/storage\/media\/promotions\/images\/a0d57a25-01a9-4bdd-a4db-7565dc2c6e57\/DNYjgR5Ky3gEB9p4B2ymxVvpkjxSgWKu.jpg","optimized":{"preview":"\/storage\/media\/promotions\/images\/a0d57a25-01a9-4bdd-a4db-7565dc2c6e57\/nBIkBXDzUOsPW8j8rwnH5PBflxqewVUV.webp","thumbnail":"\/storage\/media\/promotions\/images\/a0d57a25-01a9-4bdd-a4db-7565dc2c6e57\/SBzlCTjaVVD0xLayIZfpf7SoBeANTKUY.webp"}},"title":"AniLiberty
+        \u043d\u0430 YouTube","is_ad":false,"ad_erid":null,"ad_origin":null,"url_label":"\u041f\u043e\u0434\u043f\u0438\u0441\u044b\u0432\u0430\u0439\u0441\u044f!","description":"\u0415\u0441\u043b\u0438
+        \u0432\u044b \u0441\u043c\u043e\u0442\u0440\u0438\u0442\u0435 \u0430\u043d\u0438\u043c\u0435
+        \u043d\u0430 \u043d\u0430\u0448\u0435\u043c \u0441\u0430\u0439\u0442\u0435
+        \u0438 \u0432\u0430\u043c \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u043e,
+        \u043a\u0430\u043a \u0432\u0441\u0451 \u044d\u0442\u043e \u0441\u043e\u0437\u0434\u0430\u0451\u0442\u0441\u044f
+        \u2014 \u0437\u0430\u0433\u043b\u044f\u043d\u0438\u0442\u0435 \u043d\u0430
+        \u043d\u0430\u0448 YouTube. \u041c\u044b \u0442\u0430\u043c \u043f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u043c
+        \u0437\u0430\u043a\u0443\u043b\u0438\u0441\u044c\u0435 \u0440\u0430\u0431\u043e\u0442\u044b,
+        \u0434\u0435\u043b\u0438\u043c\u0441\u044f \u0442\u0440\u0435\u0439\u043b\u0435\u0440\u0430\u043c\u0438
+        \u0438 \u0441\u0442\u0440\u0438\u043c\u0430\u043c\u0438. \u0421\u043f\u0430\u0441\u0438\u0431\u043e,
+        \u0447\u0442\u043e \u0432\u044b\u0431\u0438\u0440\u0430\u0435\u0442\u0435
+        \u043d\u0430\u0441!","has_overlay":true,"release":null},{"id":"9f570e41-24e3-4cee-a1eb-9ee145b8145f","url":"https:\/\/t.me\/aniliberty_tv","image":{"preview":"\/storage\/media\/promotions\/images\/9f570e41-24e3-4cee-a1eb-9ee145b8145f\/GBv1SAKoQ9RgmguKFaz2OC8w4Kc0U5gh.jpg","thumbnail":"\/storage\/media\/promotions\/images\/9f570e41-24e3-4cee-a1eb-9ee145b8145f\/6clzQE7XP1ZvH736ebBGGaBE8tmTkkmc.jpg","optimized":{"preview":"\/storage\/media\/promotions\/images\/9f570e41-24e3-4cee-a1eb-9ee145b8145f\/1e3JntdyHZFyaXDmzxPWN4BBbw8VbY6g.webp","thumbnail":"\/storage\/media\/promotions\/images\/9f570e41-24e3-4cee-a1eb-9ee145b8145f\/7g0biyEDHc0fjT3yUODs0EnH6EGOTuS5.webp"}},"title":"AniLiberty
+        \u2014 \u0422\u0430\u043a \u0437\u0432\u0443\u0447\u0438\u0442 \u0430\u043d\u0438\u043c\u0435!","is_ad":false,"ad_erid":null,"ad_origin":null,"url_label":"\u041f\u043e\u0434\u043f\u0438\u0441\u0430\u0442\u044c\u0441\u044f
+        \u043d\u0430 \u043a\u0430\u043d\u0430\u043b","description":"\u041e\u0437\u0432\u0443\u0447\u043a\u0430
+        \u0430\u043d\u0438\u043c\u0435 \u043d\u0430 \u0440\u0443\u0441\u0441\u043a\u043e\u043c
+        \u044f\u0437\u044b\u043a\u0435 \u043e\u0442 \u043a\u043b\u0430\u0441\u0441\u043d\u043e\u0439
+        \u043a\u043e\u043c\u0430\u043d\u0434\u044b \u044d\u043d\u0442\u0443\u0437\u0438\u0430\u0441\u0442\u043e\u0432,
+        \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0437\u0430\u043d\u0438\u043c\u0430\u044e\u0442\u0441\u044f
+        \u044d\u0442\u0438\u043c \u043c\u043d\u043e\u0433\u0438\u0435 \u0433\u043e\u0434\u044b.\r\n\u041f\u043e\u0434\u043f\u0438\u0441\u044b\u0432\u0430\u0439\u0442\u0435\u0441\u044c
+        \u043d\u0430 \u043d\u0430\u0448 Telegram-\u043a\u0430\u043d\u0430\u043b, \u0447\u0442\u043e\u0431\u044b
+        \u0431\u044b\u0442\u044c \u0432 \u043a\u0443\u0440\u0441\u0435 \u0432\u0441\u0435\u0445
+        \u043d\u043e\u0432\u043e\u0441\u0442\u0435\u0439 \u043f\u0440\u043e\u0435\u043a\u0442\u0430!","has_overlay":true,"release":null},{"id":"9f41f821-513d-4c8d-ac32-5d1e5a07dac9","url":null,"image":{"preview":"\/storage\/media\/promotions\/images\/9f41f821-513d-4c8d-ac32-5d1e5a07dac9\/zrC3IGRG5nMmUttpzGnA4IQNl0LqeG6l.jpg","thumbnail":"\/storage\/media\/promotions\/images\/9f41f821-513d-4c8d-ac32-5d1e5a07dac9\/1G2fd9ACIT2O033k6SoTPJczApcxi1aW.jpg","optimized":{"preview":"\/storage\/media\/promotions\/images\/9f41f821-513d-4c8d-ac32-5d1e5a07dac9\/4yMRJSSiockOx5YUDNbYaAVa3fVFp0MD.webp","thumbnail":"\/storage\/media\/promotions\/images\/9f41f821-513d-4c8d-ac32-5d1e5a07dac9\/Z9F6C30Wo3Z64WpKhj0CQUGh37NseJ0A.webp"}},"title":"\u041d\u0435\u043e\u0431\u044a\u044f\u0442\u043d\u044b\u0439
+        \u043e\u043a\u0435\u0430\u043d 3","is_ad":false,"ad_erid":null,"ad_origin":null,"url_label":null,"description":"\u0413\u043e\u0442\u043e\u0432\u044c\u0442\u0435\u0441\u044c,
+        \u0431\u0430\u043d\u0434\u0430 \u043b\u044e\u0431\u0438\u0442\u0435\u043b\u0435\u0439
+        \u043c\u043e\u0440\u0435\u0439 \u0438 \u0443\u0433\u0430\u0440\u043d\u044b\u0445
+        \u0442\u0443\u0441\u043e\u0432\u043e\u043a \u0441\u043d\u043e\u0432\u0430
+        \u0432 \u0434\u0435\u043b\u0435! \u0418\u043e\u0301\u0440\u0438 \u0438 \u0435\u0433\u043e
+        \u0431\u0430\u043d\u0434\u0430 \u043f\u043e \u0433\u0440\u0430\u043d\u0434\u0438\u043e\u0437\u043d\u044b\u043c
+        \u043f\u044c\u044f\u043d\u043a\u0430\u043c \u0438 \u0440\u0435\u0434\u043a\u0438\u043c
+        \u043f\u043e\u0433\u0440\u0443\u0436\u0435\u043d\u0438\u044f\u043c \u0433\u043e\u0442\u043e\u0432\u044b
+        \u0437\u0430\u0436\u0435\u0447\u044c \u043d\u0430 \u043f\u043e\u043b\u043d\u0443\u044e
+        \u043a\u0430\u0442\u0443\u0448\u043a\u0443. \u0412 \u044d\u0442\u043e\u0442
+        \u0440\u0430\u0437 \u0438\u0445 \u0431\u0435\u0437\u0443\u043c\u043d\u0430\u044f
+        \u043b\u044e\u0431\u043e\u0432\u044c \u043a \u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f\u043c,
+        \u0430\u043b\u043a\u043e\u0433\u043e\u043b\u044e \u0438 \u0440\u043e\u043a-\u043d-\u0440\u043e\u043b\u043b\u0443
+        \u0437\u0430\u043d\u0435\u0441\u0451\u0442 \u0432\u0441\u044e \u044d\u0442\u0443
+        \u0434\u0438\u043a\u0443\u044e \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044e
+        \u0432 \u043d\u0435\u0437\u0430\u0431\u044b\u0432\u0430\u0435\u043c\u043e\u0435
+        \u043f\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u0435 \u0437\u0430
+        \u0433\u0440\u0430\u043d\u0438\u0446\u0443.","has_overlay":true,"release":{"id":10241,"type":{"value":"TV","description":"\u0422\u0412"},"year":2026,"name":{"main":"\u041d\u0435\u043e\u0431\u044a\u044f\u0442\u043d\u044b\u0439
+        \u043e\u043a\u0435\u0430\u043d 3","english":"Grand Blue Season 3","alternative":null},"alias":"grand-blue-season-3","season":{"value":"summer","description":"\u041b\u0435\u0442\u043e"},"shikimori":{"id":62542,"url":"https:\/\/shikimori.io\/animes\/62542","votes":4758,"rating":8.32},"mal":{"id":62542,"url":"https:\/\/myanimelist.net\/anime\/62542","votes":40174,"rating":8.32},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/10241\/i8an0qdAHN62ldxYiOK4vbSDedqVI8QO.jpg","preview":"\/storage\/releases\/posters\/10241\/i8an0qdAHN62ldxYiOK4vbSDedqVI8QO.jpg","thumbnail":"\/storage\/releases\/posters\/10241\/FvK88fQI9X7nvlVJHhhytAnbhXMBgU5t.jpg","optimized":{"src":"\/storage\/releases\/posters\/10241\/CNg6c6Ingmkyd3ZJ1NsMDqSy1v5WTiBS.webp","preview":"\/storage\/releases\/posters\/10241\/CNg6c6Ingmkyd3ZJ1NsMDqSy1v5WTiBS.webp","thumbnail":"\/storage\/releases\/posters\/10241\/tmJRKeqvpZqnvLGnB0wA73uPWga9ldNC.webp"}},"fresh_at":"2026-09-23T18:57:57+00:00","created_at":"2026-05-21T00:38:54+00:00","updated_at":"2026-09-30T12:59:34+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":3,"description":"\u0421\u0440\u0435\u0434\u0430"},"description":"\u0413\u043e\u0442\u043e\u0432\u044c\u0442\u0435\u0441\u044c,
+        \u0431\u0430\u043d\u0434\u0430 \u043b\u044e\u0431\u0438\u0442\u0435\u043b\u0435\u0439
+        \u043c\u043e\u0440\u0435\u0439 \u0438 \u0443\u0433\u0430\u0440\u043d\u044b\u0445
+        \u0442\u0443\u0441\u043e\u0432\u043e\u043a \u0441\u043d\u043e\u0432\u0430
+        \u0432 \u0434\u0435\u043b\u0435! \u0418\u043e\u0301\u0440\u0438 \u0438 \u0435\u0433\u043e
+        \u0431\u0430\u043d\u0434\u0430 \u043f\u043e \u0433\u0440\u0430\u043d\u0434\u0438\u043e\u0437\u043d\u044b\u043c
+        \u043f\u044c\u044f\u043d\u043a\u0430\u043c \u0438 \u0440\u0435\u0434\u043a\u0438\u043c
+        \u043f\u043e\u0433\u0440\u0443\u0436\u0435\u043d\u0438\u044f\u043c \u0433\u043e\u0442\u043e\u0432\u044b
+        \u0437\u0430\u0436\u0435\u0447\u044c \u043d\u0430 \u043f\u043e\u043b\u043d\u0443\u044e
+        \u043a\u0430\u0442\u0443\u0448\u043a\u0443. \u0412 \u044d\u0442\u043e\u0442
+        \u0440\u0430\u0437 \u0438\u0445 \u0431\u0435\u0437\u0443\u043c\u043d\u0430\u044f
+        \u043b\u044e\u0431\u043e\u0432\u044c \u043a \u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f\u043c,
+        \u0430\u043b\u043a\u043e\u0433\u043e\u043b\u044e \u0438 \u0440\u043e\u043a-\u043d-\u0440\u043e\u043b\u043b\u0443
+        \u0437\u0430\u043d\u0435\u0441\u0451\u0442 \u0432\u0441\u044e \u044d\u0442\u0443
+        \u0434\u0438\u043a\u0443\u044e \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044e
+        \u0432 \u043d\u0435\u0437\u0430\u0431\u044b\u0432\u0430\u0435\u043c\u043e\u0435
+        \u043f\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u0435 \u0437\u0430
+        \u0433\u0440\u0430\u043d\u0438\u0446\u0443.\r\n\u0420\u0435\u0431\u044f\u0442
+        \u0436\u0434\u0451\u0442 \u043f\u043e\u0435\u0437\u0434\u043a\u0430 \u043d\u0430
+        \u0440\u0430\u0439\u0441\u043a\u0438\u0435 \u0442\u0440\u043e\u043f\u0438\u0447\u0435\u0441\u043a\u0438\u0435
+        \u043e\u0441\u0442\u0440\u043e\u0432\u0430 \u041f\u0430\u043b\u0430\u0301\u0443,
+        \u0433\u0434\u0435 \u043c\u043e\u0440\u0435 \u043d\u0435\u0440\u0435\u0430\u043b\u044c\u043d\u043e
+        \u043a\u0440\u0430\u0441\u0438\u0432\u043e\u0435, \u0430 \u043c\u0435\u0441\u0442\u0430
+        \u0434\u043b\u044f \u043d\u044b\u0440\u044f\u043d\u0438\u044f \u2014 \u043f\u0440\u043e\u0441\u0442\u043e
+        \u043a\u043e\u0441\u043c\u043e\u0441. \u041d\u043e \u043d\u0438\u043a\u0430\u043a\u043e\u0433\u043e
+        \u043f\u0440\u0438\u043b\u0438\u0447\u043d\u043e\u0433\u043e \u043e\u0442\u0434\u044b\u0445\u0430
+        \u043d\u0435 \u0431\u0443\u0434\u0435\u0442! \u0413\u0435\u0440\u043e\u0435\u0432
+        \u043f\u043e \u0442\u0440\u0430\u0434\u0438\u0446\u0438\u0438 \u0436\u0434\u0443\u0442
+        \u0434\u0438\u043a\u0438\u0435 \u043f\u0440\u0438\u043a\u043e\u043b\u044b,
+        \u043d\u043e\u0432\u044b\u0435 \u0437\u043d\u0430\u043a\u043e\u043c\u0441\u0442\u0432\u0430
+        \u0438 \u0442\u043e\u043d\u043d\u044b \u0432\u0435\u0441\u0451\u043b\u043e\u0433\u043e
+        \u0445\u0430\u043e\u0441\u0430, \u0432\u0435\u0434\u044c \u044d\u0442\u0438
+        \u0447\u0443\u0432\u0430\u043a\u0438 \u043f\u0440\u043e\u0441\u0442\u043e
+        \u0444\u0438\u0437\u0438\u0447\u0435\u0441\u043a\u0438 \u043d\u0435 \u0443\u043c\u0435\u044e\u0442
+        \u0432\u0435\u0441\u0442\u0438 \u0441\u0435\u0431\u044f \u0430\u0434\u0435\u043a\u0432\u0430\u0442\u043d\u043e.","notification":null,"episodes_total":12,"external_player":null,"is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":6414,"average_duration_of_episode":24,"added_in_planned_collection":583,"added_in_watched_collection":460,"added_in_watching_collection":506,"added_in_postponed_collection":17,"added_in_abandoned_collection":17,"genres":[{"id":5,"name":"\u0421\u0435\u0439\u043d\u0435\u043d","image":{"preview":"\/storage\/anime\/genres\/images\/5\/ekFrF3Puccsi75ngq0fzd4fUbnXiGCnn.jpg","thumbnail":"\/storage\/anime\/genres\/images\/5\/CfIxntJmgBabUiBQChxB0WZHdSF5L87K.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/5\/sTleU4eW0CiqDIiiyRniPJIQlB8HZagG.webp","thumbnail":"\/storage\/anime\/genres\/images\/5\/RsbTRZ6lb0zhLCP033o9PEmsFRwVqLp5.webp"}},"total_releases":195},{"id":1,"name":"\u041a\u043e\u043c\u0435\u0434\u0438\u044f","image":{"preview":"\/storage\/anime\/genres\/images\/1\/U1sFaXCMz3PE7nxORf5D8qhN0tX2reqW.jpg","thumbnail":"\/storage\/anime\/genres\/images\/1\/QBNpOye0tk9DVySvQN1wz9j3iZdZhvZp.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/1\/2jgEuWgDWkIK1ucumMsWv1EzGy5jOT5j.webp","thumbnail":"\/storage\/anime\/genres\/images\/1\/2HNoBbkhXvWQwzF4WyYZwc6bMdaeRy47.webp"}},"total_releases":685}]}},{"id":"9f41f77f-6ff9-424d-be4e-ab8c9774053d","url":null,"image":{"preview":"\/storage\/media\/promotions\/images\/9f41f77f-6ff9-424d-be4e-ab8c9774053d\/F0JXB5F89w9YZbkijtb6XjKDfWpKE6Pg.jpg","thumbnail":"\/storage\/media\/promotions\/images\/9f41f77f-6ff9-424d-be4e-ab8c9774053d\/D4N5rm9OiDoSvIYk733LZVCXABHxywUo.jpg","optimized":{"preview":"\/storage\/media\/promotions\/images\/9f41f77f-6ff9-424d-be4e-ab8c9774053d\/2cy4vjz162bv6VqPzIrSl68xxlvy4WOB.webp","thumbnail":"\/storage\/media\/promotions\/images\/9f41f77f-6ff9-424d-be4e-ab8c9774053d\/8tW1EYLdUZWHo8my9xaRc4nEwGeuxqHZ.webp"}},"title":"\u0418\u0441\u0442\u043e\u0440\u0438\u044f
+        \u043e \u043f\u0435\u0440\u0435\u043a\u0443\u0440\u0435 \u0437\u0430 \u0441\u0443\u043f\u0435\u0440\u043c\u0430\u0440\u043a\u0435\u0442\u043e\u043c","is_ad":false,"ad_erid":null,"ad_origin":null,"url_label":null,"description":"\u0421\u043e\u0440\u043e\u043a\u0430\u043b\u0435\u0442\u043d\u0438\u0439
+        \u043e\u0444\u0438\u0441\u043d\u044b\u0439 \u043a\u043b\u0435\u0440\u043a
+        \u0421\u0430\u0441\u0430\u0301\u043a\u0438 \u0441\u043c\u0435\u0440\u0442\u0435\u043b\u044c\u043d\u043e
+        \u0443\u0441\u0442\u0430\u043b \u043e\u0442 \u0441\u0435\u0440\u044b\u0445
+        \u0431\u0443\u0434\u043d\u0435\u0439 \u0438 \u0431\u0435\u0441\u043a\u043e\u043d\u0435\u0447\u043d\u043e\u0439
+        \u0440\u0430\u0431\u043e\u0442\u044b. \u0415\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u043c
+        \u043b\u0443\u0447\u0438\u043a\u043e\u043c \u0441\u0432\u0435\u0442\u0430
+        \u0432 \u0435\u0433\u043e \u0436\u0438\u0437\u043d\u0438 \u0441\u0442\u0430\u043b\u0430
+        \u042f\u043c\u0430\u0301\u0434\u0430 \u2014 \u0432\u0441\u0435\u0433\u0434\u0430
+        \u0443\u043b\u044b\u0431\u0447\u0438\u0432\u0430\u044f \u0438 \u043f\u0440\u0438\u0432\u0435\u0442\u043b\u0438\u0432\u0430\u044f
+        \u043a\u0430\u0441\u0441\u0438\u0440\u0448\u0430 \u0438\u0437 \u0441\u0443\u043f\u0435\u0440\u043c\u0430\u0440\u043a\u0435\u0442\u0430
+        \u0443 \u0434\u043e\u043c\u0430, \u0432\u0438\u0434 \u043a\u043e\u0442\u043e\u0440\u043e\u0439
+        \u043c\u043e\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u043e \u0441\u043d\u0438\u043c\u0430\u0435\u0442
+        \u0432\u0435\u0441\u044c \u043d\u0430\u043a\u043e\u043f\u043b\u0435\u043d\u043d\u044b\u0439
+        \u0441\u0442\u0440\u0435\u0441\u0441. \u041d\u043e \u0432 \u043e\u0434\u0438\u043d
+        \u0438\u0437 \u0432\u0435\u0447\u0435\u0440\u043e\u0432 \u043d\u0430\u0448
+        \u0433\u0435\u0440\u043e\u0439 \u043d\u0435 \u0437\u0430\u0441\u0442\u0430\u0451\u0442
+        \u0435\u0451 \u043d\u0430 \u0441\u043c\u0435\u043d\u0435 \u0438, \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e
+        \u0440\u0430\u0437\u043e\u0447\u0430\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439,
+        \u0440\u0435\u0448\u0430\u0435\u0442 \u043f\u043e\u043a\u0443\u0440\u0438\u0442\u044c
+        \u0432 \u0442\u0438\u0445\u043e\u043c \u043f\u0435\u0440\u0435\u0443\u043b\u043a\u0435
+        \u0437\u0430 \u0437\u0434\u0430\u043d\u0438\u0435\u043c \u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430.","has_overlay":true,"release":{"id":10292,"type":{"value":"TV","description":"\u0422\u0412"},"year":2026,"name":{"main":"\u0418\u0441\u0442\u043e\u0440\u0438\u044f
+        \u043e \u043f\u0435\u0440\u0435\u043a\u0443\u0440\u0435 \u0437\u0430 \u0441\u0443\u043f\u0435\u0440\u043c\u0430\u0440\u043a\u0435\u0442\u043e\u043c","english":"Super
+        no Ura de Yani Suu Futari","alternative":null},"alias":"super-no-ura-de-yani-suu-futari","season":{"value":"summer","description":"\u041b\u0435\u0442\u043e"},"shikimori":{"id":62076,"url":"https:\/\/shikimori.io\/animes\/62076","votes":7985,"rating":8.14},"mal":{"id":62076,"url":"https:\/\/myanimelist.net\/anime\/62076","votes":103244,"rating":8.21},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/10292\/xJKTk8yl0mRLsYdI7AjJdBe7U1rC3n8t.jpg","preview":"\/storage\/releases\/posters\/10292\/xJKTk8yl0mRLsYdI7AjJdBe7U1rC3n8t.jpg","thumbnail":"\/storage\/releases\/posters\/10292\/iYlN391tZQFZnBPquqxwTncsWDjWXal8.jpg","optimized":{"src":"\/storage\/releases\/posters\/10292\/bwemBFzo9wLYMQB5vsck9WKVxYy1N57J.webp","preview":"\/storage\/releases\/posters\/10292\/bwemBFzo9wLYMQB5vsck9WKVxYy1N57J.webp","thumbnail":"\/storage\/releases\/posters\/10292\/skZVsSqyR5z8ultCfi1pGkcmeB1BSBgY.webp"}},"fresh_at":"2026-09-26T12:50:50+00:00","created_at":"2026-07-14T09:27:35+00:00","updated_at":"2026-09-27T16:05:41+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":5,"description":"\u041f\u044f\u0442\u043d\u0438\u0446\u0430"},"description":"\u0421\u043e\u0440\u043e\u043a\u0430\u043b\u0435\u0442\u043d\u0438\u0439
+        \u043e\u0444\u0438\u0441\u043d\u044b\u0439 \u043a\u043b\u0435\u0440\u043a
+        \u0421\u0430\u0441\u0430\u0301\u043a\u0438 \u0441\u043c\u0435\u0440\u0442\u0435\u043b\u044c\u043d\u043e
+        \u0443\u0441\u0442\u0430\u043b \u043e\u0442 \u0441\u0435\u0440\u044b\u0445
+        \u0431\u0443\u0434\u043d\u0435\u0439 \u0438 \u0431\u0435\u0441\u043a\u043e\u043d\u0435\u0447\u043d\u043e\u0439
+        \u0440\u0430\u0431\u043e\u0442\u044b. \u0415\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u043c
+        \u043b\u0443\u0447\u0438\u043a\u043e\u043c \u0441\u0432\u0435\u0442\u0430
+        \u0432 \u0435\u0433\u043e \u0436\u0438\u0437\u043d\u0438 \u0441\u0442\u0430\u043b\u0430
+        \u042f\u043c\u0430\u0301\u0434\u0430 \u2014 \u0432\u0441\u0435\u0433\u0434\u0430
+        \u0443\u043b\u044b\u0431\u0447\u0438\u0432\u0430\u044f \u0438 \u043f\u0440\u0438\u0432\u0435\u0442\u043b\u0438\u0432\u0430\u044f
+        \u043a\u0430\u0441\u0441\u0438\u0440\u0448\u0430 \u0438\u0437 \u0441\u0443\u043f\u0435\u0440\u043c\u0430\u0440\u043a\u0435\u0442\u0430
+        \u0443 \u0434\u043e\u043c\u0430, \u0432\u0438\u0434 \u043a\u043e\u0442\u043e\u0440\u043e\u0439
+        \u043c\u043e\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u043e \u0441\u043d\u0438\u043c\u0430\u0435\u0442
+        \u0432\u0435\u0441\u044c \u043d\u0430\u043a\u043e\u043f\u043b\u0435\u043d\u043d\u044b\u0439
+        \u0441\u0442\u0440\u0435\u0441\u0441. \u041d\u043e \u0432 \u043e\u0434\u0438\u043d
+        \u0438\u0437 \u0432\u0435\u0447\u0435\u0440\u043e\u0432 \u043d\u0430\u0448
+        \u0433\u0435\u0440\u043e\u0439 \u043d\u0435 \u0437\u0430\u0441\u0442\u0430\u0451\u0442
+        \u0435\u0451 \u043d\u0430 \u0441\u043c\u0435\u043d\u0435 \u0438, \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e
+        \u0440\u0430\u0437\u043e\u0447\u0430\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439,
+        \u0440\u0435\u0448\u0430\u0435\u0442 \u043f\u043e\u043a\u0443\u0440\u0438\u0442\u044c
+        \u0432 \u0442\u0438\u0445\u043e\u043c \u043f\u0435\u0440\u0435\u0443\u043b\u043a\u0435
+        \u0437\u0430 \u0437\u0434\u0430\u043d\u0438\u0435\u043c \u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430.\r\n\u0422\u0430\u043c
+        \u043e\u043d \u0441\u0442\u0430\u043b\u043a\u0438\u0432\u0430\u0435\u0442\u0441\u044f
+        \u0441 \u0422\u0430\u044f\u0301\u043c\u043e\u0439 \u2014 \u0434\u0435\u0440\u0437\u043a\u043e\u0439
+        \u0434\u0435\u0432\u0443\u0448\u043a\u043e\u0439 \u0432 \u043f\u0438\u0440\u0441\u0438\u043d\u0433\u0435
+        \u0438 \u043a\u043e\u0436\u0430\u043d\u043e\u0439 \u043a\u0443\u0440\u0442\u043a\u0435,
+        \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u043f\u0440\u0435\u0434\u043b\u0430\u0433\u0430\u0435\u0442
+        \u0435\u043c\u0443 \u0440\u0430\u0437\u0434\u0435\u043b\u0438\u0442\u044c
+        \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044e. \u041c\u0435\u0436\u0434\u0443
+        \u0438\u0437\u043c\u043e\u0442\u0430\u043d\u043d\u044b\u043c \u043c\u0443\u0436\u0447\u0438\u043d\u043e\u0439
+        \u0438 \u043d\u0435\u0444\u043e\u0440\u043c\u0430\u043b\u043a\u043e\u0439
+        \u0437\u0430\u0432\u044f\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u043b\u0451\u0433\u043a\u0438\u0439
+        \u0440\u0430\u0437\u0433\u043e\u0432\u043e\u0440, \u043a\u043e\u0442\u043e\u0440\u044b\u0439
+        \u0431\u044b\u0441\u0442\u0440\u043e \u043f\u0435\u0440\u0435\u0440\u0430\u0441\u0442\u0430\u0435\u0442
+        \u0432 \u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u0443\u044e \u043f\u0440\u0438\u0432\u044b\u0447\u043a\u0443
+        \u0432\u0441\u0442\u0440\u0435\u0447\u0430\u0442\u044c\u0441\u044f \u0437\u0430
+        \u0441\u0438\u0433\u0430\u0440\u0435\u0442\u043e\u0439. \u0421\u0430\u0441\u0430\u0301\u043a\u0438
+        \u0434\u0430\u0436\u0435 \u043d\u0435 \u043f\u043e\u0434\u043e\u0437\u0440\u0435\u0432\u0430\u0435\u0442,
+        \u0447\u0442\u043e \u0437\u0430 \u0441\u0443\u0440\u043e\u0432\u044b\u043c
+        \u043e\u0431\u043b\u0438\u043a\u043e\u043c \u0435\u0433\u043e \u043d\u043e\u0432\u043e\u0439
+        \u043f\u043e\u0434\u0440\u0443\u0433\u0438 \u043f\u043e \u043a\u0443\u0440\u0438\u043b\u043a\u0435
+        \u0441\u043a\u0440\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u0442\u0430
+        \u0441\u0430\u043c\u0430\u044f \u043c\u0438\u043b\u0430\u044f \u043a\u0430\u0441\u0441\u0438\u0440\u0448\u0430
+        \u042f\u043c\u0430\u0301\u0434\u0430, \u043a\u043e\u0442\u043e\u0440\u0430\u044f
+        \u043f\u0440\u043e\u0441\u0442\u043e \u0441\u0431\u0440\u0430\u0441\u044b\u0432\u0430\u0435\u0442
+        \u043c\u0430\u0441\u043a\u0443 \u043f\u043e\u0441\u043b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b.","notification":null,"episodes_total":12,"external_player":null,"is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":7849,"average_duration_of_episode":24,"added_in_planned_collection":693,"added_in_watched_collection":1248,"added_in_watching_collection":644,"added_in_postponed_collection":21,"added_in_abandoned_collection":18,"genres":[{"id":5,"name":"\u0421\u0435\u0439\u043d\u0435\u043d","image":{"preview":"\/storage\/anime\/genres\/images\/5\/ekFrF3Puccsi75ngq0fzd4fUbnXiGCnn.jpg","thumbnail":"\/storage\/anime\/genres\/images\/5\/CfIxntJmgBabUiBQChxB0WZHdSF5L87K.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/5\/sTleU4eW0CiqDIiiyRniPJIQlB8HZagG.webp","thumbnail":"\/storage\/anime\/genres\/images\/5\/RsbTRZ6lb0zhLCP033o9PEmsFRwVqLp5.webp"}},"total_releases":195},{"id":11,"name":"\u0420\u043e\u043c\u0430\u043d\u0442\u0438\u043a\u0430","image":{"preview":"\/storage\/anime\/genres\/images\/11\/IMvKVBJEa0oQTnJSTRzUO2Q5GcO8W3yh.jpg","thumbnail":"\/storage\/anime\/genres\/images\/11\/PH6VnfrPncIW3BiYjNEBIWPtL4jQLNz9.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/11\/4hYmrD37aIKEiQcHr48fiKPe8PaW01uk.webp","thumbnail":"\/storage\/anime\/genres\/images\/11\/UkFZNGtVyzN0oC3X1xGxn859frg2R8Xj.webp"}},"total_releases":481}]}},{"id":"9f41f89d-c179-4a0a-89bd-8209be3e60b8","url":null,"image":{"preview":"\/storage\/media\/promotions\/images\/9f41f89d-c179-4a0a-89bd-8209be3e60b8\/lVieaNdRobhIqgzL6uwEhzwFAA7cyJol.jpg","thumbnail":"\/storage\/media\/promotions\/images\/9f41f89d-c179-4a0a-89bd-8209be3e60b8\/QR0jRCo6S2i5zVz94H5HO4bw6Nmne2eM.jpg","optimized":{"preview":"\/storage\/media\/promotions\/images\/9f41f89d-c179-4a0a-89bd-8209be3e60b8\/ElDvmD85MmszLDEKj3HADjuYfuASA0tb.webp","thumbnail":"\/storage\/media\/promotions\/images\/9f41f89d-c179-4a0a-89bd-8209be3e60b8\/I2tWRZ6hyhCPwSevNmcTh4GY8UXCgnqY.webp"}},"title":"\u0418\u0441\u0442\u043e\u0440\u0438\u044f
+        \u044d\u043b\u0435\u043a\u0442\u0440\u0438\u0447\u0435\u0441\u0442\u0432\u0430
+        \u0432 \u0434\u0432\u0430\u0434\u0446\u0430\u0442\u043e\u043c \u0432\u0435\u043a\u0435","is_ad":false,"ad_erid":null,"ad_origin":null,"url_label":null,"description":"\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u044f
+        \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u044f\u0442 \u0432 \u0430\u043b\u044c\u0442\u0435\u0440\u043d\u0430\u0442\u0438\u0432\u043d\u043e\u0439
+        \u0432\u0435\u0440\u0441\u0438\u0438 \u041a\u0438\u043e\u0301\u0442\u043e
+        \u043d\u0430\u0447\u0430\u043b\u0430 20-\u0433\u043e \u0432\u0435\u043a\u0430.
+        \u0421\u0430\u043a\u0430\u043c\u043e\u0301\u0442\u043e \u041a\u0438\u0445\u0430\u0301\u0447\u0438,
+        \u043d\u0438\u043a\u043e\u043c\u0443 \u043d\u0435 \u0434\u043e\u0432\u0435\u0440\u044f\u044e\u0449\u0438\u0439
+        \u044e\u043d\u043e\u0448\u0430, \u043a\u043e\u0433\u0434\u0430-\u0442\u043e
+        \u0434\u0430\u0432\u043d\u043e \u0433\u0440\u0435\u0437\u0438\u043b \u043e
+        \"\u0412\u0435\u043a\u0435 \u042d\u043b\u0435\u043a\u0442\u0440\u0438\u0447\u0435\u0441\u0442\u0432\u0430\".
+        \u041d\u043e \u043a\u043e\u0433\u0434\u0430 \u0435\u0433\u043e \u0441\u0442\u0430\u0440\u0448\u0438\u0439
+        \u0431\u0440\u0430\u0442, \u0441 \u043a\u043e\u0442\u043e\u0440\u044b\u043c
+        \u043f\u0430\u0440\u0435\u043d\u044c \u0445\u043e\u0442\u0435\u043b \u0432\u043e\u043f\u043b\u043e\u0442\u0438\u0442\u044c
+        \u043c\u0435\u0447\u0442\u0443, \u0438\u0441\u0447\u0435\u0437, \u043f\u0430\u0440\u0435\u043d\u044c
+        \u043f\u0440\u043e\u0441\u0442\u043e \u043e\u043f\u0443\u0441\u0442\u0438\u043b
+        \u0440\u0443\u043a\u0438.","has_overlay":true,"release":{"id":10242,"type":{"value":"TV","description":"\u0422\u0412"},"year":2026,"name":{"main":"\u0418\u0441\u0442\u043e\u0440\u0438\u044f
+        \u044d\u043b\u0435\u043a\u0442\u0440\u0438\u0447\u0435\u0441\u0442\u0432\u0430
+        \u0432 \u0434\u0432\u0430\u0434\u0446\u0430\u0442\u043e\u043c \u0432\u0435\u043a\u0435","english":"Nijusseiki
+        Denki Mokuroku: Eureka Evrika","alternative":null},"alias":"nijusseiki-denki-mokuroku-eureka-evrika","season":{"value":"summer","description":"\u041b\u0435\u0442\u043e"},"shikimori":{"id":62856,"url":"https:\/\/shikimori.io\/animes\/62856","votes":1570,"rating":7.53},"mal":{"id":62856,"url":"https:\/\/myanimelist.net\/anime\/62856","votes":25902,"rating":7.44},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/10242\/ZvnMTAfBFRz6Gl8wVZGVpDOGHR0Rd3yE.jpg","preview":"\/storage\/releases\/posters\/10242\/ZvnMTAfBFRz6Gl8wVZGVpDOGHR0Rd3yE.jpg","thumbnail":"\/storage\/releases\/posters\/10242\/pXoPx7opIRB2fC3uTtRyiVDBqVgBVzXC.jpg","optimized":{"src":"\/storage\/releases\/posters\/10242\/MvvCHs1p0lPzYykj4oDqrNDkTt9rCyPN.webp","preview":"\/storage\/releases\/posters\/10242\/MvvCHs1p0lPzYykj4oDqrNDkTt9rCyPN.webp","thumbnail":"\/storage\/releases\/posters\/10242\/sZSSCGh39bN5phiqLp2dmdrHvZ8DIGCS.webp"}},"fresh_at":"2026-09-28T15:51:18+00:00","created_at":"2026-05-21T00:39:48+00:00","updated_at":"2026-10-01T21:49:27+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":1,"description":"\u041f\u043e\u043d\u0435\u0434\u0435\u043b\u044c\u043d\u0438\u043a"},"description":"\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u044f
+        \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u044f\u0442 \u0432 \u0430\u043b\u044c\u0442\u0435\u0440\u043d\u0430\u0442\u0438\u0432\u043d\u043e\u0439
+        \u0432\u0435\u0440\u0441\u0438\u0438 \u041a\u0438\u043e\u0442\u043e \u043d\u0430\u0447\u0430\u043b\u0430
+        20-\u0433\u043e \u0432\u0435\u043a\u0430. \u0421\u0430\u043a\u0430\u043c\u043e\u0442\u043e
+        \u041a\u0438\u0445\u0430\u0447\u0438, \u043d\u0438\u043a\u043e\u043c\u0443
+        \u043d\u0435 \u0434\u043e\u0432\u0435\u0440\u044f\u044e\u0449\u0438\u0439
+        \u044e\u043d\u043e\u0448\u0430, \u043a\u043e\u0433\u0434\u0430-\u0442\u043e
+        \u0434\u0430\u0432\u043d\u043e \u0433\u0440\u0435\u0437\u0438\u043b \u043e
+        \"\u0412\u0435\u043a\u0435 \u042d\u043b\u0435\u043a\u0442\u0440\u0438\u0447\u0435\u0441\u0442\u0432\u0430\".
+        \u041d\u043e \u043a\u043e\u0433\u0434\u0430 \u0435\u0433\u043e \u0441\u0442\u0430\u0440\u0448\u0438\u0439
+        \u0431\u0440\u0430\u0442, \u0441 \u043a\u043e\u0442\u043e\u0440\u044b\u043c
+        \u043f\u0430\u0440\u0435\u043d\u044c \u0445\u043e\u0442\u0435\u043b \u0432\u043e\u043f\u043b\u043e\u0442\u0438\u0442\u044c
+        \u043c\u0435\u0447\u0442\u0443, \u0438\u0441\u0447\u0435\u0437, \u043f\u0430\u0440\u0435\u043d\u044c
+        \u043f\u0440\u043e\u0441\u0442\u043e \u043e\u043f\u0443\u0441\u0442\u0438\u043b
+        \u0440\u0443\u043a\u0438.\r\n\u0427\u0435\u0442\u044b\u0440\u0435 \u0433\u043e\u0434\u0430
+        \u0441\u043f\u0443\u0441\u0442\u044f \u041a\u0438\u0445\u0430\u0447\u0438
+        \u0432\u0441\u0442\u0440\u0435\u0447\u0430\u0435\u0442 \u043d\u0430\u0431\u043e\u0436\u043d\u0443\u044e
+        \u0434\u0435\u0432\u0443\u0448\u043a\u0443 \u043f\u043e \u0438\u043c\u0435\u043d\u0438
+        \u041c\u043e\u043c\u043e\u043a\u0430\u0432\u0430 \u0418\u043d\u0430\u043a\u043e,
+        \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0436\u0435\u043b\u0430\u0435\u0442
+        \u0441\u0431\u0435\u0436\u0430\u0442\u044c \u0438\u0437 \u0441\u0435\u043c\u044c\u0438
+        \u043e\u0442 \u043f\u0440\u0438\u043d\u0443\u0434\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0433\u043e
+        \u0431\u0440\u0430\u043a\u0430. \u0427\u0442\u043e\u0431\u044b \u043f\u0440\u0435\u0434\u043e\u0442\u0432\u0440\u0430\u0442\u0438\u0442\u044c
+        \u043f\u043e\u043c\u043e\u043b\u0432\u043a\u0443, \u0433\u0435\u0440\u043e\u0438
+        \u0434\u043e\u043b\u0436\u043d\u044b \u043e\u0442\u044b\u0441\u043a\u0430\u0442\u044c
+        \u0441\u0431\u043e\u0440\u043d\u0438\u043a \u043f\u0440\u0435\u0434\u0441\u043a\u0430\u0437\u0430\u043d\u0438\u0439
+        \u043e\u0431 \u044d\u043b\u0435\u043a\u0442\u0440\u0438\u0447\u0435\u0441\u0442\u0432\u0435,
+        \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u041a\u0438\u0445\u0430\u0447\u0438
+        \u043d\u0430\u043f\u0438\u0441\u0430\u043b \u0435\u0449\u0451 \u0432 \u0434\u0435\u0442\u0441\u0442\u0432\u0435.
+        \u0422\u043e\u043b\u044c\u043a\u043e \u0435\u0441\u0442\u044c \u043e\u0434\u043d\u0430
+        \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u0430: \u044d\u0442\u043e\u0442
+        \u0441\u0431\u043e\u0440\u043d\u0438\u043a \u0443\u0436\u0435 \u0434\u0430\u0432\u043d\u044b\u043c-\u0434\u0430\u0432\u043d\u043e
+        \u043f\u0440\u043e\u043f\u0430\u043b \u0432\u043c\u0435\u0441\u0442\u0435
+        \u0441 \u0435\u0433\u043e \u0441\u0442\u0430\u0440\u0448\u0438\u043c \u0431\u0440\u0430\u0442\u043e\u043c.","notification":null,"episodes_total":13,"external_player":null,"is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":5557,"average_duration_of_episode":26,"added_in_planned_collection":605,"added_in_watched_collection":321,"added_in_watching_collection":472,"added_in_postponed_collection":36,"added_in_abandoned_collection":30,"genres":[{"id":8,"name":"\u0414\u0440\u0430\u043c\u0430","image":{"preview":"\/storage\/anime\/genres\/images\/8\/zsAUP1RD6fLnJXMwTnH3awJNY0F3qlc3.jpg","thumbnail":"\/storage\/anime\/genres\/images\/8\/rQWlDbZpCDJroKwGrKMmCTAxjJ4gAsdQ.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/8\/xAYRsKLcdinBkDAPNaTPTw67CDx6C6y4.webp","thumbnail":"\/storage\/anime\/genres\/images\/8\/xL6iOX6aTj5swKxJdCPeucQnUc8Ka4ho.webp"}},"total_releases":365},{"id":1,"name":"\u041a\u043e\u043c\u0435\u0434\u0438\u044f","image":{"preview":"\/storage\/anime\/genres\/images\/1\/U1sFaXCMz3PE7nxORf5D8qhN0tX2reqW.jpg","thumbnail":"\/storage\/anime\/genres\/images\/1\/QBNpOye0tk9DVySvQN1wz9j3iZdZhvZp.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/1\/2jgEuWgDWkIK1ucumMsWv1EzGy5jOT5j.webp","thumbnail":"\/storage\/anime\/genres\/images\/1\/2HNoBbkhXvWQwzF4WyYZwc6bMdaeRy47.webp"}},"total_releases":685}]}},{"id":"a1b30b0f-6339-4f1d-8efd-3f0efe2fabe2","url":null,"image":{"preview":"\/storage\/media\/promotions\/images\/a1b30b0f-6339-4f1d-8efd-3f0efe2fabe2\/yCj4OwHcJjbLi4a3VoMN8QnRjls352Q1.jpg","thumbnail":"\/storage\/media\/promotions\/images\/a1b30b0f-6339-4f1d-8efd-3f0efe2fabe2\/sS8rseuY0MTe0QELHRwP7UkthC23kmUK.jpg","optimized":{"preview":"\/storage\/media\/promotions\/images\/a1b30b0f-6339-4f1d-8efd-3f0efe2fabe2\/LgrJCt5plrGKDcO1SOXBHpw18cQjtH56.webp","thumbnail":"\/storage\/media\/promotions\/images\/a1b30b0f-6339-4f1d-8efd-3f0efe2fabe2\/BNziIUR5TSsaVZbd4f6JP4ZHO6tionLA.webp"}},"title":"\u0412\u0430\u043d-\u041f\u0438\u0441","is_ad":false,"ad_erid":null,"ad_origin":null,"url_label":null,"description":"\u041f\u0430\u0440\u0435\u043d\u0451\u043a
+        \u043f\u043e \u0438\u043c\u0435\u043d\u0438 \u041b\u0443\u0444\u0444\u0438
+        \u0438\u0437 \u043c\u0430\u043b\u0435\u043d\u044c\u043a\u043e\u0439 \u043f\u0440\u0438\u0431\u0440\u0435\u0436\u043d\u043e\u0439
+        \u0434\u0435\u0440\u0435\u0432\u0443\u0448\u043a\u0438 \u0442\u043e\u0436\u0435
+        \u043c\u0435\u0447\u0442\u0430\u0435\u0442 \u0441\u0442\u0430\u0442\u044c
+        \u043a\u043e\u0440\u043e\u043b\u0451\u043c \u043f\u0438\u0440\u0430\u0442\u043e\u043c.
+        \u0415\u0449\u0451 \u0432 \u0434\u0435\u0442\u0441\u0442\u0432\u0435 \u043e\u043d
+        \u043d\u0435\u043d\u0430\u0440\u043e\u043a\u043e\u043c \u0441\u044a\u0435\u043b
+        \u0434\u044c\u044f\u0432\u043e\u043b\u044c\u0441\u043a\u0438\u0439 \u043f\u043b\u043e\u0434
+        \u00ab\u0420\u0435\u0437\u0438\u043d\u0430-\u0420\u0435\u0437\u0438\u043d\u0430\u00bb
+        \u0438 \u043f\u0440\u0438\u043e\u0431\u0440\u0451\u043b \u043d\u0435\u0432\u0435\u0440\u043e\u044f\u0442\u043d\u044b\u0435
+        \u0441\u043f\u043e\u0441\u043e\u0431\u043d\u043e\u0441\u0442\u0438. \u041f\u043e\u0432\u0437\u0440\u043e\u0441\u043b\u0435\u0432,
+        \u043e\u043d \u043f\u043e\u043a\u0438\u043d\u0443\u043b \u0440\u043e\u0434\u043d\u044b\u0435
+        \u043c\u0435\u0441\u0442\u0430 \u0432 \u043f\u043e\u0433\u043e\u043d\u0435
+        \u0437\u0430 \u0432\u0435\u043b\u0438\u0447\u0430\u0439\u0448\u0438\u043c
+        \u0441\u043e\u043a\u0440\u043e\u0432\u0438\u0449\u0435\u043c!","has_overlay":true,"release":{"id":10290,"type":{"value":"TV","description":"\u0422\u0412"},"year":1999,"name":{"main":"\u0412\u0430\u043d-\u041f\u0438\u0441","english":"One
+        Piece","alternative":null},"alias":"one-piece","season":{"value":"autumn","description":"\u041e\u0441\u0435\u043d\u044c"},"shikimori":{"id":21,"url":"https:\/\/shikimori.io\/animes\/21","votes":48580,"rating":8.85},"mal":{"id":21,"url":"https:\/\/myanimelist.net\/anime\/21","votes":1562384,"rating":8.72},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/10290\/9hzZgHAJRHkGWLE8zXC0vORihiaOkZe9.jpg","preview":"\/storage\/releases\/posters\/10290\/9hzZgHAJRHkGWLE8zXC0vORihiaOkZe9.jpg","thumbnail":"\/storage\/releases\/posters\/10290\/KAV4anNI7Kv5TeduQVNrlJb1Mr2vxsdl.jpg","optimized":{"src":"\/storage\/releases\/posters\/10290\/tc8bOapcxYF5xJ3M2UNjiklndO8iYioQ.webp","preview":"\/storage\/releases\/posters\/10290\/tc8bOapcxYF5xJ3M2UNjiklndO8iYioQ.webp","thumbnail":"\/storage\/releases\/posters\/10290\/W8xspqdhWtRjs865p9xA8fgs9bOmHQXE.webp"}},"fresh_at":"2026-10-09T10:20:00+00:00","created_at":"2026-07-09T17:04:57+00:00","updated_at":"2026-10-16T04:50:14+00:00","is_ongoing":true,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":5,"description":"\u041f\u044f\u0442\u043d\u0438\u0446\u0430"},"description":"\u0413\u043e\u043b
+        \u0414. \u0420\u043e\u0434\u0436\u0435\u0440 \u2014 \u043a\u043e\u0440\u043e\u043b\u044c
+        \u043f\u0438\u0440\u0430\u0442\u043e\u0432, \u0434\u043e\u0431\u0438\u0432\u0448\u0438\u0439\u0441\u044f
+        \u0437\u0430 \u0441\u0432\u043e\u044e \u0436\u0438\u0437\u043d\u044c \u0431\u043e\u0433\u0430\u0442\u0441\u0442\u0432\u0430,
+        \u0441\u043b\u0430\u0432\u044b \u0438 \u0432\u043b\u0430\u0441\u0442\u0438
+        - \u0441\u043f\u0440\u044f\u0442\u0430\u043b \u0433\u0434\u0435-\u0442\u043e
+        \u043d\u0430 \u043f\u0440\u043e\u0441\u0442\u043e\u0440\u0430\u0445 \u044d\u0442\u043e\u0433\u043e
+        \u043c\u0438\u0440\u0430 \u0437\u0430\u0433\u0430\u0434\u043e\u0447\u043d\u043e\u0435
+        \u0441\u043e\u043a\u0440\u043e\u0432\u0438\u0449\u0435, \u043a\u043e\u0442\u043e\u0440\u043e\u0435
+        \u0432\u0441\u0435 \u043d\u0430\u0437\u044b\u0432\u0430\u044e\u0442 \u00ab\u0412\u0430\u043d-\u041f\u0438\u0441\u00bb.
+        \u041f\u043e\u0441\u043b\u0435 \u0441\u043c\u0435\u0440\u0442\u0438 \u0420\u043e\u0434\u0436\u0435\u0440\u0430
+        \u043c\u043d\u043e\u0436\u0435\u0441\u0442\u0432\u043e \u0441\u043c\u0435\u043b\u044c\u0447\u0430\u043a\u043e\u0432
+        \u043a\u0438\u043d\u0443\u043b\u0438\u0441\u044c \u043d\u0430 \u043f\u043e\u0438\u0441\u043a\u0438
+        \u044d\u0442\u043e\u0433\u043e \u0441\u043e\u043a\u0440\u043e\u0432\u0438\u0449\u0430.
+        \u0422\u0430\u043a \u043d\u0430\u0441\u0442\u0443\u043f\u0438\u043b\u0430
+        \u0432\u0435\u043b\u0438\u043a\u0430\u044f \u044d\u043f\u043e\u0445\u0430
+        \u043f\u0438\u0440\u0430\u0442\u043e\u0432! \r\n\u041f\u0430\u0440\u0435\u043d\u0451\u043a
+        \u043f\u043e \u0438\u043c\u0435\u043d\u0438 \u041b\u0443\u0444\u0444\u0438
+        \u0438\u0437 \u043c\u0430\u043b\u0435\u043d\u044c\u043a\u043e\u0439 \u043f\u0440\u0438\u0431\u0440\u0435\u0436\u043d\u043e\u0439
+        \u0434\u0435\u0440\u0435\u0432\u0443\u0448\u043a\u0438 \u0442\u043e\u0436\u0435
+        \u043c\u0435\u0447\u0442\u0430\u0435\u0442 \u0441\u0442\u0430\u0442\u044c
+        \u043a\u043e\u0440\u043e\u043b\u0451\u043c \u043f\u0438\u0440\u0430\u0442\u043e\u043c.
+        \u0415\u0449\u0451 \u0432 \u0434\u0435\u0442\u0441\u0442\u0432\u0435 \u043e\u043d
+        \u043d\u0435\u043d\u0430\u0440\u043e\u043a\u043e\u043c \u0441\u044a\u0435\u043b
+        \u0434\u044c\u044f\u0432\u043e\u043b\u044c\u0441\u043a\u0438\u0439 \u043f\u043b\u043e\u0434
+        \u00ab\u0420\u0435\u0437\u0438\u043d\u0430-\u0420\u0435\u0437\u0438\u043d\u0430\u00bb
+        \u0438 \u043f\u0440\u0438\u043e\u0431\u0440\u0451\u043b \u043d\u0435\u0432\u0435\u0440\u043e\u044f\u0442\u043d\u044b\u0435
+        \u0441\u043f\u043e\u0441\u043e\u0431\u043d\u043e\u0441\u0442\u0438. \u041f\u043e\u0432\u0437\u0440\u043e\u0441\u043b\u0435\u0432,
+        \u043e\u043d \u043f\u043e\u043a\u0438\u043d\u0443\u043b \u0440\u043e\u0434\u043d\u044b\u0435
+        \u043c\u0435\u0441\u0442\u0430 \u0432 \u043f\u043e\u0433\u043e\u043d\u0435
+        \u0437\u0430 \u0432\u0435\u043b\u0438\u0447\u0430\u0439\u0448\u0438\u043c
+        \u0441\u043e\u043a\u0440\u043e\u0432\u0438\u0449\u0435\u043c!","notification":null,"episodes_total":null,"external_player":null,"is_in_production":true,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":2386,"average_duration_of_episode":25,"added_in_planned_collection":119,"added_in_watched_collection":53,"added_in_watching_collection":234,"added_in_postponed_collection":12,"added_in_abandoned_collection":14,"genres":[{"id":4,"name":"\u0421\u0451\u043d\u0435\u043d","image":{"preview":"\/storage\/anime\/genres\/images\/4\/0m2m6ZJvFDf4exm6fTohtHwo8PoEqzIX.jpg","thumbnail":"\/storage\/anime\/genres\/images\/4\/UD4NKYAngvBtHS2hkcPUNQ9iKBFcotVi.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/4\/f1t40ahbG7mzcmZfhxlVdkC0DtY2vOQ9.webp","thumbnail":"\/storage\/anime\/genres\/images\/4\/SVJm7UTSTS3flVrQttsOD1d3iUoRp00B.webp"}},"total_releases":330},{"id":27,"name":"\u041f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f","image":{"preview":"\/storage\/anime\/genres\/images\/27\/bcU7byqneZPf1E3qj3g94enAUtoRUr9A.jpg","thumbnail":"\/storage\/anime\/genres\/images\/27\/dkzAZJGJI45REJTjVMNAJXNi4wHo0AOS.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/27\/z4kgvrZz4JSSy0G1EtWBDSH1SA76Aex1.webp","thumbnail":"\/storage\/anime\/genres\/images\/27\/lEZNqdhonXq9BAejItNKgPTv1XLFbwdD.webp"}},"total_releases":462},{"id":14,"name":"\u042d\u043a\u0448\u0435\u043d","image":{"preview":"\/storage\/anime\/genres\/images\/14\/HVxcEvm7oA6JQvnMKKgSdYJ90ab8Zoco.jpg","thumbnail":"\/storage\/anime\/genres\/images\/14\/7JeDltmth6vVUs1bG4OHq6ywRYVjbYoY.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/14\/FNZP4gLtDFe67Ynbthc08wRsTp5q94sx.webp","thumbnail":"\/storage\/anime\/genres\/images\/14\/gfzjNkJYPgeaIyQxXveaP5UblbQWadEF.webp"}},"total_releases":699},{"id":29,"name":"\u0424\u044d\u043d\u0442\u0435\u0437\u0438","image":{"preview":"\/storage\/anime\/genres\/images\/29\/BqPfwYPC7STQ0lsv6LsdyDm594Tnz2N5.jpg","thumbnail":"\/storage\/anime\/genres\/images\/29\/bkKObn59vWFAd8wcAPINJnI8EZLZB8gH.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/29\/BayKuKbzHQkKMlfFyUTZAoExCjqkHDfh.webp","thumbnail":"\/storage\/anime\/genres\/images\/29\/yVUCPUfGguBeZ280YyS5UhawlR3F1fS0.webp"}},"total_releases":629}]}}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b67f5f1b45fdd6-FRA
+      connection:
+      - keep-alive
+      content-length:
+      - '43567'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 10:49:33 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=ScIE8Yc8%2B1XmA8v5J3UidIFkKIZWNN6UhZlX3RKulm61QERdBaTYn06IkwQvPkJGMs35kJKJTbLxKnT1kvCIWONkzrZew1zTBiXlsOap%2BY%2BmPKXUiTMjKOfaShR5y9zQuQ%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,114 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/media/videos
+  response:
+    body:
+      string: '[{"id":1063,"url":"https:\/\/www.youtube.com\/watch?v=ZGZIUASKhgo","title":"\u0410\u043e\u0439
+        \u0410\u0448\u0438\u0442\u043e 2 \u2014 \u0440\u0443\u0441\u0441\u043a\u0438\u0439
+        \u0442\u0440\u0435\u0439\u043b\u0435\u0440 (\u041e\u0421\u0415\u041d\u042c
+        2026)","views":528,"image":{"preview":"\/storage\/media\/videos\/previews\/1063\/KNAdDiNlrX8dMeaX__1b04b70b8d543e3554944ef340e15d4a.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1063\/KNAdDiNlrX8dMeaX__bf5e0e02357259cd6e466881894a291e.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1063\/KNAdDiNlrX8dMeaX__dfa4a51420135e52ca709544a1049e5f.webp","thumbnail":"\/storage\/media\/videos\/previews\/1063\/KNAdDiNlrX8dMeaX__69e497357d298b59a167789739da9920.webp"}},"comments":4,"video_id":"ZGZIUASKhgo","created_at":"2026-10-13T18:00:04+00:00","updated_at":"2026-10-16T01:00:02+00:00","is_announce":false,"origin":{"id":"9ffcd369-3a4e-4253-9ebc-34ad006d2a07","url":"https:\/\/www.youtube.com\/playlist?list=PL9FWeDKSyLQTomK7Xx8gC14K47nzS4Q1C","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"AniLiberty","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u0430\u043b\u0430
+        AniLiberty","is_announce":false}},{"id":1062,"url":"https:\/\/www.youtube.com\/watch?v=aq7EcCD9XAY","title":"\u041d\u0435\u043a\u0438\u0439
+        ITEM \u0442\u0451\u043c\u043d\u043e\u0439 \u0441\u0442\u043e\u0440\u043e\u043d\u044b
+        \u2014 \u0440\u0443\u0441\u0441\u043a\u0438\u0439 \u0442\u0440\u0435\u0439\u043b\u0435\u0440
+        (\u041e\u0421\u0415\u041d\u042c 2026)","views":1403,"image":{"preview":"\/storage\/media\/videos\/previews\/1062\/Cim5QDeYrcljhJJY__97c84801e088715812642323d7f0f1d4.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1062\/Cim5QDeYrcljhJJY__367cf1062cb64b5f484e46aab75b83b1.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1062\/Cim5QDeYrcljhJJY__3094ffa630347756869c96187990070a.webp","thumbnail":"\/storage\/media\/videos\/previews\/1062\/Cim5QDeYrcljhJJY__db559f40488c54ccd5eaff66175060ed.webp"}},"comments":12,"video_id":"aq7EcCD9XAY","created_at":"2026-10-08T18:00:33+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"9ffcd369-3a4e-4253-9ebc-34ad006d2a07","url":"https:\/\/www.youtube.com\/playlist?list=PL9FWeDKSyLQTomK7Xx8gC14K47nzS4Q1C","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"AniLiberty","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u0430\u043b\u0430
+        AniLiberty","is_announce":false}},{"id":1061,"url":"https:\/\/www.youtube.com\/watch?v=ZXJo4gilNtg","title":"\u041a\u0420\u0418\u041d\u0416
+        \u0432\u043e \u0432\u0440\u0435\u043c\u044f \u043e\u0437\u0432\u0443\u0447\u043a\u0438
+        \u0421\u0415\u041c\u042c\u042f \u0428\u041f\u0418\u041d\u0410\u0422\u0410
+        3","views":45717,"image":{"preview":"\/storage\/media\/videos\/previews\/1061\/xZfdmMWEYmmXqOsK__513d1e4ffede91edcb1d5f341bdfb030.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1061\/xZfdmMWEYmmXqOsK__aa0e40d69e3248ddfb677b36b9f33a47.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1061\/xZfdmMWEYmmXqOsK__16838271cbe936716dd35e9bcc3f5d70.webp","thumbnail":"\/storage\/media\/videos\/previews\/1061\/xZfdmMWEYmmXqOsK__2560bd591799c67f7523a1b08c4be891.webp"}},"comments":124,"video_id":"ZXJo4gilNtg","created_at":"2026-10-05T18:43:04+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"ea26e61b-e762-47dc-a547-739b11d8034d","url":"https:\/\/www.youtube.com\/playlist?list=PLz2rVVzs4DtR3irN_TDhM60hzUdzeqId5","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"Sharon [AniLibria.TV]","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u0441 \u043a\u0430\u043d\u0430\u043b \u0428\u0430\u0440\u043e\u043d\u0430","is_announce":false}},{"id":1060,"url":"https:\/\/www.youtube.com\/watch?v=5J3y_JGadG0","title":"\u0421\u0435\u043c\u044c
+        \u0440\u044b\u0446\u0430\u0440\u0435\u0439 \u043a\u043e\u0440\u043e\u043b\u0435\u0432\u0441\u0442\u0432\u0430
+        \u041c\u0430\u0440\u0440\u043e\u043d\u044c\u0435 \u2014 \u0440\u0443\u0441\u0441\u043a\u0438\u0439
+        \u0442\u0440\u0435\u0439\u043b\u0435\u0440 (\u041e\u0421\u0415\u041d\u042c
+        2026)","views":901,"image":{"preview":"\/storage\/media\/videos\/previews\/1060\/qRfLbEjwO0erZV83__7319df11809fef0b12ef1ebb5555a95d.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1060\/qRfLbEjwO0erZV83__f855ff31710996014856894e6225b9b5.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1060\/qRfLbEjwO0erZV83__aacdf4020ff1b2befbe6cf5930c5c1fe.webp","thumbnail":"\/storage\/media\/videos\/previews\/1060\/qRfLbEjwO0erZV83__252b13b7bd5b8aae8f698ab1815a03fe.webp"}},"comments":5,"video_id":"5J3y_JGadG0","created_at":"2026-10-05T18:00:00+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"9ffcd369-3a4e-4253-9ebc-34ad006d2a07","url":"https:\/\/www.youtube.com\/playlist?list=PL9FWeDKSyLQTomK7Xx8gC14K47nzS4Q1C","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"AniLiberty","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u0430\u043b\u0430
+        AniLiberty","is_announce":false}},{"id":1059,"url":"https:\/\/www.youtube.com\/watch?v=LEiriuRPEG8","title":"\u042f
+        \u0410\u041a\u0422\u0415\u0420 \u041e\u0417\u0412\u0423\u0427\u041a\u0418
+        \u0414\u0410\u041d\u0418 \u0412 \u0410\u0411\u0414\u0423\u041a\u0426\u0418\u0418
+        \u0418 \u041c\u041d\u0415 \u0415\u0421\u0422\u042c \u0427\u0422\u041e \u0420\u0410\u0421\u0421\u041a\u0410\u0417\u0410\u0422\u042c","views":27751,"image":{"preview":"\/storage\/media\/videos\/previews\/1059\/kaaPJlKKdPo15qHM__3ccfcafd1cb93cc19c2f553f15ea3769.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1059\/kaaPJlKKdPo15qHM__2f18c6846014a9fbf58bbbec4869d2a6.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1059\/kaaPJlKKdPo15qHM__fb0225ce24678e29b920288e03fea70a.webp","thumbnail":"\/storage\/media\/videos\/previews\/1059\/kaaPJlKKdPo15qHM__dad062a10ede13be85471c8964bce0f1.webp"}},"comments":98,"video_id":"LEiriuRPEG8","created_at":"2026-10-04T16:19:43+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"ea26e61b-e762-47dc-a547-739b11d8034d","url":"https:\/\/www.youtube.com\/playlist?list=PLz2rVVzs4DtR3irN_TDhM60hzUdzeqId5","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"Sharon [AniLibria.TV]","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u0441 \u043a\u0430\u043d\u0430\u043b \u0428\u0430\u0440\u043e\u043d\u0430","is_announce":false}},{"id":1058,"url":"https:\/\/www.youtube.com\/watch?v=kKeVqk9vE7g","title":"\u0413\u0435\u0440\u0431
+        \u0434\u0435\u043c\u043e\u043d\u043e\u0432 \u2014 \u0440\u0443\u0441\u0441\u043a\u0438\u0439
+        \u0442\u0440\u0435\u0439\u043b\u0435\u0440 (\u041e\u0421\u0415\u041d\u042c
+        2026)","views":1253,"image":{"preview":"\/storage\/media\/videos\/previews\/1058\/kbQ1TLULPPZcrqsc__830027fe57fc671846885e93854ac28d.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1058\/kbQ1TLULPPZcrqsc__9da2ce4c964de98e9ff3b85f3c2ae3f7.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1058\/kbQ1TLULPPZcrqsc__f911a7f4dbf12e5172c84918128df7f7.webp","thumbnail":"\/storage\/media\/videos\/previews\/1058\/kbQ1TLULPPZcrqsc__702f78aab1336f5e46e41e790206a647.webp"}},"comments":8,"video_id":"kKeVqk9vE7g","created_at":"2026-10-03T15:00:13+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"9ffcd369-3a4e-4253-9ebc-34ad006d2a07","url":"https:\/\/www.youtube.com\/playlist?list=PL9FWeDKSyLQTomK7Xx8gC14K47nzS4Q1C","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"AniLiberty","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u0430\u043b\u0430
+        AniLiberty","is_announce":false}},{"id":1057,"url":"https:\/\/www.youtube.com\/watch?v=Iqgy_VdmVDo","title":"\u0421\u0435\u043a\u0438\u0440\u043e:
+        \u0411\u0435\u0437 \u043f\u043e\u0440\u0430\u0436\u0435\u043d\u0438\u044f
+        \u2014 \u0440\u0443\u0441\u0441\u043a\u0438\u0439 \u0442\u0440\u0435\u0439\u043b\u0435\u0440
+        (\u041e\u0421\u0415\u041d\u042c 2026)","views":1542,"image":{"preview":"\/storage\/media\/videos\/previews\/1057\/xRZg2mNpvEzjChAg__a9e262adbb0d567637ff5cc59f9a4e16.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1057\/xRZg2mNpvEzjChAg__0f90d234aba97d289a626cdffae04466.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1057\/xRZg2mNpvEzjChAg__9331fbabc92b96c31fc1fb12636224b8.webp","thumbnail":"\/storage\/media\/videos\/previews\/1057\/xRZg2mNpvEzjChAg__0599cb7c6761e07bd3a581713945b2a0.webp"}},"comments":0,"video_id":"Iqgy_VdmVDo","created_at":"2026-10-03T12:00:25+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"9ffcd369-3a4e-4253-9ebc-34ad006d2a07","url":"https:\/\/www.youtube.com\/playlist?list=PL9FWeDKSyLQTomK7Xx8gC14K47nzS4Q1C","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"AniLiberty","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u0430\u043b\u0430
+        AniLiberty","is_announce":false}},{"id":1056,"url":"https:\/\/www.youtube.com\/watch?v=rIBoDU3Kjmc","title":"\u0424\u0430\u043d\u0442\u0430\u0437\u0438\u0438
+        \u0420\u0435\u0447\u043d\u044b\u0445 \u0437\u0430\u0432\u043e\u0434\u0435\u0439
+        \u2014 \u0440\u0443\u0441\u0441\u043a\u0438\u0439 \u0442\u0440\u0435\u0439\u043b\u0435\u0440
+        (\u041e\u0421\u0415\u041d\u042c 2026)","views":1117,"image":{"preview":"\/storage\/media\/videos\/previews\/1056\/cpc9EfBb2WSwEwjF__4b0bbc5e1316cf6008814eadbbc7a1c9.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1056\/cpc9EfBb2WSwEwjF__452a4fb8435e10e3a403f05627fcb44a.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1056\/cpc9EfBb2WSwEwjF__2194adb8431baad2eb0bf8380bb9c212.webp","thumbnail":"\/storage\/media\/videos\/previews\/1056\/cpc9EfBb2WSwEwjF__507f84e8a415c316232d4b9b381643dc.webp"}},"comments":2,"video_id":"rIBoDU3Kjmc","created_at":"2026-10-01T18:00:40+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"9ffcd369-3a4e-4253-9ebc-34ad006d2a07","url":"https:\/\/www.youtube.com\/playlist?list=PL9FWeDKSyLQTomK7Xx8gC14K47nzS4Q1C","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"AniLiberty","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u0430\u043b\u0430
+        AniLiberty","is_announce":false}},{"id":1055,"url":"https:\/\/www.youtube.com\/watch?v=bRs_DJBZguM","title":"\u0427\u0451\u0440\u043d\u044b\u0439
+        \u043a\u043b\u0435\u0432\u0435\u0440 2 \u2014 \u0440\u0443\u0441\u0441\u043a\u0438\u0439
+        \u0442\u0440\u0435\u0439\u043b\u0435\u0440 (\u041e\u0441\u0435\u043d\u044c
+        2026)","views":10719,"image":{"preview":"\/storage\/media\/videos\/previews\/1055\/o1TOTyyCVJWHUsfh__8ecf3817b18d7eb1e9189c924db0e843.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1055\/o1TOTyyCVJWHUsfh__ad83032b37050e999c8c6d4894b02f7c.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1055\/o1TOTyyCVJWHUsfh__ca750017c64b7ce396f27279be53dd5c.webp","thumbnail":"\/storage\/media\/videos\/previews\/1055\/o1TOTyyCVJWHUsfh__cc4d7b1ae095761bccbff9abb462e799.webp"}},"comments":41,"video_id":"bRs_DJBZguM","created_at":"2026-09-30T15:00:06+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"9ffcd369-3a4e-4253-9ebc-34ad006d2a07","url":"https:\/\/www.youtube.com\/playlist?list=PL9FWeDKSyLQTomK7Xx8gC14K47nzS4Q1C","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"AniLiberty","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u0430\u043b\u0430
+        AniLiberty","is_announce":false}},{"id":1054,"url":"https:\/\/www.youtube.com\/watch?v=ete7sVwNL0U","title":"\u0422\u0410-\u0414\u0410!
+        \u0418 \u042d\u0422\u041e \u0412\u0421\u042f \u041d\u0410\u0428\u0410 \u041e\u0417\u0412\u0423\u0427\u041a\u0410
+        \u041d\u0410 \u041e\u0421\u0415\u041d\u042c","views":40670,"image":{"preview":"\/storage\/media\/videos\/previews\/1054\/F9lwVSCRkZineSrE__dc6e8665706d3719af462a648073a1de.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1054\/F9lwVSCRkZineSrE__4fc9921be92115aa2ac2c895d4d73172.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1054\/F9lwVSCRkZineSrE__ee9117f5b4a9efe48b16f91299350574.webp","thumbnail":"\/storage\/media\/videos\/previews\/1054\/F9lwVSCRkZineSrE__4617033931e60af7355f934336fc585b.webp"}},"comments":282,"video_id":"ete7sVwNL0U","created_at":"2026-09-30T14:00:31+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"ea26e61b-e762-47dc-a547-739b11d8034d","url":"https:\/\/www.youtube.com\/playlist?list=PLz2rVVzs4DtR3irN_TDhM60hzUdzeqId5","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"Sharon [AniLibria.TV]","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u0441 \u043a\u0430\u043d\u0430\u043b \u0428\u0430\u0440\u043e\u043d\u0430","is_announce":false}}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b67f629901d406-FRA
+      connection:
+      - keep-alive
+      content-length:
+      - '13814'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 10:49:33 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=yI%2BheIbZw%2FatbFvV29Q1%2BzHtMC6Sczj%2FDM86vDP%2FLNqSV6zwZBkb7fZQz6%2B03rVJZiu%2FxgdZTvnSEXtR2OICRoWsl05H%2FXSfbAF%2BpWI5r250B9EMFiqW5Ganrr%2Bf2p33Dg%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

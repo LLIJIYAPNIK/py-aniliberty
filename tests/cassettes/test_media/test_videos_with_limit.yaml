@@ -1,0 +1,74 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/media/videos?limit=3
+  response:
+    body:
+      string: '[{"id":1063,"url":"https:\/\/www.youtube.com\/watch?v=ZGZIUASKhgo","title":"\u0410\u043e\u0439
+        \u0410\u0448\u0438\u0442\u043e 2 \u2014 \u0440\u0443\u0441\u0441\u043a\u0438\u0439
+        \u0442\u0440\u0435\u0439\u043b\u0435\u0440 (\u041e\u0421\u0415\u041d\u042c
+        2026)","views":528,"image":{"preview":"\/storage\/media\/videos\/previews\/1063\/KNAdDiNlrX8dMeaX__1b04b70b8d543e3554944ef340e15d4a.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1063\/KNAdDiNlrX8dMeaX__bf5e0e02357259cd6e466881894a291e.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1063\/KNAdDiNlrX8dMeaX__dfa4a51420135e52ca709544a1049e5f.webp","thumbnail":"\/storage\/media\/videos\/previews\/1063\/KNAdDiNlrX8dMeaX__69e497357d298b59a167789739da9920.webp"}},"comments":4,"video_id":"ZGZIUASKhgo","created_at":"2026-10-13T18:00:04+00:00","updated_at":"2026-10-16T01:00:02+00:00","is_announce":false,"origin":{"id":"9ffcd369-3a4e-4253-9ebc-34ad006d2a07","url":"https:\/\/www.youtube.com\/playlist?list=PL9FWeDKSyLQTomK7Xx8gC14K47nzS4Q1C","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"AniLiberty","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u0430\u043b\u0430
+        AniLiberty","is_announce":false}},{"id":1062,"url":"https:\/\/www.youtube.com\/watch?v=aq7EcCD9XAY","title":"\u041d\u0435\u043a\u0438\u0439
+        ITEM \u0442\u0451\u043c\u043d\u043e\u0439 \u0441\u0442\u043e\u0440\u043e\u043d\u044b
+        \u2014 \u0440\u0443\u0441\u0441\u043a\u0438\u0439 \u0442\u0440\u0435\u0439\u043b\u0435\u0440
+        (\u041e\u0421\u0415\u041d\u042c 2026)","views":1403,"image":{"preview":"\/storage\/media\/videos\/previews\/1062\/Cim5QDeYrcljhJJY__97c84801e088715812642323d7f0f1d4.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1062\/Cim5QDeYrcljhJJY__367cf1062cb64b5f484e46aab75b83b1.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1062\/Cim5QDeYrcljhJJY__3094ffa630347756869c96187990070a.webp","thumbnail":"\/storage\/media\/videos\/previews\/1062\/Cim5QDeYrcljhJJY__db559f40488c54ccd5eaff66175060ed.webp"}},"comments":12,"video_id":"aq7EcCD9XAY","created_at":"2026-10-08T18:00:33+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"9ffcd369-3a4e-4253-9ebc-34ad006d2a07","url":"https:\/\/www.youtube.com\/playlist?list=PL9FWeDKSyLQTomK7Xx8gC14K47nzS4Q1C","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"AniLiberty","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0433\u043e \u043a\u0430\u043d\u0430\u043b\u0430
+        AniLiberty","is_announce":false}},{"id":1061,"url":"https:\/\/www.youtube.com\/watch?v=ZXJo4gilNtg","title":"\u041a\u0420\u0418\u041d\u0416
+        \u0432\u043e \u0432\u0440\u0435\u043c\u044f \u043e\u0437\u0432\u0443\u0447\u043a\u0438
+        \u0421\u0415\u041c\u042c\u042f \u0428\u041f\u0418\u041d\u0410\u0422\u0410
+        3","views":45717,"image":{"preview":"\/storage\/media\/videos\/previews\/1061\/xZfdmMWEYmmXqOsK__513d1e4ffede91edcb1d5f341bdfb030.jpg","thumbnail":"\/storage\/media\/videos\/previews\/1061\/xZfdmMWEYmmXqOsK__aa0e40d69e3248ddfb677b36b9f33a47.jpg","optimized":{"preview":"\/storage\/media\/videos\/previews\/1061\/xZfdmMWEYmmXqOsK__16838271cbe936716dd35e9bcc3f5d70.webp","thumbnail":"\/storage\/media\/videos\/previews\/1061\/xZfdmMWEYmmXqOsK__2560bd591799c67f7523a1b08c4be891.webp"}},"comments":124,"video_id":"ZXJo4gilNtg","created_at":"2026-10-05T18:43:04+00:00","updated_at":"2026-10-16T01:00:03+00:00","is_announce":false,"origin":{"id":"ea26e61b-e762-47dc-a547-739b11d8034d","url":"https:\/\/www.youtube.com\/playlist?list=PLz2rVVzs4DtR3irN_TDhM60hzUdzeqId5","type":{"value":"YOUTUBE_PLAYLIST","description":"Youtube
+        \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442"},"title":"Sharon [AniLibria.TV]","description":"\u041f\u043b\u0435\u0439\u043b\u0438\u0441\u0442
+        \u0441 \u043a\u0430\u043d\u0430\u043b \u0428\u0430\u0440\u043e\u043d\u0430","is_announce":false}}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b67f663d0d0ce4-FRA
+      connection:
+      - keep-alive
+      content-length:
+      - '4070'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 10:49:34 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=m12U8e3XCiGpOXnOIm4sb8lhKXrhz2nXytMRgoHjB23TyeRaPg%2BgkfRz1UnN%2FpXhescwl9B1HOmjXpiV4bUHIHhC0v5U1PGKBNphin0IUBqU9%2BfK2sMzCc3%2BPo5yWRCCgA%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
