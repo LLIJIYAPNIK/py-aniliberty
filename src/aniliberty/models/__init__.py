@@ -25,6 +25,7 @@ from aniliberty.models.release import (
     Sponsor,
 )
 from aniliberty.models.schedule import ScheduledRelease, ScheduleNow
+from aniliberty.models.team import Team, TeamMember, TeamMemberAccount, TeamRole
 from aniliberty.models.torrent import Torrent, TorrentCodec, TorrentFile, TorrentMember
 
 __all__ = [
@@ -55,6 +56,10 @@ __all__ = [
     "SkipRange",
     "SortingOption",
     "Sponsor",
+    "Team",
+    "TeamMember",
+    "TeamMemberAccount",
+    "TeamRole",
     "Torrent",
     "TorrentCodec",
     "TorrentFile",

@@ -1,0 +1,82 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/teams/roles
+  response:
+    body:
+      string: '[{"id":"bec3b4ad-16e4-4a79-9a7e-f43153e2fb2d","title":"\u0413\u043b\u0430\u0432\u0430
+        \u043a\u043e\u043c\u0430\u043d\u0434\u044b","color":null,"sort_order":1},{"id":"47010780-77f6-4412-92e6-cfa324ae158f","title":"\u0413\u043b\u0430\u0432\u043d\u044b\u0439
+        \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440","color":null,"sort_order":2},{"id":"5abda221-2500-4493-97b2-9412d12f30e2","title":"\u0410\u043a\u0442\u0451\u0440","color":"#339966","sort_order":3},{"id":"79e79786-6455-4d3f-8bd7-fba55717b276","title":"\u0417\u0432\u0443\u043a\u043e\u0440\u0435\u0436\u0438\u0441\u0441\u0451\u0440","color":"#800000","sort_order":4},{"id":"67952a5c-f4e6-4f1f-b5f0-765badc68b7d","title":"\u041f\u0435\u0440\u0435\u0432\u043e\u0434\u0447\u0438\u043a","color":"#ebd800","sort_order":5},{"id":"39592a02-8dad-4961-96dc-92f7b4e45076","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u0440\u0435\u043b\u0438\u0437\u0451\u0440\u043e\u0432","color":"#B523C5","sort_order":6},{"id":"e243a1b5-f313-44a0-9760-984eb57b0ea2","title":"\u0413\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0439
+        \u043b\u043e\u043a\u0430\u043b\u0438\u0437\u0430\u0442\u043e\u0440","color":"#ff6600","sort_order":7},{"id":"ac8655bd-c86b-4834-867d-30bca564a89b","title":"\u0420\u0435\u043b\u0438\u0437\u0451\u0440","color":"#b523c5","sort_order":8},{"id":"cff7d1a6-ac15-46bf-820a-b410a295060a","title":"\u0421\u0438\u0434\u0435\u0440","color":"#000080","sort_order":9},{"id":"2133f93d-4d2a-4455-8152-e82587f667e1","title":"\u0414\u0438\u0437\u0430\u0439\u043d\u0435\u0440","color":"#33cccc","sort_order":10},{"id":"1423aa2b-72fc-47a7-819a-b08f38f7c755","title":"\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0442\u043e\u0440
+        \u043c\u0435\u0440\u043e\u043f\u0440\u0438\u044f\u0442\u0438\u0439 \u043f\u0440\u043e\u0435\u043a\u0442\u0430","color":null,"sort_order":11},{"id":"2b0ae0b9-c75c-40ed-8c05-be6a92d27b22","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u043f\u0435\u0440\u0435\u0432\u043e\u0434\u0447\u0438\u043a\u043e\u0432","color":null,"sort_order":12},{"id":"3cb04030-6b72-495e-94e5-a14097ac3cb3","title":"\u0417\u0430\u043c.
+        \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u0440\u0435\u043b\u0438\u0437\u0451\u0440\u043e\u0432","color":null,"sort_order":13},{"id":"219a59cf-a7e2-49f5-9e24-1233d35a61f3","title":"\u0420\u0435\u0434\u0430\u043a\u0442\u043e\u0440","color":null,"sort_order":14},{"id":"735c4846-8d94-4674-8cb3-6ee94a51c2ce","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u0430\u043a\u0430\u0434\u0435\u043c\u0438\u0438 \u0437\u0432\u0443\u043a\u043e\u0440\u0435\u0436\u0438\u0441\u0441\u0451\u0440\u043e\u0432","color":null,"sort_order":16},{"id":"5ed4d976-2d35-4641-97c0-933890c20b36","title":"\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a
+        \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f","color":null,"sort_order":17},{"id":"9024048e-b065-457a-bb48-79b867548b81","title":"SMM-\u0441\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0441\u0442","color":null,"sort_order":18},{"id":"9d5e7190-208a-4877-8821-a9fde56f9dac","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u0441\u0438\u0434\u0435\u0440\u043e\u0432","color":null,"sort_order":20},{"id":"9b230642-2ac7-4764-a5eb-43cdb78f485f","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u0437\u0432\u0443\u043a\u043e\u0440\u0435\u0436\u0438\u0441\u0441\u0451\u0440\u043e\u0432","color":null,"sort_order":21},{"id":"bf0d790c-8aab-4275-a6da-48d21f1f421b","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u0430\u043a\u0442\u0451\u0440\u043e\u0432","color":null,"sort_order":22},{"id":"c9b2c273-973e-4821-a55c-524c081e733c","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u043e\u0444\u043e\u0440\u043c\u0438\u0442\u0435\u043b\u0435\u0439","color":null,"sort_order":23},{"id":"c49263df-199b-406c-a125-62fc87c9d192","title":"\u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440
+        discord-\u0441\u0435\u0440\u0432\u0435\u0440\u0430","color":null,"sort_order":24},{"id":"eb0c03fa-997a-425d-a0b3-3c089831b91b","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u0430\u043a\u0430\u0434\u0435\u043c\u0438\u0438 \u0430\u043a\u0442\u0451\u0440\u043e\u0432","color":null,"sort_order":25},{"id":"99719219-4be6-4209-99ef-01c86d6f8783","title":"\u0417\u0430\u043c.
+        \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u043f\u0435\u0440\u0435\u0432\u043e\u0434\u0447\u0438\u043a\u043e\u0432","color":null,"sort_order":26},{"id":"99b5c088-c64f-41ad-a520-30b25542a354","title":"\u0417\u0430\u043c.
+        \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0445
+        \u043b\u043e\u043a\u0430\u043b\u0438\u0437\u0430\u0442\u043e\u0440\u043e\u0432","color":null,"sort_order":27},{"id":"9bcfba9b-9112-42c2-933b-43bc745cc037","title":"\u0417\u0430\u043c.
+        \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u0441\u0438\u0434\u0435\u0440\u043e\u0432","color":"#ffffff","sort_order":28},{"id":"9bea1a94-19ce-469a-93de-1eb74cdf2e5b","title":"\u0417\u0430\u043c.
+        \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u0437\u0432\u0443\u043a\u043e\u0440\u0435\u0436\u0438\u0441\u0441\u0451\u0440\u043e\u0432","color":null,"sort_order":29},{"id":"9d13cdf1-6afe-481f-9616-54a3bf9124d8","title":"\u0417\u0430\u043c.
+        \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u0430\u043a\u0442\u0451\u0440\u043e\u0432","color":"#339966","sort_order":31},{"id":"9f3f79a5-f931-47a3-975e-78fb0e8939cb","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        SMM","color":null,"sort_order":34},{"id":"a001221c-2601-48d2-be68-34107ea5db59","title":"\u041c\u043e\u043d\u0442\u0430\u0436\u0451\u0440","color":"#3c405d","sort_order":35},{"id":"a001226e-9c9b-4bd6-b6ff-975f7300eb77","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u043c\u043e\u043d\u0442\u0430\u0436\u0451\u0440\u043e\u0432","color":"#3950fe","sort_order":36},{"id":"a12a7c3f-1b26-4f6d-bde3-0acf23d4bf32","title":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c
+        \u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u043b\u043e\u043a\u0430\u043b\u0438\u0437\u0430\u0442\u043e\u0440\u043e\u0432","color":"#ff6600","sort_order":39},{"id":"a25599bd-a379-4328-9f74-5b7552b31b13","title":"\u0417\u0430\u043c.
+        \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u043c\u043e\u043d\u0442\u0430\u0436\u0451\u0440\u043e\u0432","color":null,"sort_order":40}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b672e979cbdbd4-FRA
+      connection:
+      - keep-alive
+      content-length:
+      - '6932'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 10:41:02 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=gVvjRfcsaWpJsLUnqUbX1YS8%2Fa4eOO6iO5CfBIJEVcoGxphlc2eByGxr4oQ53jfNP0a8Bt9ECiAf%2Bl5JxyKboxxNJLXmEYrg6PMBfZ9By2a9ll%2FXsKVG8rrqrx5elt%2FfXQ%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
