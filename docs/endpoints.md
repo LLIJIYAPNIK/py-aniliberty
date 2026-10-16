@@ -3,7 +3,7 @@
 Every operation of the AniLibria API v1 spec ([`spec/openapi.json`](https://github.com/LLIJIYAPNIK/py-aniliberty/blob/main/spec/openapi.json),
 snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers it.
 
-- **Path** is relative to the API base URL, `https://anilibria.top/api/v1` by default.
+- **Path** is relative to the API base URL, `https://aniliberty.top/api/v1` by default.
 - **Tag** is the operation's tag in the spec, as-is (the spec's tags are in Russian).
 - **Auth** is `yes` when the operation declares its own bearer `security` in the spec. The spec
   also has a global bearer requirement, but the public endpoints work without a token — see
@@ -15,7 +15,7 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | Method | Path | Tag | Description | Auth | SDK method | Phase |
 |---|---|---|---|---|---|---|
 | `GET` | `/app/search/releases` | Приложение.Поиск | Quick release search |  |  | 1.6 |
-| `GET` | `/app/status` | Приложение.Статус | API status |  |  | 1.1 |
+| `GET` | `/app/status` | Приложение.Статус | API status |  | `client.app.status()` | 1.1 |
 | `GET` | `/anime/catalog/releases` | Аниме.Каталог | Catalog releases with filters (query string, paginated) |  |  | 2.2 |
 | `POST` | `/anime/catalog/releases` | Аниме.Каталог | Catalog releases with filters (JSON body, paginated) |  |  | 2.2 |
 | `GET` | `/anime/catalog/references/age-ratings` | Аниме.Каталог.Справочники | Catalog reference: age ratings |  |  | 2.1 |

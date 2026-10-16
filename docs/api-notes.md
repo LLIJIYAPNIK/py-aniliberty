@@ -37,9 +37,14 @@ part of the URL as-is — `/storage/api/docs/v1/aniliberty-api-v1-docs.json` is 
   }
   ```
 
-**Conclusion:** `anilibria.top` serves the API; the API itself advertises `aniliberty.top` as an
-alternative host. The SDK keeps `https://anilibria.top/api/v1` as the default `base_url` and lets
-users switch to a mirror. Requests to `aniliberty.top` were not tested yet.
+The same requests against `https://aniliberty.top/api/v1` (`/app/status`, a missing release,
+`/anime/releases/latest`) returned identical responses, `aniliberty.top/storage/...` serves the
+same images, and the spec at `aniliberty.top/storage/api/docs/v1?aniliberty-api-v1-docs.json`
+is byte-for-byte the same after normalization.
+
+**Conclusion:** both hosts serve the same API. The SDK's default `base_url` is
+`https://aniliberty.top/api/v1` — the host both the spec and `/app/status` call the main one;
+`https://anilibria.top/api/v1` works as a mirror.
 
 ## No special User-Agent or anti-bot challenge (so far)
 
@@ -232,6 +237,24 @@ and the 401/403 bodies are left for step 4.1.
 /anime/torrents/rss` and `/rss/release/{releaseId}` return `application/xml`. All three take an
 optional `pk` (user passkey) query parameter. Not called live yet (step 3.4).
 
+## How the SDK maps responses to exceptions
+
+Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in the
+`tests/cassettes/test_*` cassettes of `tests/integration/test_app.py`.
+
+| Response | Exception |
+|---|---|
+| `text/html` body, status below 500 (including 200) | `AccessBlockedError` — with `Accept: application/json` the API never answers with HTML, so this is the edge in front of it |
+| `text/html` body, 5xx | `ServerError` — Cloudflare renders its own origin errors (502, 520, ...) as HTML too, and those are worth retrying |
+| 2xx with an invalid JSON body | `ResponseParseError` (body text in `payload`) |
+| 404 | `NotFoundError` (`message` is `"Not found"`, the Laravel string stays in `payload`) |
+| 422 | `ValidationError` (`errors` from the body) |
+| 429 | `RateLimitError` (`retry_after` from a numeric `Retry-After`, if any) |
+| 401, 403 (JSON) | `AuthRequiredError` |
+| other 5xx | `ServerError` |
+| any other error status | `APIError` |
+| no response (connection error, timeout) | `TransportError` |
+
 ## Open questions
 
 - **429 / `Retry-After` / rate limits.** No rate-limit headers were seen on any response
@@ -241,5 +264,4 @@ optional `pk` (user passkey) query parameter. Not called live yet (step 3.4).
   What a challenge looks like (status, headers) is unknown.
 - **Maximum `limit`** on endpoints other than the catalog (`/releases/list`, `/genres/{id}/releases`,
   `/torrents`, `/releases/latest`, `/random`, ...).
-- **Mirror `aniliberty.top`** — not requested yet.
 - **Authentication details** (token lifetime, refresh, 401/403 bodies) — step 4.1.

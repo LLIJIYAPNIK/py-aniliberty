@@ -1,0 +1,86 @@
+"""``AniLiberty`` — the SDK's entry point."""
+
+from __future__ import annotations
+
+from collections.abc import Mapping
+from types import TracebackType
+from typing import Self
+
+import httpx
+
+from aniliberty._http import DEFAULT_BASE_URL, DEFAULT_TIMEOUT, HttpClient
+from aniliberty.resources.app import AppResource
+
+
+class AniLiberty:
+    """Async client for the AniLibria API.
+
+    Groups the API into resource namespaces that follow the tags of its OpenAPI spec
+    (``client.app``, ...). Use it as an async context manager so the connection pool is
+    closed when you're done, or call ``aclose()`` yourself.
+
+    Attributes:
+        http: The low-level client every resource uses. ``client.http.request(...)`` is the
+            escape hatch for endpoints the SDK doesn't cover yet — it returns raw JSON.
+        app: Service endpoints (API status).
+
+    Example:
+        ```python
+        import asyncio
+
+        from aniliberty import AniLiberty
+
+
+        async def main() -> None:
+            async with AniLiberty() as client:
+                status = await client.app.status()
+                print(status.is_alive)
+
+
+        asyncio.run(main())
+        ```
+    """
+
+    def __init__(
+        self,
+        *,
+        base_url: str = DEFAULT_BASE_URL,
+        timeout: float = DEFAULT_TIMEOUT,
+        headers: Mapping[str, str] | None = None,
+        http_client: httpx.AsyncClient | None = None,
+    ) -> None:
+        """Initialize the client.
+
+        Args:
+            base_url: API base URL including the version prefix. Defaults to the main server,
+                ``https://aniliberty.top/api/v1``; ``https://anilibria.top/api/v1`` is a
+                mirror.
+            timeout: Per-request timeout, in seconds. Ignored when ``http_client`` is given.
+            headers: Extra headers sent with every request, merged over the SDK's defaults
+                (``Accept: application/json`` and the SDK's ``User-Agent``).
+            http_client: A ready ``httpx.AsyncClient`` to send requests with, e.g. to set up
+                a proxy. The SDK doesn't close a client it didn't create.
+        """
+        self.http = HttpClient(
+            base_url=base_url, timeout=timeout, headers=headers, http_client=http_client
+        )
+        self.app = AppResource(self.http)
+
+    async def __aenter__(self) -> Self:
+        if self.http.closed:
+            raise RuntimeError(
+                "This AniLiberty client has been closed and can't be reused; create a new one."
+            )
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc: BaseException | None,
+        traceback: TracebackType | None,
+    ) -> None:
+        await self.aclose()
+
+    async def aclose(self) -> None:
+        """Close the connection pool. Safe to call more than once."""
+        await self.http.aclose()
