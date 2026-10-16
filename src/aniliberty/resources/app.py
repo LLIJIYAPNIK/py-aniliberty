@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 from aniliberty.models.app import ApiStatus
+from aniliberty.models.release import Release
 from aniliberty.resources._base import BaseResource
 
 
 class AppResource(BaseResource):
     """Service endpoints of the API, available as ``client.app``."""
 
-    ENDPOINTS = (("GET", "/app/status"),)
+    ENDPOINTS = (("GET", "/app/status"), ("GET", "/app/search/releases"))
 
     async def status(self) -> ApiStatus:
         """Get the status of the API.
@@ -33,3 +34,33 @@ class AppResource(BaseResource):
             ```
         """
         return await self._get("/app/status", ApiStatus)
+
+    async def search_releases(self, query: str) -> list[Release]:
+        """Quick search of releases by name — the search box of the site.
+
+        Matches Russian and English names and aliases, fuzzily: ``"frieren"``,
+        ``"Фрирен"`` and ``"sousou-no-frieren"`` find the same release. There is no paging
+        and no ``limit``: the API returns a short list (at most 20 releases in every query
+        checked), in an order it chooses. For filtered, paginated search use the catalog
+        instead.
+
+        Args:
+            query: Search text.
+
+        Returns:
+            Matching releases, without the per-endpoint extras (``genres`` etc. are empty);
+            an empty list when nothing matches.
+
+        Raises:
+            ValidationError: ``query`` is empty.
+            APIError: The API answered with another error.
+            TransportError: The request failed without a response.
+            ResponseParseError: The response didn't match ``Release``.
+
+        Example:
+            ```python
+            for release in await client.app.search_releases("frieren"):
+                print(release.id, release.name.main)
+            ```
+        """
+        return await self._get("/app/search/releases", list[Release], params={"query": query})
