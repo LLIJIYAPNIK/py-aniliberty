@@ -504,6 +504,32 @@ limits, retries and error mapping as JSON requests. `torrents.download()` stream
 `<name>.part` and renames it when complete. `for_release()`/`rss_for_release()` accept only an
 `int` or a `Release`, like `franchises.for_release()`.
 
+## Teams (checked 2026-10-16)
+
+Requests: `GET /teams/`, `/teams` (no trailing slash), `/teams/roles`, `/teams/users`, all
+without parameters; cross-checked with `GET /anime/releases/sousou-no-frieren/members`.
+
+- **Shape:** all three return a bare JSON array, no pagination. 7 teams, 33 roles, 164 members.
+- **`/teams/` and `/teams` answer the same** (200, same body, no redirect). The SDK requests
+  `/teams/`, as spelled in the spec.
+- **Order:** teams and roles come sorted by `sort_order`; **members don't** — teams are
+  interleaved, and `sort_order` is the position within the member's team, from 1.
+- **Nulls:** `team.description` is `null` on 2 of 7 teams, `role.color` on 20 of 33 roles (the
+  spec says string for both). Colors are hex strings in mixed case (`#B523C5` and `#b523c5`).
+- **`user`** (the linked site account) is `null` on 139 of 164 members; when present, its
+  `nickname` differs from the team nickname on 5 members and is `null` on 1, and 3 avatars have
+  all paths `null`. Avatar paths are relative, like other images.
+- Every member has a `team` and at least one role; every embedded team and role is also in
+  `/teams/` and `/teams/roles`. Nicknames are unique.
+- **Release members vs team members:** release credits match team members by nickname, but not
+  always — one of Frieren's six credited members (`Neri`) isn't in `/teams/users`.
+- `include`/`exclude` query parameters are declared in the spec; the SDK doesn't expose them
+  (no other resource does either).
+
+**Conclusion:** `Team.description`, `TeamRole.color`, `TeamMember.user` and the account's
+`nickname`/`avatar` are optional; `TeamMember.team` is required. `client.teams.users()`'s
+docstring says the list isn't sorted.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent

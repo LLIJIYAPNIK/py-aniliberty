@@ -215,6 +215,9 @@ async with AniLiberty(
 - **Торренты**: `.torrent` отдаётся и с `Accept: application/json` (ошибки при этом JSON),
   имя — в `Content-Disposition`; RSS — XML; `/torrents/release/{id}` — только числовой id.
   Не-JSON читается через `HttpClient.request_raw()` / `stream()` (те же лимиты/ретраи/ошибки).
+- **Команды**: все три эндпоинта — голые массивы без пагинации; `/teams/` = `/teams`;
+  участники (`/teams/users`) не отсортированы; `role.color`, `team.description`, `user`
+  бывают `null`; ник в кредитах релиза не всегда есть среди участников команд.
 - **Опциональность**: `required` в схемах нет вообще, `nullable` — на 13 полях, при этом
   живые `null` есть и в «не-nullable» полях (`notification`, `external_player`,
   `rutube_id`, `youtube_id`). Спеке в этом не доверять — сверять с кассетами.
