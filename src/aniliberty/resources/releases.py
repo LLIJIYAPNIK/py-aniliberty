@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from aniliberty.models.release import Release, ReleaseMember
 from aniliberty.pagination import Page, iterate_pages
-from aniliberty.resources._base import BaseResource
+from aniliberty.resources._base import BaseResource, path_segment
 
 
 class ReleasesResource(BaseResource):
@@ -214,7 +214,9 @@ class ReleasesResource(BaseResource):
             print(release.name.main, release.episodes_total)
             ```
         """
-        return await self._get(f"/anime/releases/{_path_segment(id_or_alias)}", Release)
+        return await self._get(
+            f"/anime/releases/{path_segment(id_or_alias, what='release ID or alias')}", Release
+        )
 
     async def members(self, id_or_alias: int | str) -> builtins.list[ReleaseMember]:
         """Get the people who worked on a release (voice actors, translators, ...).
@@ -238,16 +240,6 @@ class ReleasesResource(BaseResource):
             ```
         """
         return await self._get(
-            f"/anime/releases/{_path_segment(id_or_alias)}/members",
+            f"/anime/releases/{path_segment(id_or_alias, what='release ID or alias')}/members",
             builtins.list[ReleaseMember],
         )
-
-
-def _path_segment(id_or_alias: int | str) -> str:
-    """Validate an ID or alias before it's put into a URL path."""
-    if isinstance(id_or_alias, bool) or not isinstance(id_or_alias, int | str):
-        raise TypeError(f"Expected a release ID or alias, got {id_or_alias!r}")
-    value = str(id_or_alias)
-    if not value or "/" in value or value in (".", ".."):
-        raise ValueError(f"Invalid release ID or alias: {id_or_alias!r}")
-    return value
