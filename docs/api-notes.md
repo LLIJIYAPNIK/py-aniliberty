@@ -255,6 +255,40 @@ and the 401/403 bodies are left for step 4.1.
 /anime/torrents/rss` and `/rss/release/{releaseId}` return `application/xml`. All three take an
 optional `pk` (user passkey) query parameter. Not called live yet (step 3.4).
 
+## Releases (checked 2026-10-16)
+
+Requests: `GET /anime/releases/latest?limit=20`, `/random?limit=20`,
+`/recommended?limit=5&release_id=10297` and without `release_id`,
+`/anime/releases/tensei-shitara-ken-deshita-2nd-season` and `/anime/releases/10297`,
+`/anime/releases/10297/members`, `/anime/releases/list` with several `ids`/`aliases`, plus
+`limit=0`, `limit=51` and missing parameters.
+
+- **`limit` is 1 to 50** on `latest`, `random`, `recommended` and `list` — `limit=51` gives
+  `422 {"errors": {"limit": ["Поле limit не может быть больше 50."]}}`, `limit=0` gives
+  `"Поле limit должно быть не меньше 1."`.
+- **`list` needs `ids` or `aliases`**: without both, 422 (`"Поле ids обязательно для
+  заполнения, когда aliases не указано."`). A release requested both by ID and by alias is
+  returned once (`ids=10297&aliases=<its alias>` → `total: 1`). The result is **not** in the
+  requested order (`ids=10297,3990` + an alias → `[3990, 9955]` on page 1).
+- **`recommended` works without `release_id`** (general recommendations).
+- `get()` by ID and by alias return the same body. A missing ID or alias → the JSON 404 from
+  "`Accept: application/json` is required…", also on `/members`.
+- **Extras per endpoint:** `genres` everywhere; `background_covers` on `random` and the release
+  page; `latest_episode` on `latest`; `episodes`, `members`, `sponsors`, `torrents` on the
+  release page and `list`.
+- **Nulls the spec doesn't declare:** `name.alternative`, `description` (1 of 40), `notification`
+  (40 of 40), `external_player` (29 of 40), `episodes_total` (14 of 40),
+  `average_duration_of_episode` (11 of 40). `rating.average` was an integer (`1`) once — models
+  accept it as a float.
+- **Members:** `user` was `null` for all 8 members of release 10297; `id` is a UUID string;
+  `role.value` values seen: `decorating`, `hevc`, `timing`, `translating`, `voicing`.
+- `rating.distribution` has string keys `"1"`…`"10"`; the SDK turns them into ints.
+
+**Conclusion:** `client.releases` validates only what the API can't (`list()` without
+`ids`/`aliases` raises `ValueError` before sending). Range checks for `limit` are left to the
+API's 422. Fields observed non-null in every response (counters, `is_*` flags, `id`, `alias`,
+`name.main`) are required; everything else is optional.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent
@@ -304,6 +338,6 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 - **5xx body shape.** Not observed.
 - **WAF/challenge behaviour.** Not observed from the maintainer's network; Cloudflare is in front.
   What a challenge looks like (status, headers) is unknown.
-- **Maximum `limit`** on endpoints other than the catalog (`/releases/list`, `/genres/{id}/releases`,
-  `/torrents`, `/releases/latest`, `/random`, ...).
+- **Maximum `limit`** on `/genres/{id}/releases`, `/torrents`, `/franchises/random`,
+  `/genres/random`, `/media/videos` (the catalog and the release endpoints: 50).
 - **Authentication details** (token lifetime, refresh, 401/403 bodies) — step 4.1.

@@ -1,0 +1,91 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.0.1 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/releases/random?limit=2
+  response:
+    body:
+      string: '[{"id":6921,"type":{"value":"TV","description":"\u0422\u0412"},"year":2015,"name":{"main":"\u0418\u0434\u043e\u043b\u043c\u0430\u0441\u0442\u0435\u0440:
+        \u0414\u0435\u0432\u0443\u0448\u043a\u0438-\u0437\u043e\u043b\u0443\u0448\u043a\u0438","english":"The
+        iDOLMASTER Cinderella Girls","alternative":null},"alias":"the-idolmaster-cinderella-girls","season":{"value":"winter","description":"\u0417\u0438\u043c\u0430"},"shikimori":{"id":23587,"url":"https:\/\/shikimori.io\/animes\/23587","votes":1217,"rating":7.5},"mal":{"id":23587,"url":"https:\/\/myanimelist.net\/anime\/23587","votes":31423,"rating":7.17},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/6921\/41agBm5dJn3xCaNpQbBKbKH1uorV0vlT.jpg","preview":"\/storage\/releases\/posters\/6921\/41agBm5dJn3xCaNpQbBKbKH1uorV0vlT.jpg","thumbnail":"\/storage\/releases\/posters\/6921\/nkG2rpoIwo5YrxlXZ4Jk8gjOmaP319KB.jpg","optimized":{"src":"\/storage\/releases\/posters\/6921\/0Y4SqGJxgLoqnxDgFt6uJJoROBLc1YJR.webp","preview":"\/storage\/releases\/posters\/6921\/0Y4SqGJxgLoqnxDgFt6uJJoROBLc1YJR.webp","thumbnail":"\/storage\/releases\/posters\/6921\/Yzl6c5AxY1veMN16qJDwF9uB9X7xAlHo.webp"}},"fresh_at":"2018-09-03T15:05:26+00:00","created_at":"2018-09-03T15:05:26+00:00","updated_at":"2024-09-22T09:19:39+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":1,"description":"\u041f\u043e\u043d\u0435\u0434\u0435\u043b\u044c\u043d\u0438\u043a"},"description":"\u0412\u0441\u0442\u0440\u0435\u0447\u0430\u0439\u0442\u0435
+        \u2014 \u00ab765-\u043f\u0440\u043e\u00bb \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044f
+        \u043d\u0430 \u044d\u043a\u0440\u0430\u043d\u044b \u0441 \u043d\u043e\u0432\u044b\u043c
+        \u0441\u043e\u0441\u0442\u0430\u0432\u043e\u043c! \u041d\u043e\u0432\u044b\u0435
+        \u0438\u0434\u043e\u043b\u044b \u043f\u0440\u043e\u043a\u043b\u0430\u0434\u044b\u0432\u0430\u044e\u0442
+        \u0441\u043e\u0431\u0441\u0442\u0432\u0435\u043d\u043d\u0443\u044e \u0434\u043e\u0440\u043e\u0433\u0443
+        \u043f\u043e \u043a\u0430\u0440\u044c\u0435\u0440\u043d\u043e\u0439 \u043b\u0435\u0441\u0442\u043d\u0438\u0446\u0435,
+        \u043f\u0440\u0435\u043e\u0434\u043e\u043b\u0435\u0432\u0430\u044f \u0447\u0435\u0440\u0435\u0434\u0443
+        \u043d\u0435\u0432\u0437\u0433\u043e\u0434 \u0438 \u043f\u0430\u0434\u0435\u043d\u0438\u0439.
+        \u041a \u0447\u0435\u043c\u0443 \u0436\u0435 \u043f\u0440\u0438\u0432\u0435\u0434\u0443\u0442
+        \u043d\u0435\u0432\u0435\u0440\u043e\u044f\u0442\u043d\u044b\u0435 \u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f
+        \u044d\u0442\u0438\u0445 \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u0436\u0435\u0439?
+        \u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0441\u044f \u043b\u0438
+        \u0438\u0441\u0442\u043e\u0440\u0438\u044f \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0435\u0433\u043e
+        \u0441\u043e\u0441\u0442\u0430\u0432\u0430 \u0438\u043b\u0438 \u0436\u0435
+        \u043f\u043e\u044f\u0432\u0438\u0442\u0441\u044f \u0441\u0432\u043e\u044f
+        \u0441\u043e\u0431\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f?\r\n\r\n\u00a9Shikimori","notification":null,"episodes_total":13,"external_player":null,"is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":1025,"average_duration_of_episode":25,"added_in_planned_collection":41,"added_in_watched_collection":6,"added_in_watching_collection":4,"added_in_postponed_collection":3,"added_in_abandoned_collection":7,"genres":[{"id":8,"name":"\u0414\u0440\u0430\u043c\u0430","image":{"preview":"\/storage\/anime\/genres\/images\/8\/zsAUP1RD6fLnJXMwTnH3awJNY0F3qlc3.jpg","thumbnail":"\/storage\/anime\/genres\/images\/8\/rQWlDbZpCDJroKwGrKMmCTAxjJ4gAsdQ.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/8\/xAYRsKLcdinBkDAPNaTPTw67CDx6C6y4.webp","thumbnail":"\/storage\/anime\/genres\/images\/8\/xL6iOX6aTj5swKxJdCPeucQnUc8Ka4ho.webp"}},"total_releases":365},{"id":1,"name":"\u041a\u043e\u043c\u0435\u0434\u0438\u044f","image":{"preview":"\/storage\/anime\/genres\/images\/1\/U1sFaXCMz3PE7nxORf5D8qhN0tX2reqW.jpg","thumbnail":"\/storage\/anime\/genres\/images\/1\/QBNpOye0tk9DVySvQN1wz9j3iZdZhvZp.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/1\/2jgEuWgDWkIK1ucumMsWv1EzGy5jOT5j.webp","thumbnail":"\/storage\/anime\/genres\/images\/1\/2HNoBbkhXvWQwzF4WyYZwc6bMdaeRy47.webp"}},"total_releases":685},{"id":19,"name":"\u041c\u0443\u0437\u044b\u043a\u0430","image":{"preview":"\/storage\/anime\/genres\/images\/19\/l0sGMW3zLDqjdmt8jY28JPDBmNzgIgMa.jpg","thumbnail":"\/storage\/anime\/genres\/images\/19\/WfSmKDSavHmL50yK26r9zaQM49xp2RlH.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/19\/uhQFwZzoHyzC6026wMbw99uuS9KHlXIy.webp","thumbnail":"\/storage\/anime\/genres\/images\/19\/78sCpX3WFuFEqRiHpMyjk3pdfRQFcHnG.webp"}},"total_releases":61}],"background_covers":[]},{"id":9718,"type":{"value":"ONA","description":"\u041eNA"},"year":2024,"name":{"main":"\u0411\u0440\u0430\u0442\u044c\u044f
+        \u0413\u0440\u0438\u043c\u043c: \u0412\u0430\u0440\u0438\u0430\u0446\u0438\u0438","english":"the
+        grimm variations","alternative":null},"alias":"the-grimm-variations","season":{"value":"spring","description":"\u0412\u0435\u0441\u043d\u0430"},"shikimori":{"id":null,"url":null,"votes":null,"rating":null},"mal":{"id":null,"url":null,"votes":null,"rating":null},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/9718\/XJOAU0FblnP8aAmK9Lq6TbqEKZmyU2CO.jpg","preview":"\/storage\/releases\/posters\/9718\/XJOAU0FblnP8aAmK9Lq6TbqEKZmyU2CO.jpg","thumbnail":"\/storage\/releases\/posters\/9718\/1JI9aNNCdMFWd2MrQMxK17DDtg725dru.jpg","optimized":{"src":"\/storage\/releases\/posters\/9718\/Dxt8WT1EjQxvICpyhopDZsj1LU6tycs1.webp","preview":"\/storage\/releases\/posters\/9718\/Dxt8WT1EjQxvICpyhopDZsj1LU6tycs1.webp","thumbnail":"\/storage\/releases\/posters\/9718\/dhAefxHDwFyICCONqUbUrIs9GejWP2yZ.webp"}},"fresh_at":"2024-06-01T14:02:00+00:00","created_at":"2024-04-20T07:24:46+00:00","updated_at":"2024-08-02T19:58:58+00:00","is_ongoing":false,"age_rating":{"value":"R18_PLUS","label":"18+","is_adult":true,"description":"\u0417\u0430\u043f\u0440\u0435\u0449\u0435\u043d\u043e
+        \u0434\u043b\u044f \u0440\u0430\u0441\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0435\u043d\u0438\u044f
+        \u0441\u0440\u0435\u0434\u0438 \u0434\u0435\u0442\u0435\u0439 (18+)"},"publish_day":{"value":7,"description":"\u0412\u043e\u0441\u043a\u0440\u0435\u0441\u0435\u043d\u044c\u0435"},"description":"\u0412
+        \u0430\u043d\u0442\u043e\u043b\u043e\u0433\u0438\u044e, \u0441\u043e\u0437\u0434\u0430\u043d\u043d\u0443\u044e
+        \u043f\u043e \u043c\u043e\u0442\u0438\u0432\u0430\u043c \u0441\u043a\u0430\u0437\u043e\u043a
+        \u0431\u0440\u0430\u0442\u044c\u0435\u0432 \u0413\u0440\u0438\u043c\u043c,
+        \u0432\u043e\u0448\u043b\u0438 \u0448\u0435\u0441\u0442\u044c \u0432\u043e\u043b\u0448\u0435\u0431\u043d\u044b\u0445
+        \u0438\u0441\u0442\u043e\u0440\u0438\u0439 \u0441 \u043c\u0440\u0430\u0447\u043d\u044b\u043c\u0438
+        \u043f\u043e\u0432\u043e\u0440\u043e\u0442\u0430\u043c\u0438 \u0441\u044e\u0436\u0435\u0442\u0430,
+        \u0440\u0430\u0441\u043a\u0440\u044b\u0432\u0430\u044e\u0449\u0438\u0445 \u0442\u0435\u043d\u0435\u0432\u0443\u044e
+        \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u043a\u0438\u0445
+        \u0436\u0435\u043b\u0430\u043d\u0438\u0439","notification":null,"episodes_total":6,"external_player":null,"is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":2694,"average_duration_of_episode":40,"added_in_planned_collection":253,"added_in_watched_collection":196,"added_in_watching_collection":62,"added_in_postponed_collection":23,"added_in_abandoned_collection":21,"genres":[{"id":29,"name":"\u0424\u044d\u043d\u0442\u0435\u0437\u0438","image":{"preview":"\/storage\/anime\/genres\/images\/29\/BqPfwYPC7STQ0lsv6LsdyDm594Tnz2N5.jpg","thumbnail":"\/storage\/anime\/genres\/images\/29\/bkKObn59vWFAd8wcAPINJnI8EZLZB8gH.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/29\/BayKuKbzHQkKMlfFyUTZAoExCjqkHDfh.webp","thumbnail":"\/storage\/anime\/genres\/images\/29\/yVUCPUfGguBeZ280YyS5UhawlR3F1fS0.webp"}},"total_releases":629},{"id":13,"name":"\u0423\u0436\u0430\u0441\u044b","image":{"preview":"\/storage\/anime\/genres\/images\/13\/byQujvaBbGnVeXikjY5oZ04apB4IJPdw.jpg","thumbnail":"\/storage\/anime\/genres\/images\/13\/35u3KjDQU3VUFDbBr9TRRAW1vB9YWuFG.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/13\/CxhgBE37bRZINyPw38iRoZDAvrjefxfL.webp","thumbnail":"\/storage\/anime\/genres\/images\/13\/ZBA4oZXOEl6dGSgUKphOEw1fkqytTNpU.webp"}},"total_releases":79},{"id":6,"name":"\u0422\u0440\u0438\u043b\u043b\u0435\u0440","image":{"preview":"\/storage\/anime\/genres\/images\/6\/5yh8WhvkwA8T2SBHAVVDnFAtWt6HwApN.jpg","thumbnail":"\/storage\/anime\/genres\/images\/6\/ixpJ6EtUtgZ3njs8zphq4fYHdoaK6WzN.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/6\/mPA6hltXCMmlCYtgKJWPGwuHbI54msIW.webp","thumbnail":"\/storage\/anime\/genres\/images\/6\/xxaXKSo3CMGoqL1wGbOYp7uuXnw6B69S.webp"}},"total_releases":59}],"background_covers":[]}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b48ccc489e8869-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '9590'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 05:09:11 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=8%2B%2FVRq29Jd6WHFNptJ5frTVR4DUERnVWGyGE%2FynFzu4FYrTw%2B0fz5xEOk59pU4T5Qtlr2CANotzVdZPBR1axnBosCkXpzPUK%2F0yZ6IPfSbDoL3h5dhLNl27kLmPJ%2BfygWQ%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.0.1 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/releases/this-alias-does-not-exist-xyz/members
+  response:
+    body:
+      string: "{\n    \"message\": \"No query results for model [App\\\\Modules\\\\Anime\\\\Releases\\\\Models\\\\Release\\\\Release].\"\n}"
+    headers:
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b48cd58ab1fff9-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '106'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 05:09:13 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=LsDDl%2F50QAPXeURVXTQbv26Ox3yOoYOt1AyZonBkFrcR8%2FrwVpz%2BHSUGZzNOQo05XAwc724YNEFF9I6uC72UgFIch62bnQ%2Fdkpv2CbXM5EYGktEdb5wjIUNrWWYlxSdqXA%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 404
+      message: Not Found
+version: 1
