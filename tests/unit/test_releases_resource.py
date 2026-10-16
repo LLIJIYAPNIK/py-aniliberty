@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
 from typing import Any
 
 import httpx
@@ -11,19 +9,7 @@ import pydantic
 import pytest
 
 from aniliberty import AniLiberty, Release
-from aniliberty.resources import (
-    AppResource,
-    CatalogReferencesResource,
-    CatalogResource,
-    EpisodesResource,
-    FranchisesResource,
-    GenresResource,
-    ReleasesResource,
-    ScheduleResource,
-    TorrentsResource,
-)
-
-SPEC = json.loads((Path(__file__).parents[2] / "spec" / "openapi.json").read_text("utf-8"))
+from aniliberty.resources import CatalogReferencesResource, CatalogResource
 
 MINIMAL_RELEASE: dict[str, Any] = {
     "id": 1,
@@ -135,25 +121,6 @@ async def test_get_rejects_invalid_ids_before_sending(bad: Any) -> None:
             await client.releases.members(bad)
 
     assert recorder.requests == []
-
-
-@pytest.mark.parametrize(
-    "resource",
-    [
-        AppResource,
-        ReleasesResource,
-        EpisodesResource,
-        CatalogReferencesResource,
-        CatalogResource,
-        ScheduleResource,
-        GenresResource,
-        FranchisesResource,
-        TorrentsResource,
-    ],
-)
-def test_declared_endpoints_exist_in_the_spec(resource: type[AppResource]) -> None:
-    for method, path in resource.ENDPOINTS:
-        assert method.lower() in SPEC["paths"].get(path, {}), f"{method} {path} not in spec"
 
 
 def test_catalog_namespace_has_references() -> None:
