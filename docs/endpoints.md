@@ -41,7 +41,7 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/anime/releases/{idOrAlias}` | Аниме.Релизы | A single release by ID or alias |  | `client.releases.get()` | 1.4 |
 | `GET` | `/anime/releases/{idOrAlias}/episodes/timecodes` | Аниме.Релизы | User's watch timecodes for a release's episodes | yes |  | 4.6 |
 | `GET` | `/anime/releases/{idOrAlias}/members` | Аниме.Релизы | Team members who worked on a release |  | `client.releases.members()` | 1.4 |
-| `GET` | `/anime/releases/episodes/{releaseEpisodeId}` | Аниме.Релизы.Эпизоды | A single episode (HLS links) |  |  | 1.5 |
+| `GET` | `/anime/releases/episodes/{releaseEpisodeId}` | Аниме.Релизы.Эпизоды | A single episode (HLS links) |  | `client.episodes.get()` | 1.5 |
 | `GET` | `/anime/releases/episodes/{releaseEpisodeId}/timecode` | Аниме.Релизы.Эпизоды | User's watch timecode for an episode | yes |  | 4.6 |
 | `DELETE` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Remove the user's rating of a release | yes |  | 4.7 |
 | `GET` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | User's own rating of a release | yes |  | 4.7 |

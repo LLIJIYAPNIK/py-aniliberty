@@ -15,6 +15,7 @@ from pydantic import Field
 
 from aniliberty.models._base import AniLibertyModel
 from aniliberty.models.common import EMPTY_VALUE_AS_NONE, Image, ImageSet, ValueDescription
+from aniliberty.models.episode import Episode
 from aniliberty.models.genre import Genre
 
 
@@ -135,9 +136,11 @@ class Release(AniLibertyModel):
     """An anime release.
 
     Spec schema: ``models.anime.releases.v1.release`` plus the extra fields each endpoint adds.
-    List endpoints fill only part of the extras: ``genres`` comes with every endpoint,
-    ``background_covers`` with ``random()`` and ``get()``, ``members``/``sponsors`` with
-    ``get()`` and ``list()``. An extra the endpoint doesn't send is an empty list.
+    List endpoints fill only part of the extras: ``genres`` comes with every endpoint except
+    ``Episode.release``, ``background_covers`` with ``random()`` and ``get()``,
+    ``members``/``sponsors`` with ``get()`` and ``list()``, ``episodes`` with ``get()``,
+    ``list()`` and ``Episode.release``, ``latest_episode`` with ``latest()`` only. An extra
+    the endpoint doesn't send is an empty list or ``None``.
 
     Attributes:
         id: Release ID.
@@ -179,6 +182,8 @@ class Release(AniLibertyModel):
         background_covers: Wide cover images for a page background.
         members: People who worked on the release.
         sponsors: Sponsors shown on the release page.
+        episodes: All episodes of the release, in order.
+        latest_episode: The newest episode — only filled in by ``client.releases.latest()``.
     """
 
     id: int
@@ -215,3 +220,9 @@ class Release(AniLibertyModel):
     background_covers: list[ImageSet] = Field(default_factory=list)
     members: list[ReleaseMember] = Field(default_factory=list)
     sponsors: list[Sponsor] = Field(default_factory=list)
+    episodes: list[Episode] = Field(default_factory=list)
+    latest_episode: Episode | None = None
+
+
+# Episode.release refers back to Release, which only exists once this module has run.
+Episode.model_rebuild(_types_namespace={"Release": Release})

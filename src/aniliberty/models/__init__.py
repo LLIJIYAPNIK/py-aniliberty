@@ -2,6 +2,7 @@
 
 from aniliberty.models.app import ApiStatus, RequestInfo
 from aniliberty.models.common import EMPTY_VALUE_AS_NONE, Image, ImageSet, ValueDescription
+from aniliberty.models.episode import Episode, SkipRange
 from aniliberty.models.genre import Genre
 from aniliberty.models.release import (
     AgeRating,
@@ -18,6 +19,7 @@ __all__ = [
     "EMPTY_VALUE_AS_NONE",
     "AgeRating",
     "ApiStatus",
+    "Episode",
     "ExternalRating",
     "Genre",
     "Image",
@@ -28,6 +30,7 @@ __all__ = [
     "ReleaseName",
     "ReleaseRating",
     "RequestInfo",
+    "SkipRange",
     "Sponsor",
     "ValueDescription",
 ]

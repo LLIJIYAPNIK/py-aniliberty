@@ -51,3 +51,26 @@ class BaseResource:
                 url=self._http.url(path),
                 payload=payload,
             ) from exc
+
+
+def path_segment(value: int | str, *, what: str) -> str:
+    """Check an ID or alias before it's put into a URL path, and return it as a string.
+
+    Rejects values that would change which path is requested (``/``, ``.``, ``..``) or that
+    are clearly not identifiers (empty strings, ``bool``, other types), so a bad argument
+    fails here with a clear message instead of hitting some other endpoint.
+
+    Args:
+        value: The ID or alias.
+        what: What the value is, for error messages (e.g. ``"release ID or alias"``).
+
+    Raises:
+        TypeError: ``value`` is not an ``int`` or ``str``.
+        ValueError: ``value`` is empty or contains a path separator.
+    """
+    if isinstance(value, bool) or not isinstance(value, int | str):
+        raise TypeError(f"Expected a {what}, got {value!r}")
+    text = str(value)
+    if not text or "/" in text or text in (".", ".."):
+        raise ValueError(f"Invalid {what}: {value!r}")
+    return text

@@ -289,6 +289,34 @@ Requests: `GET /anime/releases/latest?limit=20`, `/random?limit=20`,
 API's 422. Fields observed non-null in every response (counters, `is_*` flags, `id`, `alias`,
 `name.main`) are required; everything else is optional.
 
+## Episodes (checked 2026-10-16)
+
+Requests: the episodes of 40 releases (20 from `latest`, 20 from `random`, fetched through
+`/anime/releases/list` — 328 episodes, plus 20 `latest_episode` objects),
+`GET /anime/releases/episodes/a159552a-9fa7-4737-867b-d22cf7115602`, and the same endpoint with
+an all-zero UUID and with `not-a-uuid`.
+
+- **HLS:** `hls_480` and `hls_720` were present on all 348 episodes, `hls_1080` was `null` on
+  76. All links are absolute `.m3u8` URLs on `cache.libria.fun`.
+- **`ordinal`** was an integer on all 348 (the spec allows fractions like `12.5`); it was equal
+  to `sort_order` on every episode.
+- **`opening`/`ending`** are always objects, but `{"start": null, "stop": null}` when not
+  marked (84 of 328 openings). Never only one of the two was `null`. In all 38 episodes with
+  timings, `stop` stayed within `duration` and endings started near the end (e.g. `1326`–`1502`
+  of a 1502-second episode): the spec's "seconds from the start or the end" is, in practice,
+  seconds **from the start**.
+- **`preview`:** present on every episode, but with all paths `null` on 177 of 328.
+- **`name`** was `null` on 273 of 348, **`name_english`, `rutube_id`, `youtube_id`** on all.
+- **The episode endpoint** returns the episode plus `release` — the release with `episodes`
+  but **without** `genres`.
+- **Missing or malformed ID:** both an unknown UUID and `not-a-uuid` give the JSON 404
+  (`"No query results for model [...ReleaseEpisode] <id>"`), so the SDK doesn't validate the
+  UUID format itself.
+
+**Conclusion:** `Episode` requires `id`, `release_id`, `ordinal` (`int | float`), `sort_order`
+and `duration`; HLS links and everything else are optional. An all-`null` skip range becomes
+`None`. `Release` gets `episodes` and `latest_episode`.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent

@@ -18,6 +18,7 @@ from aniliberty.exceptions import (
 from aniliberty.models import (
     AgeRating,
     ApiStatus,
+    Episode,
     ExternalRating,
     Genre,
     Image,
@@ -28,6 +29,7 @@ from aniliberty.models import (
     ReleaseName,
     ReleaseRating,
     RequestInfo,
+    SkipRange,
     Sponsor,
     ValueDescription,
 )
@@ -41,6 +43,7 @@ __all__ = [
     "AniLibertyError",
     "ApiStatus",
     "AuthRequiredError",
+    "Episode",
     "ExternalRating",
     "Genre",
     "HttpClient",
@@ -57,6 +60,7 @@ __all__ = [
     "RequestInfo",
     "ResponseParseError",
     "ServerError",
+    "SkipRange",
     "Sponsor",
     "TransportError",
     "ValidationError",
