@@ -236,7 +236,12 @@ async with AniLiberty(
   unauthorized."}` (не 401, как в спеке), различить «нет» и «протух» нельзя. Кривой токен на
   публичных эндпоинтах не мешает. Refresh нет. С токеном в `magnet` торрентов появляется
   **passkey** аккаунта (`?pk=`), в HLS — `isAuthorized=1`. `social/{unknown}/login` → 500
-  JSON, `social/authenticate` с чужим `state` → 404 **пустым `text/html`** (учесть в 4.2).
+  JSON, `social/authenticate` с чужим `state` → 404 **пустым `text/html`**; успешные
+  `otp/accept` и `password/forget` — 200 с пустым `text/html` → SDK считает пустой HTML не
+  блокировкой, а ответом по статусу. OTP: код — строка из 6 цифр на 5 минут, `otp/login` до
+  `accept` → 500, **с действующим токеном → 403** (только для гостей — SDK шлёт его без
+  токена). Соцсети — только 4 значения enum в нижнем регистре, иное → 500 (SDK проверяет
+  сам). `password/forget` на несуществующий e-mail → тот же 200.
   Учётные данные — только из переменных окружения; `tests/conftest.py` вычищает из кассет
   пароль/логин в теле запроса, `token`/`passkey`/`email` и `?pk=` в ответах, все
   `Set-Cookie`, заголовки `Authorization`/`Cookie`.
@@ -363,7 +368,10 @@ py-aniliberty/
 - Каждый JSON-запрос шлёт `Accept: application/json` — без него Laravel отдаёт ошибки
   HTML-страницей (см. `docs/api-notes.md`).
 - `AniLiberty` пробрасывает только `base_url`, `timeout`, `max_concurrency`, `headers`,
-  `http_client` (готовый `httpx.AsyncClient` пользователя — тогда SDK его не закрывает).
+  `http_client` (готовый `httpx.AsyncClient` пользователя — тогда SDK его не закрывает) и
+  `token`. Токен — `client.token` (= `HttpClient.token`), шлётся как `Authorization: Bearer`
+  в каждом запросе (`request(..., with_token=False)` — без него); логин-методы `client.auth`
+  его записывают, `logout()` очищает; cookie `_al1` после логина выкидывается из jar.
 - Клиент — async context manager; повторный `__aenter__` после закрытия → понятная ошибка.
   Использование без `async with` разрешено, но с явным `await client.aclose()`.
 - Исключения (`exceptions.py`):
@@ -481,6 +489,12 @@ py-aniliberty/
 - Обязательно покрыть error-paths: 404, 422, 429 с ретраями и `Retry-After`, 5xx, таймаут,
   антибот-HTML.
 - Покрытие ≥95% честными тестами, без массовых `# pragma: no cover`.
+- Тесты с логином берут фикстуру `credentials` (`tests/conftest.py`): для записи кассеты нужны
+  `ANILIBERTY_LOGIN`/`ANILIBERTY_PASSWORD` в окружении (у пользователя они лежат в `.env`
+  как `LOGIN`/`PASSWORD`, `.env` в `.gitignore`); с готовой кассетой подставляются заглушки,
+  без переменных и без кассеты тест пропускается. После записи — проверить кассеты на утечки
+  (логин/пароль/токен/passkey/e-mail). Не принимать в тестах «чужие» OTP-коды: случайный код
+  может оказаться реальным кодом чужого устройства.
 
 ## Порядок работы
 
