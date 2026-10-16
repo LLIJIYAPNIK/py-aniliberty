@@ -51,6 +51,12 @@ class TeamsResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``TeamRole``.
+
+        Example:
+            ```python
+            for role in await client.teams.roles():
+                print(role.title, role.color)
+            ```
         """
         return await self._get("/teams/roles", builtins.list[TeamRole])
 

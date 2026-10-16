@@ -169,6 +169,12 @@ class ViewsResource(BaseResource):
         Returns:
             An async iterator over the entries, most recent first.
 
+        Raises:
+            AuthRequiredError: No valid session — raised once iteration starts.
+            ValidationError: ``limit`` is out of range — raised once iteration starts.
+            APIError: The API answered with another error, while iterating.
+            TransportError: A request failed without a response, while iterating.
+
         Example:
             ```python
             async for entry in client.me.views.iter_history(limit=50):

@@ -53,6 +53,12 @@ class FavoritesReferencesResource(_OwnListReferencesResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``SortingOption``.
+
+        Example:
+            ```python
+            for option in await client.me.favorites.references.sorting():
+                print(option.value, option.label)
+            ```
         """
         return await self._get(f"{_PATH}/references/sorting", list[SortingOption])
 

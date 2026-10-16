@@ -59,6 +59,12 @@ class GenresResource(BaseResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``Genre``.
+
+        Example:
+            ```python
+            genre = await client.genres.get(14)
+            print(genre.name, genre.total_releases)
+            ```
         """
         return await self._get(f"/anime/genres/{_genre_id(genre)}", Genre)
 
@@ -77,6 +83,12 @@ class GenresResource(BaseResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``Genre``.
+
+        Example:
+            ```python
+            for genre in await client.genres.random(limit=3):
+                print(genre.name)
+            ```
         """
         return await self._get(
             "/anime/genres/random", builtins.list[Genre], params={"limit": limit}

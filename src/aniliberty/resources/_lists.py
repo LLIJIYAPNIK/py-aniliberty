@@ -33,6 +33,13 @@ class _OwnListReferencesResource(BaseResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``Genre``.
+
+        Example:
+            ```python
+            # The same for client.me.collections.references.
+            genres = await client.me.favorites.references.genres()
+            print([genre.name for genre in genres])
+            ```
         """
         return await self._get(f"{self._REFERENCES_PATH}/genres", list[Genre])
 
@@ -47,6 +54,12 @@ class _OwnListReferencesResource(BaseResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``ValueDescription``.
+
+        Example:
+            ```python
+            types = await client.me.favorites.references.types()
+            page = await client.me.favorites.releases(types=types)
+            ```
         """
         return await self._get(f"{self._REFERENCES_PATH}/types", list[ValueDescription[str]])
 
@@ -61,6 +74,12 @@ class _OwnListReferencesResource(BaseResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response wasn't a list of integers.
+
+        Example:
+            ```python
+            years = await client.me.favorites.references.years()
+            page = await client.me.favorites.releases(years=years[:1])  # the newest year
+            ```
         """
         return await self._get(f"{self._REFERENCES_PATH}/years", list[int])
 
@@ -75,5 +94,11 @@ class _OwnListReferencesResource(BaseResource):
             APIError: The API answered with another error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``AgeRating``.
+
+        Example:
+            ```python
+            for rating in await client.me.collections.references.age_ratings():
+                print(rating.value, rating.label)
+            ```
         """
         return await self._get(f"{self._REFERENCES_PATH}/age-ratings", list[AgeRating])

@@ -62,6 +62,13 @@ class CatalogReferencesResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``Genre``.
+
+        Example:
+            ```python
+            genres = await client.catalog.references.genres()
+            action = next(genre for genre in genres if genre.name == "Экшен")
+            page = await client.catalog.releases(genres=[action])
+            ```
         """
         return await self._get("/anime/catalog/references/genres", list[Genre])
 
@@ -75,6 +82,12 @@ class CatalogReferencesResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``ValueDescription``.
+
+        Example:
+            ```python
+            types = await client.catalog.references.types()
+            print([t.value for t in types])  # ['TV', 'ONA', 'WEB', ...]
+            ```
         """
         return await self._get("/anime/catalog/references/types", list[ValueDescription[str]])
 
@@ -88,6 +101,12 @@ class CatalogReferencesResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``ValueDescription``.
+
+        Example:
+            ```python
+            for season in await client.catalog.references.seasons():
+                print(season.value, season.description)
+            ```
         """
         return await self._get("/anime/catalog/references/seasons", list[ValueDescription[str]])
 
@@ -103,6 +122,12 @@ class CatalogReferencesResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response wasn't a list of integers.
+
+        Example:
+            ```python
+            years = await client.catalog.references.years()
+            print(years[0], years[-1])  # the oldest and the newest year
+            ```
         """
         return await self._get("/anime/catalog/references/years", list[int])
 
@@ -116,6 +141,12 @@ class CatalogReferencesResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``AgeRating``.
+
+        Example:
+            ```python
+            for rating in await client.catalog.references.age_ratings():
+                print(rating.value, rating.label)
+            ```
         """
         return await self._get("/anime/catalog/references/age-ratings", list[AgeRating])
 
@@ -129,6 +160,13 @@ class CatalogReferencesResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``ValueDescription``.
+
+        Example:
+            ```python
+            statuses = await client.catalog.references.publish_statuses()
+            ongoing = next(s for s in statuses if s.value == "IS_ONGOING")
+            page = await client.catalog.releases(publish_statuses=[ongoing])
+            ```
         """
         return await self._get(
             "/anime/catalog/references/publish-statuses", list[ValueDescription[str]]
@@ -144,6 +182,12 @@ class CatalogReferencesResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``ValueDescription``.
+
+        Example:
+            ```python
+            for status in await client.catalog.references.production_statuses():
+                print(status.value, status.description)
+            ```
         """
         return await self._get(
             "/anime/catalog/references/production-statuses", list[ValueDescription[str]]
@@ -159,6 +203,12 @@ class CatalogReferencesResource(BaseResource):
             APIError: The API answered with an error.
             TransportError: The request failed without a response.
             ResponseParseError: The response didn't match ``SortingOption``.
+
+        Example:
+            ```python
+            for option in await client.catalog.references.sorting():
+                print(option.value, option.label)
+            ```
         """
         return await self._get("/anime/catalog/references/sorting", list[SortingOption])
 
