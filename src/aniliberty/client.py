@@ -15,6 +15,7 @@ from aniliberty._http import (
     HttpClient,
 )
 from aniliberty.resources.app import AppResource
+from aniliberty.resources.releases import ReleasesResource
 
 
 class AniLiberty:
@@ -28,6 +29,7 @@ class AniLiberty:
         http: The low-level client every resource uses. ``client.http.request(...)`` is the
             escape hatch for endpoints the SDK doesn't cover yet — it returns raw JSON.
         app: Service endpoints (API status).
+        releases: Anime releases — latest, random, recommended, by ID/alias, members.
 
     Example:
         ```python
@@ -79,6 +81,7 @@ class AniLiberty:
             max_concurrency=max_concurrency,
         )
         self.app = AppResource(self.http)
+        self.releases = ReleasesResource(self.http)
 
     async def __aenter__(self) -> Self:
         if self.http.closed:
