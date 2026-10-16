@@ -16,6 +16,7 @@ from aniliberty.resources import (
     CatalogReferencesResource,
     CatalogResource,
     EpisodesResource,
+    GenresResource,
     ReleasesResource,
     ScheduleResource,
 )
@@ -143,6 +144,7 @@ async def test_get_rejects_invalid_ids_before_sending(bad: Any) -> None:
         CatalogReferencesResource,
         CatalogResource,
         ScheduleResource,
+        GenresResource,
     ],
 )
 def test_declared_endpoints_exist_in_the_spec(resource: type[AppResource]) -> None:
