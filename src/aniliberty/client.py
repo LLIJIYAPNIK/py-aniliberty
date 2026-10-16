@@ -29,7 +29,7 @@ class AniLiberty:
     Attributes:
         http: The low-level client every resource uses. ``client.http.request(...)`` is the
             escape hatch for endpoints the SDK doesn't cover yet — it returns raw JSON.
-        app: Service endpoints (API status).
+        app: Service endpoints — API status and quick release search.
         releases: Anime releases — latest, random, recommended, by ID/alias, members.
         episodes: Episodes of releases, with HLS links.
 

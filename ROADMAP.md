@@ -41,7 +41,7 @@
       `Release.latest_episode` из `latest()` и `Release.episodes` из `get()`/`list()` —
       в 1.4 эти поля пока не разбираются;
       превью, opening/ending, длительность), эпизоды внутри `Release`.
-- [ ] **1.6 Быстрый поиск.** `client.app.search_releases(query)`.
+- [x] **1.6 Быстрый поиск.** `client.app.search_releases(query)`.
 - [ ] **1.7 Документация.** `mkdocs.yml`, `docs/index.md`, `quickstart.md`,
       `reference.md`, `endpoints.md`, `api-notes.md` в `nav`, `docs.yml` (Pages, cancel-in-
       progress, timeouts), джоба `docs` в `ci.yml`. Напомнить пользователю включить Pages.

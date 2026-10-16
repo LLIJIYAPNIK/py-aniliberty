@@ -317,6 +317,27 @@ an all-zero UUID and with `not-a-uuid`.
 and `duration`; HLS links and everything else are optional. An all-`null` skip range becomes
 `None`. `Release` gets `episodes` and `latest_episode`.
 
+## Quick search (checked 2026-10-16)
+
+Requests: `GET /app/search/releases?query=...` with about 25 queries — Russian, English and
+romanized names, an alias, single letters, a number, punctuation variants, nonsense, an
+empty `query` and none at all.
+
+- **Matches every kind of name:** `frieren`, `Фрирен`, `провожающая` and the alias
+  `sousou-no-frieren` all return the same 2 releases.
+- **Fuzzy, punctuation-sensitive:** `Re Zero`, `Re: Zero` and `ReZero` find "Re: Перерыв с нуля",
+  `Re:Zero` and `re:zero` find nothing.
+- **Size:** 0 to 20 results; 20 was the maximum seen (`магия`), common one-letter queries
+  gave 13–18. No paging, and an extra `limit=3` is ignored (`магия` still returned 20).
+- **No matches:** `200 []`.
+- **Empty or missing `query`:** `422 {"errors": {"query": ["Поле query обязательно для
+  заполнения."]}}`.
+- Results are bare releases (spec: `models.anime.releases.v1.release`) — no `genres`,
+  `episodes` or other extras.
+
+**Conclusion:** `client.app.search_releases(query)` returns `list[Release]`; the empty-query
+check is left to the API (`ValidationError`), like `limit` on the release endpoints.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent
