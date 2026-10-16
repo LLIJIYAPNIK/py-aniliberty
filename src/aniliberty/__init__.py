@@ -25,6 +25,7 @@ from aniliberty.models import (
     Genre,
     Image,
     ImageSet,
+    Promotion,
     Release,
     ReleaseMember,
     ReleaseMemberUser,
@@ -45,6 +46,8 @@ from aniliberty.models import (
     TorrentFile,
     TorrentMember,
     ValueDescription,
+    Video,
+    VideoOrigin,
 )
 from aniliberty.pagination import Page
 
@@ -66,6 +69,7 @@ __all__ = [
     "ImageSet",
     "NotFoundError",
     "Page",
+    "Promotion",
     "RateLimitError",
     "Release",
     "ReleaseMember",
@@ -91,5 +95,7 @@ __all__ = [
     "TransportError",
     "ValidationError",
     "ValueDescription",
+    "Video",
+    "VideoOrigin",
     "__version__",
 ]

@@ -19,6 +19,7 @@ from aniliberty.resources.catalog import CatalogResource
 from aniliberty.resources.episodes import EpisodesResource
 from aniliberty.resources.franchises import FranchisesResource
 from aniliberty.resources.genres import GenresResource
+from aniliberty.resources.media import MediaResource
 from aniliberty.resources.releases import ReleasesResource
 from aniliberty.resources.schedule import ScheduleResource
 from aniliberty.resources.teams import TeamsResource
@@ -45,6 +46,7 @@ class AniLiberty:
         franchises: Franchises — groups of related releases.
         torrents: Torrents, ``.torrent`` file downloads and RSS feeds.
         teams: AniLibria's own teams, roles and members.
+        media: Front-page promo banners and AniLibria's YouTube videos.
 
     Example:
         ```python
@@ -104,6 +106,7 @@ class AniLiberty:
         self.franchises = FranchisesResource(self.http)
         self.torrents = TorrentsResource(self.http)
         self.teams = TeamsResource(self.http)
+        self.media = MediaResource(self.http)
 
     async def __aenter__(self) -> Self:
         if self.http.closed:
