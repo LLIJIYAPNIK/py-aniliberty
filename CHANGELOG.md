@@ -9,7 +9,7 @@ project follows [Semantic Versioning](https://semver.org/). Entries are generate
 `main` whenever a GitHub Release is published — don't hand-edit released sections, fix the
 underlying commit message instead and let the next release regenerate this file.
 
-## [Unreleased]
+## [0.1.0] - 2026-10-16
 
 ### Added
 
@@ -35,4 +35,5 @@ underlying commit message instead and let the next release regenerate this file.
 - Publish to PyPI from GitHub Releases via Trusted Publishing
 - Regenerate CHANGELOG.md with git-cliff when a release is published
 
+[0.1.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/tree/v0.1.0
 
