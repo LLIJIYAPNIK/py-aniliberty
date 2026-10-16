@@ -52,5 +52,6 @@ Continue with the [Quickstart](quickstart.md), or browse the [API reference](ref
 [Endpoints](endpoints.md) maps every operation of the API to its SDK method.
 
 !!! note "Status"
-    Pre-1.0: the public API may still change between minor versions; breaking changes are
-    called out in the changelog.
+    Stable. Since `1.0.0` the package follows [Semantic Versioning](https://semver.org/):
+    breaking changes come only with a new major version and are called out in the changelog.
+    Coming from `0.x`? See [Upgrading to 1.0](upgrading.md).
