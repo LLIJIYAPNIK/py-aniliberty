@@ -91,7 +91,7 @@
       `client.token`; весь тег авторизации: `client.auth.otp.*` (вход по одноразовому коду),
       `client.auth.social.*`, `client.auth.password.*`. Защищённые методы без токена получают
       403 от API → `AuthRequiredError` (без предпроверки на клиенте). Пример — в 4.8.
-- [ ] **4.3 Профиль.** `client.me.profile()`.
+- [x] **4.3 Профиль.** `client.me.profile()` → `UserProfile` (passkey — вне `repr`). Пример — в 4.8.
 - [ ] **4.4 Избранное.** `client.me.favorites.*` (список, добавить, удалить, справочники).
 - [ ] **4.5 Коллекции.** `client.me.collections.*`.
 - [ ] **4.6 Таймкоды и история просмотра.** `client.me.views.*`, плюс таймкоды в

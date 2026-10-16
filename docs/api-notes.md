@@ -305,7 +305,15 @@ working); logging out again with it → 403.
 `avatar` (all paths `null` without an avatar, like other images), `torrents` (`passkey`,
 `uploaded`, `downloaded` — the last two `null` on a new account), `is_banned`, `created_at`,
 and three undocumented ad flags `is_with_video_ads`, `is_with_content_ads`,
-`is_with_video_ads_always`. Shape details are for step 4.3.
+`is_with_video_ads_always`.
+
+Checked again for step 4.3 (`client.me.profile()` → `UserProfile`): the spec's
+`is_with_ads` is **not** sent — the three flags above come instead, and the SDK models all
+four as optional. `created_at` has a time zone (`+00:00`). Without a valid session the answer
+is the usual 403, not the 404 "user is not authorized" of the spec. The spec's `include`/
+`exclude` parameters (field selection) aren't exposed: a trimmed response wouldn't fit the
+model anyway. `email` and `torrents.passkey` are secrets of the account; the passkey is kept
+out of the model's `repr`, and both are scrubbed from cassettes.
 
 **Other account endpoints without a session:**
 
