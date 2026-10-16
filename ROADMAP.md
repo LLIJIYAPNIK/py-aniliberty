@@ -45,7 +45,7 @@
 - [x] **1.7 Документация.** `mkdocs.yml`, `docs/index.md`, `quickstart.md`,
       `reference.md`, `endpoints.md`, `api-notes.md` в `nav`, `docs.yml` (Pages, cancel-in-
       progress, timeouts), джоба `docs` в `ci.yml`. Напомнить пользователю включить Pages.
-- [ ] **1.8 Примеры 01–05** (quickstart, latest/random, детали релиза, эпизоды и HLS,
+- [x] **1.8 Примеры 01–05** (quickstart, latest/random, детали релиза, эпизоды и HLS,
       поиск) + `examples/README.md`. Каждый прогнан против живого API.
 - [ ] **1.9 Публикация.** `release.yml` (Trusted Publishing), `cliff.toml` +
       `changelog.yml`, бейджи в README (PyPI, license, Python versions, CI, coverage,
