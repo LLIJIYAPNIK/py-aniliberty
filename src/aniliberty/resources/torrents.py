@@ -138,7 +138,7 @@ class TorrentsResource(BaseResource):
         )
         return TorrentFile(filename=_suggested_filename(response), content=response.content)
 
-    async def download(self, torrent: int | str | Torrent, path: str | os.PathLike[str]) -> Path:
+    async def download(self, torrent: int | str | Torrent, *, path: str | os.PathLike[str]) -> Path:
         """Download a ``.torrent`` file to disk, streaming it in chunks.
 
         The file is written to a temporary ``<name>.part`` next to the target and renamed
@@ -161,7 +161,7 @@ class TorrentsResource(BaseResource):
 
         Example:
             ```python
-            saved = await client.torrents.download(torrent, "downloads/")
+            saved = await client.torrents.download(torrent, path="downloads/")
             print(saved)  # downloads/One Piece - AniLiberty.TOP [WEBRip 1080p][AVC][1-24].torrent
             ```
         """

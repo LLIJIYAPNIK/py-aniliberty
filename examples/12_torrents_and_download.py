@@ -47,7 +47,7 @@ async def main() -> None:
         # streamed to "<name>.part" and renamed only when complete, so an interrupted
         # download never leaves a broken .torrent behind.
         with tempfile.TemporaryDirectory() as folder:
-            saved = await client.torrents.download(best, folder)
+            saved = await client.torrents.download(best, path=folder)
             print(f"Saved: {Path(saved).name}, {saved.stat().st_size} bytes")
 
         # The same torrent by its hash, in any letter case.
