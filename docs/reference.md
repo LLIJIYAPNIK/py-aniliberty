@@ -9,7 +9,7 @@ Everything below is importable from the top-level `aniliberty` package unless no
 ## Resources
 
 The namespaces of an `AniLiberty` instance: `client.app`, `client.releases`,
-`client.episodes`, `client.catalog` (with `client.catalog.references`), `client.schedule`, `client.genres`. Not meant to be created directly — import from `aniliberty.resources` only
+`client.episodes`, `client.catalog` (with `client.catalog.references`), `client.schedule`, `client.genres`, `client.franchises`. Not meant to be created directly — import from `aniliberty.resources` only
 for type annotations.
 
 ::: aniliberty.resources.AppResource
@@ -25,6 +25,8 @@ for type annotations.
 ::: aniliberty.resources.ScheduleResource
 
 ::: aniliberty.resources.GenresResource
+
+::: aniliberty.resources.FranchisesResource
 
 ## Pagination
 
@@ -57,6 +59,12 @@ for type annotations.
 ::: aniliberty.Episode
 
 ::: aniliberty.SkipRange
+
+### Franchises
+
+::: aniliberty.Franchise
+
+::: aniliberty.FranchiseRelease
 
 ### Schedule
 

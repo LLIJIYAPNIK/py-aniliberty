@@ -439,6 +439,33 @@ Requests: `GET /anime/genres`, `/anime/genres/14`, `/999999`, `/abc`, `/anime/ge
 accepting a genre ID or a `Genre`. The silent clamping of `random`'s `limit` and of `page` is
 harmless and only documented, not validated.
 
+## Franchises (checked 2026-10-16)
+
+Requests: `GET /anime/franchises`, `/anime/franchises/{id}` (existing, all-zero UUID, `abc`),
+`/anime/franchises/random` with `limit` omitted, 0, 1, 3, 50, 51, 1000, and
+`/anime/franchises/release/{id}` for releases with and without a franchise, by alias and for a
+missing release.
+
+- **List:** 271 franchises in one array, in the API's own order, without `franchise_releases`.
+- **`rating` is `null` on all 271** (the spec says number). `first_year`, `last_year`,
+  `total_episodes`, `total_releases` were `null` on 2, `total_duration` on 4. The two franchises
+  with `total_releases: null` still had 2 releases each in `franchise_releases` — the totals are
+  precomputed and can be stale. One of them had an image with all paths `null`.
+- **Single franchise** adds `franchise_releases: [{id, franchise_id, release_id, sort_order,
+  release}]`, ordered by `sort_order` 1, 2, … — chronological in every franchise looked at.
+  The embedded `release` has no `genres` or `episodes`.
+- **Missing franchise** (unknown UUID or `abc`) → the JSON 404.
+- **`/random`:** without `limit`, with `0`, or with more than there are (`1000`) it returns **all
+  271**; `50` and `51` return exactly that many — no maximum below the total.
+- **`/release/{releaseId}`:** the franchises with `franchise_releases`; **`[]` for a release
+  outside any franchise**; **an alias gives the 404 "release not found"** even though the
+  release exists (`quan-zhi-gao-shou`); a missing release ID → 404.
+
+**Conclusion:** `Franchise` treats every total and `rating` as optional;
+`client.franchises.for_release()` accepts only an `int` or a `Release` and rejects strings, so an
+alias fails with a clear `TypeError` instead of the misleading 404. `random()`'s docstring warns
+that leaving `limit` out returns everything.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent
@@ -488,8 +515,8 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 - **5xx body shape.** Not observed.
 - **WAF/challenge behaviour.** Not observed from the maintainer's network; Cloudflare is in front.
   What a challenge looks like (status, headers) is unknown.
-- **Maximum `limit`** on `/torrents`, `/franchises/random`, `/media/videos` (known so far: the
-  catalog and the release endpoints 50, `/genres/{id}/releases` 30, `/genres/random` clamps to
-  the number of genres).
+- **Maximum `limit`** on `/torrents`, `/media/videos` (known so far: the catalog and the release
+  endpoints 50, `/genres/{id}/releases` 30; `/genres/random` and `/franchises/random` return
+  everything when `limit` is out of range).
 - **Authentication details** (token lifetime, refresh, 401/403 bodies) — step 4.1.
 - **Schedule time zone** — whether `/schedule/now`'s "today" is UTC or Moscow time.
