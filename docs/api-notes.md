@@ -530,6 +530,37 @@ without parameters; cross-checked with `GET /anime/releases/sousou-no-frieren/me
 `nickname`/`avatar` are optional; `TeamMember.team` is required. `client.teams.users()`'s
 docstring says the list isn't sorted.
 
+## Media (checked 2026-10-16)
+
+Requests: `GET /media/promotions` three times in a row; `GET /media/videos` with `limit`
+omitted, 1, 0, -1, 50, 51, 100, 1000 and `abc`.
+
+- **Shape:** both return a **bare JSON array** — the spec documents `{"data": [...]}` for both
+  (the same mismatch as `/anime/schedule/week`). The SDK accepts either shape.
+- **Promotions:** 8 items, the same set every time but **shuffled on each call** (the spec says
+  "in random order"). Three kinds, told apart by which fields are set:
+  - featured release (4): `release` is a full release object (with `genres`), `url` and
+    `url_label` are `null`;
+  - the site's own link (2): `url` + `url_label`, no `release`;
+  - a text-only announcement (1): neither `url` nor `release`;
+  - a paid ad (1): `is_ad: true`, `url` + `url_label`, `title` and `description` `null`.
+  `ad_erid` and `ad_origin` are `null` on all 8 (no type to check against the spec's `string`).
+  Image paths are relative (`/storage/media/promotions/images/...`), like other images.
+- **Videos:** newest first by `created_at`; without `limit` — **10**; maximum **50** — `51`,
+  `100`, `1000` → 422 `{"errors": {"limit": ["Поле limit не может быть больше 50."]}}`,
+  `abc` → 422 "должно быть числом". **`limit=0` and `limit=-1` return all 1037 videos**
+  (~1.4 MB).
+- All 1037 videos are on `www.youtube.com`, every `origin.type.value` is `YOUTUBE_PLAYLIST`
+  (the spec's only enum value). `views` is `null` on 49, `comments` on 39, the image paths on 4.
+  `is_announce` on a video matches `is_announce` of its playlist (40 videos, all from
+  "Анонсы аниме-сезонов").
+- `include`/`exclude` are declared in the spec; the SDK doesn't expose them.
+
+**Conclusion:** `client.media.promotions()` and `client.media.videos()` unwrap `data` if it's
+there and otherwise take the list as is. `Video.views`/`comments` are optional;
+`VideoOrigin.type` is a `ValueDescription[str]` rather than a `Literal`, so a new source type
+doesn't break parsing. `videos()`'s docstring warns that `limit` ≤ 0 returns everything.
+
 ## Rate limiting (probed 2026-10-16)
 
 To see how the API limits clients, `GET https://aniliberty.top/api/v1/app/status` was sent

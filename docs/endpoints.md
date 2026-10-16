@@ -54,8 +54,8 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/anime/torrents/rss/release/{releaseId}` | Аниме.Торренты | RSS feed of a release's torrents (XML) |  | `client.torrents.rss_for_release()` | 3.4 |
 | `GET` | `/anime/torrents/{hashOrId}` | Аниме.Торренты | A single torrent by hash or ID |  | `client.torrents.get()` | 3.4 |
 | `GET` | `/anime/torrents/{hashOrId}/file` | Аниме.Торренты | The .torrent file by hash or ID |  | `client.torrents.file()`, `client.torrents.download()` | 3.4 |
-| `GET` | `/media/promotions` | Медиа.Промо | Promotional materials |  |  | 3.6 |
-| `GET` | `/media/videos` | Медиа.Видеоконтент | Video content |  |  | 3.6 |
+| `GET` | `/media/promotions` | Медиа.Промо | Promotional materials |  | `client.media.promotions()` | 3.6 |
+| `GET` | `/media/videos` | Медиа.Видеоконтент | Video content |  | `client.media.videos()` | 3.6 |
 | `GET` | `/teams/` | Команды | All AniLibria teams |  | `client.teams.list()` | 3.5 |
 | `GET` | `/teams/roles` | Команды | Team roles |  | `client.teams.roles()` | 3.5 |
 | `GET` | `/teams/users` | Команды | Team members |  | `client.teams.users()` | 3.5 |
