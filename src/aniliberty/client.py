@@ -15,6 +15,7 @@ from aniliberty._http import (
     HttpClient,
 )
 from aniliberty.resources.app import AppResource
+from aniliberty.resources.auth import AuthResource
 from aniliberty.resources.catalog import CatalogResource
 from aniliberty.resources.episodes import EpisodesResource
 from aniliberty.resources.franchises import FranchisesResource
@@ -47,6 +48,7 @@ class AniLiberty:
         torrents: Torrents, ``.torrent`` file downloads and RSS feeds.
         teams: AniLibria's own teams, roles and members.
         media: Front-page promo banners and AniLibria's YouTube videos.
+        auth: Logging in and out — by password, one-time code or social network.
 
     Example:
         ```python
@@ -73,6 +75,7 @@ class AniLiberty:
         max_concurrency: int = DEFAULT_MAX_CONCURRENCY,
         headers: Mapping[str, str] | None = None,
         http_client: httpx.AsyncClient | None = None,
+        token: str | None = None,
     ) -> None:
         """Initialize the client.
 
@@ -89,12 +92,16 @@ class AniLiberty:
                 (``Accept: application/json`` and the SDK's ``User-Agent``).
             http_client: A ready ``httpx.AsyncClient`` to send requests with, e.g. to set up
                 a proxy. The SDK doesn't close a client it didn't create.
+            token: Session token of an earlier login (``client.token`` saved from it), for
+                the account endpoints. Without one, call ``client.auth.login()``. Public
+                endpoints don't need it.
         """
         self.http = HttpClient(
             base_url=base_url,
             timeout=timeout,
             headers=headers,
             http_client=http_client,
+            token=token,
             max_concurrency=max_concurrency,
         )
         self.app = AppResource(self.http)
@@ -107,6 +114,22 @@ class AniLiberty:
         self.torrents = TorrentsResource(self.http)
         self.teams = TeamsResource(self.http)
         self.media = MediaResource(self.http)
+        self.auth = AuthResource(self.http)
+
+    @property
+    def token(self) -> str | None:
+        """The session token sent with every request, or ``None`` when not logged in.
+
+        Set by ``client.auth.login()`` (and the other login methods), cleared by
+        ``client.auth.logout()``. Save it to reuse the session later as
+        ``AniLiberty(token=...)``; assign ``None`` to stop sending it without ending the
+        session. It is a secret — don't log it.
+        """
+        return self.http.token
+
+    @token.setter
+    def token(self, value: str | None) -> None:
+        self.http.token = value
 
     async def __aenter__(self) -> Self:
         if self.http.closed:

@@ -1,6 +1,12 @@
 """Resource namespaces of ``AniLiberty`` (``client.app``, ...)."""
 
 from aniliberty.resources.app import AppResource
+from aniliberty.resources.auth import (
+    AuthResource,
+    OtpResource,
+    PasswordResource,
+    SocialAuthResource,
+)
 from aniliberty.resources.catalog import CatalogReferencesResource, CatalogResource
 from aniliberty.resources.episodes import EpisodesResource
 from aniliberty.resources.franchises import FranchisesResource
@@ -13,14 +19,18 @@ from aniliberty.resources.torrents import TorrentsResource
 
 __all__ = [
     "AppResource",
+    "AuthResource",
     "CatalogReferencesResource",
     "CatalogResource",
     "EpisodesResource",
     "FranchisesResource",
     "GenresResource",
     "MediaResource",
+    "OtpResource",
+    "PasswordResource",
     "ReleasesResource",
     "ScheduleResource",
+    "SocialAuthResource",
     "TeamsResource",
     "TorrentsResource",
 ]

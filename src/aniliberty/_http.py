@@ -105,6 +105,7 @@ class HttpClient:
         timeout: float = DEFAULT_TIMEOUT,
         headers: Mapping[str, str] | None = None,
         http_client: httpx.AsyncClient | None = None,
+        token: str | None = None,
         max_concurrency: int = DEFAULT_MAX_CONCURRENCY,
         request_delay: float = DEFAULT_REQUEST_DELAY,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -127,6 +128,8 @@ class HttpClient:
                 transport, proxy, limits, ...). The SDK's headers are added to each request
                 on top of the client's own, and the client is **not** closed by ``aclose()``
                 — its owner is responsible for that.
+            token: Session token sent as ``Authorization: Bearer <token>`` with every
+                request; see the ``token`` property.
             max_concurrency: Maximum number of requests in flight at once.
             request_delay: Minimum time, in seconds, between the starts of two consecutive
                 requests. ``0`` disables pacing.
@@ -157,6 +160,7 @@ class HttpClient:
         self._headers = httpx.Headers(DEFAULT_HEADERS)
         if headers is not None:
             self._headers.update(headers)
+        self._token = token or None
         self._owns_client = http_client is None
         self._client = http_client or httpx.AsyncClient(timeout=timeout)
         self._closed = False
@@ -186,6 +190,30 @@ class HttpClient:
         return f"{url.scheme}://{url.host}{port}"
 
     @property
+    def token(self) -> str | None:
+        """Session token sent as ``Authorization: Bearer <token>``, or ``None`` for none.
+
+        Set it to start or stop sending the token; it replaces an ``Authorization`` header
+        given in ``headers``. Public endpoints work with or without it (even with an expired
+        one); account endpoints answer 403 without a valid one.
+        """
+        return self._token
+
+    @token.setter
+    def token(self, value: str | None) -> None:
+        self._token = value or None
+
+    def discard_cookie(self, name: str) -> None:
+        """Remove a cookie the API has set from the underlying client's cookie jar.
+
+        Login responses also set the session token as the ``_al1`` cookie, which httpx
+        keeps and sends back — and which authenticates on its own. The SDK authenticates
+        with ``token`` only, so it drops that cookie to keep ``token`` the single source of
+        truth.
+        """
+        self._client.cookies.delete(name)
+
+    @property
     def closed(self) -> bool:
         """Whether ``aclose()`` has been called."""
         return self._closed
@@ -212,6 +240,7 @@ class HttpClient:
         *,
         params: Mapping[str, Any] | None = None,
         json: Any = None,
+        with_token: bool = True,
     ) -> Any:
         """Send a request and return the decoded JSON body.
 
@@ -222,6 +251,8 @@ class HttpClient:
             path: Path relative to ``base_url``, e.g. ``"/anime/releases/latest"``.
             params: Query parameters, passed to ``httpx`` as is.
             json: JSON request body.
+            with_token: Whether to send ``token``. ``False`` for the endpoints that refuse a
+                logged-in caller (``POST /accounts/otp/login`` answers 403 to one).
 
         Returns:
             The decoded JSON body (``dict``, ``list``, ...), or ``None`` for an empty body.
@@ -240,7 +271,9 @@ class HttpClient:
             roles = await client.http.request("GET", "/teams/roles")
             ```
         """
-        response = await self._send_with_retries(method, path, params=params, json=json)
+        response = await self._send_with_retries(
+            method, path, params=params, json=json, with_token=with_token
+        )
         return _handle_response(response)
 
     async def request_raw(
@@ -324,6 +357,7 @@ class HttpClient:
         params: Mapping[str, Any] | None,
         json: Any,
         stream: bool = False,
+        with_token: bool = True,
     ) -> httpx.Response:
         """Send a request, retrying as described on the class; return the final response.
 
@@ -337,7 +371,9 @@ class HttpClient:
         attempt = 0
         while True:
             try:
-                response = await self._send(method, url, params=params, json=json, stream=stream)
+                response = await self._send(
+                    method, url, params=params, json=json, stream=stream, with_token=with_token
+                )
             except httpx.TransportError as exc:
                 logger.debug("%s %s failed: %r", method, url, exc)
                 if method in IDEMPOTENT_METHODS and attempt < self._max_retries:
@@ -368,6 +404,7 @@ class HttpClient:
         params: Mapping[str, Any] | None,
         json: Any,
         stream: bool = False,
+        with_token: bool = True,
     ) -> httpx.Response:
         """Send one attempt, within the concurrency limit and after the pacing delay.
 
@@ -376,8 +413,12 @@ class HttpClient:
         """
         async with self._semaphore:
             await self._pace()
+            headers = self._headers
+            if with_token and self._token is not None:
+                headers = headers.copy()
+                headers["Authorization"] = f"Bearer {self._token}"
             request = self._client.build_request(
-                method, url, params=params, json=json, headers=self._headers
+                method, url, params=params, json=json, headers=headers
             )
             return await self._client.send(request, stream=stream)
 
@@ -441,7 +482,10 @@ def _raise_if_failed(response: httpx.Response) -> None:
     """Raise the matching error for an HTML page or an error status; do nothing otherwise."""
     method = response.request.method
     url = str(response.request.url)
-    if _media_type(response) == "text/html" and not response.is_server_error:
+    # Some endpoints answer with an empty text/html body (a 200 for success with nothing to
+    # return, a 404 for an unknown social-login state); only an actual page is a block.
+    is_html_page = _media_type(response) == "text/html" and bool(response.content.strip())
+    if is_html_page and not response.is_server_error:
         raise AccessBlockedError(
             "Got an HTML page instead of JSON: the request was likely stopped by the "
             "anti-bot protection in front of the API. Retrying won't help; if the API opens "

@@ -29,7 +29,6 @@ HTTP_METHODS = ("get", "post", "put", "patch", "delete", "head", "options")
 
 Operation = tuple[str, str]
 
-_AUTH_42 = "auth: roadmap 4.2 (login/logout)"
 _AUTH_43 = "auth: roadmap 4.3 (profile)"
 _AUTH_44 = "auth: roadmap 4.4 (favorites)"
 _AUTH_45 = "auth: roadmap 4.5 (collections)"
@@ -40,15 +39,6 @@ _ADS = "ads: out of scope"
 NOT_IMPLEMENTED: dict[Operation, str] = {
     ("POST", "/anime/catalog/releases"): "same as GET /anime/catalog/releases, which the SDK uses",
     # Phase 4 — account endpoints.
-    ("POST", "/accounts/otp/get"): _AUTH_42,
-    ("POST", "/accounts/otp/login"): _AUTH_42,
-    ("POST", "/accounts/otp/accept"): _AUTH_42,
-    ("POST", "/accounts/users/auth/login"): _AUTH_42,
-    ("POST", "/accounts/users/auth/logout"): _AUTH_42,
-    ("GET", "/accounts/users/auth/social/{provider}/login"): _AUTH_42,
-    ("GET", "/accounts/users/auth/social/authenticate"): _AUTH_42,
-    ("POST", "/accounts/users/auth/password/forget"): _AUTH_42,
-    ("POST", "/accounts/users/auth/password/reset"): _AUTH_42,
     ("GET", "/accounts/users/me/profile"): _AUTH_43,
     ("GET", "/accounts/users/me/favorites/ids"): _AUTH_44,
     ("GET", "/accounts/users/me/favorites/releases"): _AUTH_44,
@@ -155,9 +145,12 @@ def test_every_resource_class_is_reachable_from_the_client(
     resources: dict[str, BaseResource],
 ) -> None:
     reachable = {type(resource) for resource in resources.values()}
-    # Only the SDK's own classes: tests define throwaway subclasses of their own.
+    # Only the SDK's own public classes: tests define throwaway subclasses of their own, and
+    # private ones (``_SessionResource``) are shared bases, not namespaces.
     sdk_classes = {
-        cls for cls in subclasses(BaseResource) if cls.__module__.startswith("aniliberty.")
+        cls
+        for cls in subclasses(BaseResource)
+        if cls.__module__.startswith("aniliberty.") and not cls.__name__.startswith("_")
     }
     orphans = sorted(cls.__name__ for cls in sdk_classes - reachable)
     assert not orphans, f"resource classes not attached to AniLiberty: {orphans}"

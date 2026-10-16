@@ -114,10 +114,13 @@ class RateLimitError(APIError):
 
 
 class AuthRequiredError(APIError):
-    """The endpoint needs an authenticated user (401, or 403 with a JSON body).
+    """The request needs a valid session, or the credentials were wrong (401/403 JSON).
 
-    Account endpoints are not supported by the SDK yet, so this only shows up when calling one
-    of them through ``client.http.request(...)``.
+    The API answers 403 ``"This action is unauthorized."`` to an account endpoint called
+    without a session token, with a malformed one, or with one that was logged out or has
+    expired — it doesn't say which. Log in again (``client.auth.login()``) or pass a fresh
+    ``token`` to ``AniLiberty``. Wrong credentials at ``client.auth.login()`` are a 401; the
+    API's reason is in ``message``.
     """
 
 

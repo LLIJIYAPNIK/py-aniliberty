@@ -316,21 +316,68 @@ and three undocumented ad flags `is_with_video_ads`, `is_with_content_ads`,
   404) — the only 5xx body seen so far.
 - `GET /accounts/users/auth/social/authenticate` with an unknown `state` → 404 with
   `Content-Type: text/html` and an **empty body**, despite `Accept: application/json`. The
-  SDK's "HTML means the edge blocked us" rule would misreport that as `AccessBlockedError`;
-  step 4.2 has to handle it before wrapping the endpoint.
+  SDK's "HTML means the edge blocked us" rule used to misreport that as `AccessBlockedError`;
+  since step 4.2 an empty HTML body is mapped by its status instead.
 
-### Conclusions for the SDK (step 4.2 onwards)
+### One-time codes, social login, password recovery (checked 2026-10-16, step 4.2)
 
-- Auth is a bearer token; the SDK sends `Authorization: Bearer <token>` and ignores the
-  `_al1` cookie (`_scrub_response` drops it from cassettes along with every `Set-Cookie`).
-  With a shared `httpx.AsyncClient`, note that httpx keeps that cookie in its jar after a
-  login — and the cookie alone authenticates.
+**OTP** — logging a device in with a code confirmed from another, logged-in device:
+
+1. `POST /accounts/otp/get` `{"device_id": "..."}` (no session needed) → 200
+   `{"otp": {"code": "997903", "user_id": null, "device_id": "...", "expired_at": "..."},
+   "remaining_time": 299.66}`. The code is a **string** of 6 digits, lives 5 minutes
+   (`remaining_time` is fractional), and asking again for the same `device_id` returns the
+   same code. `device_id` can be any non-empty string.
+2. `POST /accounts/otp/accept` `{"code": ...}` with the session of the confirming account →
+   200 with an **empty `text/html` body** (also on repeating it). Without a session → 403;
+   an unknown code → JSON 404. `code` must be a number greater than 0 (`"abc"`, `0` → 422);
+   the string from step 1 is accepted as is.
+3. `POST /accounts/otp/login` `{"code": ..., "device_id": ...}` → 200 `{"token": ...}` plus
+   the `_al1` cookie, like a password login. The code is then used up (→ 404). Before step 2
+   it answers **500** `{"message": "Server Error"}` (the spec says 401). With a wrong
+   `device_id` → 404. And with a **valid session token** it answers **403** — it's for
+   guests only (an invalid token is treated as none).
+
+None of the other auth endpoints care about a token: login with a valid or garbage bearer
+works, and so do `otp/get` and `social/*/login`.
+
+**Social login** — `GET /accounts/users/auth/social/{provider}/login` works for all four
+providers of the spec enum (`vk`, `google`, `patreon`, `discord`) and returns
+`{"url": "<OAuth page>", "state": "..."}`, the `state` also being in the `url`. A provider in
+other letter case (`VK`) or an unknown one → 500. `GET .../social/authenticate` without
+`state` → 422, with an unknown one → the empty `text/html` 404 above. Completing the OAuth
+flow in a browser was not tried.
+
+**Password recovery** — `POST /accounts/users/auth/password/forget`: no `email` or a
+malformed one → 422; an e-mail of **no account** → 200 with an empty `text/html` body, as the
+spec describes for a real one (no account enumeration; not tried with a real address to avoid
+sending mail). `POST .../password/reset`: missing fields → 422, `password` ≠
+`password_confirmation` → 422, unknown `token` → JSON 404.
+
+### What the SDK does
+
+- `AniLiberty(token=...)` / `client.token` hold the session token; it's sent as
+  `Authorization: Bearer <token>` (replacing an `Authorization` header from `headers`).
+  `client.auth.login()`, `client.auth.otp.login()` and `client.auth.social.authenticate()`
+  store the new token; `client.auth.logout()` clears it (also when the API rejects it with
+  403 — the session is over either way; on other errors it's kept).
+- The `_al1` cookie is dropped from the httpx cookie jar right after a login, so the token
+  is the only credential (`_scrub_response` also drops it from cassettes along with every
+  `Set-Cookie`).
+- `client.auth.otp.login()` is sent without the token (`HttpClient.request(...,
+  with_token=False)`), since the API refuses it from a logged-in caller.
+- A `text/html` response with an **empty** body is not treated as an anti-bot page: an empty
+  2xx is "no content" (`None`), an empty 404 is `NotFoundError`.
+- `client.auth.social.login()` checks `provider` against the spec enum before sending, rather
+  than letting the API answer 500.
 - There is no refresh endpoint, and the token carries no expiry. The cookie suggests an 8-day
   lifetime, possibly sliding; whether the server-side session itself expires after 8 days
-  (and whether bearer use extends it) can only be seen by waiting — unverified.
+  (and whether bearer use extends it) can only be seen by waiting — unverified. An expired
+  session looks like any other 403.
 - 401 (wrong credentials at login) and 403 (anything with a missing/invalid/expired session)
   both map to `AuthRequiredError`. Its `message` comes from `message`, or from `error` when
-  there's no `message` (the login 401).
+  there's no `message` (the login 401). Protected methods called without a token simply get
+  the API's 403 — the SDK doesn't pre-check, so a missing and a stale token behave the same.
 - Only the account's own endpoints need the token; passing a stale one to public endpoints is
   harmless.
 
@@ -685,7 +732,8 @@ cassettes of `tests/integration/test_app.py` and `tests/integration/test_auth.py
 
 | Response | Exception |
 |---|---|
-| `text/html` body, status below 500 (including 200) | `AccessBlockedError` — with `Accept: application/json` the API never answers with HTML, so this is the edge in front of it |
+| `text/html` page (non-blank body), status below 500 (including 200) | `AccessBlockedError` — with `Accept: application/json` the API never answers with an HTML page, so this is the edge in front of it |
+| `text/html` with an empty body | mapped by status like JSON: `None` for 2xx (OTP accept, password forget), `NotFoundError` for 404 (unknown social-login state) |
 | `text/html` body, 5xx | `ServerError` — Cloudflare renders its own origin errors (502, 520, ...) as HTML too, and those are worth retrying |
 | 2xx with an invalid JSON body | `ResponseParseError` (body text in `payload`) |
 | 404 | `NotFoundError` (`message` is `"Not found"`, the Laravel string stays in `payload`) |

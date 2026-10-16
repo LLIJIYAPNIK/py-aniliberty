@@ -9,7 +9,7 @@ Everything below is importable from the top-level `aniliberty` package unless no
 ## Resources
 
 The namespaces of an `AniLiberty` instance: `client.app`, `client.releases`,
-`client.episodes`, `client.catalog` (with `client.catalog.references`), `client.schedule`, `client.genres`, `client.franchises`, `client.torrents`, `client.teams`, `client.media`. Not meant to be created directly — import from `aniliberty.resources` only
+`client.episodes`, `client.catalog` (with `client.catalog.references`), `client.schedule`, `client.genres`, `client.franchises`, `client.torrents`, `client.teams`, `client.media`, `client.auth` (with `client.auth.otp`, `client.auth.social`, `client.auth.password`). Not meant to be created directly — import from `aniliberty.resources` only
 for type annotations.
 
 ::: aniliberty.resources.AppResource
@@ -33,6 +33,14 @@ for type annotations.
 ::: aniliberty.resources.TeamsResource
 
 ::: aniliberty.resources.MediaResource
+
+::: aniliberty.resources.AuthResource
+
+::: aniliberty.resources.OtpResource
+
+::: aniliberty.resources.SocialAuthResource
+
+::: aniliberty.resources.PasswordResource
 
 ## Pagination
 
@@ -135,6 +143,19 @@ for type annotations.
 ::: aniliberty.ApiStatus
 
 ::: aniliberty.RequestInfo
+
+### Authentication
+
+::: aniliberty.AuthToken
+
+::: aniliberty.IssuedOtp
+
+::: aniliberty.Otp
+
+::: aniliberty.SocialLogin
+
+`SocialProvider` (in `aniliberty.models`) is the `Literal` of the providers
+`client.auth.social.login()` accepts: `"vk"`, `"google"`, `"patreon"`, `"discord"`.
 
 ## Exceptions
 
