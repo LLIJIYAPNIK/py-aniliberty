@@ -12,8 +12,10 @@ episodes (HLS links), quick search, catalog with filters, schedule, genres, fran
 torrents, teams and media — and, with an account, favorites, collections, watch progress
 and ratings.
 
-> **Status:** early development. Every endpoint of the API is covered except the ad ones; see
-> [`ROADMAP.md`](https://github.com/LLIJIYAPNIK/py-aniliberty/blob/main/ROADMAP.md).
+> **Status:** stable. Every endpoint of the API is covered except the ad ones. Since `1.0.0`
+> the package follows [Semantic Versioning](https://semver.org/): breaking changes come only
+> with a new major version. Coming from `0.x`? See
+> [Upgrading to 1.0](https://llijiyapnik.github.io/py-aniliberty/upgrading/).
 
 **Documentation:** <https://llijiyapnik.github.io/py-aniliberty/>
 

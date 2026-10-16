@@ -112,7 +112,7 @@
 - [x] **5.2 Полнота документации** — каждая публичная сущность в reference, каждая фича
       с гайдом или примером, `endpoints.md` без пустых строк. Следит `tests/test_docs.py`;
       страница `docs/examples.md` — примеры на сайте документации.
-- [ ] **5.3 Classifier `Development Status :: 5 - Production/Stable`**, релиз `1.0.0`.
+- [x] **5.3 Classifier `Development Status :: 5 - Production/Stable`**, релиз `1.0.0`.
 
 ## Возможные расширения (не планируются, только по запросу)
 
