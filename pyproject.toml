@@ -1,6 +1,6 @@
 [project]
 name = "py-aniliberty"
-version = "0.0.1"
+version = "0.1.0"
 description = "Async Python SDK for the AniLibria API: releases, episodes (HLS links), catalog, schedule, franchises, torrents"
 readme = "README.md"
 license = "MIT"
