@@ -39,6 +39,8 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`17_media.py`](17_media.py) | `media.promotions()` / `videos()` — kinds of promo banners, latest YouTube videos and `limit` |
 | [`18_authentication.py`](18_authentication.py) | `auth.login()` / `logout()`, `client.token` and `AniLiberty(token=...)`, `me.profile()`, 401 vs 403 |
 | [`19_otp_device_login.py`](19_otp_device_login.py) | `auth.otp.get()` / `accept()` / `login()` — logging a device in with a one-time code |
+| [`20_favorites.py`](20_favorites.py) | `me.favorites.add()` / `remove()` / `ids()` / `releases()` / `iter_releases()` / `references` |
+| [`21_collections.py`](21_collections.py) | `me.collections.add(..., to=...)` / `remove()` / `ids()` / `releases(collection)` — moving between collections |
 
 See the [API reference](https://llijiyapnik.github.io/py-aniliberty/reference/) for every
 public class and method.
