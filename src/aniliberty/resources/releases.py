@@ -141,7 +141,7 @@ class ReleasesResource(BaseResource):
 
         Example:
             ```python
-            page = await client.releases.list(ids=[9951, 9433], aliases=["naruto"])
+            page = await client.releases.list(ids=[10172, 10297], aliases=["sousou-no-frieren"])
             for release in page.items:
                 print(release.id, release.name.main)
             ```
@@ -196,7 +196,7 @@ class ReleasesResource(BaseResource):
         """Get one release by its ID or alias.
 
         Args:
-            id_or_alias: Release ID (``9919``) or alias (``"naruto"``).
+            id_or_alias: Release ID (``10297``) or alias (``"sousou-no-frieren"``).
 
         Returns:
             The release, with ``genres``, ``members``, ``sponsors`` and
@@ -235,7 +235,7 @@ class ReleasesResource(BaseResource):
 
         Example:
             ```python
-            for member in await client.releases.members(9919):
+            for member in await client.releases.members(10297):
                 print(member.nickname, member.role.description if member.role else "")
             ```
         """
