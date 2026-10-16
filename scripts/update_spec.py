@@ -21,9 +21,9 @@ from typing import Any
 
 import httpx
 
-# The Swagger UI at https://anilibria.top/api/docs/v1 loads its spec from this URL
+# The Swagger UI at https://aniliberty.top/api/docs/v1 loads its spec from this URL
 # (see the `url:` option of `SwaggerUIBundle(...)` in that page's HTML).
-DEFAULT_URL = "https://anilibria.top/storage/api/docs/v1?aniliberty-api-v1-docs.json"
+DEFAULT_URL = "https://aniliberty.top/storage/api/docs/v1?aniliberty-api-v1-docs.json"
 SPEC_PATH = Path(__file__).resolve().parent.parent / "spec" / "openapi.json"
 HTTP_METHODS = frozenset({"get", "post", "put", "patch", "delete", "head", "options"})
 

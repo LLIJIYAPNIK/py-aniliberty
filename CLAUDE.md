@@ -8,8 +8,9 @@
 каталог с фильтрами, расписание, франшизы, жанры, торренты, команды, медиа — и, на поздних
 этапах, аккаунтные эндпоинты (избранное, коллекции, таймкоды просмотра).
 
-- Документация API (Swagger UI): `https://anilibria.top/api/docs/v1#/`
-- Базовый URL API: `https://anilibria.top/api/v1` (зеркала домена существуют —
+- Документация API (Swagger UI): `https://aniliberty.top/api/docs/v1#/` (то же на `anilibria.top`)
+- Базовый URL API: `https://aniliberty.top/api/v1` — основной сервер по спеке и `/app/status`
+  (решение пользователя 2026-10-16; `anilibria.top` работает как зеркало —
   `base_url` настраиваемый, см. ниже)
 
 - Репозиторий: `https://github.com/LLIJIYAPNIK/py-aniliberty`
@@ -65,7 +66,7 @@
 from aniliberty import AniLiberty
 
 async with AniLiberty(
-    base_url="https://anilibria.top/api/v1",   # дефолт; можно зеркало
+    base_url="https://aniliberty.top/api/v1",  # дефолт; можно зеркало (anilibria.top)
     timeout=30.0,
     max_concurrency=5,
     headers=None,                              # доп. заголовки поверх дефолтных (User-Agent SDK)
@@ -162,11 +163,12 @@ async with AniLiberty(
 Подробности (запрос → ответ → вывод) — в `docs/api-notes.md`. Кратко, 2026-10-16, запросы
 без авторизации с `python-httpx`/`curl` User-Agent:
 
-- **Спека**: `https://anilibria.top/storage/api/docs/v1?aniliberty-api-v1-docs.json`
+- **Спека**: `https://aniliberty.top/storage/api/docs/v1?aniliberty-api-v1-docs.json`
   (query-строка — часть URL; это `url:` из `SwaggerUIBundle` на `/api/docs/v1`).
 - **Хосты**: спека называет основным сервером `https://aniliberty.top/api/v1`;
   `GET /app/status` отдаёт `available_api_endpoints: ["https://aniliberty.top"]`.
-  `anilibria.top/api/v1` работает; `aniliberty.top` живьём не проверен.
+  Оба хоста отвечают одинаково (статус, JSON-404, `/storage/...`-картинки, та же спека).
+  Дефолтный `base_url` SDK — `https://aniliberty.top/api/v1`, `anilibria.top` — зеркало.
 - **User-Agent/WAF**: особый UA, Referer, cookie не нужны. Всё за Cloudflare
   (`server: cloudflare`), челленджей не встречено.
 - **`Accept: application/json` обязателен**: без него 404 приходит HTML-страницей Laravel,
@@ -197,13 +199,12 @@ async with AniLiberty(
 ### Что НЕ проверено и требует исследования перед реализацией (не гадать)
 
 - 429: есть ли `Retry-After`, какие лимиты. Заголовков `X-RateLimit-*`/`Retry-After` в
-  ответах нет; 429 специально не провоцировали (шаг 1.2 — проверить аккуратно или
-  реализовать по общему правилу без привязки к телу).
+  ответах нет; 429 специально не провоцировали. На шаге 1.2 пользователь разрешил
+  один раз аккуратно спровоцировать 429 и записать тело/заголовки.
 - Тело 5xx — не встречалось.
 - Как выглядит челлендж Cloudflare (статус, заголовки) — с машины пользователя не
   воспроизводится.
 - Максимальный `limit` у остальных пагинируемых/лимитируемых эндпоинтов (кроме каталога).
-- Зеркало `aniliberty.top` — живьём не запрашивалось.
 - Аутентификация: срок жизни токена, refresh, тела 401/403 (шаг 4.1).
 
 Каждый пункт закрывается коротким ручным исследованием **до** продакшен-кода фичи, итог —
@@ -374,7 +375,9 @@ py-aniliberty/
 ## Git workflow
 
 - Одна фича — одна ветка — один PR. Ветки: `feature/<кратко>`, `fix/<кратко>`,
-  `docs/<кратко>`, `ci/<кратко>`.
+  `docs/<кратко>`, `ci/<кратко>`; для шагов ROADMAP — с номером шага:
+  `feature/1.1-http-core`. Ответвляться можно от несмерженной ветки предыдущего шага —
+  base PR = она, зависимость указать в описании (решение пользователя 2026-10-16).
 - Conventional Commits (`feat:`, `fix:`, `test:`, `docs:`, `chore:`, `refactor:`, `ci:`,
   `perf:`), коммиты атомарные.
 - **Никогда не мержить и не пушить в `main` напрямую.** PR оставляется пользователю на

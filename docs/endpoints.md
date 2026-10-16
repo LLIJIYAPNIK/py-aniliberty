@@ -3,7 +3,7 @@
 Every operation of the AniLibria API v1 spec ([`spec/openapi.json`](https://github.com/LLIJIYAPNIK/py-aniliberty/blob/main/spec/openapi.json),
 snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers it.
 
-- **Path** is relative to the API base URL, `https://anilibria.top/api/v1` by default.
+- **Path** is relative to the API base URL, `https://aniliberty.top/api/v1` by default.
 - **Tag** is the operation's tag in the spec, as-is (the spec's tags are in Russian).
 - **Auth** is `yes` when the operation declares its own bearer `security` in the spec. The spec
   also has a global bearer requirement, but the public endpoints work without a token — see

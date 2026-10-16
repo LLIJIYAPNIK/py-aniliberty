@@ -37,9 +37,14 @@ part of the URL as-is — `/storage/api/docs/v1/aniliberty-api-v1-docs.json` is 
   }
   ```
 
-**Conclusion:** `anilibria.top` serves the API; the API itself advertises `aniliberty.top` as an
-alternative host. The SDK keeps `https://anilibria.top/api/v1` as the default `base_url` and lets
-users switch to a mirror. Requests to `aniliberty.top` were not tested yet.
+The same requests against `https://aniliberty.top/api/v1` (`/app/status`, a missing release,
+`/anime/releases/latest`) returned identical responses, `aniliberty.top/storage/...` serves the
+same images, and the spec at `aniliberty.top/storage/api/docs/v1?aniliberty-api-v1-docs.json`
+is byte-for-byte the same after normalization.
+
+**Conclusion:** both hosts serve the same API. The SDK's default `base_url` is
+`https://aniliberty.top/api/v1` — the host both the spec and `/app/status` call the main one;
+`https://anilibria.top/api/v1` works as a mirror.
 
 ## No special User-Agent or anti-bot challenge (so far)
 
@@ -241,5 +246,4 @@ optional `pk` (user passkey) query parameter. Not called live yet (step 3.4).
   What a challenge looks like (status, headers) is unknown.
 - **Maximum `limit`** on endpoints other than the catalog (`/releases/list`, `/genres/{id}/releases`,
   `/torrents`, `/releases/latest`, `/random`, ...).
-- **Mirror `aniliberty.top`** — not requested yet.
 - **Authentication details** (token lifetime, refresh, 401/403 bodies) — step 4.1.
