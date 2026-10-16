@@ -9,16 +9,23 @@ from aniliberty._http import HttpClient
 from aniliberty.models.catalog import AgeRatingValue, ReleaseType, SortingOption
 from aniliberty.models.common import ValueDescription
 from aniliberty.models.genre import Genre
-from aniliberty.models.release import AgeRating, Release
+from aniliberty.models.release import Release
 from aniliberty.models.user import FavoritesSorting
 from aniliberty.pagination import Page, iterate_pages
 from aniliberty.resources._base import BaseResource
-from aniliberty.resources._filters import enum_value, enum_values, genre_ids
+from aniliberty.resources._filters import (
+    enum_value,
+    enum_values,
+    genre_ids,
+    release_ids,
+    year_list,
+)
+from aniliberty.resources._lists import _OwnListReferencesResource
 
 _PATH = "/accounts/users/me/favorites"
 
 
-class FavoritesReferencesResource(BaseResource):
+class FavoritesReferencesResource(_OwnListReferencesResource):
     """Values the favorites filters accept, available as ``client.me.favorites.references``.
 
     Unlike ``client.catalog.references``, the lists only contain what occurs in the user's
@@ -33,62 +40,7 @@ class FavoritesReferencesResource(BaseResource):
         ("GET", "/accounts/users/me/favorites/references/types"),
         ("GET", "/accounts/users/me/favorites/references/years"),
     )
-
-    async def genres(self) -> list[Genre]:
-        """Get the genres of the releases in favorites.
-
-        Returns:
-            Genres with ``id`` and ``name`` only.
-
-        Raises:
-            AuthRequiredError: No valid session.
-            APIError: The API answered with another error.
-            TransportError: The request failed without a response.
-            ResponseParseError: The response didn't match ``Genre``.
-        """
-        return await self._get(f"{_PATH}/references/genres", list[Genre])
-
-    async def types(self) -> list[ValueDescription[str]]:
-        """Get the release types in favorites, e.g. ``value="TV"``, ``description="ТВ"``.
-
-        Returns:
-            The release types.
-
-        Raises:
-            AuthRequiredError: No valid session.
-            APIError: The API answered with another error.
-            TransportError: The request failed without a response.
-            ResponseParseError: The response didn't match ``ValueDescription``.
-        """
-        return await self._get(f"{_PATH}/references/types", list[ValueDescription[str]])
-
-    async def years(self) -> list[int]:
-        """Get the release years in favorites, newest first.
-
-        Returns:
-            The years.
-
-        Raises:
-            AuthRequiredError: No valid session.
-            APIError: The API answered with another error.
-            TransportError: The request failed without a response.
-            ResponseParseError: The response wasn't a list of integers.
-        """
-        return await self._get(f"{_PATH}/references/years", list[int])
-
-    async def age_ratings(self) -> list[AgeRating]:
-        """Get the age ratings in favorites, e.g. ``value="R16_PLUS"``, ``label="16+"``.
-
-        Returns:
-            The age ratings (``is_adult`` is ``None`` here).
-
-        Raises:
-            AuthRequiredError: No valid session.
-            APIError: The API answered with another error.
-            TransportError: The request failed without a response.
-            ResponseParseError: The response didn't match ``AgeRating``.
-        """
-        return await self._get(f"{_PATH}/references/age-ratings", list[AgeRating])
+    _REFERENCES_PATH = f"{_PATH}/references"
 
     async def sorting(self) -> list[SortingOption]:
         """Get the ways favorites can be sorted, e.g. ``value="CREATED_AT_DESC"``.
@@ -176,7 +128,8 @@ class FavoritesResource(BaseResource):
             await client.me.favorites.add(9839, release)
             ```
         """
-        payload = await self._http.request("POST", _PATH, json=_release_items(releases))
+        body = [{"release_id": release_id} for release_id in release_ids(releases)]
+        payload = await self._http.request("POST", _PATH, json=body)
         return self._parse(payload, list[int], path=_PATH)
 
     async def remove(self, *releases: int | Release) -> list[int]:
@@ -202,7 +155,8 @@ class FavoritesResource(BaseResource):
             left = await client.me.favorites.remove(9839)
             ```
         """
-        payload = await self._http.request("DELETE", _PATH, json=_release_items(releases))
+        body = [{"release_id": release_id} for release_id in release_ids(releases)]
+        payload = await self._http.request("DELETE", _PATH, json=body)
         return self._parse(payload, list[int], path=_PATH)
 
     async def releases(
@@ -340,7 +294,7 @@ def _favorites_params(
         "f": {
             "genres": genre_ids(genres),
             "types": enum_values("types", types, get_args(ReleaseType)),
-            "years": _years(years),
+            "years": year_list(years),
             "search": search,
             "sorting": (
                 None
@@ -350,27 +304,3 @@ def _favorites_params(
             "age_ratings": enum_values("age_ratings", age_ratings, get_args(AgeRatingValue)),
         }
     }
-
-
-def _years(years: Sequence[int] | None) -> list[int] | None:
-    if years is None:
-        return None
-    if not isinstance(years, Sequence) or isinstance(years, str):
-        raise TypeError(f"years must be a list of years, e.g. years=[{years!r}]")
-    for year in years:
-        if isinstance(year, bool) or not isinstance(year, int):
-            raise TypeError(f"years must be ints, got {year!r}")
-    return list(years)
-
-
-def _release_items(releases: Sequence[int | Release]) -> list[dict[str, int]]:
-    """Turn release IDs or ``Release`` objects into the ``[{"release_id": ...}]`` body."""
-    if not releases:
-        raise ValueError("Pass at least one release (an ID or a Release object)")
-    items = []
-    for release in releases:
-        release_id = release.id if isinstance(release, Release) else release
-        if isinstance(release_id, bool) or not isinstance(release_id, int):
-            raise TypeError(f"Expected a release ID or a Release, got {release!r}")
-        items.append({"release_id": release_id})
-    return items

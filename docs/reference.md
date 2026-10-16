@@ -47,6 +47,8 @@ for type annotations.
 ::: aniliberty.resources.FavoritesResource
 
 ::: aniliberty.resources.FavoritesReferencesResource
+    options:
+      inherited_members: true
 
 ## Pagination
 
