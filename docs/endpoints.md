@@ -26,10 +26,10 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/anime/catalog/references/sorting` | Аниме.Каталог.Справочники | Catalog reference: sorting options |  | `client.catalog.references.sorting()` | 2.1 |
 | `GET` | `/anime/catalog/references/types` | Аниме.Каталог.Справочники | Catalog reference: release types |  | `client.catalog.references.types()` | 2.1 |
 | `GET` | `/anime/catalog/references/years` | Аниме.Каталог.Справочники | Catalog reference: years |  | `client.catalog.references.years()` | 2.1 |
-| `GET` | `/anime/franchises` | Аниме.Франшизы | All franchises |  |  | 3.3 |
-| `GET` | `/anime/franchises/random` | Аниме.Франшизы | Random franchises |  |  | 3.3 |
-| `GET` | `/anime/franchises/release/{releaseId}` | Аниме.Франшизы | Franchises a release belongs to |  |  | 3.3 |
-| `GET` | `/anime/franchises/{franchiseId}` | Аниме.Франшизы | A single franchise |  |  | 3.3 |
+| `GET` | `/anime/franchises` | Аниме.Франшизы | All franchises |  | `client.franchises.list()` | 3.3 |
+| `GET` | `/anime/franchises/random` | Аниме.Франшизы | Random franchises |  | `client.franchises.random()` | 3.3 |
+| `GET` | `/anime/franchises/release/{releaseId}` | Аниме.Франшизы | Franchises a release belongs to |  | `client.franchises.for_release()` | 3.3 |
+| `GET` | `/anime/franchises/{franchiseId}` | Аниме.Франшизы | A single franchise |  | `client.franchises.get()` | 3.3 |
 | `GET` | `/anime/genres` | Аниме.Жанры | All genres |  | `client.genres.list()` | 3.2 |
 | `GET` | `/anime/genres/random` | Аниме.Жанры | Random genres |  | `client.genres.random()` | 3.2 |
 | `GET` | `/anime/genres/{genreId}` | Аниме.Жанры | A single genre |  | `client.genres.get()` | 3.2 |

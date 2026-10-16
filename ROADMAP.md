@@ -67,7 +67,7 @@
 - [x] **3.1 Расписание.** `client.schedule.now()`, `client.schedule.week()` + пример 09.
 - [x] **3.2 Жанры.** `client.genres.*` (список, `get`, `random`, релизы жанра с
       пагинацией) + пример 10.
-- [ ] **3.3 Франшизы.** `client.franchises.*` (список, `get`, `random`, франшиза релиза)
+- [x] **3.3 Франшизы.** `client.franchises.*` (список, `get`, `random`, франшиза релиза)
       + пример 11.
 - [ ] **3.4 Торренты.** `client.torrents.*` (список, `get`, `for_release`, RSS) и
       `download(hash_or_id, path=...)` — потоковая запись `.torrent` на диск через

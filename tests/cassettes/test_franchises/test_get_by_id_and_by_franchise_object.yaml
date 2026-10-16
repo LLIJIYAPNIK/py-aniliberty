@@ -1,0 +1,248 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/franchises/random?limit=1
+  response:
+    body:
+      string: '[{"id":"a18ca1f0-8037-465a-9bf4-d033c3f5b29b","name":"\u041a\u043b\u0451\u0441\u0442","image":{"preview":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/mdFi2JcniRH5pd2vFvq8kwiI3gKMZ0O6.jpg","thumbnail":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/JnViuIz7fHzNYAbPXXGUcfkn00P1YSbD.jpg","optimized":{"preview":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/Jiv6lwpEyreGl2mAOnChI9416HWjtNVG.webp","thumbnail":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/c5t4HnXccp2vGuK43TNDcVL2VgFK61OK.webp"}},"rating":null,"last_year":2015,"first_year":2015,"name_english":"Isuca","total_episodes":11,"total_releases":2,"total_duration":"4
+        \u0447\u0430\u0441\u0430 20 \u043c\u0438\u043d\u0443\u0442","total_duration_in_seconds":15630}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b5155e1f705c43-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '842'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 06:42:25 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=MayekwTKUKtiaU4D%2B9WxyNiS2qZY3oUUP8g9mibGID8HR3p8Uz9b2CKxzC0iP68yseiFacJFX9T5T7O1Gx%2BPjptK8bjqO4TqrOCM43SI0PW8G%2Bv7iK%2FkSWh9HmyelRmabQ%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/franchises/a18ca1f0-8037-465a-9bf4-d033c3f5b29b
+  response:
+    body:
+      string: '{"id":"a18ca1f0-8037-465a-9bf4-d033c3f5b29b","name":"\u041a\u043b\u0451\u0441\u0442","image":{"preview":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/mdFi2JcniRH5pd2vFvq8kwiI3gKMZ0O6.jpg","thumbnail":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/JnViuIz7fHzNYAbPXXGUcfkn00P1YSbD.jpg","optimized":{"preview":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/Jiv6lwpEyreGl2mAOnChI9416HWjtNVG.webp","thumbnail":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/c5t4HnXccp2vGuK43TNDcVL2VgFK61OK.webp"}},"rating":null,"last_year":2015,"first_year":2015,"name_english":"Isuca","total_episodes":11,"total_releases":2,"total_duration":"4
+        \u0447\u0430\u0441\u0430 20 \u043c\u0438\u043d\u0443\u0442","total_duration_in_seconds":15630,"franchise_releases":[{"id":"a18ca20e-bf15-4a8f-bf23-303cda0edd56","sort_order":1,"release_id":408,"franchise_id":"a18ca1f0-8037-465a-9bf4-d033c3f5b29b","release":{"id":408,"type":{"value":"TV","description":"\u0422\u0412"},"year":2015,"name":{"main":"\u041a\u043b\u0451\u0441\u0442","english":"Isuca","alternative":null},"alias":"isuca-klest","season":{"value":"winter","description":"\u0417\u0438\u043c\u0430"},"shikimori":{"id":25429,"url":"https:\/\/shikimori.io\/animes\/25429","votes":4666,"rating":6.6},"mal":{"id":25429,"url":"https:\/\/myanimelist.net\/anime\/25429","votes":70987,"rating":5.97},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/408\/gMgYRNzDI5yZV6rTn3D3Yb0JAj0fmTH9.jpg","preview":"\/storage\/releases\/posters\/408\/gMgYRNzDI5yZV6rTn3D3Yb0JAj0fmTH9.jpg","thumbnail":"\/storage\/releases\/posters\/408\/MRwl7YOAVqBzTwO21OvcWaIsYqHbuY6v.jpg","optimized":{"src":"\/storage\/releases\/posters\/408\/pP9d6p4vpyoOgS8d2SCrcbn2tc7m5kR1.webp","preview":"\/storage\/releases\/posters\/408\/pP9d6p4vpyoOgS8d2SCrcbn2tc7m5kR1.webp","thumbnail":"\/storage\/releases\/posters\/408\/mHOMNSnpf7I5hxT5jNWMPrrVtM0LoB8q.webp"}},"fresh_at":"2015-09-23T12:02:59+00:00","created_at":"2015-09-23T12:02:59+00:00","updated_at":"2024-08-02T19:50:35+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":1,"description":"\u041f\u043e\u043d\u0435\u0434\u0435\u043b\u044c\u043d\u0438\u043a"},"description":"\u0428\u0438\u043d\u0438\u0447\u0438\u0440\u043e
+        \u0438\u0449\u0435\u0442 \u0440\u0430\u0431\u043e\u0442\u0443, \u0447\u0442\u043e\u0431\u044b
+        \u043e\u0442\u043f\u043b\u0430\u0442\u0438\u0442\u044c \u0441\u0447\u0435\u0442\u0430
+        \u0437\u0430 \u043a\u0432\u0430\u0440\u0442\u0438\u0440\u0443. \u0415\u0433\u043e
+        \u0443\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430 \u043f\u0440\u0435\u0434\u043b\u0430\u0433\u0430\u0435\u0442
+        \u0435\u043c\u0443 \u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c \u0443
+        \u0435\u0451 \u0437\u043d\u0430\u043a\u043e\u043c\u044b\u0445, \u043f\u0440\u043e\u0441\u0442\u043e
+        \u0443\u0431\u0438\u0440\u0430\u044f\u0441\u044c \u0443 \u0442\u0435\u0445
+        \u0434\u043e\u043c\u0430. \u0427\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c,
+        \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0441\u043e\u0433\u043b\u0430\u0448\u0430\u0435\u0442\u0441\u044f
+        \u043f\u0440\u0438\u043d\u044f\u0442\u044c \u0410\u0441\u0430\u043d\u043e,
+        \u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u0421\u0430\u043a\u0443\u044f
+        \u2014 37-\u044f \u0433\u043b\u0430\u0432\u0430 \u043a\u043b\u0430\u043d\u0430
+        \u0428\u0438\u043c\u0430\u0434\u0437\u0443, \u0447\u044c\u0435\u0439 \u0440\u0430\u0431\u043e\u0442\u043e\u0439
+        \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u0438\u0437\u0433\u043d\u0430\u043d\u0438\u0435
+        \u0438 \u0443\u043d\u0438\u0447\u0442\u043e\u0436\u0435\u043d\u0438\u0435
+        \u043c\u0438\u0441\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0441\u0443\u0449\u0435\u0441\u0442\u0432.
+        \u0428\u0438\u043d\u0438\u0447\u0438\u0440\u043e \u0441\u043b\u0443\u0447\u0430\u0439\u043d\u043e
+        \u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442 \u043e\u0434\u043d\u043e
+        \u0438\u0437 \u0441\u0443\u0449\u0435\u0441\u0442\u0432, \u043a\u043e\u0442\u043e\u0440\u043e\u0435
+        \u043d\u0435\u043a\u043e\u0433\u0434\u0430 \u0437\u0430\u043f\u0435\u0447\u0430\u0442\u0430\u043b\u0430
+        \u0421\u0430\u043a\u0443\u044f. \u0422\u0435\u043f\u0435\u0440\u044c \u044d\u0442\u0438\u043c
+        \u0434\u0432\u043e\u0438\u043c \u043f\u0440\u0438\u0434\u0451\u0442\u0441\u044f
+        \u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c \u0432\u043c\u0435\u0441\u0442\u0435,
+        \u0447\u0442\u043e\u0431\u044b \u043f\u043e\u0439\u043c\u0430\u0442\u044c
+        \u0435\u0433\u043e. \u0417\u0434\u0435\u0441\u044c \u0438 \u043d\u0430\u0447\u0438\u043d\u0430\u0435\u0442\u0441\u044f
+        \u043d\u0430\u0448\u0430 \u043a\u043e\u043c\u0438\u0447\u0435\u0441\u043a\u0430\u044f
+        \u0438\u0441\u0442\u043e\u0440\u0438\u044f \u043e\u0431 \u043e\u0445\u043e\u0442\u0435
+        \u0437\u0430 \u0447\u0443\u0434\u043e\u0432\u0438\u0449\u0430\u043c\u0438!","notification":null,"episodes_total":10,"external_player":"","is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":2160,"average_duration_of_episode":25,"added_in_planned_collection":103,"added_in_watched_collection":150,"added_in_watching_collection":20,"added_in_postponed_collection":12,"added_in_abandoned_collection":14}},{"id":"a18ca218-3ad5-4ef1-b37b-5cce6d46315d","sort_order":2,"release_id":2417,"franchise_id":"a18ca1f0-8037-465a-9bf4-d033c3f5b29b","release":{"id":2417,"type":{"value":"OVA","description":"OVA"},"year":2015,"name":{"main":"\u041a\u043b\u0451\u0441\u0442:
+        \u0432 \u0420\u0430\u044e","english":"Isuca: Gokuraku","alternative":null},"alias":"isuca-gokuraku-klyest-v-rayu","season":{"value":"summer","description":"\u041b\u0435\u0442\u043e"},"shikimori":{"id":28713,"url":"https:\/\/shikimori.io\/animes\/28713","votes":1036,"rating":7.32},"mal":{"id":28713,"url":"https:\/\/myanimelist.net\/anime\/28713","votes":10454,"rating":6.22},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/2417\/S4Bi9whNQq4si32ixiRKdQkzBKkCDhM3.jpg","preview":"\/storage\/releases\/posters\/2417\/S4Bi9whNQq4si32ixiRKdQkzBKkCDhM3.jpg","thumbnail":"\/storage\/releases\/posters\/2417\/YxkPBdBuWL7N2xN1bsxvvxTsvlbd63NH.jpg","optimized":{"src":"\/storage\/releases\/posters\/2417\/YfHx40YzS8090r1UIYfkxMPUTjUb5tPR.webp","preview":"\/storage\/releases\/posters\/2417\/YfHx40YzS8090r1UIYfkxMPUTjUb5tPR.webp","thumbnail":"\/storage\/releases\/posters\/2417\/36cQoTvgmsENGX5e2Xyeo0Ooy0vY5pkG.webp"}},"fresh_at":"2016-05-04T07:21:50+00:00","created_at":"2016-05-04T07:21:50+00:00","updated_at":"2024-08-02T19:51:19+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":1,"description":"\u041f\u043e\u043d\u0435\u0434\u0435\u043b\u044c\u043d\u0438\u043a"},"description":"\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435
+        \u044d\u043f\u0438\u0437\u043e\u0434\u0430 \u0440\u0430\u0437\u0432\u043e\u0440\u0430\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044f
+        \u043d\u0430 \u043e\u0441\u0442\u0440\u043e\u0432\u0435 \"\u0420\u0430\u0439\",
+        \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u043f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u0438\u0442
+        \u043a\u043b\u0430\u043d\u0443 \u0428\u0438\u043c\u0430\u0434\u0437\u0443.","notification":null,"episodes_total":null,"external_player":"","is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":776,"average_duration_of_episode":25,"added_in_planned_collection":42,"added_in_watched_collection":60,"added_in_watching_collection":5,"added_in_postponed_collection":4,"added_in_abandoned_collection":5}}]}'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b5155ecfe95c43-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '8378'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 06:42:25 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=270bw0hIJGzivz0etG7NGLjHYoxRM8%2Fi01RWcp4AOsxXh2%2FvUOC9SltV7Z6Lu9CEYmhRw3F0Cn%2BTHtSl4LewQ1%2BFR%2BlRQDSejWn5PLXIyPfzlUyA7HeALcazgM%2BLlfNBPg%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/franchises/a18ca1f0-8037-465a-9bf4-d033c3f5b29b
+  response:
+    body:
+      string: '{"id":"a18ca1f0-8037-465a-9bf4-d033c3f5b29b","name":"\u041a\u043b\u0451\u0441\u0442","image":{"preview":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/mdFi2JcniRH5pd2vFvq8kwiI3gKMZ0O6.jpg","thumbnail":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/JnViuIz7fHzNYAbPXXGUcfkn00P1YSbD.jpg","optimized":{"preview":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/Jiv6lwpEyreGl2mAOnChI9416HWjtNVG.webp","thumbnail":"\/storage\/anime\/franchises\/images\/a18ca1f0-8037-465a-9bf4-d033c3f5b29b\/c5t4HnXccp2vGuK43TNDcVL2VgFK61OK.webp"}},"rating":null,"last_year":2015,"first_year":2015,"name_english":"Isuca","total_episodes":11,"total_releases":2,"total_duration":"4
+        \u0447\u0430\u0441\u0430 20 \u043c\u0438\u043d\u0443\u0442","total_duration_in_seconds":15630,"franchise_releases":[{"id":"a18ca20e-bf15-4a8f-bf23-303cda0edd56","sort_order":1,"release_id":408,"franchise_id":"a18ca1f0-8037-465a-9bf4-d033c3f5b29b","release":{"id":408,"type":{"value":"TV","description":"\u0422\u0412"},"year":2015,"name":{"main":"\u041a\u043b\u0451\u0441\u0442","english":"Isuca","alternative":null},"alias":"isuca-klest","season":{"value":"winter","description":"\u0417\u0438\u043c\u0430"},"shikimori":{"id":25429,"url":"https:\/\/shikimori.io\/animes\/25429","votes":4666,"rating":6.6},"mal":{"id":25429,"url":"https:\/\/myanimelist.net\/anime\/25429","votes":70987,"rating":5.97},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/408\/gMgYRNzDI5yZV6rTn3D3Yb0JAj0fmTH9.jpg","preview":"\/storage\/releases\/posters\/408\/gMgYRNzDI5yZV6rTn3D3Yb0JAj0fmTH9.jpg","thumbnail":"\/storage\/releases\/posters\/408\/MRwl7YOAVqBzTwO21OvcWaIsYqHbuY6v.jpg","optimized":{"src":"\/storage\/releases\/posters\/408\/pP9d6p4vpyoOgS8d2SCrcbn2tc7m5kR1.webp","preview":"\/storage\/releases\/posters\/408\/pP9d6p4vpyoOgS8d2SCrcbn2tc7m5kR1.webp","thumbnail":"\/storage\/releases\/posters\/408\/mHOMNSnpf7I5hxT5jNWMPrrVtM0LoB8q.webp"}},"fresh_at":"2015-09-23T12:02:59+00:00","created_at":"2015-09-23T12:02:59+00:00","updated_at":"2024-08-02T19:50:35+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":1,"description":"\u041f\u043e\u043d\u0435\u0434\u0435\u043b\u044c\u043d\u0438\u043a"},"description":"\u0428\u0438\u043d\u0438\u0447\u0438\u0440\u043e
+        \u0438\u0449\u0435\u0442 \u0440\u0430\u0431\u043e\u0442\u0443, \u0447\u0442\u043e\u0431\u044b
+        \u043e\u0442\u043f\u043b\u0430\u0442\u0438\u0442\u044c \u0441\u0447\u0435\u0442\u0430
+        \u0437\u0430 \u043a\u0432\u0430\u0440\u0442\u0438\u0440\u0443. \u0415\u0433\u043e
+        \u0443\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430 \u043f\u0440\u0435\u0434\u043b\u0430\u0433\u0430\u0435\u0442
+        \u0435\u043c\u0443 \u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c \u0443
+        \u0435\u0451 \u0437\u043d\u0430\u043a\u043e\u043c\u044b\u0445, \u043f\u0440\u043e\u0441\u0442\u043e
+        \u0443\u0431\u0438\u0440\u0430\u044f\u0441\u044c \u0443 \u0442\u0435\u0445
+        \u0434\u043e\u043c\u0430. \u0427\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c,
+        \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0441\u043e\u0433\u043b\u0430\u0448\u0430\u0435\u0442\u0441\u044f
+        \u043f\u0440\u0438\u043d\u044f\u0442\u044c \u0410\u0441\u0430\u043d\u043e,
+        \u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u0421\u0430\u043a\u0443\u044f
+        \u2014 37-\u044f \u0433\u043b\u0430\u0432\u0430 \u043a\u043b\u0430\u043d\u0430
+        \u0428\u0438\u043c\u0430\u0434\u0437\u0443, \u0447\u044c\u0435\u0439 \u0440\u0430\u0431\u043e\u0442\u043e\u0439
+        \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u0438\u0437\u0433\u043d\u0430\u043d\u0438\u0435
+        \u0438 \u0443\u043d\u0438\u0447\u0442\u043e\u0436\u0435\u043d\u0438\u0435
+        \u043c\u0438\u0441\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0441\u0443\u0449\u0435\u0441\u0442\u0432.
+        \u0428\u0438\u043d\u0438\u0447\u0438\u0440\u043e \u0441\u043b\u0443\u0447\u0430\u0439\u043d\u043e
+        \u0432\u044b\u043f\u0443\u0441\u043a\u0430\u0435\u0442 \u043e\u0434\u043d\u043e
+        \u0438\u0437 \u0441\u0443\u0449\u0435\u0441\u0442\u0432, \u043a\u043e\u0442\u043e\u0440\u043e\u0435
+        \u043d\u0435\u043a\u043e\u0433\u0434\u0430 \u0437\u0430\u043f\u0435\u0447\u0430\u0442\u0430\u043b\u0430
+        \u0421\u0430\u043a\u0443\u044f. \u0422\u0435\u043f\u0435\u0440\u044c \u044d\u0442\u0438\u043c
+        \u0434\u0432\u043e\u0438\u043c \u043f\u0440\u0438\u0434\u0451\u0442\u0441\u044f
+        \u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c \u0432\u043c\u0435\u0441\u0442\u0435,
+        \u0447\u0442\u043e\u0431\u044b \u043f\u043e\u0439\u043c\u0430\u0442\u044c
+        \u0435\u0433\u043e. \u0417\u0434\u0435\u0441\u044c \u0438 \u043d\u0430\u0447\u0438\u043d\u0430\u0435\u0442\u0441\u044f
+        \u043d\u0430\u0448\u0430 \u043a\u043e\u043c\u0438\u0447\u0435\u0441\u043a\u0430\u044f
+        \u0438\u0441\u0442\u043e\u0440\u0438\u044f \u043e\u0431 \u043e\u0445\u043e\u0442\u0435
+        \u0437\u0430 \u0447\u0443\u0434\u043e\u0432\u0438\u0449\u0430\u043c\u0438!","notification":null,"episodes_total":10,"external_player":"","is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":2160,"average_duration_of_episode":25,"added_in_planned_collection":103,"added_in_watched_collection":150,"added_in_watching_collection":20,"added_in_postponed_collection":12,"added_in_abandoned_collection":14}},{"id":"a18ca218-3ad5-4ef1-b37b-5cce6d46315d","sort_order":2,"release_id":2417,"franchise_id":"a18ca1f0-8037-465a-9bf4-d033c3f5b29b","release":{"id":2417,"type":{"value":"OVA","description":"OVA"},"year":2015,"name":{"main":"\u041a\u043b\u0451\u0441\u0442:
+        \u0432 \u0420\u0430\u044e","english":"Isuca: Gokuraku","alternative":null},"alias":"isuca-gokuraku-klyest-v-rayu","season":{"value":"summer","description":"\u041b\u0435\u0442\u043e"},"shikimori":{"id":28713,"url":"https:\/\/shikimori.io\/animes\/28713","votes":1036,"rating":7.32},"mal":{"id":28713,"url":"https:\/\/myanimelist.net\/anime\/28713","votes":10454,"rating":6.22},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/2417\/S4Bi9whNQq4si32ixiRKdQkzBKkCDhM3.jpg","preview":"\/storage\/releases\/posters\/2417\/S4Bi9whNQq4si32ixiRKdQkzBKkCDhM3.jpg","thumbnail":"\/storage\/releases\/posters\/2417\/YxkPBdBuWL7N2xN1bsxvvxTsvlbd63NH.jpg","optimized":{"src":"\/storage\/releases\/posters\/2417\/YfHx40YzS8090r1UIYfkxMPUTjUb5tPR.webp","preview":"\/storage\/releases\/posters\/2417\/YfHx40YzS8090r1UIYfkxMPUTjUb5tPR.webp","thumbnail":"\/storage\/releases\/posters\/2417\/36cQoTvgmsENGX5e2Xyeo0Ooy0vY5pkG.webp"}},"fresh_at":"2016-05-04T07:21:50+00:00","created_at":"2016-05-04T07:21:50+00:00","updated_at":"2024-08-02T19:51:19+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":1,"description":"\u041f\u043e\u043d\u0435\u0434\u0435\u043b\u044c\u043d\u0438\u043a"},"description":"\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435
+        \u044d\u043f\u0438\u0437\u043e\u0434\u0430 \u0440\u0430\u0437\u0432\u043e\u0440\u0430\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044f
+        \u043d\u0430 \u043e\u0441\u0442\u0440\u043e\u0432\u0435 \"\u0420\u0430\u0439\",
+        \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u043f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u0438\u0442
+        \u043a\u043b\u0430\u043d\u0443 \u0428\u0438\u043c\u0430\u0434\u0437\u0443.","notification":null,"episodes_total":null,"external_player":"","is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":776,"average_duration_of_episode":25,"added_in_planned_collection":42,"added_in_watched_collection":60,"added_in_watching_collection":5,"added_in_postponed_collection":4,"added_in_abandoned_collection":5}}]}'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b5155f88745c43-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '8378'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 06:42:25 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=S9dAzUptvKYK0UqH%2FnRI1N2TZ0Po7Ui8Nd0vKsiCIiPGbdkZEeArUGW4Z1QYe1wHdT9SU8RIkRR9TqpwxznFJ6ZFeNw2kDZJUq%2Bz2Oyu0Uh%2BIwvvtA0vb%2FXvvgCPZ0BNvw%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
