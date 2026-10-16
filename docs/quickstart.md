@@ -25,9 +25,10 @@ The API is grouped into namespaces that follow the tags of its OpenAPI spec:
 | `client.catalog` | the release catalog with filters, sorting and pagination — see [Catalog filters](guides/catalog-filters.md) |
 | `client.genres` | genres with images and counts, random genres, the releases of a genre |
 | `client.franchises` | franchises — related releases in watch order, and the franchise of a release |
+| `client.torrents` | torrents of a release, `.torrent` downloads, RSS feeds |
 | `client.schedule` | the airing schedule — yesterday/today/tomorrow and the whole week |
 | `client.catalog.references` | the values catalog filters accept: genres, types, seasons, years, age ratings, statuses, sorting |
-| `client.http` | the low-level client — `client.http.request(...)` returns raw JSON for endpoints not covered yet |
+| `client.http` | the low-level client — `request(...)` returns raw JSON for endpoints not covered yet, `request_raw(...)`/`stream(...)` for files and feeds |
 
 ## A tour
 

@@ -48,12 +48,12 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `POST` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Rate a release (score up to 10) | yes |  | 4.7 |
 | `GET` | `/anime/schedule/now` | Аниме.Релизы.РасписаниеРелизов | Release schedule for today |  | `client.schedule.now()` | 3.1 |
 | `GET` | `/anime/schedule/week` | Аниме.Релизы.РасписаниеРелизов | Release schedule for the current week |  | `client.schedule.week()` | 3.1 |
-| `GET` | `/anime/torrents` | Аниме.Торренты | Latest torrents (paginated) |  |  | 3.4 |
-| `GET` | `/anime/torrents/release/{releaseId}` | Аниме.Торренты | Torrents of a release |  |  | 3.4 |
-| `GET` | `/anime/torrents/rss` | Аниме.Торренты | RSS feed of the latest torrents (XML) |  |  | 3.4 |
-| `GET` | `/anime/torrents/rss/release/{releaseId}` | Аниме.Торренты | RSS feed of a release's torrents (XML) |  |  | 3.4 |
-| `GET` | `/anime/torrents/{hashOrId}` | Аниме.Торренты | A single torrent by hash or ID |  |  | 3.4 |
-| `GET` | `/anime/torrents/{hashOrId}/file` | Аниме.Торренты | The .torrent file by hash or ID |  |  | 3.4 |
+| `GET` | `/anime/torrents` | Аниме.Торренты | Latest torrents (paginated) |  | `client.torrents.list()`, `client.torrents.iter_list()` | 3.4 |
+| `GET` | `/anime/torrents/release/{releaseId}` | Аниме.Торренты | Torrents of a release |  | `client.torrents.for_release()` | 3.4 |
+| `GET` | `/anime/torrents/rss` | Аниме.Торренты | RSS feed of the latest torrents (XML) |  | `client.torrents.rss()` | 3.4 |
+| `GET` | `/anime/torrents/rss/release/{releaseId}` | Аниме.Торренты | RSS feed of a release's torrents (XML) |  | `client.torrents.rss_for_release()` | 3.4 |
+| `GET` | `/anime/torrents/{hashOrId}` | Аниме.Торренты | A single torrent by hash or ID |  | `client.torrents.get()` | 3.4 |
+| `GET` | `/anime/torrents/{hashOrId}/file` | Аниме.Торренты | The .torrent file by hash or ID |  | `client.torrents.file()`, `client.torrents.download()` | 3.4 |
 | `GET` | `/media/promotions` | Медиа.Промо | Promotional materials |  |  | 3.6 |
 | `GET` | `/media/videos` | Медиа.Видеоконтент | Video content |  |  | 3.6 |
 | `GET` | `/teams/` | Команды | All AniLibria teams |  |  | 3.5 |
