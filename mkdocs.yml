@@ -33,6 +33,7 @@ nav:
       - Concurrency: guides/concurrency.md
       - Mirrors and custom HTTP client: guides/custom-http-client.md
       - Authentication and account: guides/authentication.md
+  - Examples: examples.md
   - API reference: reference.md
   - Endpoints: endpoints.md
   - API notes: api-notes.md

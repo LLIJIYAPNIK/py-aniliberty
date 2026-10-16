@@ -44,7 +44,7 @@ class TorrentsResource(BaseResource):
             limit: Page size, 1 to 50.
 
         Returns:
-            One page of torrents, each with its ``release``.
+            One page of torrents, each with its ``release``, most recently updated first.
 
         Raises:
             ValidationError: ``page`` or ``limit`` is out of range.

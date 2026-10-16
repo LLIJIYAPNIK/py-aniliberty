@@ -77,6 +77,9 @@ async def main() -> None:
             print("Planned:", sorted(r.name.main for r in planned.items if r.id in ours))
             older = await collections.releases("PLANNED", years=range(2015, 2020))
             print("Planned, 2015–2019:", [r.name.main for r in older.items if r.id in ours])
+            # iter_releases() walks every page of one collection; limit is the page size.
+            watched = [r.name.main async for r in collections.iter_releases("WATCHED", limit=10)]
+            print("Watched, all pages:", [name for name in watched if name == frieren.name.main])
 
             # A typical use: group the user's collections by type.
             grouped: dict[str, list[int]] = defaultdict(list)
@@ -101,6 +104,15 @@ async def main() -> None:
             # The references cover all five collections at once.
             types = [t.value for t in await collections.references.types()]
             print("Release types in the collections include TV:", "TV" in types)
+            ratings = {r.value for r in await collections.references.age_ratings()}
+            genre_ids = {genre.id for genre in await collections.references.genres()}
+            print("Genres in the collections include Adventure (27):", 27 in genre_ids)
+            ref_years = await collections.references.years()
+            print(
+                "Years in the collections, newest first:",
+                ref_years == sorted(ref_years, reverse=True),
+            )
+            print("Age ratings in the collections include 16+:", "R16_PLUS" in ratings)
         finally:
             # Put things back: remove what wasn't in any collection, move the rest back.
             # remove() takes a release out of whatever collection it is in.
@@ -121,8 +133,12 @@ if __name__ == "__main__":
 # Placement: {'Провожающая в последний путь Фрирен': 'WATCHED', 'Восхождение героя щита': 'PLANNED', 'Дандадан': 'PLANNED'}
 # Planned: ['Восхождение героя щита', 'Дандадан']
 # Planned, 2015–2019: ['Восхождение героя щита']
+# Watched, all pages: ['Провожающая в последний путь Фрирен']
 # Ours per collection: {'PLANNED': 2, 'WATCHED': 1}
 # Lowercase collection: Unknown collection value 'watched'; expected one of: PLANNED, WATCHED, WATCHING, POSTPONED, ABANDONED
 # limit=100: ['limit']
 # Release types in the collections include TV: True
+# Genres in the collections include Adventure (27): True
+# Years in the collections, newest first: True
+# Age ratings in the collections include 16+: True
 # Restored: True

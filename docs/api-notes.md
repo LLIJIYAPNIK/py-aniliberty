@@ -828,6 +828,10 @@ limits, retries and error mapping as JSON requests. `torrents.download()` stream
 `<name>.part` and renames it when complete. `for_release()`/`rss_for_release()` accept only an
 `int` or a `Release`, like `franchises.for_release()`.
 
+**Order of `GET /anime/torrents`** (checked 2026-10-16, step 5.2): by `updated_at`, most
+recently updated first — not by creation (`id`s and `created_at`s on the first page are out
+of order, `updated_at` strictly descending).
+
 ## Teams (checked 2026-10-16)
 
 Requests: `GET /teams/`, `/teams` (no trailing slash), `/teams/roles`, `/teams/users`, all
