@@ -246,6 +246,12 @@ async with AniLiberty(
   недокументированные `is_with_video_ads`, `is_with_content_ads`, `is_with_video_ads_always`;
   без сессии — 403 (спека: 404). `email` и `torrents.passkey` — секреты (passkey вне `repr`
   модели, оба вычищаются из кассет). `include`/`exclude` спеки SDK не выставляет.
+- **Избранное**: `POST`/`DELETE /me/favorites` телом `[{"release_id": N}]` → голый массив всех
+  ID после операции; дубли, удаление отсутствующего, пустой массив — тихие no-op;
+  **несуществующий release_id принимается** (виден в `ids`, но не в `releases`). Сортировка по
+  умолчанию — `CREATED_AT_DESC` (когда добавлен в избранное). `f[years]` здесь — **список
+  через запятую** (не `from_year`/`to_year`, как в каталоге). `limit` ≤ 50. Справочники
+  избранного (кроме `sorting`) — только значения из избранного пользователя, годы — от новых.
   Учётные данные — только из переменных окружения; `tests/conftest.py` вычищает из кассет
   пароль/логин в теле запроса, `token`/`passkey`/`email` и `?pk=` в ответах, все
   `Set-Cookie`, заголовки `Authorization`/`Cookie`.
