@@ -9,6 +9,14 @@ project follows [Semantic Versioning](https://semver.org/). Entries are generate
 `main` whenever a GitHub Release is published — don't hand-edit released sections, fix the
 underlying commit message instead and let the next release regenerate this file.
 
+## [0.2.0] - 2026-10-16
+
+### Added
+
+- Add client.catalog.references (genres, types, seasons, years, ratings, statuses, sorting)
+- Add Literal types for catalog filter values from the spec enums
+- Add client.catalog.releases() and iter_releases() with validated filters
+
 ## [0.1.0] - 2026-10-16
 
 ### Added
@@ -35,5 +43,6 @@ underlying commit message instead and let the next release regenerate this file.
 - Publish to PyPI from GitHub Releases via Trusted Publishing
 - Regenerate CHANGELOG.md with git-cliff when a release is published
 
+[0.2.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.1.0..v0.2.0
 [0.1.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/tree/v0.1.0
 
