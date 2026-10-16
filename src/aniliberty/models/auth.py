@@ -50,7 +50,7 @@ class Otp(AniLibertyModel):
 
 
 class IssuedOtp(AniLibertyModel):
-    """A one-time code issued by ``client.auth.otp.get()``.
+    """A one-time code issued by ``client.auth.otp.issue()``.
 
     Spec schema: ``responses.api.v1.accounts.otp.get``.
 

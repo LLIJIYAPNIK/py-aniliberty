@@ -20,14 +20,14 @@ from aniliberty import AniLiberty, NotFoundError, ServerError
 
 async def main() -> None:
     # A device keeps one ID of its own (any string; a UUID it stores is a good choice) and
-    # passes the same value to otp.get() and otp.login().
+    # passes the same value to otp.issue() and otp.login().
     device_id = str(uuid.uuid4())
 
     async with AniLiberty() as tv, AniLiberty() as phone:
         # 1. The TV gets a code. It's a string of 6 digits — keep it a string, it can start
         #    with 0 — and lives about 5 minutes. Asking again for the same device_id while
         #    it's alive returns the same code.
-        issued = await tv.auth.otp.get(device_id=device_id)
+        issued = await tv.auth.otp.issue(device_id=device_id)
         code = issued.otp.code
         print(f"Code: {len(code)} digits, expires in about {issued.remaining_time:.0f} s")
         print("Accepted by anyone yet:", issued.otp.user_id is not None)

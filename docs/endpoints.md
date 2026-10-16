@@ -63,7 +63,7 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/teams/roles` | Команды | Team roles |  | `client.teams.roles()` | 3.5 |
 | `GET` | `/teams/users` | Команды | Team members |  | `client.teams.users()` | 3.5 |
 | `POST` | `/accounts/otp/accept` | Аккаунты.ОдноразовыеПароли | Attach the current user to an issued OTP | yes | `client.auth.otp.accept()` | 4.2 |
-| `POST` | `/accounts/otp/get` | Аккаунты.ОдноразовыеПароли | Request a one-time password (OTP) |  | `client.auth.otp.get()` | 4.2 |
+| `POST` | `/accounts/otp/get` | Аккаунты.ОдноразовыеПароли | Request a one-time password (OTP) |  | `client.auth.otp.issue()` | 4.2 |
 | `POST` | `/accounts/otp/login` | Аккаунты.ОдноразовыеПароли | Log in with an OTP |  | `client.auth.otp.login()` | 4.2 |
 | `POST` | `/accounts/users/auth/login` | Аккаунты.Пользователи.Авторизация | Log in |  | `client.auth.login()` | 4.2 |
 | `POST` | `/accounts/users/auth/logout` | Аккаунты.Пользователи.Авторизация | Log out | yes | `client.auth.logout()` | 4.2 |

@@ -160,10 +160,10 @@ ISSUED = {
 }
 
 
-async def test_otp_get_parses_the_code_keeping_leading_zero() -> None:
+async def test_otp_issue_parses_the_code_keeping_leading_zero() -> None:
     api = FakeApi({"/accounts/otp/get": httpx.Response(200, json=ISSUED)})
     async with make_client(api) as client:
-        issued = await client.auth.otp.get(device_id="tv-1")
+        issued = await client.auth.otp.issue(device_id="tv-1")
 
     assert isinstance(issued, IssuedOtp)
     assert issued.otp.code == "058701"

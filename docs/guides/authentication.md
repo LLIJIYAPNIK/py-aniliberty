@@ -109,7 +109,7 @@ For a TV app or anything else without a comfortable keyboard,
 user confirms from a device where they are already logged in:
 
 ```python
-issued = await tv.auth.otp.get(device_id=device_id)  # no session needed
+issued = await tv.auth.otp.issue(device_id=device_id)  # no session needed
 show_on_screen(issued.otp.code)  # 6 digits, a string; lives ~5 minutes
 
 await phone.auth.otp.accept(issued.otp.code)  # the phone has a session
@@ -117,7 +117,7 @@ await phone.auth.otp.accept(issued.otp.code)  # the phone has a session
 await tv.auth.otp.login(code=issued.otp.code, device_id=device_id)  # the TV gets its own
 ```
 
-- `device_id` is any string the device keeps (a UUID, say); `get()` and `login()` must get
+- `device_id` is any string the device keeps (a UUID, say); `issue()` and `login()` must get
   the same one.
 - Keep the code a string: it can start with `0`.
 - `login()` before the code is accepted fails with a `ServerError` (the API answers 500);

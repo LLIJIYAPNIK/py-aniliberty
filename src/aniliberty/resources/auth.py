@@ -116,7 +116,7 @@ class OtpResource(_SessionResource):
 
     Meant for devices where typing a password is awkward (a TV app):
 
-    1. The device calls ``get(device_id=...)`` and shows the code.
+    1. The device calls ``issue(device_id=...)`` and shows the code.
     2. The user enters the code on a device where they are logged in, which calls
        ``accept(code)``.
     3. The device calls ``login(code=..., device_id=...)`` and gets its own session.
@@ -130,7 +130,7 @@ class OtpResource(_SessionResource):
         ("POST", "/accounts/otp/login"),
     )
 
-    async def get(self, *, device_id: str) -> IssuedOtp:
+    async def issue(self, *, device_id: str) -> IssuedOtp:
         """Issue a one-time code for a device. No session needed.
 
         Asking again for the same ``device_id`` while the code is alive returns the same code.
@@ -150,7 +150,7 @@ class OtpResource(_SessionResource):
 
         Example:
             ```python
-            issued = await client.auth.otp.get(device_id=str(uuid.uuid4()))
+            issued = await client.auth.otp.issue(device_id=str(uuid.uuid4()))
             print(issued.otp.code, issued.remaining_time)
             ```
         """
@@ -163,7 +163,7 @@ class OtpResource(_SessionResource):
         """Approve a one-time code with the client's session, letting its device log in.
 
         Args:
-            code: The code the other device shows. Pass it as the string ``get()``
+            code: The code the other device shows. Pass it as the string ``issue()``
                 returned — as an ``int`` a leading ``0`` would be lost.
 
         Raises:
@@ -187,8 +187,8 @@ class OtpResource(_SessionResource):
         from a logged-in caller (403). The new token replaces the old one.
 
         Args:
-            code: The code from ``get()``, after it was accepted.
-            device_id: The same ``device_id`` that was passed to ``get()``.
+            code: The code from ``issue()``, after it was accepted.
+            device_id: The same ``device_id`` that was passed to ``issue()``.
 
         Returns:
             The new session's token, also stored as ``client.token``.
