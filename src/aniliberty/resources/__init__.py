@@ -7,6 +7,7 @@ from aniliberty.resources.franchises import FranchisesResource
 from aniliberty.resources.genres import GenresResource
 from aniliberty.resources.releases import ReleasesResource
 from aniliberty.resources.schedule import ScheduleResource
+from aniliberty.resources.teams import TeamsResource
 from aniliberty.resources.torrents import TorrentsResource
 
 __all__ = [
@@ -18,5 +19,6 @@ __all__ = [
     "GenresResource",
     "ReleasesResource",
     "ScheduleResource",
+    "TeamsResource",
     "TorrentsResource",
 ]
