@@ -41,6 +41,8 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`19_otp_device_login.py`](19_otp_device_login.py) | `auth.otp.get()` / `accept()` / `login()` — logging a device in with a one-time code |
 | [`20_favorites.py`](20_favorites.py) | `me.favorites.add()` / `remove()` / `ids()` / `releases()` / `iter_releases()` / `references` |
 | [`21_collections.py`](21_collections.py) | `me.collections.add(..., to=...)` / `remove()` / `ids()` / `releases(collection)` — moving between collections |
+| [`22_watch_progress.py`](22_watch_progress.py) | `me.views.save_timecodes()` / `timecodes()` / `history()`, `episodes.timecode()`, `releases.timecodes()` — and the API's delay |
+| [`23_release_ratings.py`](23_release_ratings.py) | `releases.ratings.get()` / `set()` / `remove()` vs the overall `Release.rating` |
 
 See the [API reference](https://llijiyapnik.github.io/py-aniliberty/reference/) for every
 public class and method.
