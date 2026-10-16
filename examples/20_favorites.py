@@ -66,6 +66,11 @@ async def main() -> None:
             ref_years = await favorites.references.years()
             print("Years in favorites include ours:", set(years) <= set(ref_years))
             ratings = await favorites.references.age_ratings()
+            genre_ids = {genre.id for genre in await favorites.references.genres()}
+            types = {t.value for t in await favorites.references.types()}
+            print(
+                "Genres and types in favorites include ours:", {27, 8} <= genre_ids, "TV" in types
+            )
             print("Age ratings in favorites include 16+:", "R16_PLUS" in {r.value for r in ratings})
             print(
                 "Sorting options:",
@@ -91,6 +96,7 @@ if __name__ == "__main__":
 # Adventure AND drama: ['Провожающая в последний путь Фрирен', 'Восхождение героя щита']
 # Walked page by page, found ours: 3
 # Years in favorites include ours: True
+# Genres and types in favorites include ours: True True
 # Age ratings in favorites include 16+: True
 # Sorting options: ['CREATED_AT_DESC', 'CREATED_AT_ASC', 'FRESH_AT_DESC', 'FRESH_AT_ASC', 'RATING_DESC', 'RATING_ASC', 'YEAR_DESC', 'YEAR_ASC']
 # Cleaned up: True

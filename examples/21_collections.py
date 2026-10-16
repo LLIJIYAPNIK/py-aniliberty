@@ -105,6 +105,13 @@ async def main() -> None:
             types = [t.value for t in await collections.references.types()]
             print("Release types in the collections include TV:", "TV" in types)
             ratings = {r.value for r in await collections.references.age_ratings()}
+            genre_ids = {genre.id for genre in await collections.references.genres()}
+            print("Genres in the collections include Adventure (27):", 27 in genre_ids)
+            ref_years = await collections.references.years()
+            print(
+                "Years in the collections, newest first:",
+                ref_years == sorted(ref_years, reverse=True),
+            )
             print("Age ratings in the collections include 16+:", "R16_PLUS" in ratings)
         finally:
             # Put things back: remove what wasn't in any collection, move the rest back.
@@ -131,5 +138,7 @@ if __name__ == "__main__":
 # Lowercase collection: Unknown collection value 'watched'; expected one of: PLANNED, WATCHED, WATCHING, POSTPONED, ABANDONED
 # limit=100: ['limit']
 # Release types in the collections include TV: True
+# Genres in the collections include Adventure (27): True
+# Years in the collections, newest first: True
 # Age ratings in the collections include 16+: True
 # Restored: True
