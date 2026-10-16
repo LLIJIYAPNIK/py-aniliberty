@@ -66,8 +66,8 @@ if __name__ == "__main__":
 # Expected output (real run against the live API, 2026-10-16):
 #
 # Провожающая в последний путь Фрирен: 2 torrents
-#   [1080p HEVC] episodes 1-28, 7.7 GB, 115 seeders
-#   [1080p AVC] episodes 1-28, 41.3 GB, 45 seeders
+#   [1080p HEVC] episodes 1-28, 7.7 GB, 145 seeders
+#   [1080p AVC] episodes 1-28, 41.3 GB, 57 seeders
 # Magnet: magnet:?xt=urn:btih:2f8f88eb64310eb6c72a2193a068514428583927...
 # File: Sousou no Frieren - AniLiberty.TOP [WEBRip 1080p][HEVC][1-28].torrent (22792 bytes)
 # Saved: Sousou no Frieren - AniLiberty.TOP [WEBRip 1080p][HEVC][1-28].torrent, 22792 bytes
