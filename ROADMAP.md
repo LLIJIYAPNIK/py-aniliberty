@@ -102,7 +102,8 @@
       `client.releases.timecodes()`, `client.episodes.timecode()`. Пример — в 4.8.
 - [x] **4.7 Оценки релизов.** `client.releases.ratings.get()`/`set(score=...)`/`remove()`
       → `UserRating`. Пример — в 4.8.
-- [ ] **4.8 Примеры и гайд по авторизации.**
+- [x] **4.8 Примеры и гайд по авторизации.** `docs/guides/authentication.md`, примеры 18–23
+      (логин и сессия, OTP, избранное, коллекции, прогресс просмотра, оценки).
 
 ## Фаза 5 — стабилизация (`1.0.0`)
 

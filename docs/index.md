@@ -2,8 +2,10 @@
 
 Async Python SDK for the public [AniLibria](https://aniliberty.top) API (v1): releases,
 episodes with HLS links, quick search, the catalog with filters, the airing schedule, genres,
-franchises, torrents (with `.torrent` downloads and RSS), teams and media — every public
-endpoint of the API. Account endpoints (favorites, collections, watch timecodes) come later.
+franchises, torrents (with `.torrent` downloads and RSS), teams and media — and, with an
+account, favorites, collections, watch progress and ratings
+([Authentication](guides/authentication.md)). Every endpoint of the API is covered except
+the ad ones.
 
 - **Async only**, built on [`httpx`](https://www.python-httpx.org/); every response is a typed,
   immutable [pydantic](https://docs.pydantic.dev/) model.
@@ -51,5 +53,4 @@ Continue with the [Quickstart](quickstart.md), or browse the [API reference](ref
 
 !!! note "Status"
     Pre-1.0: the public API may still change between minor versions; breaking changes are
-    called out in the changelog. Account features (favorites, collections, watch history)
-    are not supported yet.
+    called out in the changelog.

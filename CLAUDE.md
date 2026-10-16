@@ -442,7 +442,11 @@ py-aniliberty/
 `08_catalog_references`, `09_schedule`, `10_genres`, `11_franchises`,
 `12_torrents_and_download`, `13_concurrency_gather` (параллельные запросы через
 `asyncio.gather`/`TaskGroup` и как SDK ограничивает конкурентность),
-`14_error_handling`, `15_custom_http_client_and_mirrors`, далее — teams/media/auth.
+`14_error_handling`, `15_custom_http_client_and_mirrors`, `16_teams`, `17_media`,
+`18_authentication`, `19_otp_device_login`, `20_favorites`, `21_collections`,
+`22_watch_progress`, `23_release_ratings`. Аккаунтные примеры (18–23) берут учётные
+данные из `ANILIBERTY_LOGIN`/`ANILIBERTY_PASSWORD`, не печатают секретов (логин тоже —
+у тестового аккаунта он совпадает с ником) и возвращают аккаунт в исходное состояние.
 
 `examples/README.md` — таблица «файл → фича» со ссылками. В основном `README.md` примеров
 нет — только раздел «Examples» со ссылкой на папку и коротким quickstart.
