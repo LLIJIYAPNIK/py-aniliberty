@@ -186,7 +186,7 @@ async with AniLiberty(
 - **«Значение + описание»**: `type`, `season`, `publish_day` (`value` — число дня недели!),
   `age_rating` — `{value, description}`; у `age_rating` ещё `label`, `is_adult` (нет в спеке).
 - **URL**: картинки — относительные пути от корня сайта (`/storage/...`, резолвятся от
-  `https://anilibria.top`, не от `/api/v1`); HLS — абсолютные на `cache.libria.fun` с
+  origin из `base_url` — проверено на обоих хостах, не от `/api/v1`); HLS — абсолютные на `cache.libria.fun` с
   query-параметрами (`countryIso`, `isAuthorized`, ...), отдавать как есть. У постера есть
   недокументированное поле `src`.
 - **Опциональность**: `required` в схемах нет вообще, `nullable` — на 13 полях, при этом
