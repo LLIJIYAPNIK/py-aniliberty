@@ -9,6 +9,23 @@ project follows [Semantic Versioning](https://semver.org/). Entries are generate
 `main` whenever a GitHub Release is published — don't hand-edit released sections, fix the
 underlying commit message instead and let the next release regenerate this file.
 
+## [0.4.0] - 2026-10-16
+
+### Added
+
+- Send a session token from HttpClient (token, with_token, discard_cookie)
+- Add client.auth and AniLiberty(token=...) / client.token
+- Add client.me.profile() returning UserProfile
+- Add client.me.favorites (ids, add, remove, releases, references)
+- Add client.me.collections (ids, add, remove, releases, references)
+- Add client.me.views, client.releases.timecodes(), client.episodes.timecode()
+- Add client.releases.ratings (get, set, remove the user's own score)
+
+### Fixed
+
+- Take the error message from the "error" field when there is no "message"
+- Map empty text/html responses by status instead of as an anti-bot page
+
 ## [0.3.0] - 2026-10-16
 
 ### Added
@@ -55,6 +72,7 @@ underlying commit message instead and let the next release regenerate this file.
 - Publish to PyPI from GitHub Releases via Trusted Publishing
 - Regenerate CHANGELOG.md with git-cliff when a release is published
 
+[0.4.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.3.0..v0.4.0
 [0.3.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.2.0..v0.3.0
 [0.2.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.1.0..v0.2.0
 [0.1.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/tree/v0.1.0
