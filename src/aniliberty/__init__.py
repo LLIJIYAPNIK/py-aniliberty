@@ -30,6 +30,7 @@ from aniliberty.models import (
     ReleaseRating,
     RequestInfo,
     SkipRange,
+    SortingOption,
     Sponsor,
     ValueDescription,
 )
@@ -61,6 +62,7 @@ __all__ = [
     "ResponseParseError",
     "ServerError",
     "SkipRange",
+    "SortingOption",
     "Sponsor",
     "TransportError",
     "ValidationError",
