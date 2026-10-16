@@ -40,6 +40,14 @@ class BaseResource:
         """
         query = build_query(params) if params else None
         payload = await self._http.request("GET", path, params=query)
+        return self._parse(payload, type_, path=path)
+
+    def _parse(self, payload: Any, type_: type[T], *, path: str) -> T:
+        """Validate a decoded JSON ``payload`` as ``type_``, or raise ``ResponseParseError``.
+
+        Separate from ``_get`` for endpoints whose payload needs reshaping first (e.g. a
+        response that doesn't match the spec's envelope).
+        """
         try:
             return pydantic.TypeAdapter(type_).validate_python(
                 payload, context={"site_url": self._http.site_url}
