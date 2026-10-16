@@ -25,7 +25,7 @@ class _SessionResource(BaseResource):
 
     def _store(self, token: AuthToken) -> AuthToken:
         self._http.token = token.token
-        self._http.discard_cookie(SESSION_COOKIE)
+        self._http._discard_cookie(SESSION_COOKIE)
         return token
 
 
