@@ -32,6 +32,9 @@ DEFAULT_BASE_URL = "https://aniliberty.top/api/v1"
 ``docs/api-notes.md``).
 """
 
+DEFAULT_SITE_URL = "https://aniliberty.top"
+"""Origin of ``DEFAULT_BASE_URL``: relative image paths in responses resolve against it."""
+
 DEFAULT_TIMEOUT = 30.0
 """Default per-request timeout, in seconds."""
 
@@ -170,6 +173,16 @@ class HttpClient:
     def base_url(self) -> str:
         """The API base URL, without a trailing slash."""
         return self._base_url
+
+    @property
+    def site_url(self) -> str:
+        """Origin of ``base_url`` (scheme and host), e.g. ``https://aniliberty.top``.
+
+        Relative paths in responses, such as image paths, resolve against it.
+        """
+        url = httpx.URL(self._base_url)
+        port = f":{url.port}" if url.port is not None else ""
+        return f"{url.scheme}://{url.host}{port}"
 
     @property
     def closed(self) -> bool:
@@ -418,6 +431,7 @@ __all__ = [
     "DEFAULT_MAX_RETRY_AFTER",
     "DEFAULT_REQUEST_DELAY",
     "DEFAULT_RETRY_BASE_DELAY",
+    "DEFAULT_SITE_URL",
     "DEFAULT_TIMEOUT",
     "IDEMPOTENT_METHODS",
     "HttpClient",

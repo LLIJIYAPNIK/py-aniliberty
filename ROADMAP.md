@@ -32,7 +32,7 @@
       в `conftest.py`. **Первый функциональный PR → добавить `ci.yml`.**
 - [x] **1.2 Retry, пейсинг, конкурентность.** Семафор, `request_delay`, экспоненциальный
       backoff, `Retry-After`, инъекция `sleep`/`clock`, unit-тесты на `MockTransport`.
-- [ ] **1.3 Общие модели и пагинация.** `models/common.py` (`ValueDescription`, постер/
+- [x] **1.3 Общие модели и пагинация.** `models/common.py` (`ValueDescription`, постер/
       изображения, абсолютные URL), `pagination.py` (`Page[T]`, хелпер для `iter_*`),
       `_query.py` (сериализация фильтров) — по формату, установленному в 0.2.
 - [ ] **1.4 Релизы.** `client.releases.*`: `latest`, `random`, `recommended`, `list`,

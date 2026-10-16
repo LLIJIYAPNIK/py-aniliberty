@@ -186,6 +186,17 @@ Spec: `type`, `season`, `age_rating`, `publish_day` of a release are objects
 `publish_day.value` is a weekday number). `age_rating` has two extra fields, `label` and
 `is_adult`, that the spec does not mention — it needs its own subclass.
 
+### Empty value + description objects (checked 2026-10-16)
+
+`GET /anime/schedule/week` returned, for one release, `"season": {"value": null,
+"description": null}` — the object is present with both keys `null` instead of being omitted
+or `null` itself. Across `/anime/releases/random`, `/anime/schedule/week`, `/anime/torrents`,
+`/media/promotions` and `/media/videos`, every other value + description object had a non-null
+`value`: strings everywhere except `publish_day` (integer weekday).
+
+**Conclusion:** optional value + description fields are annotated with `EMPTY_VALUE_AS_NONE`,
+which turns such an object into `None`.
+
 ## Image and video URLs
 
 - **Images are relative paths** on the site's domain, e.g. poster
@@ -202,9 +213,16 @@ Spec: `type`, `season`, `age_rating`, `publish_day` of a release are objects
 - `external_player` is protocol-relative in the spec example (`"//kodik.info/serial/..."`); it
   was `null` in the live sample.
 
-**Conclusion:** URL fields stay `str` holding the raw value; image models get a computed
-property that joins the path with the site origin (derived from `base_url` by dropping the
-`/api/v1` suffix). HLS URLs are returned untouched — the query string is part of the link.
+A wider sample on 2026-10-16 (random releases, genres, franchises, torrents, team users,
+promotions, videos, the week schedule — 574 image objects) found **only relative**
+image paths. A missing image is not `null` but an object whose paths are all `null`
+(12 of 271 franchises, team users and torrent members without an avatar).
+
+**Conclusion:** URL fields stay `str` holding the raw value; `Image`/`ImageSet` get `*_url`
+properties that join the path with the origin of the client's `base_url` (passed to
+validation as context, so a mirror's images point to the mirror). Absolute and
+protocol-relative paths are passed through. HLS URLs are returned untouched — the query
+string is part of the link.
 
 ## Optional and nullable fields
 

@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.0.1 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/catalog/releases?page=1&limit=50&f%5Btypes%5D=WEB%2CMOVIE&include=id%2Ctype.value
+  response:
+    body:
+      string: '{"data":[{"id":10213,"type":{"value":"WEB"}},{"id":10361,"type":{"value":"MOVIE"}},{"id":10358,"type":{"value":"MOVIE"}},{"id":10296,"type":{"value":"MOVIE"}},{"id":10285,"type":{"value":"MOVIE"}},{"id":10284,"type":{"value":"MOVIE"}},{"id":10283,"type":{"value":"MOVIE"}},{"id":10221,"type":{"value":"MOVIE"}},{"id":10218,"type":{"value":"MOVIE"}},{"id":10217,"type":{"value":"MOVIE"}},{"id":10148,"type":{"value":"WEB"}},{"id":10214,"type":{"value":"MOVIE"}},{"id":10144,"type":{"value":"MOVIE"}},{"id":10142,"type":{"value":"MOVIE"}},{"id":10025,"type":{"value":"WEB"}},{"id":9956,"type":{"value":"WEB"}},{"id":10023,"type":{"value":"MOVIE"}},{"id":9961,"type":{"value":"MOVIE"}},{"id":9953,"type":{"value":"MOVIE"}},{"id":9898,"type":{"value":"WEB"}},{"id":9899,"type":{"value":"MOVIE"}},{"id":9897,"type":{"value":"MOVIE"}},{"id":9892,"type":{"value":"MOVIE"}},{"id":9780,"type":{"value":"MOVIE"}},{"id":9779,"type":{"value":"MOVIE"}},{"id":9778,"type":{"value":"MOVIE"}},{"id":9776,"type":{"value":"MOVIE"}},{"id":9775,"type":{"value":"MOVIE"}},{"id":9771,"type":{"value":"MOVIE"}},{"id":9719,"type":{"value":"MOVIE"}},{"id":9708,"type":{"value":"WEB"}},{"id":9716,"type":{"value":"MOVIE"}},{"id":9711,"type":{"value":"MOVIE"}},{"id":9653,"type":{"value":"MOVIE"}},{"id":9654,"type":{"value":"MOVIE"}},{"id":9655,"type":{"value":"MOVIE"}},{"id":9656,"type":{"value":"MOVIE"}},{"id":9596,"type":{"value":"WEB"}},{"id":9649,"type":{"value":"MOVIE"}},{"id":9405,"type":{"value":"MOVIE"}},{"id":9593,"type":{"value":"MOVIE"}},{"id":9597,"type":{"value":"MOVIE"}},{"id":9531,"type":{"value":"MOVIE"}},{"id":9521,"type":{"value":"MOVIE"}},{"id":9522,"type":{"value":"MOVIE"}},{"id":9520,"type":{"value":"MOVIE"}},{"id":9516,"type":{"value":"MOVIE"}},{"id":9469,"type":{"value":"MOVIE"}},{"id":9459,"type":{"value":"MOVIE"}},{"id":9463,"type":{"value":"MOVIE"}}],"meta":{"pagination":{"total":160,"count":50,"per_page":50,"current_page":1,"total_pages":4,"links":{"next":"https:\/\/aniliberty.top\/api\/v1\/anime\/catalog\/releases?limit=50&f%5Btypes%5D=WEB%2CMOVIE&include=id%2Ctype.value&page=2"}}}}'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b47f120fc02dc1-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '2100'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 04:59:49 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=0zjlzGaJ3V8buj7273dtdJNVSR4fBPl6p2QXTNU73ZUKPfqBEDWTOucIHn9wid%2BEYLNSinQF%2BJu%2BN9JG12f5zUp4pVvD%2BjUd7uOUcolegUcpWuWXdYd%2BqFBuLggsSzXpHg%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

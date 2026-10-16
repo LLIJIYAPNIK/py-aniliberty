@@ -15,7 +15,8 @@ from aniliberty.exceptions import (
     TransportError,
     ValidationError,
 )
-from aniliberty.models import ApiStatus, RequestInfo
+from aniliberty.models import ApiStatus, Image, ImageSet, RequestInfo, ValueDescription
+from aniliberty.pagination import Page
 
 __all__ = [
     "APIError",
@@ -25,12 +26,16 @@ __all__ = [
     "ApiStatus",
     "AuthRequiredError",
     "HttpClient",
+    "Image",
+    "ImageSet",
     "NotFoundError",
+    "Page",
     "RateLimitError",
     "RequestInfo",
     "ResponseParseError",
     "ServerError",
     "TransportError",
     "ValidationError",
+    "ValueDescription",
     "__version__",
 ]

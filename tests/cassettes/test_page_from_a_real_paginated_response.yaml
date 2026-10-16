@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.0.1 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/catalog/releases?page=2&limit=3&include=id%2Ctype.value
+  response:
+    body:
+      string: '{"data":[{"id":10335,"type":{"value":"TV"}},{"id":10321,"type":{"value":"TV"}},{"id":10338,"type":{"value":"TV"}}],"meta":{"pagination":{"total":1908,"count":3,"per_page":3,"current_page":2,"total_pages":636,"links":{"previous":"https:\/\/aniliberty.top\/api\/v1\/anime\/catalog\/releases?limit=3&include=id%2Ctype.value&page=1","next":"https:\/\/aniliberty.top\/api\/v1\/anime\/catalog\/releases?limit=3&include=id%2Ctype.value&page=3"}}}}'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b47f10b8e58239-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '440'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 04:59:49 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=PgpQIq1X61zegUH7vuFqivKjW4wrvSEhH%2BZX8PpY5SBUoVS6Q2lyL1TSXsU4pp%2BAsYIVy6chQHSipEVkeTY4vJfcL1nvv6%2BBJy0hULOmkPUa5X0yv4PdY9aMt7fmm18nPQ%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
