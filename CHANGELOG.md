@@ -9,6 +9,18 @@ project follows [Semantic Versioning](https://semver.org/). Entries are generate
 `main` whenever a GitHub Release is published — don't hand-edit released sections, fix the
 underlying commit message instead and let the next release regenerate this file.
 
+## [0.3.0] - 2026-10-16
+
+### Added
+
+- Add client.schedule (now, week) and the ScheduledRelease model
+- Add client.genres (list, get, random, releases, iter_releases)
+- Add client.franchises (list, get, random, for_release)
+- Add HttpClient.request_raw() and stream() for non-JSON responses
+- Add client.torrents (list, get, for_release, file, download, RSS)
+- Add client.teams (list, roles, users)
+- Add client.media (promotions, videos)
+
 ## [0.2.0] - 2026-10-16
 
 ### Added
@@ -43,6 +55,7 @@ underlying commit message instead and let the next release regenerate this file.
 - Publish to PyPI from GitHub Releases via Trusted Publishing
 - Regenerate CHANGELOG.md with git-cliff when a release is published
 
+[0.3.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.2.0..v0.3.0
 [0.2.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/compare/v0.1.0..v0.2.0
 [0.1.0]: https://github.com/LLIJIYAPNIK/py-aniliberty/tree/v0.1.0
 
