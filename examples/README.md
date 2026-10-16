@@ -28,6 +28,7 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`11_franchises.py`](11_franchises.py) | `franchises.list()` / `get()` / `for_release()` / `random()` — a franchise's releases in watch order |
 | [`12_torrents_and_download.py`](12_torrents_and_download.py) | `torrents.for_release()` / `file()` / `download()` / `get()` / `rss_for_release()` |
 | [`16_teams.py`](16_teams.py) | `teams.list()` / `roles()` / `users()` — members per team, roles, joining with release credits |
+| [`17_media.py`](17_media.py) | `media.promotions()` / `videos()` — kinds of promo banners, latest YouTube videos and `limit` |
 
 See the [API reference](https://llijiyapnik.github.io/py-aniliberty/reference/) for every
 public class and method.
