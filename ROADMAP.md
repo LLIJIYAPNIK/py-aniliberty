@@ -47,7 +47,7 @@
       progress, timeouts), джоба `docs` в `ci.yml`. Напомнить пользователю включить Pages.
 - [x] **1.8 Примеры 01–05** (quickstart, latest/random, детали релиза, эпизоды и HLS,
       поиск) + `examples/README.md`. Каждый прогнан против живого API.
-- [ ] **1.9 Публикация.** `release.yml` (Trusted Publishing), `cliff.toml` +
+- [x] **1.9 Публикация.** `release.yml` (Trusted Publishing), `cliff.toml` +
       `changelog.yml`, бейджи в README (PyPI, license, Python versions, CI, coverage,
       docs). Инструкция пользователю по настройке pending publisher на pypi.org и
       environment `pypi`. Bump до `0.1.0`.
