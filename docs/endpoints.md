@@ -34,13 +34,13 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/anime/genres/random` | Аниме.Жанры | Random genres |  |  | 3.2 |
 | `GET` | `/anime/genres/{genreId}` | Аниме.Жанры | A single genre |  |  | 3.2 |
 | `GET` | `/anime/genres/{genreId}/releases` | Аниме.Жанры | Releases of a genre (paginated) |  |  | 3.2 |
-| `GET` | `/anime/releases/latest` | Аниме.Релизы | Latest releases, each with its latest episode |  |  | 1.4 |
-| `GET` | `/anime/releases/list` | Аниме.Релизы | Releases by a list of IDs/aliases (paginated) |  |  | 1.4 |
-| `GET` | `/anime/releases/random` | Аниме.Релизы | Random releases |  |  | 1.4 |
-| `GET` | `/anime/releases/recommended` | Аниме.Релизы | Recommended releases |  |  | 1.4 |
-| `GET` | `/anime/releases/{idOrAlias}` | Аниме.Релизы | A single release by ID or alias |  |  | 1.4 |
+| `GET` | `/anime/releases/latest` | Аниме.Релизы | Latest releases, each with its latest episode |  | `client.releases.latest()` | 1.4 |
+| `GET` | `/anime/releases/list` | Аниме.Релизы | Releases by a list of IDs/aliases (paginated) |  | `client.releases.list()`, `client.releases.iter_list()` | 1.4 |
+| `GET` | `/anime/releases/random` | Аниме.Релизы | Random releases |  | `client.releases.random()` | 1.4 |
+| `GET` | `/anime/releases/recommended` | Аниме.Релизы | Recommended releases |  | `client.releases.recommended()` | 1.4 |
+| `GET` | `/anime/releases/{idOrAlias}` | Аниме.Релизы | A single release by ID or alias |  | `client.releases.get()` | 1.4 |
 | `GET` | `/anime/releases/{idOrAlias}/episodes/timecodes` | Аниме.Релизы | User's watch timecodes for a release's episodes | yes |  | 4.6 |
-| `GET` | `/anime/releases/{idOrAlias}/members` | Аниме.Релизы | Team members who worked on a release |  |  | 1.4 |
+| `GET` | `/anime/releases/{idOrAlias}/members` | Аниме.Релизы | Team members who worked on a release |  | `client.releases.members()` | 1.4 |
 | `GET` | `/anime/releases/episodes/{releaseEpisodeId}` | Аниме.Релизы.Эпизоды | A single episode (HLS links) |  |  | 1.5 |
 | `GET` | `/anime/releases/episodes/{releaseEpisodeId}/timecode` | Аниме.Релизы.Эпизоды | User's watch timecode for an episode | yes |  | 4.6 |
 | `DELETE` | `/anime/releases/{releaseId}/rating` | Аниме.Релизы.Оценки | Remove the user's rating of a release | yes |  | 4.7 |

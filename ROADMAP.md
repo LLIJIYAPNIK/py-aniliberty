@@ -35,9 +35,11 @@
 - [x] **1.3 Общие модели и пагинация.** `models/common.py` (`ValueDescription`, постер/
       изображения, абсолютные URL), `pagination.py` (`Page[T]`, хелпер для `iter_*`),
       `_query.py` (сериализация фильтров) — по формату, установленному в 0.2.
-- [ ] **1.4 Релизы.** `client.releases.*`: `latest`, `random`, `recommended`, `list`,
+- [x] **1.4 Релизы.** `client.releases.*`: `latest`, `random`, `recommended`, `list`,
       `get(id_or_alias)`, `members` — по факту спеки. Модель `Release`.
 - [ ] **1.5 Эпизоды.** `client.episodes.get(...)`, модель `Episode` (HLS 480/720/1080,
+      `Release.latest_episode` из `latest()` и `Release.episodes` из `get()`/`list()` —
+      в 1.4 эти поля пока не разбираются;
       превью, opening/ending, длительность), эпизоды внутри `Release`.
 - [ ] **1.6 Быстрый поиск.** `client.app.search_releases(query)`.
 - [ ] **1.7 Документация.** `mkdocs.yml`, `docs/index.md`, `quickstart.md`,
