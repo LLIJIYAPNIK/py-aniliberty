@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.0.1 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/releases/10297/members
+  response:
+    body:
+      string: '[{"id":"a2e2a79f-10c1-4dd7-893f-34cd662c2e18","role":{"value":"voicing","description":"\u041e\u0437\u0432\u0443\u0447\u043a\u0430"},"nickname":"Silv","user":null},{"id":"a2e2a7ae-2713-4131-888a-4905c6ce6fd9","role":{"value":"voicing","description":"\u041e\u0437\u0432\u0443\u0447\u043a\u0430"},"nickname":"Lenpaca","user":null},{"id":"a2e2a7b4-85fd-43fb-a94c-888ff5829979","role":{"value":"voicing","description":"\u041e\u0437\u0432\u0443\u0447\u043a\u0430"},"nickname":"Zozya","user":null},{"id":"a2e2a7b8-d64f-4f88-9205-69d7ff5235fd","role":{"value":"voicing","description":"\u041e\u0437\u0432\u0443\u0447\u043a\u0430"},"nickname":"Crowley","user":null},{"id":"a2e2a7c2-6507-42b0-b74d-6aaa59c56352","role":{"value":"timing","description":"\u0420\u0430\u0431\u043e\u0442\u0430
+        \u0441\u043e \u0437\u0432\u0443\u043a\u043e\u043c"},"nickname":"Anarxolis","user":null},{"id":"a2e2a7cc-26fe-402e-a1ff-0423a687324a","role":{"value":"translating","description":"\u041f\u0435\u0440\u0435\u0432\u043e\u0434
+        \u0438 \u0430\u0434\u0430\u043f\u0442\u0430\u0446\u0438\u044f"},"nickname":"zrezwerder","user":null},{"id":"a2e2a7d3-834c-469d-8909-d483f8fab187","role":{"value":"decorating","description":"\u041e\u0444\u043e\u0440\u043c\u043b\u0435\u043d\u0438\u0435"},"nickname":"Sutako","user":null},{"id":"a2e2aaf2-bbd1-43ff-ab6f-f563703e19c3","role":{"value":"hevc","description":"\u041a\u043e\u0434\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435
+        HEVC"},"nickname":"Tuxoid","user":null}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b48cd43f76f975-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '1475'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 05:09:13 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=o%2FUMZwe8C5QDUTidtTrp7ewbOvaj7rPI0TniQ9j3r5%2BiPCrE08M6NMnQ0k8qLBsZIu3GtR3OkJ6TpeF91V2pPaZrG0jNR41q06P%2BclOYAWuK6r8EZPXgrEr%2Fw%2Bm5e3tJ5A%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
