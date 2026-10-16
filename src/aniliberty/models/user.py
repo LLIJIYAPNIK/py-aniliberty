@@ -1,11 +1,27 @@
-"""User account models (spec tag ``Аккаунты.Пользователи.Мое.Профиль``)."""
+"""User account models (spec tags ``Аккаунты.Пользователи.Мое.*``)."""
 
 from datetime import datetime
+from typing import Literal
 
 from pydantic import Field
 
 from aniliberty.models._base import AniLibertyModel
 from aniliberty.models.common import Image
+
+# Copied from the `enums.accounts.users.user.favorite.filter.sorting` schema of
+# spec/openapi.json (the spec-sync test in tests/unit/test_favorites_resource.py fails if they
+# drift apart); `client.me.favorites.references.sorting()` returns the same values.
+FavoritesSorting = Literal[
+    "CREATED_AT_DESC",
+    "CREATED_AT_ASC",
+    "FRESH_AT_DESC",
+    "FRESH_AT_ASC",
+    "RATING_DESC",
+    "RATING_ASC",
+    "YEAR_DESC",
+    "YEAR_ASC",
+]
+"""Sort order of favorites; ``CREATED_AT_*`` is when the release was added to favorites."""
 
 
 class TorrentStats(AniLibertyModel):
