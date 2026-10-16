@@ -115,6 +115,7 @@ async for release in client.catalog.iter_releases(
 
 Use `limit=50` with `iter_releases()` — it only changes how many requests are made. Breaking
 out of the loop stops the requests. A page number past the last page returns an empty page.
+More in the [Pagination](pagination.md) guide.
 
 ## Invalid values
 

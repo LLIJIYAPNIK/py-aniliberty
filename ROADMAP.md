@@ -59,7 +59,7 @@
 - [x] **2.2 Каталог с фильтрами.** `client.catalog.releases(...)` → `Page[Release]`,
       `client.catalog.iter_releases(...)` → `AsyncIterator[Release]`. Все фильтры из спеки,
       типизированные параметры. Гайд `docs/guides/catalog-filters.md`.
-- [ ] **2.3 Гайд по пагинации** + `docs/guides/pagination.md`.
+- [x] **2.3 Гайд по пагинации** + `docs/guides/pagination.md`.
 - [ ] **2.4 Примеры 06–08** (фильтры, пагинация `Page` vs `iter_*`, справочники).
 
 ## Фаза 3 — остальной публичный контент (`0.3.0` … `0.5.0`)
