@@ -99,5 +99,21 @@ async def test_explicit_aclose_without_context_manager() -> None:
 
 
 def test_resources_declare_their_spec_endpoints() -> None:
-    assert AppResource.ENDPOINTS == (("GET", "/app/status"),)
+    assert AppResource.ENDPOINTS == (("GET", "/app/status"), ("GET", "/app/search/releases"))
     assert isinstance(AniLiberty().app, AppResource)
+
+
+async def test_search_releases_sends_the_query() -> None:
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json=[])
+
+    http_client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    async with AniLiberty(http_client=http_client) as client:
+        assert await client.app.search_releases("Мастера меча") == []
+
+    assert seen[0].url.path == "/api/v1/app/search/releases"
+    assert seen[0].url.params["query"] == "Мастера меча"
+    await http_client.aclose()
