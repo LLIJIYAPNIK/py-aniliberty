@@ -8,6 +8,12 @@ references.*() covers all collections together.
 Run it with an account's credentials in ANILIBERTY_LOGIN / ANILIBERTY_PASSWORD. The script
 puts the original placement of its releases back at the end, so your collections are left
 as they were.
+
+One catch, found by running this very script (docs/api-notes.md): the API also applies
+collection changes in the background. A release removed right after it was added can come
+back a minute later, and removing a release that has been in a collection for a while can
+take minutes to stick. So the cleanup repeats the removal until two checks a minute apart
+agree that the releases are gone — the script runs for a few minutes.
 """
 
 import asyncio
@@ -15,8 +21,25 @@ import os
 from collections import defaultdict
 
 from aniliberty import AniLiberty, ValidationError
+from aniliberty.resources import CollectionsResource
 
 ALIASES = ["sousou-no-frieren", "tate-no-yuusha-no-nariagari", "dandadan"]
+
+
+async def remove_for_good(collections: CollectionsResource, release_ids: set[int]) -> None:
+    """Remove releases, and keep removing them until they stay out of the collections."""
+    clean_checks = 0
+    for _ in range(10):
+        present = {item.release_id for item in await collections.ids()} & release_ids
+        if present:
+            await collections.remove(*present)
+            clean_checks = 0
+        else:
+            clean_checks += 1
+            if clean_checks == 2:
+                return
+        await asyncio.sleep(60)
+    raise TimeoutError("the releases kept coming back")
 
 
 async def main() -> None:
@@ -81,9 +104,7 @@ async def main() -> None:
         finally:
             # Put things back: remove what wasn't in any collection, move the rest back.
             # remove() takes a release out of whatever collection it is in.
-            new = [release_id for release_id in ours if release_id not in before]
-            if new:
-                await collections.remove(*new)
+            await remove_for_good(collections, ours - set(before))
             for release_id, collection in before.items():
                 if release_id in ours:
                     await collections.add(release_id, to=collection)
