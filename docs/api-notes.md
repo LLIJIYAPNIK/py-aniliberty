@@ -236,18 +236,103 @@ spec does not mark nullable: `notification`, `external_player` (release), `rutub
 optional unless they are identifiers or are observed non-null in every recorded cassette; each
 such decision goes into these notes per model.
 
-## Authentication (spec only)
+## Authentication (checked 2026-10-16)
+
+### What the spec says
 
 The spec defines one security scheme, `sessionToken` (`type: http`, `scheme: bearer`,
 "Bearer auth session token"), and sets it as the **global** `security` requirement. 31
 operations repeat it explicitly; the other 49 (all public `anime/*`, `app/*`, `media/*`,
 `teams/*` operations plus the login/OTP/password endpoints) do not override it. Strictly read,
-that would make every operation require a token, but none of the unauthenticated requests in
-this document got a 401/403 — the public endpoints answered normally.
+that would make every operation require a token, but no unauthenticated request in this
+document got a 401/403 — the public endpoints answer normally.
 
 **Conclusion:** the global requirement is a spec artefact. "Requires auth" in
-`docs/endpoints.md` means the operation declares `security` itself. Token lifetime, refresh,
-and the 401/403 bodies are left for step 4.1.
+`docs/endpoints.md` means the operation declares `security` itself.
+
+### Live checks
+
+Made with a test account created for this research (credentials from environment variables,
+never written to the repo or cassettes). Requests are `httpx` with `Accept: application/json`;
+the cookie jar was cleared between requests unless the cookie itself was being tested.
+
+**Login** — `POST /accounts/users/auth/login` with `{"login": ..., "password": ...}`:
+
+- Success → 200 `{"token": "<32 characters>"}`. The token is an opaque random string (letters
+  and digits) — not a JWT and not the Laravel-encrypted blob of the spec's example, so there is
+  no expiry inside it to read.
+- The same response sets an `HttpOnly` cookie `_al1` whose value **is the token**, with
+  `Max-Age=691200` (8 days), `path=/`, `SameSite=lax`.
+- `login` accepts the login (case-insensitively) or the account's e-mail. A form-encoded body
+  works the same as JSON.
+- Every login creates a **new** token; earlier tokens stay valid (independent sessions).
+- Wrong login or password → **401** `{"token": null, "error": "Не удалось авторизоваться.
+  Неправильные логин/пароль"}` — note `error`, not Laravel's usual `message`. The same for a
+  non-existent account.
+- Missing fields → 422 `{"errors": {"login": [...], "password": [...]}}`.
+
+**Using the token:**
+
+- `Authorization: Bearer <token>` works (the scheme name is case-insensitive). The `_al1`
+  cookie alone works too, and every request authenticated by it gets a fresh `Set-Cookie` with
+  a new 8-day expiry (sliding); requests authenticated by the header get no cookie.
+- The bare token in `Authorization` (no `Bearer`) or as `?token=` doesn't authenticate.
+- No token, a garbage token, a tampered token, a logged-out token — all the same **403**
+  `{"message": "This action is unauthorized."}` on every protected endpoint tried
+  (`/accounts/users/me/profile`, `/me/favorites/ids`, `/me/views/history`,
+  `/auth/logout`, `/otp/accept`, `/anime/releases/{id}/episodes/timecodes`). The spec promises
+  401 for some of them and 404 "user is not authorized" for the profile; neither happens.
+  There is no `WWW-Authenticate` header and nothing in the body distinguishes "missing" from
+  "expired/invalid".
+- An invalid token **does not break public endpoints**: `/app/status` and
+  `/anime/releases/latest` with a garbage bearer answer 200 as usual.
+
+**Logout** — `POST /accounts/users/auth/logout` with the token → 200 `{"token": null}` and a
+`Set-Cookie` that clears `_al1`. Only that token is revoked (another session's token keeps
+working); logging out again with it → 403.
+
+**What a token changes in public responses:**
+
+- HLS URLs of episodes (also those nested in `GET /anime/releases/{idOrAlias}`) switch their
+  query string from `isAuthorized=0&isWithVideoAds=1&isWithVideoAdsAlways=1` to
+  `isAuthorized=1&...` with the account's ad flags. The URLs are opaque to the SDK either way.
+- `magnet` links of torrents get the account's **passkey** in the announce URL
+  (`...announce?pk=<passkey>`). The passkey is also `torrents.passkey` of the profile — it's
+  the `pk` parameter of the `.torrent`/RSS endpoints. It's a secret: cassettes recorded with a
+  token are scrubbed of it.
+
+**Profile** — `GET /accounts/users/me/profile` returns `id`, `login`, `email`, `nickname`,
+`avatar` (all paths `null` without an avatar, like other images), `torrents` (`passkey`,
+`uploaded`, `downloaded` — the last two `null` on a new account), `is_banned`, `created_at`,
+and three undocumented ad flags `is_with_video_ads`, `is_with_content_ads`,
+`is_with_video_ads_always`. Shape details are for step 4.3.
+
+**Other account endpoints without a session:**
+
+- `POST /accounts/otp/get` without `device_id` → 422; `POST /accounts/otp/login` with an
+  unknown code → JSON 404 "No query results for model [...OneTimePassword]".
+- `GET /accounts/users/auth/social/vk/login` → 200 `{"url": "https://oauth.vk.ru/authorize?...",
+  "state": "..."}`. An unknown provider → **500** `{"message": "Server Error"}` (the spec says
+  404) — the only 5xx body seen so far.
+- `GET /accounts/users/auth/social/authenticate` with an unknown `state` → 404 with
+  `Content-Type: text/html` and an **empty body**, despite `Accept: application/json`. The
+  SDK's "HTML means the edge blocked us" rule would misreport that as `AccessBlockedError`;
+  step 4.2 has to handle it before wrapping the endpoint.
+
+### Conclusions for the SDK (step 4.2 onwards)
+
+- Auth is a bearer token; the SDK sends `Authorization: Bearer <token>` and ignores the
+  `_al1` cookie (`_scrub_response` drops it from cassettes along with every `Set-Cookie`).
+  With a shared `httpx.AsyncClient`, note that httpx keeps that cookie in its jar after a
+  login — and the cookie alone authenticates.
+- There is no refresh endpoint, and the token carries no expiry. The cookie suggests an 8-day
+  lifetime, possibly sliding; whether the server-side session itself expires after 8 days
+  (and whether bearer use extends it) can only be seen by waiting — unverified.
+- 401 (wrong credentials at login) and 403 (anything with a missing/invalid/expired session)
+  both map to `AuthRequiredError`. Its `message` comes from `message`, or from `error` when
+  there's no `message` (the login 401).
+- Only the account's own endpoints need the token; passing a stale one to public endpoints is
+  harmless.
 
 ## Torrent and RSS endpoints (spec only)
 
@@ -595,8 +680,8 @@ SDK handles it the generic way:
 
 ## How the SDK maps responses to exceptions
 
-Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in the
-`tests/cassettes/test_*` cassettes of `tests/integration/test_app.py`.
+Derived from the bodies above (404, 422, 401/403, HTML pages) and the spec; recorded in the
+cassettes of `tests/integration/test_app.py` and `tests/integration/test_auth.py`.
 
 | Response | Exception |
 |---|---|
@@ -606,7 +691,7 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 | 404 | `NotFoundError` (`message` is `"Not found"`, the Laravel string stays in `payload`) |
 | 422 | `ValidationError` (`errors` from the body) |
 | 429 | `RateLimitError` (`retry_after` from `Retry-After` — seconds or an HTTP date — if any) |
-| 401, 403 (JSON) | `AuthRequiredError` |
+| 401, 403 (JSON) | `AuthRequiredError` — 403 for a missing/invalid session, 401 for wrong login credentials (message from `error`, see "Authentication") |
 | other 5xx | `ServerError` |
 | any other error status (e.g. 405 for `POST /app/status`) | `APIError` |
 | no response (connection error, timeout) | `TransportError` |
@@ -615,11 +700,14 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 
 - **429 response shape.** Not triggered by 300 requests to `/app/status` (see "Rate
   limiting"); body and headers of a real 429 are unknown.
-- **5xx body shape.** Not observed.
+- **5xx body shape.** Seen once: an unknown social provider answers 500
+  `{"message": "Server Error"}` (see "Authentication"). Others (overload, maintenance) not
+  observed.
 - **WAF/challenge behaviour.** Not observed from the maintainer's network; Cloudflare is in front.
   What a challenge looks like (status, headers) is unknown.
 - **Maximum `limit`** on `/media/videos` and `/anime/torrents/rss` (known so far: the catalog,
   the release endpoints and `/torrents` 50, `/genres/{id}/releases` 30; `/genres/random` and
   `/franchises/random` return everything when `limit` is out of range).
-- **Authentication details** (token lifetime, refresh, 401/403 bodies) — step 4.1.
+- **Session lifetime.** No refresh endpoint and no expiry in the token; the `_al1` cookie says
+  8 days (sliding). Whether the server-side session really expires then — unverified.
 - **Schedule time zone** — whether `/schedule/now`'s "today" is UTC or Moscow time.
