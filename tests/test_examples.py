@@ -1,7 +1,7 @@
 """Static checks of examples/ — they run against the live API, so CI can't execute them.
 
 Each example must compile, follow the shared layout (async main() + __main__ guard), end with
-a real "Expected output" block, and be listed in examples/README.md.
+a real "Expected output" block, and be listed in examples/README.md and docs/examples.md.
 """
 
 from __future__ import annotations
@@ -41,3 +41,10 @@ def test_examples_readme_lists_every_example() -> None:
     readme = (EXAMPLES_DIR / "README.md").read_text(encoding="utf-8")
     for path in EXAMPLES:
         assert f"]({path.name})" in readme, f"{path.name} is not linked from examples/README.md"
+
+
+def test_docs_examples_page_lists_every_example() -> None:
+    page = (EXAMPLES_DIR.parent / "docs" / "examples.md").read_text(encoding="utf-8")
+    for path in EXAMPLES:
+        link = f"/blob/main/examples/{path.name})"
+        assert link in page, f"{path.name} is not linked from docs/examples.md"

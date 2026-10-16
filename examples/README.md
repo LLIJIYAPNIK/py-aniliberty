@@ -31,7 +31,7 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`09_schedule.py`](09_schedule.py) | `schedule.now()` / `week()` — today's releases and episode status, the week grouped by weekday |
 | [`10_genres.py`](10_genres.py) | `genres.list()` / `get()` / `random()` / `releases()` / `iter_releases()` |
 | [`11_franchises.py`](11_franchises.py) | `franchises.list()` / `get()` / `for_release()` / `random()` — a franchise's releases in watch order |
-| [`12_torrents_and_download.py`](12_torrents_and_download.py) | `torrents.for_release()` / `file()` / `download()` / `get()` / `rss_for_release()` |
+| [`12_torrents_and_download.py`](12_torrents_and_download.py) | `torrents.for_release()` / `file()` / `download()` / `get()` / `list()` / `iter_list()` / `rss()` / `rss_for_release()` |
 | [`13_concurrency_gather.py`](13_concurrency_gather.py) | `asyncio.gather` / `TaskGroup` / `asyncio.timeout` — how `max_concurrency` and pacing bound the request rate |
 | [`14_error_handling.py`](14_error_handling.py) | the exception hierarchy on real errors (404, 422, 405, timeout), automatic retries and their logging |
 | [`15_custom_http_client_and_mirrors.py`](15_custom_http_client_and_mirrors.py) | the mirror via `base_url`, failing over between hosts, your own `httpx.AsyncClient` (hooks, timeouts, sharing), `headers=` |
@@ -40,8 +40,8 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`18_authentication.py`](18_authentication.py) | `auth.login()` / `logout()`, `client.token` and `AniLiberty(token=...)`, `me.profile()`, 401 vs 403 |
 | [`19_otp_device_login.py`](19_otp_device_login.py) | `auth.otp.issue()` / `accept()` / `login()` — logging a device in with a one-time code |
 | [`20_favorites.py`](20_favorites.py) | `me.favorites.add()` / `remove()` / `ids()` / `releases()` / `iter_releases()` / `references` |
-| [`21_collections.py`](21_collections.py) | `me.collections.add(..., to=...)` / `remove()` / `ids()` / `releases(collection)` — moving between collections |
-| [`22_watch_progress.py`](22_watch_progress.py) | `me.views.save_timecodes()` / `timecodes()` / `history()`, `episodes.timecode()`, `releases.timecodes()` — and the API's delay |
+| [`21_collections.py`](21_collections.py) | `me.collections.add(..., to=...)` / `remove()` / `ids()` / `releases(collection)` / `iter_releases()` / `references` — moving between collections |
+| [`22_watch_progress.py`](22_watch_progress.py) | `me.views.save_timecodes()` / `timecodes()` / `history()` / `iter_history()`, `episodes.timecode()`, `releases.timecodes()` — and the API's delay |
 | [`23_release_ratings.py`](23_release_ratings.py) | `releases.ratings.get()` / `set()` / `remove()` vs the overall `Release.rating` |
 
 See the [API reference](https://llijiyapnik.github.io/py-aniliberty/reference/) for every
