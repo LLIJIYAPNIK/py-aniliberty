@@ -68,3 +68,17 @@ def release_ids(releases: Sequence[int | Release]) -> list[int]:
             raise TypeError(f"Expected a release ID or a Release, got {release!r}")
         ids.append(release_id)
     return ids
+
+
+def numeric_release_id(release: int | Release) -> int:
+    """Turn a release ID or ``Release`` into the ID; reject aliases and other types.
+
+    For the endpoints that take only a numeric release ID and answer an alias with a 404.
+    """
+    release_id = release.id if isinstance(release, Release) else release
+    if isinstance(release_id, bool) or not isinstance(release_id, int):
+        raise TypeError(
+            f"Expected a release ID (int) or a Release, got {release!r}; aliases don't "
+            "work here — get the release with client.releases.get() first"
+        )
+    return release_id

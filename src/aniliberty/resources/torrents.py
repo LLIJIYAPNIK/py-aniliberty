@@ -15,6 +15,7 @@ from aniliberty.models.release import Release
 from aniliberty.models.torrent import Torrent, TorrentFile
 from aniliberty.pagination import Page, iterate_pages
 from aniliberty.resources._base import BaseResource, path_segment
+from aniliberty.resources._filters import numeric_release_id
 
 _UNSAFE_FILENAME_CHARS = re.compile(r'[<>:"/\\|?*\x00-\x1f]')
 
@@ -112,7 +113,7 @@ class TorrentsResource(BaseResource):
             ```
         """
         return await self._get(
-            f"/anime/torrents/release/{_release_id(release)}", builtins.list[Torrent]
+            f"/anime/torrents/release/{numeric_release_id(release)}", builtins.list[Torrent]
         )
 
     async def file(self, torrent: int | str | Torrent) -> TorrentFile:
@@ -219,7 +220,7 @@ class TorrentsResource(BaseResource):
             TransportError: The request failed without a response.
         """
         response = await self._http.request_raw(
-            "GET", f"/anime/torrents/rss/release/{_release_id(release)}"
+            "GET", f"/anime/torrents/rss/release/{numeric_release_id(release)}"
         )
         return response.text
 
@@ -229,17 +230,6 @@ def _torrent_key(torrent: int | str | Torrent) -> str:
     if isinstance(torrent, Torrent):
         return str(torrent.id)
     return path_segment(torrent, what="torrent ID or hash")
-
-
-def _release_id(release: int | Release) -> int:
-    """Turn a release ID or ``Release`` into the ID; reject aliases and other types."""
-    release_id = release.id if isinstance(release, Release) else release
-    if isinstance(release_id, bool) or not isinstance(release_id, int):
-        raise TypeError(
-            f"Expected a release ID (int) or a Release, got {release!r}; aliases don't "
-            "work here — get the release with client.releases.get() first"
-        )
-    return release_id
 
 
 def _suggested_filename(response: httpx.Response) -> str | None:

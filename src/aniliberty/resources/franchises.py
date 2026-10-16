@@ -7,6 +7,7 @@ import builtins
 from aniliberty.models.franchise import Franchise
 from aniliberty.models.release import Release
 from aniliberty.resources._base import BaseResource, path_segment
+from aniliberty.resources._filters import numeric_release_id
 
 
 class FranchisesResource(BaseResource):
@@ -105,10 +106,5 @@ class FranchisesResource(BaseResource):
                 print(franchise.name, [r.release.name.main for r in franchise.franchise_releases])
             ```
         """
-        release_id = release.id if isinstance(release, Release) else release
-        if isinstance(release_id, bool) or not isinstance(release_id, int):
-            raise TypeError(
-                f"Expected a release ID (int) or a Release, got {release!r}; aliases don't "
-                "work here — get the release with client.releases.get() first"
-            )
+        release_id = numeric_release_id(release)
         return await self._get(f"/anime/franchises/release/{release_id}", builtins.list[Franchise])
