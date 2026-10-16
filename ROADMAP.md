@@ -11,7 +11,7 @@
 
 ## Фаза 0 — фундамент (`0.0.x`, не публикуется)
 
-- [ ] **0.1 Scaffolding.** `uv init --lib`, `pyproject.toml` (метаданные, classifiers,
+- [x] **0.1 Scaffolding.** `uv init --lib`, `pyproject.toml` (метаданные, classifiers,
       dependency groups `dev`/`docs`, ruff/mypy/pytest/coverage-конфиги как в ranobelib),
       `src/aniliberty/` с `__init__.py` и `py.typed`, `.python-version`, `.gitignore`,
       заготовка `README.md` (`LICENSE` — MIT — уже есть в репозитории, не трогать), пустые `tests/`, `docs/`, `examples/`.
