@@ -10,6 +10,11 @@ won't print exactly the same thing. That's the data changing, not a bug in the S
 scripts stick to one long-finished release (`sousou-no-frieren`) where they can, to keep the
 output as stable as possible.
 
+Examples 18–23 use an account: they read its credentials from the `ANILIBERTY_LOGIN` and
+`ANILIBERTY_PASSWORD` environment variables, never print secrets, and leave the account as
+they found it (they only remove what they added themselves). See the
+[authentication guide](https://llijiyapnik.github.io/py-aniliberty/guides/authentication/).
+
 Scripts are heavily commented on purpose: each one is meant to be read top to bottom as a
 mini-tutorial for its feature, not just copy-pasted.
 
@@ -32,6 +37,8 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`15_custom_http_client_and_mirrors.py`](15_custom_http_client_and_mirrors.py) | the mirror via `base_url`, failing over between hosts, your own `httpx.AsyncClient` (hooks, timeouts, sharing), `headers=` |
 | [`16_teams.py`](16_teams.py) | `teams.list()` / `roles()` / `users()` — members per team, roles, joining with release credits |
 | [`17_media.py`](17_media.py) | `media.promotions()` / `videos()` — kinds of promo banners, latest YouTube videos and `limit` |
+| [`18_authentication.py`](18_authentication.py) | `auth.login()` / `logout()`, `client.token` and `AniLiberty(token=...)`, `me.profile()`, 401 vs 403 |
+| [`19_otp_device_login.py`](19_otp_device_login.py) | `auth.otp.get()` / `accept()` / `login()` — logging a device in with a one-time code |
 
 See the [API reference](https://llijiyapnik.github.io/py-aniliberty/reference/) for every
 public class and method.
