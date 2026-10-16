@@ -16,7 +16,7 @@
       `src/aniliberty/` с `__init__.py` и `py.typed`, `.python-version`, `.gitignore`,
       заготовка `README.md` (`LICENSE` — MIT — уже есть в репозитории, не трогать), пустые `tests/`, `docs/`, `examples/`.
       Без функционала, без CI.
-- [ ] **0.2 Снапшот OpenAPI-спеки.** Найти реальный URL JSON-спеки за Swagger UI
+- [x] **0.2 Снапшот OpenAPI-спеки.** Найти реальный URL JSON-спеки за Swagger UI
       `https://anilibria.top/api/docs/v1`, `scripts/update_spec.py`, `spec/openapi.json`,
       `spec/README.md`. По спеке **переписать раздел «Предварительная карта» в
       `CLAUDE.md`** на проверенную таблицу и создать `docs/endpoints.md` со всеми путями
@@ -72,7 +72,8 @@
       `httpx` stream (async-файловый I/O не тянуть отдельной зависимостью без нужды —
       обсудить в PR) + пример 12.
 - [ ] **3.5 Команды.** `client.teams.*` (команды, роли, участники).
-- [ ] **3.6 Медиа.** `client.media.*` (промо, видео).
+- [ ] **3.6 Медиа.** `client.media.*` (промо, видео). `GET /media/vasts` и
+      `/media/manifest.xml` лежат под `/media`, но это реклама (тег `Реклама.Vasts`) — не делаем.
 - [ ] **3.7 Гайды и примеры 13–15**: конкурентность (`asyncio.gather`/`TaskGroup` и лимиты
       SDK), обработка ошибок, свой `httpx.AsyncClient` и зеркала.
 - [ ] **3.8 Тест покрытия спеки.** `tests/test_spec_coverage.py` + список
@@ -89,8 +90,12 @@
 - [ ] **4.3 Профиль.** `client.me.profile()`.
 - [ ] **4.4 Избранное.** `client.me.favorites.*` (список, добавить, удалить, справочники).
 - [ ] **4.5 Коллекции.** `client.me.collections.*`.
-- [ ] **4.6 Таймкоды и история просмотра.** `client.me.views.*`.
-- [ ] **4.7 Примеры и гайд по авторизации.**
+- [ ] **4.6 Таймкоды и история просмотра.** `client.me.views.*`, плюс таймкоды в
+      «аниме»-неймспейсе спеки: `GET /anime/releases/{idOrAlias}/episodes/timecodes`,
+      `GET /anime/releases/episodes/{releaseEpisodeId}/timecode`.
+- [ ] **4.7 Оценки релизов.** `GET`/`POST`/`DELETE /anime/releases/{releaseId}/rating`
+      (своя оценка, `score` ≤ 10 по спеке). Найдено в спеке на шаге 0.2.
+- [ ] **4.8 Примеры и гайд по авторизации.**
 
 ## Фаза 5 — стабилизация (`1.0.0`)
 
