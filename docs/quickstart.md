@@ -96,7 +96,8 @@ on the host the client talks to. `image.optimized` has the same image in WebP.
 link. The SDK doesn't download video; hand the playlist to a player or to `ffmpeg`.
 
 **Pagination.** Endpoints with pages return a [`Page`][aniliberty.Page] (`items`, `page`,
-`total_pages`, `has_next_page`, ...) and have an `iter_*()` twin that walks all pages for you:
+`total_pages`, `has_next_page`, ...) and have an `iter_*()` twin that walks all pages for you
+(more in the [Pagination](guides/pagination.md) guide):
 
 ```python
 async for release in client.releases.iter_list(ids=[9542, 10172, 10297], limit=50):
