@@ -585,6 +585,14 @@ SDK handles it the generic way:
   starts consecutive requests at least 0.1 s apart, so even a large `asyncio.gather` stays
   around 10 requests per second.
 
+## Unknown routes and methods (checked 2026-10-16)
+
+- **Unknown path** (`GET /no/such/path`) → JSON 404 `{"message": "The route api/v1/no/such/path
+  could not be found."}` — a different message from the "No query results for model" 404 of a
+  missing record, same `NotFoundError` in the SDK.
+- **Wrong method** (`POST /app/status`) → JSON 405 `{"message": "The POST method is not
+  supported for route api/v1/app/status. Supported methods: GET, HEAD."}` → plain `APIError`.
+
 ## How the SDK maps responses to exceptions
 
 Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in the
@@ -600,7 +608,7 @@ Derived from the bodies above (404, 422, HTML pages) and the spec; recorded in t
 | 429 | `RateLimitError` (`retry_after` from `Retry-After` — seconds or an HTTP date — if any) |
 | 401, 403 (JSON) | `AuthRequiredError` |
 | other 5xx | `ServerError` |
-| any other error status | `APIError` |
+| any other error status (e.g. 405 for `POST /app/status`) | `APIError` |
 | no response (connection error, timeout) | `TransportError` |
 
 ## Open questions
