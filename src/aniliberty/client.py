@@ -15,6 +15,7 @@ from aniliberty._http import (
     HttpClient,
 )
 from aniliberty.resources.app import AppResource
+from aniliberty.resources.episodes import EpisodesResource
 from aniliberty.resources.releases import ReleasesResource
 
 
@@ -30,6 +31,7 @@ class AniLiberty:
             escape hatch for endpoints the SDK doesn't cover yet — it returns raw JSON.
         app: Service endpoints (API status).
         releases: Anime releases — latest, random, recommended, by ID/alias, members.
+        episodes: Episodes of releases, with HLS links.
 
     Example:
         ```python
@@ -82,6 +84,7 @@ class AniLiberty:
         )
         self.app = AppResource(self.http)
         self.releases = ReleasesResource(self.http)
+        self.episodes = EpisodesResource(self.http)
 
     async def __aenter__(self) -> Self:
         if self.http.closed:
