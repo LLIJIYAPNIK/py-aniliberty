@@ -9,6 +9,9 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
   also has a global bearer requirement, but the public endpoints work without a token — see
   [API notes](api-notes.md).
 - **SDK method** is filled in by the PR that implements the endpoint.
+- The table is checked by [`tests/test_spec_coverage.py`](https://github.com/LLIJIYAPNIK/py-aniliberty/blob/main/tests/test_spec_coverage.py)
+  against the spec and the code: every operation is listed once, **Auth** matches the spec,
+  and every SDK method named here exists on the resource that implements the endpoint.
 - **Phase** is the step in [`ROADMAP.md`](https://github.com/LLIJIYAPNIK/py-aniliberty/blob/main/ROADMAP.md)
   that implements the endpoint.
 

@@ -19,7 +19,9 @@ uv run python scripts/update_spec.py
 The script overwrites `openapi.json` and prints the operations added (`+`) or removed (`-`)
 compared with the previous snapshot. Commit the update on its own as
 `chore(spec): update openapi snapshot`, with that list in the PR description. A changed set of
-operations will fail the spec-coverage test once it exists — that is the intended signal.
+operations fails `tests/test_spec_coverage.py` — that is the intended signal: implement each
+new operation (add it to a resource's `ENDPOINTS`) or list it in `NOT_IMPLEMENTED` there with
+a reason, and update `docs/endpoints.md`.
 
 Use `--url` to download from a mirror (e.g. `anilibria.top`) if the main domain is unavailable.
 
