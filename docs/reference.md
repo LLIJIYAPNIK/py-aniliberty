@@ -9,12 +9,14 @@ Everything below is importable from the top-level `aniliberty` package unless no
 ## Resources
 
 The namespaces of an `AniLiberty` instance: `client.app`, `client.releases`,
-`client.episodes`, `client.catalog` (with `client.catalog.references`), `client.schedule`, `client.genres`, `client.franchises`, `client.torrents`, `client.teams`, `client.media`, `client.auth` (with `client.auth.otp`, `client.auth.social`, `client.auth.password`), `client.me` (with `client.me.favorites`, `client.me.collections` and their `references`, `client.me.views`). Not meant to be created directly — import from `aniliberty.resources` only
+`client.releases.ratings`, `client.episodes`, `client.catalog` (with `client.catalog.references`), `client.schedule`, `client.genres`, `client.franchises`, `client.torrents`, `client.teams`, `client.media`, `client.auth` (with `client.auth.otp`, `client.auth.social`, `client.auth.password`), `client.me` (with `client.me.favorites`, `client.me.collections` and their `references`, `client.me.views`). Not meant to be created directly — import from `aniliberty.resources` only
 for type annotations.
 
 ::: aniliberty.resources.AppResource
 
 ::: aniliberty.resources.ReleasesResource
+
+::: aniliberty.resources.RatingsResource
 
 ::: aniliberty.resources.EpisodesResource
 
@@ -73,6 +75,8 @@ for type annotations.
 ::: aniliberty.AgeRating
 
 ::: aniliberty.ReleaseRating
+
+::: aniliberty.UserRating
 
 ::: aniliberty.ExternalRating
 

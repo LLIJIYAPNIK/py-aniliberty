@@ -29,7 +29,6 @@ HTTP_METHODS = ("get", "post", "put", "patch", "delete", "head", "options")
 
 Operation = tuple[str, str]
 
-_AUTH_47 = "auth: roadmap 4.7 (release ratings)"
 _ADS = "ads: out of scope"
 
 NOT_IMPLEMENTED: dict[Operation, str] = {
@@ -40,10 +39,6 @@ NOT_IMPLEMENTED: dict[Operation, str] = {
     ("POST", "/accounts/users/me/collections/releases"): (
         "same as GET /accounts/users/me/collections/releases, which the SDK uses"
     ),
-    # Phase 4 — account endpoints.
-    ("GET", "/anime/releases/{releaseId}/rating"): _AUTH_47,
-    ("POST", "/anime/releases/{releaseId}/rating"): _AUTH_47,
-    ("DELETE", "/anime/releases/{releaseId}/rating"): _AUTH_47,
     # Ads (spec tag "Реклама.Vasts"), even though they live under /media.
     ("GET", "/media/vasts"): _ADS,
     ("GET", "/media/manifest.xml"): _ADS,

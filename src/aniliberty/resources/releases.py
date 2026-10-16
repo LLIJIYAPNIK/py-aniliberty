@@ -5,20 +5,25 @@ from __future__ import annotations
 import builtins
 from collections.abc import AsyncIterator, Sequence
 
+from aniliberty._http import HttpClient
 from aniliberty.models.release import Release, ReleaseMember
 from aniliberty.models.view import EpisodeView
 from aniliberty.pagination import Page, iterate_pages
 from aniliberty.resources._base import BaseResource, path_segment
+from aniliberty.resources.ratings import RatingsResource
 
 
 class ReleasesResource(BaseResource):
     """Anime releases, available as ``client.releases``.
 
-    For filtering and sorting the whole catalog, see ``client.catalog`` (coming in a later
-    version); this namespace covers single releases and the ready-made selections.
+    For filtering and sorting the whole catalog, see ``client.catalog``; this namespace
+    covers single releases and the ready-made selections.
 
     ``limit`` on every method here must be between 1 and 50 — the API answers anything else
     with a 422, raised as ``ValidationError`` (see ``docs/api-notes.md``).
+
+    Attributes:
+        ratings: The logged-in user's own scores of releases (needs a session).
     """
 
     ENDPOINTS = (
@@ -30,6 +35,10 @@ class ReleasesResource(BaseResource):
         ("GET", "/anime/releases/{idOrAlias}/members"),
         ("GET", "/anime/releases/{idOrAlias}/episodes/timecodes"),
     )
+
+    def __init__(self, http: HttpClient) -> None:
+        super().__init__(http)
+        self.ratings = RatingsResource(http)
 
     async def latest(self, *, limit: int | None = None) -> builtins.list[Release]:
         """Get the latest releases — the ones that got new episodes most recently.
