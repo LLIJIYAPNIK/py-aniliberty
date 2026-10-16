@@ -41,8 +41,14 @@ def _scrub_ip(body: str | bytes) -> str | bytes:
 
 
 @pytest.fixture(scope="module")
-def vcr_cassette_dir() -> str:
-    return str(CASSETTE_DIR)
+def vcr_cassette_dir(request: pytest.FixtureRequest) -> str:
+    """One cassette directory per test module: tests/cassettes/<module>/<test>.yaml.
+
+    Cassettes are named after the test function, so a flat directory would let two modules
+    with a same-named test (``test_random`` in releases and genres) share — and clobber — one
+    cassette.
+    """
+    return str(CASSETTE_DIR / request.module.__name__.rsplit(".", 1)[-1])
 
 
 @pytest.fixture(scope="module")

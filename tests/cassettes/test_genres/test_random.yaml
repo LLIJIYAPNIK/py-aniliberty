@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/genres/random?limit=3
+  response:
+    body:
+      string: '[{"id":5,"name":"\u0421\u0435\u0439\u043d\u0435\u043d","image":{"preview":"\/storage\/anime\/genres\/images\/5\/ekFrF3Puccsi75ngq0fzd4fUbnXiGCnn.jpg","thumbnail":"\/storage\/anime\/genres\/images\/5\/CfIxntJmgBabUiBQChxB0WZHdSF5L87K.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/5\/sTleU4eW0CiqDIiiyRniPJIQlB8HZagG.webp","thumbnail":"\/storage\/anime\/genres\/images\/5\/RsbTRZ6lb0zhLCP033o9PEmsFRwVqLp5.webp"}},"total_releases":195},{"id":24,"name":"\u0412\u0430\u043c\u043f\u0438\u0440\u044b","image":{"preview":"\/storage\/anime\/genres\/images\/24\/udvpqAusBUUxuEpYq2B7m0KrZyR5axcM.jpg","thumbnail":"\/storage\/anime\/genres\/images\/24\/gPvvXCCGAYpRzMtAQx5ZI2ct4oyDmVHw.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/24\/RGm4ZuXbz3ejWtQ3iSrxuu2qzbsNJWmi.webp","thumbnail":"\/storage\/anime\/genres\/images\/24\/mlFU8MhIPE4oOELEH6BDh9Tupuctf3r3.webp"}},"total_releases":46},{"id":29,"name":"\u0424\u044d\u043d\u0442\u0435\u0437\u0438","image":{"preview":"\/storage\/anime\/genres\/images\/29\/BqPfwYPC7STQ0lsv6LsdyDm594Tnz2N5.jpg","thumbnail":"\/storage\/anime\/genres\/images\/29\/bkKObn59vWFAd8wcAPINJnI8EZLZB8gH.jpg","optimized":{"preview":"\/storage\/anime\/genres\/images\/29\/BayKuKbzHQkKMlfFyUTZAoExCjqkHDfh.webp","thumbnail":"\/storage\/anime\/genres\/images\/29\/yVUCPUfGguBeZ280YyS5UhawlR3F1fS0.webp"}},"total_releases":629}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b50b119a6e93bd-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '1372'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 06:35:23 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=7V66Gsz4pMT1QA6%2Bt0yWkZDhgYrlaU01%2BGL4MZJX8sTvqxvk3uDbpc5HgADR24ygLVY7fo5wbe%2B5FtZE7wSUAztOHHFTODqr%2F0z6ihliKb5nVZ%2BhGLxkmtGe2hhMGxDw1w%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

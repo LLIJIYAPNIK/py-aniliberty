@@ -30,10 +30,10 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/anime/franchises/random` | Аниме.Франшизы | Random franchises |  |  | 3.3 |
 | `GET` | `/anime/franchises/release/{releaseId}` | Аниме.Франшизы | Franchises a release belongs to |  |  | 3.3 |
 | `GET` | `/anime/franchises/{franchiseId}` | Аниме.Франшизы | A single franchise |  |  | 3.3 |
-| `GET` | `/anime/genres` | Аниме.Жанры | All genres |  |  | 3.2 |
-| `GET` | `/anime/genres/random` | Аниме.Жанры | Random genres |  |  | 3.2 |
-| `GET` | `/anime/genres/{genreId}` | Аниме.Жанры | A single genre |  |  | 3.2 |
-| `GET` | `/anime/genres/{genreId}/releases` | Аниме.Жанры | Releases of a genre (paginated) |  |  | 3.2 |
+| `GET` | `/anime/genres` | Аниме.Жанры | All genres |  | `client.genres.list()` | 3.2 |
+| `GET` | `/anime/genres/random` | Аниме.Жанры | Random genres |  | `client.genres.random()` | 3.2 |
+| `GET` | `/anime/genres/{genreId}` | Аниме.Жанры | A single genre |  | `client.genres.get()` | 3.2 |
+| `GET` | `/anime/genres/{genreId}/releases` | Аниме.Жанры | Releases of a genre (paginated) |  | `client.genres.releases()`, `client.genres.iter_releases()` | 3.2 |
 | `GET` | `/anime/releases/latest` | Аниме.Релизы | Latest releases, each with its latest episode |  | `client.releases.latest()` | 1.4 |
 | `GET` | `/anime/releases/list` | Аниме.Релизы | Releases by a list of IDs/aliases (paginated) |  | `client.releases.list()`, `client.releases.iter_list()` | 1.4 |
 | `GET` | `/anime/releases/random` | Аниме.Релизы | Random releases |  | `client.releases.random()` | 1.4 |

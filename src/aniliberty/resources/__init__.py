@@ -3,6 +3,7 @@
 from aniliberty.resources.app import AppResource
 from aniliberty.resources.catalog import CatalogReferencesResource, CatalogResource
 from aniliberty.resources.episodes import EpisodesResource
+from aniliberty.resources.genres import GenresResource
 from aniliberty.resources.releases import ReleasesResource
 from aniliberty.resources.schedule import ScheduleResource
 
@@ -11,6 +12,7 @@ __all__ = [
     "CatalogReferencesResource",
     "CatalogResource",
     "EpisodesResource",
+    "GenresResource",
     "ReleasesResource",
     "ScheduleResource",
 ]
