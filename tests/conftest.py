@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import copy
 import json
+import os
 import re
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -19,19 +21,29 @@ SCRUBBED_IP = "203.0.113.10"
 _IP_FIELD = re.compile(r'("ip"\s*:\s*)"[^"]*"')
 _IP_FIELD_BYTES = re.compile(_IP_FIELD.pattern.encode())
 
-SCRUBBED_CREDENTIALS = {"login": "test-login", "password": "test-password"}
-"""Stand-ins for the test account's credentials in recorded login request bodies."""
+SCRUBBED_CREDENTIALS = {
+    "login": "test-login",
+    "password": "test-password",
+    "password_confirmation": "test-password",
+}
+"""Stand-ins for credentials in recorded request bodies (login, password reset).
+
+Empty values are kept as they are, so a cassette of a validation error still shows what was
+sent.
+"""
 
 SCRUBBED_SECRETS = {
+    "login": SCRUBBED_CREDENTIALS["login"],
     "token": "scrubbed-session-token",
     "passkey": "scrubbed-passkey",
     "email": "user@example.com",
 }
 """Stand-ins for account secrets in recorded response bodies, by JSON field name.
 
-``token`` is the session token returned by login/OTP; ``passkey`` and ``email`` are in the
-profile. The token also comes as the ``_al1`` cookie, which ``_scrub_response`` drops with
-every other ``Set-Cookie``.
+``token`` is the session token returned by login/OTP; ``login`` (half of the credentials),
+``passkey`` and ``email`` are in the profile. Public responses have no ``login`` field —
+users there have a ``nickname``, which is kept. The token also comes as the ``_al1`` cookie,
+which ``_scrub_response`` drops with every other ``Set-Cookie``.
 """
 
 SCRUBBED_PK = "scrubbed-passkey"
@@ -73,18 +85,24 @@ def _scrub_request(request: Request) -> Request:
             return request
         if isinstance(payload, dict) and SCRUBBED_CREDENTIALS.keys() & payload.keys():
             for field, stand_in in SCRUBBED_CREDENTIALS.items():
-                if field in payload:
+                if payload.get(field):
                     payload[field] = stand_in
             request.body = json.dumps(payload).encode()
     return request
 
 
 def _scrub_secrets(body: str | bytes) -> str | bytes:
-    """Replace the session token, passkey and e-mail in a response body with stand-ins."""
+    """Replace the account's login, session token, passkey and e-mail with stand-ins."""
     is_bytes = isinstance(body, bytes)
     text = body.decode("utf-8", errors="surrogateescape") if is_bytes else body
     text = _SECRET_FIELDS.sub(lambda m: f'{m[1]}"{SCRUBBED_SECRETS[m[2]]}"', text)
     text = _PK_PARAM.sub(rf"\g<1>{SCRUBBED_PK}", text)
+    # The account's own values wherever else they show up — e.g. the profile's nickname,
+    # which defaults to the login.
+    for variable, field in (("ANILIBERTY_LOGIN", "login"), ("ANILIBERTY_PASSWORD", "password")):
+        value = os.environ.get(variable)
+        if value:
+            text = re.sub(re.escape(value), SCRUBBED_CREDENTIALS[field], text, flags=re.IGNORECASE)
     return text.encode("utf-8", errors="surrogateescape") if is_bytes else text
 
 
@@ -115,3 +133,27 @@ def vcr_config() -> dict[str, Any]:
         "before_record_request": _scrub_request,
         "before_record_response": _scrub_response,
     }
+
+
+@dataclass(frozen=True)
+class Credentials:
+    login: str
+    password: str
+
+
+@pytest.fixture
+def credentials(request: pytest.FixtureRequest, vcr_cassette_dir: str) -> Credentials:
+    """The test account's login and password, from ``ANILIBERTY_LOGIN``/``ANILIBERTY_PASSWORD``.
+
+    Only needed to record a cassette: when it already exists, the requests are replayed and the
+    stand-ins of ``SCRUBBED_CREDENTIALS`` are used (request bodies aren't matched). Without the
+    variables and without a cassette the test is skipped instead of failing against the API.
+    """
+    login = os.environ.get("ANILIBERTY_LOGIN")
+    password = os.environ.get("ANILIBERTY_PASSWORD")
+    if login and password:
+        return Credentials(login, password)
+    cassette = Path(vcr_cassette_dir) / f"{request.node.name}.yaml"
+    if cassette.exists():
+        return Credentials(SCRUBBED_CREDENTIALS["login"], SCRUBBED_CREDENTIALS["password"])
+    pytest.skip("set ANILIBERTY_LOGIN and ANILIBERTY_PASSWORD to record this test's cassette")

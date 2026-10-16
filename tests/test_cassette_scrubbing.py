@@ -2,7 +2,7 @@
 
 What is secret comes from the auth research in docs/api-notes.md ("Authentication"): the
 login body carries the password, login/OTP responses the session token, the profile the
-passkey and e-mail, and authenticated release/torrent responses put the passkey into magnet
+login, passkey and e-mail, and authenticated release/torrent responses put the passkey into magnet
 and announce URLs.
 """
 
@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
+import pytest
 from conftest import (
     SCRUBBED_CREDENTIALS,
     SCRUBBED_IP,
@@ -41,9 +42,27 @@ def test_login_credentials_are_replaced_in_request_body() -> None:
 
     scrubbed = _scrub_request(original)
 
-    assert json.loads(scrubbed.body) == SCRUBBED_CREDENTIALS
+    assert json.loads(scrubbed.body) == {
+        "login": SCRUBBED_CREDENTIALS["login"],
+        "password": SCRUBBED_CREDENTIALS["password"],
+    }
     assert b"s3cr3t" not in scrubbed.body
     assert original.body == body  # the live request isn't touched
+
+
+def test_password_reset_body_is_scrubbed_but_empty_values_are_kept() -> None:
+    body = json.dumps(
+        {"token": "t", "password": "n3w!", "password_confirmation": "n3w!", "login": ""}
+    ).encode()
+
+    scrubbed = json.loads(_scrub_request(Request("POST", URL, body, {})).body)
+
+    assert scrubbed == {
+        "token": "t",
+        "password": SCRUBBED_CREDENTIALS["password"],
+        "password_confirmation": SCRUBBED_CREDENTIALS["password_confirmation"],
+        "login": "",
+    }
 
 
 def test_other_request_bodies_are_kept() -> None:
@@ -63,6 +82,7 @@ def test_token_passkey_and_email_are_replaced_in_response_body() -> None:
     body = json.dumps(
         {
             "token": "s9HYwZrealtoken",
+            "login": "RealUser",
             "email": "me@example.org",
             "torrents": {"passkey": "deadbeef", "uploaded": None},
         }
@@ -71,6 +91,7 @@ def test_token_passkey_and_email_are_replaced_in_response_body() -> None:
     scrubbed = json.loads(recorded_body(body))
 
     assert scrubbed["token"] == SCRUBBED_SECRETS["token"]
+    assert scrubbed["login"] == SCRUBBED_CREDENTIALS["login"]
     assert scrubbed["email"] == SCRUBBED_SECRETS["email"]
     assert scrubbed["torrents"] == {"passkey": SCRUBBED_SECRETS["passkey"], "uploaded": None}
 
@@ -107,3 +128,15 @@ def test_set_cookie_with_session_token_is_dropped() -> None:
     }
 
     assert _scrub_response(response)["headers"] == {"Server": ["x"]}
+
+
+def test_recording_account_values_are_replaced_anywhere(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("ANILIBERTY_LOGIN", "RealUser")
+    monkeypatch.setenv("ANILIBERTY_PASSWORD", "s3cr3t!")
+    body = b'{"nickname":"realuser","note":"s3cr3t!","other":"kept"}'
+
+    assert json.loads(recorded_body(body)) == {
+        "nickname": SCRUBBED_CREDENTIALS["login"],
+        "note": SCRUBBED_CREDENTIALS["password"],
+        "other": "kept",
+    }
