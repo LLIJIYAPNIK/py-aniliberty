@@ -158,6 +158,10 @@ These were found by trying, and are described in detail in the [API notes](../ap
   `ids()` but never in `releases()`. Adding something twice or removing what isn't there is a
   silent no-op.
 - **A release is in one collection at most**: adding it to another moves it.
+- **Collection changes are also applied in the background.** A release removed right
+  after it was added can reappear about a minute later, and a removal can take minutes
+  to stick. If you need a known state, remove, wait a minute, check `ids()` and repeat
+  (see `21_collections.py`).
 - **Timecodes are stored in two steps.** `client.me.views.timecodes()` has a saved timecode
   at once; the history, `client.episodes.timecode()` and `client.releases.timecodes()` get it
   about a minute later. Deleting lags the same way, and `timecodes()` can keep listing a

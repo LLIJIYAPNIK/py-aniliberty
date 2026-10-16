@@ -54,6 +54,11 @@ class CollectionsResource(BaseResource):
     releases that don't exist, and removing a release that isn't in any collection is a
     no-op.
 
+    The API also applies collection changes in the background (see ``docs/api-notes.md``):
+    a release removed right after being added can be back about a minute later, and removing
+    a release can take minutes to stick. To be sure a change held, check ``ids()`` again a
+    minute later.
+
     Attributes:
         references: Values the collections filters accept.
     """

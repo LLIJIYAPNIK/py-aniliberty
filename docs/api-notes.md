@@ -476,6 +476,25 @@ parameter is ignored. Years are newest first. There is no sorting reference.
 
 **Without a session** every collections endpoint answers the usual 403.
 
+### Delayed writes (found 2026-10-16, step 4.8)
+
+Collections, like timecodes, are also changed **in the background** — not visible in the
+quick checks above, which looked at the responses right away:
+
+- Running `examples/21_collections.py` (add three releases to `PLANNED`, move one to
+  `WATCHED`, remove all three within seconds): every response and `ids()` were right, and
+  `ids()` was empty right after — but **about a minute later two of the releases were back
+  in `PLANNED`** (the one moved to `WATCHED` wasn't), in `ids()` and in `releases()`. It
+  happened on both runs of the script; a quicker hand-made add/remove didn't reproduce it.
+- Removing releases that had come back that way **didn't take effect for more than three
+  minutes**: `DELETE` answered with them still listed, and `ids()` kept them. A `DELETE`
+  after that worked and stuck (checked for five more minutes).
+- Favorites with the same add/remove pattern didn't show this.
+
+The SDK can't tell when the API is done. Code that has to leave collections in a known
+state (cleanup, tests) should remove, wait a minute, check again and repeat until two
+checks agree — as `examples/21_collections.py` does.
+
 ## Timecodes and watch history (checked 2026-10-16)
 
 With the test account's session; episodes: the first two of release 9839 and the first of
