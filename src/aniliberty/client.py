@@ -20,6 +20,7 @@ from aniliberty.resources.catalog import CatalogResource
 from aniliberty.resources.episodes import EpisodesResource
 from aniliberty.resources.franchises import FranchisesResource
 from aniliberty.resources.genres import GenresResource
+from aniliberty.resources.me import MeResource
 from aniliberty.resources.media import MediaResource
 from aniliberty.resources.releases import ReleasesResource
 from aniliberty.resources.schedule import ScheduleResource
@@ -49,6 +50,7 @@ class AniLiberty:
         teams: AniLibria's own teams, roles and members.
         media: Front-page promo banners and AniLibria's YouTube videos.
         auth: Logging in and out — by password, one-time code or social network.
+        me: The logged-in user's own account — profile (needs a session).
 
     Example:
         ```python
@@ -115,6 +117,7 @@ class AniLiberty:
         self.teams = TeamsResource(self.http)
         self.media = MediaResource(self.http)
         self.auth = AuthResource(self.http)
+        self.me = MeResource(self.http)
 
     @property
     def token(self) -> str | None:

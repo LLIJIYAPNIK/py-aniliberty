@@ -29,7 +29,6 @@ HTTP_METHODS = ("get", "post", "put", "patch", "delete", "head", "options")
 
 Operation = tuple[str, str]
 
-_AUTH_43 = "auth: roadmap 4.3 (profile)"
 _AUTH_44 = "auth: roadmap 4.4 (favorites)"
 _AUTH_45 = "auth: roadmap 4.5 (collections)"
 _AUTH_46 = "auth: roadmap 4.6 (timecodes and watch history)"
@@ -39,7 +38,6 @@ _ADS = "ads: out of scope"
 NOT_IMPLEMENTED: dict[Operation, str] = {
     ("POST", "/anime/catalog/releases"): "same as GET /anime/catalog/releases, which the SDK uses",
     # Phase 4 — account endpoints.
-    ("GET", "/accounts/users/me/profile"): _AUTH_43,
     ("GET", "/accounts/users/me/favorites/ids"): _AUTH_44,
     ("GET", "/accounts/users/me/favorites/releases"): _AUTH_44,
     ("POST", "/accounts/users/me/favorites/releases"): _AUTH_44,
