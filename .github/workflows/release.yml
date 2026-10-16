@@ -1,0 +1,38 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  # PyPI Trusted Publishing: the job proves its identity with a short-lived OIDC token
+  # instead of a stored API token.
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: pypi
+      url: https://pypi.org/project/py-aniliberty/
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v9.0.0
+        with:
+          enable-cache: true
+      # A release tagged v0.2.0 while pyproject.toml still says 0.1.0 would publish the wrong
+      # version (or fail on PyPI's "file already exists" after a partial upload). Fail early
+      # instead, before anything is built or uploaded.
+      - name: Check that the tag matches the package version
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          version="$(uv version --short)"
+          if [ "$TAG" != "v$version" ]; then
+            echo "::error::Release tag $TAG doesn't match the package version v$version in pyproject.toml"
+            exit 1
+          fi
+      - run: uv build
+      - run: uv publish --trusted-publishing automatic
