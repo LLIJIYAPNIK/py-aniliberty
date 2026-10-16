@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/torrents/999999999/file
+  response:
+    body:
+      string: "{\n    \"message\": \"No query results for model [App\\\\Modules\\\\Anime\\\\Torrents\\\\Models\\\\Torrent].\"\n}"
+    headers:
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b522eb5b580e81-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '97'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 06:51:40 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=LdYfYcaOaPq5Jz%2ByNHNZyMDGv9ou%2FNKQl3Snc6zULVHOsj6rRzXChupH1mxQn150PXknvssoIkx1sN%2Bg41pj9oECGtu7QfAvB48GJasdEjQE8Vcb19XvhnTKKm9kR6Tz7w%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 404
+      message: Not Found
+version: 1

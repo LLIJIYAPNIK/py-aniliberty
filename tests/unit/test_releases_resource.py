@@ -20,6 +20,7 @@ from aniliberty.resources import (
     GenresResource,
     ReleasesResource,
     ScheduleResource,
+    TorrentsResource,
 )
 
 SPEC = json.loads((Path(__file__).parents[2] / "spec" / "openapi.json").read_text("utf-8"))
@@ -147,6 +148,7 @@ async def test_get_rejects_invalid_ids_before_sending(bad: Any) -> None:
         ScheduleResource,
         GenresResource,
         FranchisesResource,
+        TorrentsResource,
     ],
 )
 def test_declared_endpoints_exist_in_the_spec(resource: type[AppResource]) -> None:

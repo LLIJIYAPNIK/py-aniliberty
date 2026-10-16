@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/torrents/rss/release/999999999
+  response:
+    body:
+      string: "{\n    \"message\": \"No query results for model [App\\\\Modules\\\\Anime\\\\Releases\\\\Models\\\\Release\\\\Release]
+        999999999\"\n}"
+    headers:
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b522f03e31e4bc-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '115'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 06:51:41 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=HFD5vVvOmqKJWU%2BnYxuIJrlX7tGw0mY2HDFJHBxd7XNK8OTH13Hlh6TnxCWYvLfb5IH9tBVcmMp99He14WZL62QUKJkDazoyPdVkqw4elHmjwg2G5oktl7JqfakA47XJuw%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 404
+      message: Not Found
+version: 1
