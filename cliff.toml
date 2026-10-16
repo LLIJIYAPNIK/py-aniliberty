@@ -21,7 +21,7 @@ body = """
 {% for group, commits in commits | group_by(attribute="group") %}
     ### {{ group | striptags | trim | upper_first }}
     {% for commit in commits %}
-        - {% if commit.breaking %}**BREAKING:** {% endif %}{{ commit.message | upper_first }}\
+        - {{ commit.message | upper_first }}\
     {% endfor %}
 {% endfor %}
 
@@ -57,12 +57,14 @@ protect_breaking_commits = true
 # `docs:`/`refactor:` commits are implementation detail (commits are atomic per sub-step, see
 # CLAUDE.md, so there are many per feature) and would drown out what actually changed. `ci:`
 # is kept: in this repository it means new automation (CI, docs deploy, publishing), which
-# is worth listing. Breaking changes (`feat!:` / `BREAKING CHANGE:`) are never skipped.
+# is worth listing. Breaking changes (`feat!:` / `BREAKING CHANGE:`) are never skipped and
+# get a section of their own, first: a rename filed under "Added" would read as new API.
 commit_parsers = [
-    { message = "^feat", group = "<!-- 0 -->Added" },
-    { message = "^fix", group = "<!-- 1 -->Fixed" },
-    { message = "^perf", group = "<!-- 2 -->Performance" },
-    { message = "^ci", group = "<!-- 3 -->Changed" },
+    { field = "breaking", pattern = "true", group = "<!-- 0 -->Breaking changes" },
+    { message = "^feat", group = "<!-- 1 -->Added" },
+    { message = "^fix", group = "<!-- 2 -->Fixed" },
+    { message = "^perf", group = "<!-- 3 -->Performance" },
+    { message = "^ci", group = "<!-- 4 -->Changed" },
     { message = "^refactor", skip = true },
     { message = "^docs", skip = true },
     { message = "^test", skip = true },
