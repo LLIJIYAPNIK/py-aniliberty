@@ -82,6 +82,11 @@ async def main() -> None:
             episode = entry.release_episode
             assert episode is not None and episode.release is not None
             print(f"Last in history: {episode.release.name.main}, episode {episode.ordinal}")
+            # iter_history() walks the whole history page by page.
+            ours_in_history = [
+                e async for e in views.iter_history(limit=50) if e.release_episode_id in ours
+            ]
+            print("Our episodes in the whole history:", len(ours_in_history))
         finally:
             # Clean up. A deletion takes about a minute to reach the stored records, and the
             # quick list keeps showing deleted timecodes until it's deleted once more after
@@ -114,4 +119,5 @@ if __name__ == "__main__":
 # Stored record after waiting: True (within 1 min)
 # Watched episodes of Frieren: 1, next up: episode 1
 # Last in history: Провожающая в последний путь Фрирен, episode 1
+# Our episodes in the whole history: 2
 # Cleaned up: True
