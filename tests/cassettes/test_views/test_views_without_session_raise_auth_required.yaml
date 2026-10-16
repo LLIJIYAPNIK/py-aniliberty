@@ -1,0 +1,108 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.3.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/accounts/users/me/views/timecodes
+  response:
+    body:
+      string: "{\n    \"message\": \"This action is unauthorized.\"\n}"
+    headers:
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b8e0438ca388cb-LHR
+      connection:
+      - keep-alive
+      content-length:
+      - '49'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 17:45:13 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=xVUeNMMGp8VFTCsxaTeAGTd0wpw%2BNJZn%2F%2BmkBlT70SUjgKh%2BVE4eTkWQlCxoJvcxbH82te6BInvaidB0FW50qy77gPoN0tXWuMa%2BNuuSzpK0KKMSpZemZIWL3nOZGqyaqQ%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 403
+      message: Forbidden
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.3.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/releases/9839/episodes/timecodes
+  response:
+    body:
+      string: "{\n    \"message\": \"This action is unauthorized.\"\n}"
+    headers:
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b8e0442e4088cb-LHR
+      connection:
+      - keep-alive
+      content-length:
+      - '49'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 17:45:13 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=qeCoq%2B5eU%2BdSdjBLQnP3kn1deG4GRTi4b6T%2FKrAKsG4sxxh7UykDkSG1w5D%2BDXSizTLewlfrPQD65r3ldO0kC8qLa8KV2wWZ2qMyKiQLmxU1q6tdojFRNyQAJw7DV8FToA%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 403
+      message: Forbidden
+version: 1
