@@ -441,7 +441,10 @@ def _raise_if_failed(response: httpx.Response) -> None:
     """Raise the matching error for an HTML page or an error status; do nothing otherwise."""
     method = response.request.method
     url = str(response.request.url)
-    if _media_type(response) == "text/html" and not response.is_server_error:
+    # Some endpoints answer with an empty text/html body (a 200 for success with nothing to
+    # return, a 404 for an unknown social-login state); only an actual page is a block.
+    is_html_page = _media_type(response) == "text/html" and bool(response.content.strip())
+    if is_html_page and not response.is_server_error:
         raise AccessBlockedError(
             "Got an HTML page instead of JSON: the request was likely stopped by the "
             "anti-bot protection in front of the API. Retrying won't help; if the API opens "

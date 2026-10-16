@@ -256,6 +256,22 @@ async def test_html_page_raises_access_blocked(status: int) -> None:
     assert error.payload == HTML
 
 
+async def test_empty_html_body_on_success_is_an_empty_response() -> None:
+    # OTP accept and password forget answer 200 with an empty text/html body.
+    response = httpx.Response(200, text="", headers={"Content-Type": "text/html; charset=UTF-8"})
+    client = make_client(respond(response))
+
+    assert await client.request("POST", "/x") is None
+
+
+async def test_empty_html_body_on_error_maps_by_status() -> None:
+    # An unknown social-login state is a 404 with an empty (here: blank) text/html body.
+    response = httpx.Response(404, text=" \n", headers={"Content-Type": "text/html"})
+    error = await request_error(response)
+
+    assert type(error) is NotFoundError
+
+
 @pytest.mark.parametrize(
     "response",
     [
