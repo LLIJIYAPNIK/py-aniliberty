@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import asyncio
 import copy
 import json
 import os
 import re
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -157,3 +159,22 @@ def credentials(request: pytest.FixtureRequest, vcr_cassette_dir: str) -> Creden
     if cassette.exists():
         return Credentials(SCRUBBED_CREDENTIALS["login"], SCRUBBED_CREDENTIALS["password"])
     pytest.skip("set ANILIBERTY_LOGIN and ANILIBERTY_PASSWORD to record this test's cassette")
+
+
+@pytest.fixture
+def live_wait(
+    request: pytest.FixtureRequest, vcr_cassette_dir: str
+) -> Callable[[float], Awaitable[None]]:
+    """``await live_wait(seconds)`` sleeps while the test's cassette is being recorded only.
+
+    For endpoints whose effect shows up with a delay (timecodes reach the history about a
+    minute after they are saved), a test polls with waits in between. Replaying the cassette
+    gives back the same sequence of responses, so the waits are skipped then.
+    """
+    recording = not (Path(vcr_cassette_dir) / f"{request.node.name}.yaml").exists()
+
+    async def wait(seconds: float) -> None:
+        if recording:
+            await asyncio.sleep(seconds)
+
+    return wait

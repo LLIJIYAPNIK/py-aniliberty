@@ -476,6 +476,62 @@ parameter is ignored. Years are newest first. There is no sorting reference.
 
 **Without a session** every collections endpoint answers the usual 403.
 
+## Timecodes and watch history (checked 2026-10-16)
+
+With the test account's session; episodes: the first two of release 9839 and the first of
+8030. Timecodes were cleared again afterwards.
+
+**Saving** — `POST /accounts/users/me/views/timecodes` with
+`[{"release_episode_id": "<uuid>", "time": 743.5, "is_watched": false}, ...]` → 200 with an
+**empty `text/html` body**. Saving again for the same episode replaces its time and flag.
+
+- `time` is seconds from the start of the episode, fractions kept (`743.5`, `800.25`);
+  negative → 422 `0.time` "не меньше 0", non-numeric → 422. A time far beyond the episode's
+  length (999999) is accepted.
+- All three fields are required (missing `is_watched` → 422). A `release_episode_id` that
+  isn't a 36-character UUID → 422; a well-formed UUID of **no episode** is accepted, listed
+  for a while, and dropped later.
+- An empty array → 200, nothing happens.
+
+**Two stores.** The API keeps timecodes in a fast list and in stored records:
+
+- `GET .../views/timecodes` (the fast list) shows a saved timecode **at once**, as
+  `[episode_id, time, is_watched]` **triples**:
+  `[["9df2...", 12, false], ["95c4...", 1400, true]]`. Updating an entry doesn't move it in
+  the list; the order is undocumented. `since` (ISO date-time, an offset like `+00:00`
+  works) keeps those saved at or after it (inclusive); a future one → `[]`; not a date → 422.
+- The stored records — `GET .../views/history`, `GET /anime/releases/episodes/{id}/timecode`,
+  `GET /anime/releases/{idOrAlias}/episodes/timecodes` — get the timecode **40–60 seconds
+  later** (a background job, it seems). Until then the episode endpoint answers JSON 404
+  "No query results for model [...UserView]", the release one `[]`, the history doesn't
+  list it. A record (`models.accounts.users.v1.user.view`) is `{id, time, user_id,
+  is_watched, updated_at, release_episode_id}`.
+- **Deleting** — `DELETE .../views/timecodes` with `[{"release_episode_id": "<uuid>"}]` → 200,
+  empty `text/html`. The stored records go away after the same delay (history, then 404 on
+  the episode). The fast list, though, is rebuilt from the stored records on the next read,
+  so right after a delete it lists the deleted entries again — and **keeps** listing them
+  after the records are gone. Deleting once more after that clears it at once. A timecode
+  deleted before it was stored disappears right away. Unknown episodes and an empty array
+  are no-ops; a malformed ID → 422.
+
+**History** — `GET .../views/history` is paginated (default 25, `limit` 1..50, 0/51 → 422),
+one entry per episode, **most recently saved first** (an update moves the entry to the top).
+Each entry is a record plus `release_episode` — the episode with its `release` (and that
+release's other fields). Deleting a timecode removes its history entry.
+
+**Per release / per episode** — `GET /anime/releases/{idOrAlias}/episodes/timecodes` accepts
+an ID or alias and lists the records of that release's episodes (`[]` if none); an unknown
+release → JSON 404. `GET /anime/releases/episodes/{id}/timecode` → one record, or JSON 404
+(no record yet, or no such episode). Both need a session (403 without), although they sit
+under the public `anime/*` tags.
+
+**SDK** — `client.me.views.timecodes()` / `save_timecodes()` / `delete_timecodes()` /
+`history()` / `iter_history()`, `client.episodes.timecode()`, `client.releases.timecodes()`.
+Triples become `Timecode` models, records `EpisodeView`, history entries `HistoryEntry`.
+`since` must be timezone-aware (a naive `datetime` raises `ValueError` rather than being
+sent in an unknown zone). The delays aren't hidden: the docstrings describe them, and the
+recorded test polls until the API settles.
+
 ## Torrent and RSS endpoints (spec only)
 
 `GET /anime/torrents/{hashOrId}/file` returns `application/x-bittorrent`; `GET

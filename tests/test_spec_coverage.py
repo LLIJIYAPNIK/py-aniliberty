@@ -29,7 +29,6 @@ HTTP_METHODS = ("get", "post", "put", "patch", "delete", "head", "options")
 
 Operation = tuple[str, str]
 
-_AUTH_46 = "auth: roadmap 4.6 (timecodes and watch history)"
 _AUTH_47 = "auth: roadmap 4.7 (release ratings)"
 _ADS = "ads: out of scope"
 
@@ -42,12 +41,6 @@ NOT_IMPLEMENTED: dict[Operation, str] = {
         "same as GET /accounts/users/me/collections/releases, which the SDK uses"
     ),
     # Phase 4 — account endpoints.
-    ("GET", "/accounts/users/me/views/history"): _AUTH_46,
-    ("GET", "/accounts/users/me/views/timecodes"): _AUTH_46,
-    ("POST", "/accounts/users/me/views/timecodes"): _AUTH_46,
-    ("DELETE", "/accounts/users/me/views/timecodes"): _AUTH_46,
-    ("GET", "/anime/releases/{idOrAlias}/episodes/timecodes"): _AUTH_46,
-    ("GET", "/anime/releases/episodes/{releaseEpisodeId}/timecode"): _AUTH_46,
     ("GET", "/anime/releases/{releaseId}/rating"): _AUTH_47,
     ("POST", "/anime/releases/{releaseId}/rating"): _AUTH_47,
     ("DELETE", "/anime/releases/{releaseId}/rating"): _AUTH_47,

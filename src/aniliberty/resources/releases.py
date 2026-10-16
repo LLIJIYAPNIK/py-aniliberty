@@ -6,6 +6,7 @@ import builtins
 from collections.abc import AsyncIterator, Sequence
 
 from aniliberty.models.release import Release, ReleaseMember
+from aniliberty.models.view import EpisodeView
 from aniliberty.pagination import Page, iterate_pages
 from aniliberty.resources._base import BaseResource, path_segment
 
@@ -27,6 +28,7 @@ class ReleasesResource(BaseResource):
         ("GET", "/anime/releases/list"),
         ("GET", "/anime/releases/{idOrAlias}"),
         ("GET", "/anime/releases/{idOrAlias}/members"),
+        ("GET", "/anime/releases/{idOrAlias}/episodes/timecodes"),
     )
 
     async def latest(self, *, limit: int | None = None) -> builtins.list[Release]:
@@ -242,4 +244,33 @@ class ReleasesResource(BaseResource):
         return await self._get(
             f"/anime/releases/{path_segment(id_or_alias, what='release ID or alias')}/members",
             builtins.list[ReleaseMember],
+        )
+
+    async def timecodes(self, id_or_alias: int | str) -> builtins.list[EpisodeView]:
+        """Get the logged-in user's watch records of a release's episodes. Needs a session.
+
+        Records appear about a minute after ``client.me.views.save_timecodes()``.
+
+        Args:
+            id_or_alias: Release ID or alias.
+
+        Returns:
+            One record per episode the user has started; empty if none.
+
+        Raises:
+            NotFoundError: No release with this ID or alias.
+            AuthRequiredError: No valid session.
+            APIError: The API answered with another error.
+            TransportError: The request failed without a response.
+            ResponseParseError: The response didn't match ``EpisodeView``.
+
+        Example:
+            ```python
+            watched = {v.release_episode_id for v in await client.releases.timecodes(9839)
+                       if v.is_watched}
+            ```
+        """
+        segment = path_segment(id_or_alias, what="release ID or alias")
+        return await self._get(
+            f"/anime/releases/{segment}/episodes/timecodes", builtins.list[EpisodeView]
         )

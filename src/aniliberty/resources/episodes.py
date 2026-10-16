@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from aniliberty.models.episode import Episode
+from aniliberty.models.view import EpisodeView
 from aniliberty.resources._base import BaseResource, path_segment
 
 
@@ -13,7 +14,10 @@ class EpisodesResource(BaseResource):
     ``Release.latest_episode`` (``client.releases.latest()``).
     """
 
-    ENDPOINTS = (("GET", "/anime/releases/episodes/{releaseEpisodeId}"),)
+    ENDPOINTS = (
+        ("GET", "/anime/releases/episodes/{releaseEpisodeId}"),
+        ("GET", "/anime/releases/episodes/{releaseEpisodeId}/timecode"),
+    )
 
     async def get(self, episode_id: str) -> Episode:
         """Get one episode, with its HLS links and its release.
@@ -42,3 +46,32 @@ class EpisodesResource(BaseResource):
         return await self._get(
             f"/anime/releases/episodes/{path_segment(episode_id, what='episode ID')}", Episode
         )
+
+    async def timecode(self, episode_id: str) -> EpisodeView:
+        """Get the logged-in user's watch record of an episode. Needs a session.
+
+        Records appear about a minute after ``client.me.views.save_timecodes()``; for the
+        positions saved just now use ``client.me.views.timecodes()``.
+
+        Args:
+            episode_id: Episode ID, a UUID string.
+
+        Returns:
+            Where the user stopped in the episode and whether they finished it.
+
+        Raises:
+            NotFoundError: The user has no record for this episode (yet), or there is no
+                such episode.
+            AuthRequiredError: No valid session.
+            APIError: The API answered with another error.
+            TransportError: The request failed without a response.
+            ResponseParseError: The response didn't match ``EpisodeView``.
+
+        Example:
+            ```python
+            view = await client.episodes.timecode(episode.id)
+            print(view.time, view.is_watched)
+            ```
+        """
+        segment = path_segment(episode_id, what="episode ID")
+        return await self._get(f"/anime/releases/episodes/{segment}/timecode", EpisodeView)

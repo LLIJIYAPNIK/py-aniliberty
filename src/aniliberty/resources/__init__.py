@@ -22,6 +22,7 @@ from aniliberty.resources.releases import ReleasesResource
 from aniliberty.resources.schedule import ScheduleResource
 from aniliberty.resources.teams import TeamsResource
 from aniliberty.resources.torrents import TorrentsResource
+from aniliberty.resources.views import ViewsResource
 
 __all__ = [
     "AppResource",
@@ -44,4 +45,5 @@ __all__ = [
     "SocialAuthResource",
     "TeamsResource",
     "TorrentsResource",
+    "ViewsResource",
 ]

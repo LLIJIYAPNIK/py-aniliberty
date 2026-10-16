@@ -7,6 +7,7 @@ from aniliberty.models.user import UserProfile
 from aniliberty.resources._base import BaseResource
 from aniliberty.resources.collections import CollectionsResource
 from aniliberty.resources.favorites import FavoritesResource
+from aniliberty.resources.views import ViewsResource
 
 
 class MeResource(BaseResource):
@@ -19,6 +20,7 @@ class MeResource(BaseResource):
     Attributes:
         favorites: The user's favorite releases.
         collections: The user's collections (planned, watched, watching, ...).
+        views: The user's watch progress (timecodes) and history.
     """
 
     ENDPOINTS = (("GET", "/accounts/users/me/profile"),)
@@ -27,6 +29,7 @@ class MeResource(BaseResource):
         super().__init__(http)
         self.favorites = FavoritesResource(http)
         self.collections = CollectionsResource(http)
+        self.views = ViewsResource(http)
 
     async def profile(self) -> UserProfile:
         """Get the logged-in user's profile.

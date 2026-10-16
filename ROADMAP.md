@@ -97,9 +97,9 @@
 - [x] **4.5 Коллекции.** `client.me.collections.*`: `ids()` → `CollectionItem`,
       `add(..., to=...)`/`remove()`, `releases(collection, ...)`/`iter_releases()`,
       `references.*`. Пример — в 4.8.
-- [ ] **4.6 Таймкоды и история просмотра.** `client.me.views.*`, плюс таймкоды в
-      «аниме»-неймспейсе спеки: `GET /anime/releases/{idOrAlias}/episodes/timecodes`,
-      `GET /anime/releases/episodes/{releaseEpisodeId}/timecode`.
+- [x] **4.6 Таймкоды и история просмотра.** `client.me.views.*` (`timecodes()`,
+      `save_timecodes()`, `delete_timecodes()`, `history()`/`iter_history()`),
+      `client.releases.timecodes()`, `client.episodes.timecode()`. Пример — в 4.8.
 - [ ] **4.7 Оценки релизов.** `GET`/`POST`/`DELETE /anime/releases/{releaseId}/rating`
       (своя оценка, `score` ≤ 10 по спеке). Найдено в спеке на шаге 0.2.
 - [ ] **4.8 Примеры и гайд по авторизации.**
