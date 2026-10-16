@@ -26,6 +26,8 @@ theme:
 nav:
   - Home: index.md
   - Quickstart: quickstart.md
+  - Guides:
+      - Catalog filters: guides/catalog-filters.md
   - API reference: reference.md
   - Endpoints: endpoints.md
   - API notes: api-notes.md

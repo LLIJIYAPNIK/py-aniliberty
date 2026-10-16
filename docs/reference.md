@@ -58,6 +58,18 @@ for type annotations.
 
 ::: aniliberty.SortingOption
 
+::: aniliberty.models.catalog
+    options:
+      members:
+        - ReleaseType
+        - Season
+        - AgeRatingValue
+        - PublishStatus
+        - ProductionStatus
+        - CatalogSorting
+      show_root_heading: false
+      show_root_toc_entry: false
+
 ### Common
 
 ::: aniliberty.ValueDescription
