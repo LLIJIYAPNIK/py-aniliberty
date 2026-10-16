@@ -115,10 +115,11 @@ with a [`ValidationError`][aniliberty.ValidationError].
 
 **Errors.** Everything the SDK raises on purpose is an
 [`AniLibertyError`][aniliberty.AniLibertyError]. Rate limits (429), server errors (5xx) and
-network errors are retried automatically before an exception reaches you.
+network errors are retried automatically before an exception reaches you — see
+[Errors and retries](guides/errors.md).
 
 **Mirrors.** The default host is `https://aniliberty.top/api/v1`; `https://anilibria.top/api/v1`
-serves the same API:
+serves the same API (more in [Mirrors and a custom HTTP client](guides/custom-http-client.md)):
 
 ```python
 async with AniLiberty(base_url="https://anilibria.top/api/v1") as client:
@@ -126,7 +127,7 @@ async with AniLiberty(base_url="https://anilibria.top/api/v1") as client:
 ```
 
 **Concurrency.** `asyncio.gather` over many calls is fine: the client itself keeps at most
-`max_concurrency` (default 5) requests in flight.
+`max_concurrency` (default 5) requests in flight — see [Concurrency](guides/concurrency.md).
 
 ```python
 releases = await asyncio.gather(*(client.releases.get(i) for i in (9542, 10172, 10297)))

@@ -29,6 +29,9 @@ nav:
   - Guides:
       - Pagination: guides/pagination.md
       - Catalog filters: guides/catalog-filters.md
+      - Errors and retries: guides/errors.md
+      - Concurrency: guides/concurrency.md
+      - Mirrors and custom HTTP client: guides/custom-http-client.md
   - API reference: reference.md
   - Endpoints: endpoints.md
   - API notes: api-notes.md
