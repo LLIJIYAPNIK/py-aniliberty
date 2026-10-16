@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.0.1 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/releases/episodes/not-a-uuid
+  response:
+    body:
+      string: "{\n    \"message\": \"No query results for model [App\\\\Modules\\\\Anime\\\\Releases\\\\Models\\\\ReleaseEpisode\\\\ReleaseEpisode]
+        not-a-uuid\"\n}"
+    headers:
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b493ad2f550dc4-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '130'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 05:13:53 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=N3bGyXuiheR%2FOETrTMoCOfg3mlRdeg1bh%2Fuh6DGYngutSx0QHktlUfDjC1ReuAFYq0yyvIO213e9RRe6bTbkOF2aUUyKVfmWVl7siWghORiZWUEss7JXdDyViVEaeuIu1g%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 404
+      message: Not Found
+version: 1
