@@ -8,7 +8,8 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 - **Auth** is `yes` when the operation declares its own bearer `security` in the spec. The spec
   also has a global bearer requirement, but the public endpoints work without a token — see
   [API notes](api-notes.md).
-- **SDK method** is filled in by the PR that implements the endpoint.
+- **SDK method** names the method that covers the operation, or says why none does (a
+  duplicate of another operation, or ads, which are out of scope).
 - The table is checked by [`tests/test_spec_coverage.py`](https://github.com/LLIJIYAPNIK/py-aniliberty/blob/main/tests/test_spec_coverage.py)
   against the spec and the code: every operation is listed once, **Auth** matches the spec,
   and every SDK method named here exists on the resource that implements the endpoint.
@@ -95,5 +96,5 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `DELETE` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Delete watch-progress timecodes | yes | `client.me.views.remove_timecodes()` | 4.6 |
 | `GET` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Watch-progress timecodes | yes | `client.me.views.timecodes()` | 4.6 |
 | `POST` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Update watch-progress timecodes | yes | `client.me.views.save_timecodes()` | 4.6 |
-| `GET` | `/media/manifest.xml` | Реклама.Vasts | VAST XML ad chain |  |  | out of scope (ads) |
-| `GET` | `/media/vasts` | Реклама.Vasts | List of VAST ads |  |  | out of scope (ads) |
+| `GET` | `/media/manifest.xml` | Реклама.Vasts | VAST XML ad chain |  | — (ads, not covered by the SDK) | out of scope (ads) |
+| `GET` | `/media/vasts` | Реклама.Vasts | List of VAST ads |  | — (ads, not covered by the SDK) | out of scope (ads) |

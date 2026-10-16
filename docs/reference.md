@@ -156,6 +156,13 @@ for type annotations.
 
 ::: aniliberty.LinkedAccount
 
+::: aniliberty.models.common
+    options:
+      members:
+        - EMPTY_VALUE_AS_NONE
+      show_root_heading: false
+      show_root_toc_entry: false
+
 ### Service
 
 ::: aniliberty.ApiStatus
@@ -172,6 +179,13 @@ for type annotations.
 
 ::: aniliberty.SocialLogin
 
+::: aniliberty.models.auth
+    options:
+      members:
+        - SocialProvider
+      show_root_heading: false
+      show_root_toc_entry: false
+
 ### Account
 
 ::: aniliberty.UserProfile
@@ -179,6 +193,14 @@ for type annotations.
 ::: aniliberty.TorrentStats
 
 ::: aniliberty.CollectionItem
+
+::: aniliberty.models.user
+    options:
+      members:
+        - FavoritesSorting
+        - CollectionType
+      show_root_heading: false
+      show_root_toc_entry: false
 
 ### Watch progress
 
@@ -188,12 +210,6 @@ for type annotations.
 
 ::: aniliberty.HistoryEntry
 
-`FavoritesSorting` (in `aniliberty.models`) is the `Literal` of the sort orders
-`client.me.favorites.releases()` accepts; `CollectionType` is the `Literal` of the five
-collections: `"PLANNED"`, `"WATCHED"`, `"WATCHING"`, `"POSTPONED"`, `"ABANDONED"`.
-
-`SocialProvider` (in `aniliberty.models`) is the `Literal` of the providers
-`client.auth.social.login()` accepts: `"vk"`, `"google"`, `"patreon"`, `"discord"`.
 
 ## Exceptions
 
