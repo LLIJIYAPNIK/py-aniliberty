@@ -27,6 +27,9 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`10_genres.py`](10_genres.py) | `genres.list()` / `get()` / `random()` / `releases()` / `iter_releases()` |
 | [`11_franchises.py`](11_franchises.py) | `franchises.list()` / `get()` / `for_release()` / `random()` — a franchise's releases in watch order |
 | [`12_torrents_and_download.py`](12_torrents_and_download.py) | `torrents.for_release()` / `file()` / `download()` / `get()` / `rss_for_release()` |
+| [`13_concurrency_gather.py`](13_concurrency_gather.py) | `asyncio.gather` / `TaskGroup` / `asyncio.timeout` — how `max_concurrency` and pacing bound the request rate |
+| [`14_error_handling.py`](14_error_handling.py) | the exception hierarchy on real errors (404, 422, 405, timeout), automatic retries and their logging |
+| [`15_custom_http_client_and_mirrors.py`](15_custom_http_client_and_mirrors.py) | the mirror via `base_url`, failing over between hosts, your own `httpx.AsyncClient` (hooks, timeouts, sharing), `headers=` |
 | [`16_teams.py`](16_teams.py) | `teams.list()` / `roles()` / `users()` — members per team, roles, joining with release credits |
 | [`17_media.py`](17_media.py) | `media.promotions()` / `videos()` — kinds of promo banners, latest YouTube videos and `limit` |
 
