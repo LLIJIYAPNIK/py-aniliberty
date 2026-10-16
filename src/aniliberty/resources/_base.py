@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from typing import Any, ClassVar, TypeVar
 
 import pydantic
 
 from aniliberty._http import HttpClient
+from aniliberty._query import build_query
 from aniliberty.exceptions import ResponseParseError
 
 T = TypeVar("T")
@@ -26,11 +28,22 @@ class BaseResource:
     def __init__(self, http: HttpClient) -> None:
         self._http = http
 
-    async def _get(self, path: str, type_: type[T], *, params: dict[str, Any] | None = None) -> T:
-        """GET ``path`` and validate the JSON body as ``type_``."""
-        payload = await self._http.request("GET", path, params=params)
+    async def _get(
+        self, path: str, type_: type[T], *, params: Mapping[str, Any] | None = None
+    ) -> T:
+        """GET ``path`` and validate the JSON body as ``type_``.
+
+        ``params`` go through ``build_query`` (lists → comma-joined, nested mappings →
+        bracketed keys, ``None`` skipped). Validation runs with
+        ``context={"site_url": ...}`` so images resolve to absolute URLs on the host the
+        client talks to.
+        """
+        query = build_query(params) if params else None
+        payload = await self._http.request("GET", path, params=query)
         try:
-            return pydantic.TypeAdapter(type_).validate_python(payload)
+            return pydantic.TypeAdapter(type_).validate_python(
+                payload, context={"site_url": self._http.site_url}
+            )
         except pydantic.ValidationError as exc:
             raise ResponseParseError(
                 f"Response doesn't match {getattr(type_, '__name__', type_)}: "
