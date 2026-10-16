@@ -9,7 +9,7 @@ Everything below is importable from the top-level `aniliberty` package unless no
 ## Resources
 
 The namespaces of an `AniLiberty` instance: `client.app`, `client.releases`,
-`client.episodes`, `client.catalog` (with `client.catalog.references`), `client.schedule`, `client.genres`, `client.franchises`, `client.torrents`, `client.teams`, `client.media`, `client.auth` (with `client.auth.otp`, `client.auth.social`, `client.auth.password`), `client.me` (with `client.me.favorites` and `client.me.favorites.references`). Not meant to be created directly — import from `aniliberty.resources` only
+`client.episodes`, `client.catalog` (with `client.catalog.references`), `client.schedule`, `client.genres`, `client.franchises`, `client.torrents`, `client.teams`, `client.media`, `client.auth` (with `client.auth.otp`, `client.auth.social`, `client.auth.password`), `client.me` (with `client.me.favorites`, `client.me.collections` and their `references`). Not meant to be created directly — import from `aniliberty.resources` only
 for type annotations.
 
 ::: aniliberty.resources.AppResource
@@ -47,6 +47,14 @@ for type annotations.
 ::: aniliberty.resources.FavoritesResource
 
 ::: aniliberty.resources.FavoritesReferencesResource
+    options:
+      inherited_members: true
+
+::: aniliberty.resources.CollectionsResource
+
+::: aniliberty.resources.CollectionsReferencesResource
+    options:
+      inherited_members: true
 
 ## Pagination
 
@@ -166,8 +174,11 @@ for type annotations.
 
 ::: aniliberty.TorrentStats
 
+::: aniliberty.CollectionItem
+
 `FavoritesSorting` (in `aniliberty.models`) is the `Literal` of the sort orders
-`client.me.favorites.releases()` accepts.
+`client.me.favorites.releases()` accepts; `CollectionType` is the `Literal` of the five
+collections: `"PLANNED"`, `"WATCHED"`, `"WATCHING"`, `"POSTPONED"`, `"ABANDONED"`.
 
 `SocialProvider` (in `aniliberty.models`) is the `Literal` of the providers
 `client.auth.social.login()` accepts: `"vk"`, `"google"`, `"patreon"`, `"discord"`.

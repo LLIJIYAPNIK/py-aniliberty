@@ -5,6 +5,7 @@ from __future__ import annotations
 from aniliberty._http import HttpClient
 from aniliberty.models.user import UserProfile
 from aniliberty.resources._base import BaseResource
+from aniliberty.resources.collections import CollectionsResource
 from aniliberty.resources.favorites import FavoritesResource
 
 
@@ -17,6 +18,7 @@ class MeResource(BaseResource):
 
     Attributes:
         favorites: The user's favorite releases.
+        collections: The user's collections (planned, watched, watching, ...).
     """
 
     ENDPOINTS = (("GET", "/accounts/users/me/profile"),)
@@ -24,6 +26,7 @@ class MeResource(BaseResource):
     def __init__(self, http: HttpClient) -> None:
         super().__init__(http)
         self.favorites = FavoritesResource(http)
+        self.collections = CollectionsResource(http)
 
     async def profile(self) -> UserProfile:
         """Get the logged-in user's profile.

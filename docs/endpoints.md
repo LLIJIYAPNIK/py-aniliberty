@@ -71,15 +71,15 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/accounts/users/auth/social/{provider}/login` | Аккаунты.Пользователи.Авторизация.СоциальныеСети | Start social-network login |  | `client.auth.social.login()` | 4.2 |
 | `POST` | `/accounts/users/auth/password/forget` | Аккаунты.Пользователи.Авторизация.Пароль | Request a password reset |  | `client.auth.password.forget()` | 4.2 |
 | `POST` | `/accounts/users/auth/password/reset` | Аккаунты.Пользователи.Авторизация.Пароль | Reset and set a new password |  | `client.auth.password.reset()` | 4.2 |
-| `GET` | `/accounts/users/me/collections/references/age-ratings` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Age ratings present in the user's collections | yes |  | 4.5 |
-| `GET` | `/accounts/users/me/collections/references/genres` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Genres present in the user's collections | yes |  | 4.5 |
-| `GET` | `/accounts/users/me/collections/references/types` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Release types present in the user's collections | yes |  | 4.5 |
-| `GET` | `/accounts/users/me/collections/references/years` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Years present in the user's collections | yes |  | 4.5 |
-| `DELETE` | `/accounts/users/me/collections` | Аккаунты.Пользователи.Мое.Коллекции | Remove releases from collections | yes |  | 4.5 |
-| `POST` | `/accounts/users/me/collections` | Аккаунты.Пользователи.Мое.Коллекции | Add releases to collections | yes |  | 4.5 |
-| `GET` | `/accounts/users/me/collections/ids` | Аккаунты.Пользователи.Мое.Коллекции | IDs of releases in the user's collections | yes |  | 4.5 |
-| `GET` | `/accounts/users/me/collections/releases` | Аккаунты.Пользователи.Мое.Коллекции | Releases in a collection (query-string filters) | yes |  | 4.5 |
-| `POST` | `/accounts/users/me/collections/releases` | Аккаунты.Пользователи.Мое.Коллекции | Releases in a collection (JSON-body filters) | yes |  | 4.5 |
+| `GET` | `/accounts/users/me/collections/references/age-ratings` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Age ratings present in the user's collections | yes | `client.me.collections.references.age_ratings()` | 4.5 |
+| `GET` | `/accounts/users/me/collections/references/genres` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Genres present in the user's collections | yes | `client.me.collections.references.genres()` | 4.5 |
+| `GET` | `/accounts/users/me/collections/references/types` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Release types present in the user's collections | yes | `client.me.collections.references.types()` | 4.5 |
+| `GET` | `/accounts/users/me/collections/references/years` | Аккаунты.Пользователи.Мое.Коллекции.Справочники | Years present in the user's collections | yes | `client.me.collections.references.years()` | 4.5 |
+| `DELETE` | `/accounts/users/me/collections` | Аккаунты.Пользователи.Мое.Коллекции | Remove releases from collections | yes | `client.me.collections.remove()` | 4.5 |
+| `POST` | `/accounts/users/me/collections` | Аккаунты.Пользователи.Мое.Коллекции | Add releases to collections | yes | `client.me.collections.add()` | 4.5 |
+| `GET` | `/accounts/users/me/collections/ids` | Аккаунты.Пользователи.Мое.Коллекции | IDs of releases in the user's collections | yes | `client.me.collections.ids()` | 4.5 |
+| `GET` | `/accounts/users/me/collections/releases` | Аккаунты.Пользователи.Мое.Коллекции | Releases in a collection (query-string filters) | yes | `client.me.collections.releases()`, `client.me.collections.iter_releases()` | 4.5 |
+| `POST` | `/accounts/users/me/collections/releases` | Аккаунты.Пользователи.Мое.Коллекции | Releases in a collection (JSON-body filters) | yes | — (same as `GET`; the SDK uses `GET`) | 4.5 |
 | `GET` | `/accounts/users/me/favorites/references/age-ratings` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Age ratings present in the user's favorites | yes | `client.me.favorites.references.age_ratings()` | 4.4 |
 | `GET` | `/accounts/users/me/favorites/references/genres` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Genres present in the user's favorites | yes | `client.me.favorites.references.genres()` | 4.4 |
 | `GET` | `/accounts/users/me/favorites/references/sorting` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Sorting options for the user's favorites | yes | `client.me.favorites.references.sorting()` | 4.4 |

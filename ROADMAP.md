@@ -94,7 +94,9 @@
 - [x] **4.3 Профиль.** `client.me.profile()` → `UserProfile` (passkey — вне `repr`). Пример — в 4.8.
 - [x] **4.4 Избранное.** `client.me.favorites.*`: `ids()`, `add()`/`remove()`, `releases()`/
       `iter_releases()` с фильтрами, `references.*`. Пример — в 4.8.
-- [ ] **4.5 Коллекции.** `client.me.collections.*`.
+- [x] **4.5 Коллекции.** `client.me.collections.*`: `ids()` → `CollectionItem`,
+      `add(..., to=...)`/`remove()`, `releases(collection, ...)`/`iter_releases()`,
+      `references.*`. Пример — в 4.8.
 - [ ] **4.6 Таймкоды и история просмотра.** `client.me.views.*`, плюс таймкоды в
       «аниме»-неймспейсе спеки: `GET /anime/releases/{idOrAlias}/episodes/timecodes`,
       `GET /anime/releases/episodes/{releaseEpisodeId}/timecode`.

@@ -436,6 +436,46 @@ what occurs **in the user's favorites** (all `[]` for empty favorites): e.g. yea
 
 **Without a session** every favorites endpoint answers the usual 403.
 
+## Collections (checked 2026-10-16)
+
+Same account and releases as for favorites, starting from empty collections, emptied again
+afterwards. The five collections are the spec enum `PLANNED`, `WATCHED`, `WATCHING`,
+`POSTPONED`, `ABANDONED`.
+
+**Adding and removing** — `POST /accounts/users/me/collections` with
+`[{"release_id": 9839, "type_of_collection": "WATCHING"}, ...]`, `DELETE` with
+`[{"release_id": 9839}, ...]`:
+
+- Both answer 200 with **every** release in the collections afterwards, as
+  `[release_id, type]` **pairs**: `[[9839, "WATCHING"], [8030, "PLANNED"]]`, in the order the
+  releases were added. `GET .../collections/ids` returns the same shape. The SDK turns each
+  pair into a `CollectionItem(release_id, collection)`.
+- A release is in **one** collection at most: adding it to another collection moves it (and
+  keeps its place in the order). With the same release twice in one body, the last entry wins.
+- `DELETE` removes a release from whatever collection it's in; a `type_of_collection` in the
+  body is ignored. Removing a release that isn't there, an empty array — no-ops.
+- As with favorites, a release ID that doesn't exist is accepted (and listed in `ids`).
+- `type_of_collection` is checked: missing → 422 `0.type_of_collection` "обязательно", unknown
+  or lowercase (`planned`) → 422 "The selected 0.type_of_collection is invalid." The SDK checks
+  it against the enum first anyway, for a clearer message.
+- Collections are separate from favorites: putting releases into collections leaves
+  `favorites/ids` empty.
+
+**`GET .../collections/releases`** — `type_of_collection` is **required** (missing → 422,
+unknown → 422); one collection per request. Paginated, default page size 25, `limit` 1..50.
+Releases come with `genres` and `episodes`, **most recently added first**. There is no
+sorting in the spec, and indeed none works: passing the favorites' `f[sorting]` (any value,
+even a bogus one) just switches to ascending release ID. The SDK doesn't offer sorting here.
+Filters as in favorites: `f[years]` a comma-separated list (any of), `f[genres]` all of,
+`f[types]`/`f[age_ratings]` any of, `f[search]`. `POST .../collections/releases` with a JSON
+body (`{"type_of_collection": ..., "f": {...}}`) returns the same; the SDK uses `GET`.
+
+**References** — `GET .../collections/references/{age-ratings,genres,types,years}` list what
+occurs in **all** collections together (`[]` when they are empty); a `type_of_collection`
+parameter is ignored. Years are newest first. There is no sorting reference.
+
+**Without a session** every collections endpoint answers the usual 403.
+
 ## Torrent and RSS endpoints (spec only)
 
 `GET /anime/torrents/{hashOrId}/file` returns `application/x-bittorrent`; `GET
