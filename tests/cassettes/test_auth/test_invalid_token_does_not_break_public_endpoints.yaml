@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.3.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/app/status
+  response:
+    body:
+      string: '{"request":{"ip":"203.0.113.10","country":"The Netherlands","iso_code":"NL","timezone":"Europe\/Amsterdam"},"is_alive":true,"available_api_endpoints":["https:\/\/aniliberty.top"]}'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b87eec49ad8477-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '180'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 16:38:46 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=yuMPEZOBGqUHAp0vFvbYtn8XeKjoQGUVONhz1qLmW7yerQoPMpK2zl5VvjWUf8jvkTKnPrO%2FB6Qc0afVYyZB7qnR7APeLAua70l78PZaa0vIgyvWjgjYT8zp8o7aRTHyNg%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

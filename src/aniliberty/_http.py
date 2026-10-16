@@ -458,8 +458,7 @@ def _raise_if_failed(response: httpx.Response) -> None:
 def _raise_for_error(response: httpx.Response, *, method: str, url: str) -> NoReturn:
     payload = _decode_error_body(response)
     status = response.status_code
-    api_message = payload.get("message") if isinstance(payload, dict) else None
-    message = api_message if isinstance(api_message, str) else response.reason_phrase
+    message = _error_message(payload) or response.reason_phrase
     common: dict[str, Any] = {
         "status_code": status,
         "method": method,
@@ -479,6 +478,21 @@ def _raise_for_error(response: httpx.Response, *, method: str, url: str) -> NoRe
     if response.is_server_error:
         raise ServerError(message, **common)
     raise APIError(message, **common)
+
+
+def _error_message(payload: Any) -> str | None:
+    """Pick the human-readable message out of an error body.
+
+    Most errors carry Laravel's ``{"message": ...}``; a failed login answers 401 with
+    ``{"token": null, "error": ...}`` instead.
+    """
+    if not isinstance(payload, dict):
+        return None
+    for key in ("message", "error"):
+        value = payload.get(key)
+        if isinstance(value, str) and value:
+            return value
+    return None
 
 
 def _decode_error_body(response: httpx.Response) -> Any:
