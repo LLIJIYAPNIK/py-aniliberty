@@ -14,6 +14,7 @@ from aniliberty.models.common import EMPTY_VALUE_AS_NONE, Image, ImageSet, Value
 from aniliberty.models.episode import Episode, SkipRange
 from aniliberty.models.franchise import Franchise, FranchiseRelease
 from aniliberty.models.genre import Genre
+from aniliberty.models.media import Promotion, Video, VideoOrigin
 from aniliberty.models.release import (
     AgeRating,
     ExternalRating,
@@ -42,6 +43,7 @@ __all__ = [
     "Image",
     "ImageSet",
     "ProductionStatus",
+    "Promotion",
     "PublishStatus",
     "Release",
     "ReleaseType",
@@ -65,4 +67,6 @@ __all__ = [
     "TorrentFile",
     "TorrentMember",
     "ValueDescription",
+    "Video",
+    "VideoOrigin",
 ]
