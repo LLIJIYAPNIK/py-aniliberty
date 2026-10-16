@@ -2,8 +2,12 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
-from collections.abc import Mapping
+import time
+from collections.abc import Awaitable, Callable, Mapping
+from datetime import UTC, datetime
+from email.utils import parsedate_to_datetime
 from typing import Any, NoReturn
 
 import httpx
@@ -31,6 +35,21 @@ DEFAULT_BASE_URL = "https://aniliberty.top/api/v1"
 DEFAULT_TIMEOUT = 30.0
 """Default per-request timeout, in seconds."""
 
+DEFAULT_MAX_CONCURRENCY = 5
+"""Default maximum number of requests in flight at once."""
+
+DEFAULT_REQUEST_DELAY = 0.1
+"""Default minimum time, in seconds, between the starts of two consecutive requests."""
+
+DEFAULT_MAX_RETRIES = 3
+"""Default number of retries after the first attempt (so up to 4 attempts in total)."""
+
+DEFAULT_RETRY_BASE_DELAY = 1.0
+"""Default delay before the first retry, in seconds; doubled for every next one."""
+
+DEFAULT_MAX_RETRY_AFTER = 60.0
+"""Longest ``Retry-After``, in seconds, the client waits out; a longer one fails at once."""
+
 DEFAULT_HEADERS: dict[str, str] = {
     "Accept": "application/json",
     "User-Agent": f"py-aniliberty/{__version__} (+https://github.com/LLIJIYAPNIK/py-aniliberty)",
@@ -41,6 +60,14 @@ DEFAULT_HEADERS: dict[str, str] = {
 renders errors (404 at least) as HTML pages instead of JSON — see ``docs/api-notes.md``.
 """
 
+IDEMPOTENT_METHODS = frozenset({"GET", "HEAD", "OPTIONS", "PUT", "DELETE"})
+"""Methods that are safe to resend after a 5xx or a network error.
+
+A 5xx or a dropped connection doesn't say whether the server already acted on the request, so
+a ``POST`` (e.g. adding a release to favorites) is not resent then. 429 is retried for every
+method: the server explicitly refused to process the request.
+"""
+
 logger = logging.getLogger("aniliberty")
 
 
@@ -49,12 +76,22 @@ class HttpClient:
 
     Every resource of ``AniLiberty`` goes through this class; it is also the escape hatch for
     endpoints the SDK doesn't cover yet: ``await client.http.request("GET", "/teams/roles")``
-    returns the decoded JSON as is, with the same headers and error handling as the rest of
-    the SDK.
+    returns the decoded JSON as is, with the same headers, limits, retries and error handling
+    as the rest of the SDK.
 
     Request paths are relative to ``base_url`` and joined as strings, so
     ``"/app/status"`` with the default base URL becomes
     ``https://aniliberty.top/api/v1/app/status``. Absolute URLs are not accepted.
+
+    Being polite to the API is built in:
+
+    - **Concurrency** — at most ``max_concurrency`` requests are in flight at once, however
+      many coroutines call the client (e.g. via ``asyncio.gather``).
+    - **Pacing** — consecutive requests start at least ``request_delay`` seconds apart.
+    - **Retries** — 429 is retried for any method, 5xx and network errors/timeouts only for
+      idempotent methods (``IDEMPOTENT_METHODS``). The delay is the response's
+      ``Retry-After`` when it has one, otherwise ``retry_base_delay`` doubled per attempt
+      (1 s, 2 s, 4 s by default). Other 4xx and HTML block pages are never retried.
     """
 
     def __init__(
@@ -64,6 +101,13 @@ class HttpClient:
         timeout: float = DEFAULT_TIMEOUT,
         headers: Mapping[str, str] | None = None,
         http_client: httpx.AsyncClient | None = None,
+        max_concurrency: int = DEFAULT_MAX_CONCURRENCY,
+        request_delay: float = DEFAULT_REQUEST_DELAY,
+        max_retries: int = DEFAULT_MAX_RETRIES,
+        retry_base_delay: float = DEFAULT_RETRY_BASE_DELAY,
+        max_retry_after: float = DEFAULT_MAX_RETRY_AFTER,
+        sleep: Callable[[float], Awaitable[None]] = asyncio.sleep,
+        clock: Callable[[], float] = time.monotonic,
     ) -> None:
         """Initialize the client.
 
@@ -79,7 +123,32 @@ class HttpClient:
                 transport, proxy, limits, ...). The SDK's headers are added to each request
                 on top of the client's own, and the client is **not** closed by ``aclose()``
                 — its owner is responsible for that.
+            max_concurrency: Maximum number of requests in flight at once.
+            request_delay: Minimum time, in seconds, between the starts of two consecutive
+                requests. ``0`` disables pacing.
+            max_retries: How many times to retry a retryable failure before raising. ``0``
+                disables retries.
+            retry_base_delay: Delay before the first retry, in seconds, when the response
+                has no ``Retry-After``; doubled for every next retry.
+            max_retry_after: Longest ``Retry-After``, in seconds, worth waiting for. A 429
+                asking for more raises ``RateLimitError`` right away instead of blocking.
+            sleep: Async sleep function used for pacing and backoff. Replaceable in tests.
+            clock: Monotonic time source used for pacing. Replaceable in tests.
+
+        Raises:
+            ValueError: A limit is out of range (``max_concurrency < 1`` or a negative
+                delay/retry count).
         """
+        if max_concurrency < 1:
+            raise ValueError(f"max_concurrency must be at least 1, got {max_concurrency}")
+        for name, value in (
+            ("request_delay", request_delay),
+            ("max_retries", max_retries),
+            ("retry_base_delay", retry_base_delay),
+            ("max_retry_after", max_retry_after),
+        ):
+            if value < 0:
+                raise ValueError(f"{name} must not be negative, got {value}")
         self._base_url = base_url.rstrip("/")
         self._headers = httpx.Headers(DEFAULT_HEADERS)
         if headers is not None:
@@ -87,6 +156,15 @@ class HttpClient:
         self._owns_client = http_client is None
         self._client = http_client or httpx.AsyncClient(timeout=timeout)
         self._closed = False
+        self._semaphore = asyncio.Semaphore(max_concurrency)
+        self._request_delay = request_delay
+        self._max_retries = max_retries
+        self._retry_base_delay = retry_base_delay
+        self._max_retry_after = max_retry_after
+        self._sleep = sleep
+        self._clock = clock
+        self._pacing_lock = asyncio.Lock()
+        self._last_request_at: float | None = None
 
     @property
     def base_url(self) -> str:
@@ -123,6 +201,8 @@ class HttpClient:
     ) -> Any:
         """Send a request and return the decoded JSON body.
 
+        Retries and limits described on the class apply.
+
         Args:
             method: HTTP method, e.g. ``"GET"``.
             path: Path relative to ``base_url``, e.g. ``"/anime/releases/latest"``.
@@ -134,8 +214,10 @@ class HttpClient:
 
         Raises:
             APIError: The API answered with an error status — one of its subclasses for
-                404, 422, 429, 401/403, 5xx and HTML pages.
-            TransportError: The request failed without a response (network error, timeout).
+                404, 422, 429, 401/403, 5xx and HTML pages. 429 and 5xx are raised only once
+                retries are exhausted.
+            TransportError: The request failed without a response (network error, timeout),
+                after retries for idempotent methods.
             ResponseParseError: A successful response wasn't valid JSON.
             RuntimeError: The client has been closed.
 
@@ -148,17 +230,81 @@ class HttpClient:
             raise RuntimeError("This client has been closed; create a new AniLiberty instance.")
         method = method.upper()
         url = self.url(path)
-        try:
-            response = await self._client.request(
+        attempt = 0
+        while True:
+            try:
+                response = await self._send(method, url, params=params, json=json)
+            except httpx.TransportError as exc:
+                logger.debug("%s %s failed: %r", method, url, exc)
+                if method in IDEMPOTENT_METHODS and attempt < self._max_retries:
+                    await self._wait_before_retry(
+                        self._backoff(attempt), attempt, method, url, type(exc).__name__
+                    )
+                    attempt += 1
+                    continue
+                raise TransportError(
+                    f"Request failed: {type(exc).__name__}: {exc}", method=method, url=url
+                ) from exc
+            logger.debug("%s %s -> %d", method, response.request.url, response.status_code)
+            delay = self._retry_delay(response, method, attempt)
+            if delay is None:
+                return _handle_response(response)
+            await self._wait_before_retry(
+                delay, attempt, method, url, f"HTTP {response.status_code}"
+            )
+            attempt += 1
+
+    async def _send(
+        self, method: str, url: str, *, params: Mapping[str, Any] | None, json: Any
+    ) -> httpx.Response:
+        """Send one attempt, within the concurrency limit and after the pacing delay."""
+        async with self._semaphore:
+            await self._pace()
+            return await self._client.request(
                 method, url, params=params, json=json, headers=self._headers
             )
-        except httpx.TransportError as exc:
-            logger.debug("%s %s failed: %r", method, url, exc)
-            raise TransportError(
-                f"Request failed: {type(exc).__name__}: {exc}", method=method, url=url
-            ) from exc
-        logger.debug("%s %s -> %d", method, response.request.url, response.status_code)
-        return _handle_response(response)
+
+    async def _pace(self) -> None:
+        """Wait, if needed, so this request starts at least ``request_delay`` after the last."""
+        if self._request_delay <= 0:
+            return
+        async with self._pacing_lock:
+            if self._last_request_at is not None:
+                wait = self._last_request_at + self._request_delay - self._clock()
+                if wait > 0:
+                    await self._sleep(wait)
+            self._last_request_at = self._clock()
+
+    def _retry_delay(self, response: httpx.Response, method: str, attempt: int) -> float | None:
+        """How long to wait before retrying ``response``, or ``None`` to not retry it."""
+        if attempt >= self._max_retries:
+            return None
+        if response.status_code == 429:
+            retry_after = _retry_after(response)
+            if retry_after is None:
+                return self._backoff(attempt)
+            return retry_after if retry_after <= self._max_retry_after else None
+        if response.is_server_error and method in IDEMPOTENT_METHODS:
+            return self._backoff(attempt)
+        return None
+
+    def _backoff(self, attempt: int) -> float:
+        delay: float = self._retry_base_delay * 2**attempt
+        return delay
+
+    async def _wait_before_retry(
+        self, delay: float, attempt: int, method: str, url: str, reason: str
+    ) -> None:
+        logger.info(
+            "%s %s: %s, retrying in %.1fs (retry %d of %d)",
+            method,
+            url,
+            reason,
+            delay,
+            attempt + 1,
+            self._max_retries,
+        )
+        await self._sleep(delay)
 
 
 def _handle_response(response: httpx.Response) -> Any:
@@ -237,13 +383,42 @@ def _media_type(response: httpx.Response) -> str:
 
 
 def _retry_after(response: httpx.Response) -> float | None:
+    """Parse ``Retry-After`` — delay seconds or an HTTP date — into seconds from now.
+
+    An HTTP date is measured against the response's own ``Date`` header when present, so a
+    skewed local clock doesn't distort it.
+    """
     value = response.headers.get("Retry-After")
     if value is None:
         return None
     try:
-        return float(value)
+        return max(0.0, float(value))
     except ValueError:
+        pass
+    retry_at = _parse_http_date(value)
+    if retry_at is None:
         return None
+    now = _parse_http_date(response.headers.get("Date", "")) or datetime.now(UTC)
+    return max(0.0, (retry_at - now).total_seconds())
 
 
-__all__ = ["DEFAULT_BASE_URL", "DEFAULT_HEADERS", "DEFAULT_TIMEOUT", "HttpClient"]
+def _parse_http_date(value: str) -> datetime | None:
+    try:
+        parsed = parsedate_to_datetime(value)
+    except (TypeError, ValueError):
+        return None
+    return parsed if parsed.tzinfo is not None else parsed.replace(tzinfo=UTC)
+
+
+__all__ = [
+    "DEFAULT_BASE_URL",
+    "DEFAULT_HEADERS",
+    "DEFAULT_MAX_CONCURRENCY",
+    "DEFAULT_MAX_RETRIES",
+    "DEFAULT_MAX_RETRY_AFTER",
+    "DEFAULT_REQUEST_DELAY",
+    "DEFAULT_RETRY_BASE_DELAY",
+    "DEFAULT_TIMEOUT",
+    "IDEMPOTENT_METHODS",
+    "HttpClient",
+]

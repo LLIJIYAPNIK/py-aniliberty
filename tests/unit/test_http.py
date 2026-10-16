@@ -27,6 +27,9 @@ HTML = "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>
 
 
 def make_client(handler: Handler, **kwargs: object) -> HttpClient:
+    # Retries and pacing are covered in test_retry.py; here every response is mapped as is.
+    kwargs.setdefault("max_retries", 0)
+    kwargs.setdefault("request_delay", 0)
     transport = httpx.MockTransport(handler)
     return HttpClient(http_client=httpx.AsyncClient(transport=transport), **kwargs)  # type: ignore[arg-type]
 
