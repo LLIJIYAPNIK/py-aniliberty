@@ -1,0 +1,64 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/teams/
+  response:
+    body:
+      string: '[{"id":"f3a74564-5427-456d-bf57-d89d5749c718","title":"0 \u041b\u0438\u0433\u0430","sort_order":0,"description":"\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u043e
+        \u043f\u0440\u043e\u0435\u043a\u0442\u0430"},{"id":"e28a628a-a594-4270-af36-3dcb52a7431b","title":"I
+        \u041b\u0438\u0433\u0430","sort_order":1,"description":"\u0421\u043e\u0432\u0435\u0442"},{"id":"417fbac6-095f-4362-b922-621a3baf12f3","title":"II
+        \u041b\u0438\u0433\u0430","sort_order":2,"description":"\u0412\u044b\u0441\u0448\u0430\u044f"},{"id":"1111ac01-8996-4cdc-8195-d1e165552116","title":"III
+        \u041b\u0438\u0433\u0430","sort_order":3,"description":"\u041c\u0430\u0441\u0442\u0435\u0440\u0430"},{"id":"1b70fe8d-30fa-4bbe-aac9-3823573492a2","title":"IV
+        \u041b\u0438\u0433\u0430","sort_order":4,"description":"\u041e\u0441\u043d\u043e\u0432\u0430"},{"id":"2fad3856-5896-47ab-9371-84831939f18c","title":"\u0410\u043a\u0430\u0434\u0435\u043c\u0438\u044f","sort_order":6,"description":null},{"id":"baee450f-4358-499c-bc09-21c1ca2b66d3","title":"\u041d\u0435
+        \u043f\u043e\u0434\u0434\u0430\u0451\u0442\u0441\u044f \u043a\u043b\u0430\u0441\u0441\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438
+        \u043b\u0438\u0433\u043e\u0432\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b","sort_order":7,"description":null}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b672e5e8d25d4e-FRA
+      connection:
+      - keep-alive
+      content-length:
+      - '1295'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 10:41:02 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=qklFJSueMk%2B9mplp8CGJEbm0GoVZEA%2Fe5MD%2Ff2ASElBRk7dY%2BF%2BNE8g6Hqb6Geah6aH0cUFMUAedTYu2rAXm6O%2FKKoYut8AaUFQlogc%2Ffc3iEvha6CE0IFHZ9tvHbgl2Nw%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
