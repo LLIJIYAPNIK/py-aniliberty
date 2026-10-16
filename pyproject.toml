@@ -55,6 +55,8 @@ dev = [
     "vcrpy>=6.0",
 ]
 docs = [
+    # MkDocs 2.0 drops the plugin system mkdocs-material and mkdocstrings rely on.
+    "mkdocs>=1.6,<2",
     "mkdocs-material>=9.5",
     "mkdocstrings[python]>=0.25",
 ]

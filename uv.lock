@@ -1056,6 +1056,7 @@ dev = [
     { name = "vcrpy" },
 ]
 docs = [
+    { name = "mkdocs" },
     { name = "mkdocs-material" },
     { name = "mkdocstrings", extra = ["python"] },
 ]
@@ -1078,6 +1079,7 @@ dev = [
     { name = "vcrpy", specifier = ">=6.0" },
 ]
 docs = [
+    { name = "mkdocs", specifier = ">=1.6,<2" },
     { name = "mkdocs-material", specifier = ">=9.5" },
     { name = "mkdocstrings", extras = ["python"], specifier = ">=0.25" },
 ]
