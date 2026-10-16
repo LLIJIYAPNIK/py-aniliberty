@@ -8,6 +8,10 @@ from aniliberty.resources.auth import (
     SocialAuthResource,
 )
 from aniliberty.resources.catalog import CatalogReferencesResource, CatalogResource
+from aniliberty.resources.collections import (
+    CollectionsReferencesResource,
+    CollectionsResource,
+)
 from aniliberty.resources.episodes import EpisodesResource
 from aniliberty.resources.favorites import FavoritesReferencesResource, FavoritesResource
 from aniliberty.resources.franchises import FranchisesResource
@@ -24,6 +28,8 @@ __all__ = [
     "AuthResource",
     "CatalogReferencesResource",
     "CatalogResource",
+    "CollectionsReferencesResource",
+    "CollectionsResource",
     "EpisodesResource",
     "FavoritesReferencesResource",
     "FavoritesResource",

@@ -29,7 +29,6 @@ HTTP_METHODS = ("get", "post", "put", "patch", "delete", "head", "options")
 
 Operation = tuple[str, str]
 
-_AUTH_45 = "auth: roadmap 4.5 (collections)"
 _AUTH_46 = "auth: roadmap 4.6 (timecodes and watch history)"
 _AUTH_47 = "auth: roadmap 4.7 (release ratings)"
 _ADS = "ads: out of scope"
@@ -39,16 +38,10 @@ NOT_IMPLEMENTED: dict[Operation, str] = {
     ("POST", "/accounts/users/me/favorites/releases"): (
         "same as GET /accounts/users/me/favorites/releases, which the SDK uses"
     ),
+    ("POST", "/accounts/users/me/collections/releases"): (
+        "same as GET /accounts/users/me/collections/releases, which the SDK uses"
+    ),
     # Phase 4 — account endpoints.
-    ("GET", "/accounts/users/me/collections/ids"): _AUTH_45,
-    ("GET", "/accounts/users/me/collections/releases"): _AUTH_45,
-    ("POST", "/accounts/users/me/collections/releases"): _AUTH_45,
-    ("POST", "/accounts/users/me/collections"): _AUTH_45,
-    ("DELETE", "/accounts/users/me/collections"): _AUTH_45,
-    ("GET", "/accounts/users/me/collections/references/age-ratings"): _AUTH_45,
-    ("GET", "/accounts/users/me/collections/references/genres"): _AUTH_45,
-    ("GET", "/accounts/users/me/collections/references/types"): _AUTH_45,
-    ("GET", "/accounts/users/me/collections/references/years"): _AUTH_45,
     ("GET", "/accounts/users/me/views/history"): _AUTH_46,
     ("GET", "/accounts/users/me/views/timecodes"): _AUTH_46,
     ("POST", "/accounts/users/me/views/timecodes"): _AUTH_46,

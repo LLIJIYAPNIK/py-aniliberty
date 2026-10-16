@@ -1,9 +1,9 @@
 """User account models (spec tags ``Аккаунты.Пользователи.Мое.*``)."""
 
 from datetime import datetime
-from typing import Literal
+from typing import Any, Literal
 
-from pydantic import Field
+from pydantic import Field, model_validator
 
 from aniliberty.models._base import AniLibertyModel
 from aniliberty.models.common import Image
@@ -22,6 +22,35 @@ FavoritesSorting = Literal[
     "YEAR_ASC",
 ]
 """Sort order of favorites; ``CREATED_AT_*`` is when the release was added to favorites."""
+
+
+# Copied from the `enums.accounts.users.user.collection.type` schema of spec/openapi.json (the
+# spec-sync test in tests/unit/test_collections_resource.py fails if they drift apart).
+CollectionType = Literal["PLANNED", "WATCHED", "WATCHING", "POSTPONED", "ABANDONED"]
+"""A user's collection: planned, watched, watching, postponed or abandoned."""
+
+
+class CollectionItem(AniLibertyModel):
+    """A release in one of the user's collections, from ``client.me.collections.ids()``.
+
+    Spec schema: ``responses.api.v1.accounts.users.me.collections.ids.item`` — the API sends
+    a ``[release_id, collection]`` pair, e.g. ``[9839, "WATCHED"]``; it's validated into this
+    model (a dict with the field names works too).
+
+    Attributes:
+        release_id: Release ID.
+        collection: The collection the release is in. A release is in one collection at most.
+    """
+
+    release_id: int
+    collection: CollectionType
+
+    @model_validator(mode="before")
+    @classmethod
+    def _from_pair(cls, data: Any) -> Any:
+        if isinstance(data, list | tuple) and len(data) == 2:
+            return {"release_id": data[0], "collection": data[1]}
+        return data
 
 
 class TorrentStats(AniLibertyModel):
