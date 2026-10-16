@@ -8,9 +8,10 @@ from aniliberty.models.common import ValueDescription
 
 
 class SortingOption(ValueDescription[str]):
-    """A way to sort the catalog, from ``client.catalog.references.sorting()``.
+    """A way to sort a list, from ``client.catalog.references.sorting()`` or
+    ``client.me.favorites.references.sorting()``.
 
-    ``value`` is what the catalog's ``sorting`` filter takes, e.g. ``"FRESH_AT_DESC"``.
+    ``value`` is what the matching ``sorting`` filter takes, e.g. ``"FRESH_AT_DESC"``.
 
     Attributes:
         label: Short name, in Russian, e.g. ``"Обновлены недавно"``.

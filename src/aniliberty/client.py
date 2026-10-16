@@ -50,7 +50,7 @@ class AniLiberty:
         teams: AniLibria's own teams, roles and members.
         media: Front-page promo banners and AniLibria's YouTube videos.
         auth: Logging in and out — by password, one-time code or social network.
-        me: The logged-in user's own account — profile (needs a session).
+        me: The logged-in user's own account — profile, favorites (needs a session).
 
     Example:
         ```python

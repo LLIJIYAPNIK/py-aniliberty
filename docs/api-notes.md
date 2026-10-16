@@ -389,6 +389,53 @@ sending mail). `POST .../password/reset`: missing fields → 422, `password` ≠
 - Only the account's own endpoints need the token; passing a stale one to public endpoints is
   harmless.
 
+## Favorites (checked 2026-10-16)
+
+With the test account's session, starting from empty favorites; releases 9839 (TV, 2025),
+9600 (TV, 2024), 8030 (TV, 2019), 8789 (TV, 2020). Favorites were emptied again afterwards.
+
+**Adding and removing** — `POST /accounts/users/me/favorites` and `DELETE` on the same path,
+both with a JSON array body `[{"release_id": 9839}, ...]`:
+
+- Both answer 200 with the IDs of **all** releases in favorites afterwards (a bare array), in
+  the order they were added.
+- Adding a release that is already there, removing one that isn't, and an empty array are
+  silent no-ops (still 200 with the current IDs). `DELETE` without a body too.
+- A release ID that **doesn't exist** (99999999) is accepted: it shows up in `ids` but never
+  in `releases`, and its `total` doesn't count it. The SDK doesn't pre-check IDs (it would
+  cost a request per release); removing such an ID works.
+- 60 releases in one request worked; no batch limit was hit.
+- Body errors are 422 keyed by position: `{"errors": {"0.release_id": [...]}}` for
+  `"release_id": "abc"`; a bare object instead of an array → `release_id.release_id`.
+
+**`GET .../favorites/ids`** — bare array of release IDs, in the order they were added; `[]`
+when empty.
+
+**`GET .../favorites/releases`** — paginated like the catalog (`data` + `meta.pagination`),
+default page size 25, `limit` 1..50 (0 or 51 → 422). Releases come with `genres` and
+`episodes`.
+
+- Default order is `CREATED_AT_DESC` — most recently **added to favorites** first (releases
+  added within the same second come in no particular order). `RATING_*` sorts by
+  `added_in_users_favorites`, `FRESH_AT_*` by the release's `fresh_at`, `YEAR_*` by year.
+  An unknown sorting value is silently ignored.
+- `f[years]` is a **comma-separated list** of years here (spec: "Годы выхода релиза",
+  `"2016, 2018, 2019"`, spaces allowed), any of them matching. The catalog's
+  `f[years][from_year]`/`[to_year]` happen to work too; the SDK uses the documented list and
+  takes `years=[...]` (a `range` works). A non-numeric year → empty page, not an error.
+- `f[genres]`: all of the given genres (AND), like the catalog. `f[types]`, `f[age_ratings]`:
+  any (OR). An unknown type → empty page. `f[search]` matches names; nothing found → empty.
+- `POST .../favorites/releases` with the filters in a JSON body (`{"f": {"sorting": ...}}`)
+  returns the same; the SDK uses `GET`.
+
+**References** — `GET .../favorites/references/{age-ratings,genres,types,years}` list only
+what occurs **in the user's favorites** (all `[]` for empty favorites): e.g. years
+`[2025, 2024, 2020, 2019]`, newest first — unlike the catalog's years, oldest first.
+`.../references/sorting` is always the full list of 8 options (`value`, `label`,
+`description`), whatever is in favorites.
+
+**Without a session** every favorites endpoint answers the usual 403.
+
 ## Torrent and RSS endpoints (spec only)
 
 `GET /anime/torrents/{hashOrId}/file` returns `application/x-bittorrent`; `GET

@@ -80,16 +80,16 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | `GET` | `/accounts/users/me/collections/ids` | Аккаунты.Пользователи.Мое.Коллекции | IDs of releases in the user's collections | yes |  | 4.5 |
 | `GET` | `/accounts/users/me/collections/releases` | Аккаунты.Пользователи.Мое.Коллекции | Releases in a collection (query-string filters) | yes |  | 4.5 |
 | `POST` | `/accounts/users/me/collections/releases` | Аккаунты.Пользователи.Мое.Коллекции | Releases in a collection (JSON-body filters) | yes |  | 4.5 |
-| `GET` | `/accounts/users/me/favorites/references/age-ratings` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Age ratings present in the user's favorites | yes |  | 4.4 |
-| `GET` | `/accounts/users/me/favorites/references/genres` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Genres present in the user's favorites | yes |  | 4.4 |
-| `GET` | `/accounts/users/me/favorites/references/sorting` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Sorting options for the user's favorites | yes |  | 4.4 |
-| `GET` | `/accounts/users/me/favorites/references/types` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Release types present in the user's favorites | yes |  | 4.4 |
-| `GET` | `/accounts/users/me/favorites/references/years` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Years present in the user's favorites | yes |  | 4.4 |
-| `DELETE` | `/accounts/users/me/favorites` | Аккаунты.Пользователи.Мое.Избранное | Remove releases from favorites | yes |  | 4.4 |
-| `POST` | `/accounts/users/me/favorites` | Аккаунты.Пользователи.Мое.Избранное | Add releases to favorites | yes |  | 4.4 |
-| `GET` | `/accounts/users/me/favorites/ids` | Аккаунты.Пользователи.Мое.Избранное | IDs of releases in the user's favorites | yes |  | 4.4 |
-| `GET` | `/accounts/users/me/favorites/releases` | Аккаунты.Пользователи.Мое.Избранное | Releases in the user's favorites (query-string filters) | yes |  | 4.4 |
-| `POST` | `/accounts/users/me/favorites/releases` | Аккаунты.Пользователи.Мое.Избранное | Releases in the user's favorites (JSON-body filters) | yes |  | 4.4 |
+| `GET` | `/accounts/users/me/favorites/references/age-ratings` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Age ratings present in the user's favorites | yes | `client.me.favorites.references.age_ratings()` | 4.4 |
+| `GET` | `/accounts/users/me/favorites/references/genres` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Genres present in the user's favorites | yes | `client.me.favorites.references.genres()` | 4.4 |
+| `GET` | `/accounts/users/me/favorites/references/sorting` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Sorting options for the user's favorites | yes | `client.me.favorites.references.sorting()` | 4.4 |
+| `GET` | `/accounts/users/me/favorites/references/types` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Release types present in the user's favorites | yes | `client.me.favorites.references.types()` | 4.4 |
+| `GET` | `/accounts/users/me/favorites/references/years` | Аккаунты.Пользователи.Мое.Избранное.Справочники | Years present in the user's favorites | yes | `client.me.favorites.references.years()` | 4.4 |
+| `DELETE` | `/accounts/users/me/favorites` | Аккаунты.Пользователи.Мое.Избранное | Remove releases from favorites | yes | `client.me.favorites.remove()` | 4.4 |
+| `POST` | `/accounts/users/me/favorites` | Аккаунты.Пользователи.Мое.Избранное | Add releases to favorites | yes | `client.me.favorites.add()` | 4.4 |
+| `GET` | `/accounts/users/me/favorites/ids` | Аккаунты.Пользователи.Мое.Избранное | IDs of releases in the user's favorites | yes | `client.me.favorites.ids()` | 4.4 |
+| `GET` | `/accounts/users/me/favorites/releases` | Аккаунты.Пользователи.Мое.Избранное | Releases in the user's favorites (query-string filters) | yes | `client.me.favorites.releases()`, `client.me.favorites.iter_releases()` | 4.4 |
+| `POST` | `/accounts/users/me/favorites/releases` | Аккаунты.Пользователи.Мое.Избранное | Releases in the user's favorites (JSON-body filters) | yes | — (same as `GET`; the SDK uses `GET`) | 4.4 |
 | `GET` | `/accounts/users/me/profile` | Аккаунты.Пользователи.Мое.Профиль | Profile of the authenticated user | yes | `client.me.profile()` | 4.3 |
 | `GET` | `/accounts/users/me/views/history` | Аккаунты.Пользователи.Мое.Просмотры | Watch history (episodes) | yes |  | 4.6 |
 | `DELETE` | `/accounts/users/me/views/timecodes` | Аккаунты.Пользователи.Мое.Просмотры | Delete watch-progress timecodes | yes |  | 4.6 |

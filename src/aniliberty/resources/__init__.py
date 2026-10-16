@@ -9,6 +9,7 @@ from aniliberty.resources.auth import (
 )
 from aniliberty.resources.catalog import CatalogReferencesResource, CatalogResource
 from aniliberty.resources.episodes import EpisodesResource
+from aniliberty.resources.favorites import FavoritesReferencesResource, FavoritesResource
 from aniliberty.resources.franchises import FranchisesResource
 from aniliberty.resources.genres import GenresResource
 from aniliberty.resources.me import MeResource
@@ -24,6 +25,8 @@ __all__ = [
     "CatalogReferencesResource",
     "CatalogResource",
     "EpisodesResource",
+    "FavoritesReferencesResource",
+    "FavoritesResource",
     "FranchisesResource",
     "GenresResource",
     "MeResource",
