@@ -15,7 +15,7 @@ snapshot of 2026-10-16: 71 paths, 80 operations) and the SDK method that covers 
 | Method | Path | Tag | Description | Auth | SDK method | Phase |
 |---|---|---|---|---|---|---|
 | `GET` | `/app/search/releases` | Приложение.Поиск | Quick release search |  |  | 1.6 |
-| `GET` | `/app/status` | Приложение.Статус | API status |  |  | 1.1 |
+| `GET` | `/app/status` | Приложение.Статус | API status |  | `client.app.status()` | 1.1 |
 | `GET` | `/anime/catalog/releases` | Аниме.Каталог | Catalog releases with filters (query string, paginated) |  |  | 2.2 |
 | `POST` | `/anime/catalog/releases` | Аниме.Каталог | Catalog releases with filters (JSON body, paginated) |  |  | 2.2 |
 | `GET` | `/anime/catalog/references/age-ratings` | Аниме.Каталог.Справочники | Catalog reference: age ratings |  |  | 2.1 |

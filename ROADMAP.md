@@ -26,7 +26,7 @@
 
 ## Фаза 1 — ядро (`0.1.0`, первый релиз на PyPI)
 
-- [ ] **1.1 HTTP-ядро + первый эндпоинт.** `_http.py` (`HttpClient`: httpx, маппинг ошибок,
+- [x] **1.1 HTTP-ядро + первый эндпоинт.** `_http.py` (`HttpClient`: httpx, маппинг ошибок,
       `AccessBlockedError` для HTML), `exceptions.py`, `client.py` (`AniLiberty` как async
       context manager), `resources/_base.py`, `client.app.status()`. VCR-инфраструктура
       в `conftest.py`. **Первый функциональный PR → добавить `ci.yml`.**
