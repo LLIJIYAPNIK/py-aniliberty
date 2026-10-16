@@ -1,0 +1,67 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/0.2.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/franchises/random?limit=3
+  response:
+    body:
+      string: '[{"id":"31c04647-d7a3-444b-9708-8d34bb740eda","name":"\u041f\u043e\u0436\u0438\u0440\u0430\u0442\u0435\u043b\u044c
+        \u0414\u0443\u0448","image":{"preview":"\/storage\/anime\/franchises\/images\/31c04647-d7a3-444b-9708-8d34bb740eda\/zRpeYp1ncEMnDCuOCx1fAe4E5zL5o0Ln.jpg","thumbnail":"\/storage\/anime\/franchises\/images\/31c04647-d7a3-444b-9708-8d34bb740eda\/uY6yEZYxDL5SstK9rYZleWI9cVVOW2sv.jpg","optimized":{"preview":"\/storage\/anime\/franchises\/images\/31c04647-d7a3-444b-9708-8d34bb740eda\/IhjtBxItc9zA1rf2zSh56ui91uSztlQ5.webp","thumbnail":"\/storage\/anime\/franchises\/images\/31c04647-d7a3-444b-9708-8d34bb740eda\/ezY39HT4fD2IXlkraapZUJryoTIHqSVE.webp"}},"rating":null,"last_year":2014,"first_year":2008,"name_english":"Soul
+        Eater","total_episodes":63,"total_releases":2,"total_duration":"1 \u0434\u0435\u043d\u044c
+        54 \u043c\u0438\u043d\u0443\u0442\u044b","total_duration_in_seconds":89668},{"id":"98d9f535-302b-4198-a4bf-08708fb588d6","name":"\u0414\u043e\u043a\u0442\u043e\u0440
+        \u0421\u0442\u043e\u0443\u043d","image":{"preview":"\/storage\/anime\/franchises\/images\/98d9f535-302b-4198-a4bf-08708fb588d6\/pQsP29vEYzshHTXrM9hjqEH2KJb8qoDQ.jpg","thumbnail":"\/storage\/anime\/franchises\/images\/98d9f535-302b-4198-a4bf-08708fb588d6\/1o5f639YBioV5lOZFgGjAbvdpHctl3hd.jpg","optimized":{"preview":"\/storage\/anime\/franchises\/images\/98d9f535-302b-4198-a4bf-08708fb588d6\/JPcXosmrq4qWTqnu0wnulRzc30Qml8a7.webp","thumbnail":"\/storage\/anime\/franchises\/images\/98d9f535-302b-4198-a4bf-08708fb588d6\/G73TBsx9p966iu2VIURFV36qAvUblYlk.webp"}},"rating":null,"last_year":2026,"first_year":2019,"name_english":"Doctor
+        Stone","total_episodes":95,"total_releases":7,"total_duration":"1 \u0434\u0435\u043d\u044c
+        14 \u0447\u0430\u0441\u043e\u0432 33 \u043c\u0438\u043d\u0443\u0442\u044b","total_duration_in_seconds":138793},{"id":"7f4bd13c-f863-4c67-8947-d7d7dcc34150","name":"\u0412
+        \u0441\u043b\u0443\u0447\u0430\u0435 \u0441 \u0431\u0440\u0430\u0442\u043e\u043c
+        \u043c\u0435\u0434\u0438\u0446\u0438\u043d\u0430 \u0431\u0435\u0441\u0441\u0438\u043b\u044c\u043d\u0430!","image":{"preview":"\/storage\/anime\/franchises\/images\/7f4bd13c-f863-4c67-8947-d7d7dcc34150\/Iq0EvlitUrDUNLIkR3qd9X26gtqAoaCU.jpg","thumbnail":"\/storage\/anime\/franchises\/images\/7f4bd13c-f863-4c67-8947-d7d7dcc34150\/JpZLrcjfI9aFr7vA2ru2rPn1frpVGGl4.jpg","optimized":{"preview":"\/storage\/anime\/franchises\/images\/7f4bd13c-f863-4c67-8947-d7d7dcc34150\/937sVrsnS3RbIEDA8jSh5X265C3idcaJ.webp","thumbnail":"\/storage\/anime\/franchises\/images\/7f4bd13c-f863-4c67-8947-d7d7dcc34150\/ZmU7UnipQctbb47mJPgrBOa7w7bR127l.webp"}},"rating":null,"last_year":2019,"first_year":2017,"name_english":"Ani
+        ni Tsukeru Kusuri wa Nai!","total_episodes":24,"total_releases":2,"total_duration":"1
+        \u0447\u0430\u0441 23 \u043c\u0438\u043d\u0443\u0442\u044b","total_duration_in_seconds":5039}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4b515634eaec875-AMS
+      connection:
+      - keep-alive
+      content-length:
+      - '2854'
+      content-type:
+      - application/json
+      date:
+      - Fri, 16 Oct 2026 06:42:26 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=2A3mWxJKCRenetWXELf%2BUHnO4J6GkzJ8zI%2B9pTJD2DG1oCYuUN1X%2Bhp1bwdB4LpYDill8bQQ5sG7yCa%2ByRpD9kGkNP6z4BR14LtJ4WhKKb3%2FHWGKmBYY3tcrPeE%2FKtYiqg%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
