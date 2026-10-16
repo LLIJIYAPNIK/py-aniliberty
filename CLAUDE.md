@@ -121,45 +121,90 @@ async with AniLiberty(
 
 ## Что известно про API
 
-### Предварительная карта (НЕ ПРОВЕРЕНО — составлена по памяти, сверить со спекой)
+### Карта эндпоинтов (проверено по `spec/openapi.json` от 2026-10-16)
 
-Эта карта нужна только для ориентира при планировании. **Перед реализацией любого
-ресурса сверить его со `spec/openapi.json` и исправить эту таблицу**, если спека
-говорит иначе. Ничего из этой таблицы не хардкодить без проверки.
+Спека: OpenAPI 3.0.0, 71 путь / 80 операций / 25 тегов / 132 схемы. Теги в спеке —
+по-русски, через точку. Полная таблица (метод, путь, описание, метод SDK, шаг) — в
+`docs/endpoints.md`; здесь — сводка. «Шаг» — пункт `ROADMAP.md`. 🔒 — у операции в спеке
+свой `security: sessionToken` (bearer).
 
-| Тег (ориентировочно) | Эндпоинты (ориентировочно) | Фаза |
+| Тег спеки | Операции | Шаг |
 |---|---|---|
-| App | `GET /app/status`, `GET /app/search/releases` | MVP |
-| Anime: Releases | `GET /anime/releases/latest`, `/random`, `/recommended`, `/list`, `/{idOrAlias}`, `/{id}/members` | MVP |
-| Anime: Episodes | `GET /anime/releases/episodes/{id}` | MVP |
-| Anime: Catalog | `GET`/`POST /anime/catalog/releases`, `GET /anime/catalog/references/{genres,types,seasons,years,age-ratings,publish-statuses,production-statuses,sorting}` | MVP |
-| Anime: Schedule | `GET /anime/schedule/now`, `/week` | MVP |
-| Anime: Genres | `GET /anime/genres`, `/{id}`, `/random`, `/{id}/releases` | MVP |
-| Anime: Franchises | `GET /anime/franchises`, `/{id}`, `/random`, `/release/{releaseId}` | MVP |
-| Anime: Torrents | `GET /anime/torrents`, `/{hashOrId}`, `/{hashOrId}/file`, `/release/{releaseId}`, `/rss`, `/rss/release/{releaseId}` | MVP |
-| Teams | `GET /teams`, `/teams/roles`, `/teams/users` | после MVP |
-| Media | `GET /media/promotions`, `/media/videos` | после MVP |
-| Accounts: Auth | `POST /accounts/users/auth/login`, `/logout`, OTP, соц. логин, сброс пароля | поздняя фаза |
-| Accounts: Me | профиль, избранное, коллекции, таймкоды/история просмотра | поздняя фаза |
-| Ads | VAST и т.п. | **не делаем** |
+| `Приложение.Статус` | `GET /app/status` | 1.1 |
+| `Приложение.Поиск` | `GET /app/search/releases` (`query`) | 1.6 |
+| `Аниме.Релизы` | `GET /anime/releases/latest`, `/random`, `/recommended`, `/list` (пагинация, `ids`/`aliases`), `/{idOrAlias}`, `/{idOrAlias}/members` | 1.4 |
+| `Аниме.Релизы` 🔒 | `GET /anime/releases/{idOrAlias}/episodes/timecodes` | 4.6 |
+| `Аниме.Релизы.Эпизоды` | `GET /anime/releases/episodes/{releaseEpisodeId}` (id — UUID-строка) | 1.5 |
+| `Аниме.Релизы.Эпизоды` 🔒 | `GET /anime/releases/episodes/{releaseEpisodeId}/timecode` | 4.6 |
+| `Аниме.Релизы.Оценки` 🔒 | `GET`/`POST`/`DELETE /anime/releases/{releaseId}/rating` | 4.7 |
+| `Аниме.Каталог` | `GET`/`POST /anime/catalog/releases` (пагинация) | 2.2 |
+| `Аниме.Каталог.Справочники` | `GET /anime/catalog/references/{age-ratings,genres,production-statuses,publish-statuses,seasons,sorting,types,years}` | 2.1 |
+| `Аниме.Релизы.РасписаниеРелизов` | `GET /anime/schedule/now`, `/week` | 3.1 |
+| `Аниме.Жанры` | `GET /anime/genres`, `/{genreId}`, `/random`, `/{genreId}/releases` (пагинация) | 3.2 |
+| `Аниме.Франшизы` | `GET /anime/franchises`, `/{franchiseId}`, `/random`, `/release/{releaseId}` | 3.3 |
+| `Аниме.Торренты` | `GET /anime/torrents` (пагинация), `/{hashOrId}`, `/{hashOrId}/file`, `/release/{releaseId}`, `/rss`, `/rss/release/{releaseId}` (RSS — XML) | 3.4 |
+| `Команды` | `GET /teams/` (со слэшем в спеке), `/teams/roles`, `/teams/users` | 3.5 |
+| `Медиа.Промо`, `Медиа.Видеоконтент` | `GET /media/promotions`, `/media/videos` | 3.6 |
+| `Аккаунты.ОдноразовыеПароли` | `POST /accounts/otp/get`, `/otp/login`, `/otp/accept` 🔒 | 4.2 |
+| `Аккаунты.Пользователи.Авторизация[.СоциальныеСети/.Пароль]` | `POST /accounts/users/auth/login`, `/logout` 🔒; `GET .../social/{provider}/login`, `.../social/authenticate`; `POST .../password/forget`, `.../password/reset` | 4.2 |
+| `Аккаунты.Пользователи.Мое.Профиль` 🔒 | `GET /accounts/users/me/profile` | 4.3 |
+| `Аккаунты.Пользователи.Мое.Избранное[.Справочники]` 🔒 | `GET .../me/favorites/ids`, `GET`/`POST .../favorites/releases`, `POST`/`DELETE .../me/favorites`, `GET .../favorites/references/{age-ratings,genres,sorting,types,years}` | 4.4 |
+| `Аккаунты.Пользователи.Мое.Коллекции[.Справочники]` 🔒 | `GET .../me/collections/ids`, `GET`/`POST .../collections/releases`, `POST`/`DELETE .../me/collections`, `GET .../collections/references/{age-ratings,genres,types,years}` | 4.5 |
+| `Аккаунты.Пользователи.Мое.Просмотры` 🔒 | `GET .../me/views/history`, `GET`/`POST`/`DELETE .../me/views/timecodes` | 4.6 |
+| `Реклама.Vasts` | `GET /media/vasts`, `GET /media/manifest.xml` (лежат под `/media`!) | **не делаем** |
+
+Количество операций по группам: приложение 2, релизы/эпизоды/оценки 12, каталог 2 +
+справочники 8, расписание 2, жанры 4, франшизы 4, торренты 6, команды 3, медиа 2, реклама 2,
+аккаунты 33.
 
 ### Проверено вручную
 
-_(пусто — заполняется по мере работы; формат как в ranobelib: что запросили, что пришло,
-какой вывод, дата. Подробности — в `docs/api-notes.md`.)_
+Подробности (запрос → ответ → вывод) — в `docs/api-notes.md`. Кратко, 2026-10-16, запросы
+без авторизации с `python-httpx`/`curl` User-Agent:
+
+- **Спека**: `https://anilibria.top/storage/api/docs/v1?aniliberty-api-v1-docs.json`
+  (query-строка — часть URL; это `url:` из `SwaggerUIBundle` на `/api/docs/v1`).
+- **Хосты**: спека называет основным сервером `https://aniliberty.top/api/v1`;
+  `GET /app/status` отдаёт `available_api_endpoints: ["https://aniliberty.top"]`.
+  `anilibria.top/api/v1` работает; `aniliberty.top` живьём не проверен.
+- **User-Agent/WAF**: особый UA, Referer, cookie не нужны. Всё за Cloudflare
+  (`server: cloudflare`), челленджей не встречено.
+- **`Accept: application/json` обязателен**: без него 404 приходит HTML-страницей Laravel,
+  с ним — `{"message": "No query results for model [...]"}`. SDK шлёт этот заголовок всегда;
+  тогда HTML-ответ действительно означает WAF/CDN → `AccessBlockedError`.
+- **422**: `{"errors": {"<param>": ["<сообщение по-русски>", ...]}}` (как в спеке).
+- **Пагинация**: `{"data": [...], "meta": {"pagination": {total, count, per_page,
+  current_page, total_pages, links: {previous, next}}}}`, страницы с 1. Максимальный
+  `limit` каталога — **50** (больше → 422, не обрезка). Непагинируемые списки (`latest`,
+  `random`, `recommended`) — голый JSON-массив.
+- **Массивы в фильтрах**: через запятую в одном параметре (`f[types]=WEB,MOVIE`,
+  `ids=1,2`) — спека (`style: form, explode: false`) + живой запрос; значения одного
+  фильтра объединяются по ИЛИ. Годы — `f[years][from_year]`/`f[years][to_year]`.
+  `POST /anime/catalog/releases` — те же фильтры JSON-телом (живьём не вызывался).
+- **«Значение + описание»**: `type`, `season`, `publish_day` (`value` — число дня недели!),
+  `age_rating` — `{value, description}`; у `age_rating` ещё `label`, `is_adult` (нет в спеке).
+- **URL**: картинки — относительные пути от корня сайта (`/storage/...`, резолвятся от
+  `https://anilibria.top`, не от `/api/v1`); HLS — абсолютные на `cache.libria.fun` с
+  query-параметрами (`countryIso`, `isAuthorized`, ...), отдавать как есть. У постера есть
+  недокументированное поле `src`.
+- **Опциональность**: `required` в схемах нет вообще, `nullable` — на 13 полях, при этом
+  живые `null` есть и в «не-nullable» полях (`notification`, `external_player`,
+  `rutube_id`, `youtube_id`). Спеке в этом не доверять — сверять с кассетами.
+- **Авторизация (по спеке)**: bearer `sessionToken`, объявлен **глобально**, но 49 операций
+  его не переопределяют, а публичные эндпоинты работают без токена — глобальное требование
+  считаем артефактом спеки.
 
 ### Что НЕ проверено и требует исследования перед реализацией (не гадать)
 
-- Точный путь до JSON-спеки за Swagger UI `/api/docs/v1` (искать `url:`/`urls:` в
-  инициализаторе Swagger UI в HTML страницы).
-- Формат мета-пагинации и максимальный `limit`.
-- Формат массивов в query-фильтрах каталога (`f[...]`), разница между `GET` и `POST`
-  `/anime/catalog/releases`.
-- Форма ошибок (тело 404/422/429/5xx), есть ли `Retry-After` на 429.
-- Есть ли защита от ботов (WAF/DDoS-Guard) и нужен ли браузерный `User-Agent` — из
-  облачной песочницы сайт отдаёт 403 на CONNECT, с машины пользователя не проверено.
-- Абсолютные или относительные URL у постеров/HLS (нужен ли префикс домена/CDN).
-- Аутентификация: Bearer-токен или cookie, срок жизни, refresh.
+- 429: есть ли `Retry-After`, какие лимиты. Заголовков `X-RateLimit-*`/`Retry-After` в
+  ответах нет; 429 специально не провоцировали (шаг 1.2 — проверить аккуратно или
+  реализовать по общему правилу без привязки к телу).
+- Тело 5xx — не встречалось.
+- Как выглядит челлендж Cloudflare (статус, заголовки) — с машины пользователя не
+  воспроизводится.
+- Максимальный `limit` у остальных пагинируемых/лимитируемых эндпоинтов (кроме каталога).
+- Зеркало `aniliberty.top` — живьём не запрашивалось.
+- Аутентификация: срок жизни токена, refresh, тела 401/403 (шаг 4.1).
 
 Каждый пункт закрывается коротким ручным исследованием **до** продакшен-кода фичи, итог —
 в `docs/api-notes.md` и в этом файле.
@@ -257,6 +302,8 @@ py-aniliberty/
   `max_concurrency=5`, `request_delay=0.1s`, `max_retries=3`, `retry_base_delay=1.0s`
   (×2 за попытку), `Retry-After` уважается на 429. Ретраятся 429, 5xx, сетевые таймауты;
   4xx (кроме 429) — нет. `sleep`/`clock` инъектируются для тестов без реального ожидания.
+- Каждый JSON-запрос шлёт `Accept: application/json` — без него Laravel отдаёт ошибки
+  HTML-страницей (см. `docs/api-notes.md`).
 - `AniLiberty` пробрасывает только `base_url`, `timeout`, `max_concurrency`, `headers`,
   `http_client` (готовый `httpx.AsyncClient` пользователя — тогда SDK его не закрывает).
 - Клиент — async context manager; повторный `__aenter__` после закрытия → понятная ошибка.
