@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from collections.abc import Mapping
 from types import TracebackType
 from typing import Self
@@ -79,6 +80,8 @@ class AniLiberty:
         headers: Mapping[str, str] | None = None,
         http_client: httpx.AsyncClient | None = None,
         token: str | None = None,
+        cache_dir: str | os.PathLike[str] | None = None,
+        cache_ttl: float | None = None,
     ) -> None:
         """Initialize the client.
 
@@ -98,6 +101,19 @@ class AniLiberty:
             token: Session token of an earlier login (``client.token`` saved from it), for
                 the account endpoints. Without one, call ``client.auth.login()``. Public
                 endpoints don't need it.
+            cache_dir: Directory to cache raw API responses in, e.g. ``".aniliberty_cache"``.
+                ``None`` (the default) disables caching. Methods with a ``refresh``
+                parameter — releases, franchises, genres, search, the catalog and its
+                references, the schedule, teams, videos — answer repeated identical calls
+                from the cache; random picks, episodes (HLS links), torrents and everything
+                account-related always go to the API, and so does every request while
+                ``token`` is set. See the caching guide.
+            cache_ttl: Seconds after which a cached response is stale and fetched again,
+                e.g. ``6 * 3600``. ``None`` means cached responses never expire on their
+                own — pass ``refresh=True`` to a method to fetch anew anyway.
+
+        Raises:
+            ValueError: ``max_concurrency`` is less than 1 or ``cache_ttl`` is negative.
         """
         self.http = HttpClient(
             base_url=base_url,
@@ -106,6 +122,8 @@ class AniLiberty:
             http_client=http_client,
             token=token,
             max_concurrency=max_concurrency,
+            cache_dir=cache_dir,
+            cache_ttl=cache_ttl,
         )
         self.app = AppResource(self.http)
         self.releases = ReleasesResource(self.http)

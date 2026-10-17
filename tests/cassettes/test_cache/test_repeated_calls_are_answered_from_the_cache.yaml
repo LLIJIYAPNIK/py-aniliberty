@@ -1,0 +1,292 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/1.0.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/anime/franchises/release/9839
+  response:
+    body:
+      string: '[{"id":"9de3d1dd-fe7c-4e89-973e-43ff999ee271","name":"\u041f\u043e\u0434\u043d\u044f\u0442\u0438\u0435
+        \u0443\u0440\u043e\u0432\u043d\u044f \u0432 \u043e\u0434\u0438\u043d\u043e\u0447\u043a\u0443","image":{"preview":"\/storage\/anime\/franchises\/images\/9de3d1dd-fe7c-4e89-973e-43ff999ee271\/ZQXrfz9wmzQI0I8uZ0XYNBO6RyO9mWBr.jpg","thumbnail":"\/storage\/anime\/franchises\/images\/9de3d1dd-fe7c-4e89-973e-43ff999ee271\/f7auTNVbY3DYKs0oVaANymOm7il7UvFr.jpg","optimized":{"preview":"\/storage\/anime\/franchises\/images\/9de3d1dd-fe7c-4e89-973e-43ff999ee271\/wYZVyNbhtQaa3xSZ44i5xMpFYiLTb3vv.webp","thumbnail":"\/storage\/anime\/franchises\/images\/9de3d1dd-fe7c-4e89-973e-43ff999ee271\/Hxu3ELTW3oW7yRYEbEtySwsez4jGH6yp.webp"}},"rating":null,"last_year":2025,"first_year":2024,"name_english":"Ore
+        dake Level Up na Ken","total_episodes":25,"total_releases":2,"total_duration":"9
+        \u0447\u0430\u0441\u043e\u0432 52 \u043c\u0438\u043d\u0443\u0442\u044b","total_duration_in_seconds":35570,"franchise_releases":[{"id":"9de3d1f3-899c-471b-a8f0-9718b725bb8f","sort_order":1,"release_id":9600,"franchise_id":"9de3d1dd-fe7c-4e89-973e-43ff999ee271","release":{"id":9600,"type":{"value":"TV","description":"\u0422\u0412"},"year":2024,"name":{"main":"\u041f\u043e\u0434\u043d\u044f\u0442\u0438\u0435
+        \u0443\u0440\u043e\u0432\u043d\u044f \u0432 \u043e\u0434\u0438\u043d\u043e\u0447\u043a\u0443","english":"Ore
+        dake Level Up na Ken","alternative":"Solo Leveling"},"alias":"ore-dake-level-up-na-ken","season":{"value":"winter","description":"\u0417\u0438\u043c\u0430"},"shikimori":{"id":52299,"url":"https:\/\/shikimori.io\/animes\/52299","votes":59388,"rating":8.05},"mal":{"id":52299,"url":"https:\/\/myanimelist.net\/anime\/52299","votes":747764,"rating":8.13},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/9600\/1RwzksvrU3kCWOcWELGVuMYINrwtM6pA.jpg","preview":"\/storage\/releases\/posters\/9600\/1RwzksvrU3kCWOcWELGVuMYINrwtM6pA.jpg","thumbnail":"\/storage\/releases\/posters\/9600\/VHmTOCbMZl6NnVauhvbrMu5VYtkwIrAH.jpg","optimized":{"src":"\/storage\/releases\/posters\/9600\/05RqjXuiUbRh54AQFRTwUuHoHYDaORCk.webp","preview":"\/storage\/releases\/posters\/9600\/05RqjXuiUbRh54AQFRTwUuHoHYDaORCk.webp","thumbnail":"\/storage\/releases\/posters\/9600\/eeJ5YfVX9F8zB9MdtBrCIAyFvnLEDVLr.webp"}},"fresh_at":"2024-03-30T21:56:25+00:00","created_at":"2023-11-18T19:34:03+00:00","updated_at":"2025-06-03T23:45:01+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":7,"description":"\u0412\u043e\u0441\u043a\u0440\u0435\u0441\u0435\u043d\u044c\u0435"},"description":"\u0421
+        \u043c\u043e\u043c\u0435\u043d\u0442\u0430 \u0432\u043d\u0435\u0437\u0430\u043f\u043d\u043e\u0433\u043e
+        \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f \"\u0432\u0440\u0430\u0442\"
+        \u2014 \u043f\u0443\u0442\u0435\u0439 \u0432 \u0434\u0440\u0443\u0433\u0438\u0435
+        \u043c\u0438\u0440\u044b \u2014 \u043f\u0440\u043e\u0448\u043b\u043e \u0443\u0436\u0435
+        \u0431\u043e\u043b\u044c\u0448\u0435 \u0434\u0435\u0441\u044f\u0442\u0438
+        \u043b\u0435\u0442. \u0417\u0430 \u044d\u0442\u043e \u0432\u0440\u0435\u043c\u044f
+        \u043e\u0447\u0435\u043d\u044c \u0432\u0430\u0436\u043d\u043e\u0439 \u0441\u0442\u0430\u043b\u0430
+        \u043f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u044f \"\u043e\u0445\u043e\u0442\u043d\u0438\u043a\u043e\u0432\"
+        \u2014 \u043b\u044e\u0434\u0435\u0439, \u043f\u043e\u043b\u0443\u0447\u0438\u0432\u0448\u0438\u0445
+        \u0441\u0432\u0435\u0440\u0445\u044a\u0435\u0441\u0442\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0435
+        \u0441\u043f\u043e\u0441\u043e\u0431\u043d\u043e\u0441\u0442\u0438 \u0438
+        \u0437\u0430\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u044e\u0449\u0438\u0445
+        \u0437\u0430\u0447\u0438\u0441\u0442\u043a\u043e\u0439 \u043f\u043e\u0434\u0437\u0435\u043c\u0435\u043b\u0438\u0439
+        \u0432\u043d\u0443\u0442\u0440\u0438 \u0432\u0440\u0430\u0442.\r\n\u0421\u043e\u043d
+        \u0414\u0436\u0438\u043d \u0412\u0443 \u043f\u0440\u0438\u043e\u0431\u0440\u0451\u043b
+        \u043f\u0435\u0447\u0430\u043b\u044c\u043d\u0443\u044e \u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e\u0441\u0442\u044c
+        \u043a\u0430\u043a \"\u0441\u043b\u0430\u0431\u0435\u0439\u0448\u0438\u0439
+        \u043e\u0445\u043e\u0442\u043d\u0438\u043a \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430\".
+        \u0422\u0430\u043a \u0447\u0442\u043e \u0441\u043e\u0432\u0441\u0435\u043c
+        \u043d\u0435 \u0443\u0434\u0438\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u043e,
+        \u0447\u0442\u043e \u0432 \u043e\u0434\u043d\u043e\u043c \u0438\u0437 \u0437\u0430\u043a\u0430\u0437\u043e\u0432
+        \u043e\u043d \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u0441\u043c\u0435\u0440\u0442\u0435\u043b\u044c\u043d\u043e\u0435
+        \u0440\u0430\u043d\u0435\u043d\u0438\u0435. \u0412\u043e\u0442 \u0442\u043e\u043b\u044c\u043a\u043e
+        \u0432\u043c\u0435\u0441\u0442\u043e \u043f\u0440\u043e\u043d\u043e\u0441\u044f\u0449\u0435\u0439\u0441\u044f
+        \u043f\u0435\u0440\u0435\u0434 \u0433\u043b\u0430\u0437\u0430\u043c\u0438
+        \u0436\u0438\u0437\u043d\u0438 \u043e\u043d \u0432\u0438\u0434\u0438\u0442
+        \u0442\u0430\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0435 \u043e\u043a\u043d\u043e,
+        \u0432 \u043a\u043e\u0442\u043e\u0440\u043e\u043c \u0433\u043e\u0432\u043e\u0440\u0438\u0442\u0441\u044f
+        \u043e \u043a\u0430\u043a\u043e\u043c-\u0442\u043e \u0437\u0430\u0434\u0430\u043d\u0438\u0438.
+        \u0414\u0436\u0438\u043d \u0412\u0443 \u0440\u0435\u0448\u0430\u0435\u0442
+        \u0435\u0433\u043e \u0432\u044b\u043f\u043e\u043b\u043d\u0438\u0442\u044c
+        \u0438 \u0441 \u0443\u0434\u0438\u0432\u043b\u0435\u043d\u0438\u0435\u043c
+        \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0438\u0432\u0430\u0435\u0442,
+        \u0447\u0442\u043e \u0435\u0433\u043e \u0443\u0440\u043e\u0432\u0435\u043d\u044c
+        \u043f\u043e\u0432\u044b\u0441\u0438\u043b\u0441\u044f, \u0445\u043e\u0442\u044f
+        \u043f\u043e\u0434\u043e\u0431\u043d\u043e\u0435 \u0441\u0447\u0438\u0442\u0430\u043b\u043e\u0441\u044c
+        \u043d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u044b\u043c.\r\n\u0418
+        \u0442\u0430\u043a, \u0432\u043e\u043e\u0440\u0443\u0436\u0438\u0432\u0448\u0438\u0441\u044c
+        \u0441\u0432\u043e\u0435\u0439 \u043d\u043e\u0432\u043e\u0439 \u0441\u043f\u043e\u0441\u043e\u0431\u043d\u043e\u0441\u0442\u044c\u044e,
+        \u0414\u0436\u0438\u043d \u0412\u0443 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f
+        \u043f\u043e\u043a\u043e\u0440\u044f\u0442\u044c \u0432\u0435\u0440\u0448\u0438\u043d\u044b,
+        \u043e\u0441\u0442\u0430\u0432\u043b\u044f\u044f \u043f\u043e\u0437\u0430\u0434\u0438
+        \u0442\u0435\u0445, \u043a\u0442\u043e \u0441\u043c\u043e\u0442\u0440\u0435\u043b
+        \u043d\u0430 \u043d\u0435\u0433\u043e \u0441\u0432\u044b\u0441\u043e\u043a\u0430.","notification":null,"episodes_total":12,"external_player":"\/\/aniqit.com\/serial\/56409\/d2566bdf9c1f487cc5ac9774ca1acbfb\/720p?translations=false","is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":37439,"average_duration_of_episode":24,"added_in_planned_collection":417,"added_in_watched_collection":10897,"added_in_watching_collection":330,"added_in_postponed_collection":28,"added_in_abandoned_collection":40}},{"id":"9de3d1fd-4e3b-4ebf-92f8-4ce19bcc7b35","sort_order":2,"release_id":9839,"franchise_id":"9de3d1dd-fe7c-4e89-973e-43ff999ee271","release":{"id":9839,"type":{"value":"TV","description":"\u0422\u0412"},"year":2025,"name":{"main":"\u041f\u043e\u0434\u043d\u044f\u0442\u0438\u0435
+        \u0443\u0440\u043e\u0432\u043d\u044f \u0432 \u043e\u0434\u0438\u043d\u043e\u0447\u043a\u0443
+        2: \u0412\u043e\u0441\u0441\u0442\u0430\u043d\u044c\u0442\u0435 \u0438\u0437
+        \u0442\u0435\u043d\u0438","english":"Ore dake Level Up na Ken Season 2: Arise
+        from the Shadow","alternative":"\u041f\u043e\u0434\u043d\u044f\u0442\u0438\u044f,
+        Solo Leveling"},"alias":"ore-dake-level-up-na-ken-season-2-arise-from-the-shadow","season":{"value":"winter","description":"\u0417\u0438\u043c\u0430"},"shikimori":{"id":58567,"url":"https:\/\/shikimori.io\/animes\/58567","votes":44893,"rating":8.39},"mal":{"id":58567,"url":"https:\/\/myanimelist.net\/anime\/58567","votes":538502,"rating":8.49},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/9839\/4VmVJm2h5vrKm81rsyErGVZsEgNDvjuQ.jpg","preview":"\/storage\/releases\/posters\/9839\/4VmVJm2h5vrKm81rsyErGVZsEgNDvjuQ.jpg","thumbnail":"\/storage\/releases\/posters\/9839\/9NeekruBDMYVq0Q1uDIdohDtmB23afe2.jpg","optimized":{"src":"\/storage\/releases\/posters\/9839\/uUYGP7HtCRAiXJfugzDwU8VYkgZmdBbm.webp","preview":"\/storage\/releases\/posters\/9839\/uUYGP7HtCRAiXJfugzDwU8VYkgZmdBbm.webp","thumbnail":"\/storage\/releases\/posters\/9839\/2lmnDt90sGFBVkGrSoat6AM6sNqaSDap.webp"}},"fresh_at":"2025-03-29T23:11:05+00:00","created_at":"2024-11-20T15:23:41+00:00","updated_at":"2026-04-07T10:40:55+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":7,"description":"\u0412\u043e\u0441\u043a\u0440\u0435\u0441\u0435\u043d\u044c\u0435"},"description":"\u041f\u043e
+        \u0432\u0441\u0435\u043c\u0443 \u043c\u0438\u0440\u0443 \u0431\u0435\u0437
+        \u043a\u043e\u043d\u0446\u0430 \u043f\u043e\u044f\u0432\u043b\u044f\u044e\u0442\u0441\u044f
+        \u0432\u0440\u0430\u0442\u0430, \u0438\u0437 \u043a\u043e\u0442\u043e\u0440\u044b\u0445
+        \u043d\u0430 \u0443\u043b\u0438\u0446\u044b \u0433\u043e\u0440\u043e\u0434\u043e\u0432
+        \u043b\u0435\u0437\u0443\u0442 \u0441\u0442\u0440\u0430\u0448\u043d\u044b\u0435
+        \u0447\u0443\u0434\u043e\u0432\u0438\u0449\u0430. \u0417\u0430\u0449\u0438\u0449\u0430\u044e\u0442
+        \u0436\u0435 \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u043e
+        \u0442\u0430\u043a \u043d\u0430\u0437\u044b\u0432\u0430\u0435\u043c\u044b\u0435
+        \u043e\u0445\u043e\u0442\u043d\u0438\u043a\u0438 \u2014 \u043b\u044e\u0434\u0438,
+        \u043d\u0430\u0434\u0435\u043b\u0451\u043d\u043d\u044b\u0435 \u043e\u0441\u043e\u0431\u044b\u043c\u0438
+        \u0441\u0432\u0435\u0440\u0445\u044a\u0435\u0441\u0442\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u043c\u0438
+        \u0441\u0438\u043b\u0430\u043c\u0438. \u0418 \u043d\u0430\u0448 \u0433\u0435\u0440\u043e\u0439
+        \u0421\u043e\u043d \u0414\u0436\u0438\u043d \u0412\u0443 \u2014 \u0441\u043b\u0430\u0431\u0435\u0439\u0448\u0438\u0439
+        \u0438\u0437 \u0432\u0441\u0435\u0445 \u043e\u0445\u043e\u0442\u043d\u0438\u043a\u043e\u0432
+        \u0432 \u043c\u0438\u0440\u0435. \u0412\u0435\u0440\u043d\u0435\u0435, \u0442\u0430\u043a
+        \u0431\u044b\u043b\u043e \u0440\u0430\u043d\u044c\u0448\u0435.\r\n\u0411\u043b\u0430\u0433\u043e\u0434\u0430\u0440\u044f
+        \u0443\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u043e\u0439 \u0441\u043f\u043e\u0441\u043e\u0431\u043d\u043e\u0441\u0442\u0438
+        \u043f\u0440\u043e\u043a\u0430\u0447\u0438\u0432\u0430\u0442\u044c \u0441\u0432\u043e\u0438
+        \u0445\u0430\u0440\u0430\u043a\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043a\u0438,
+        \u043e\u043d \u043e\u0447\u0435\u043d\u044c \u0431\u044b\u0441\u0442\u0440\u043e
+        \u0438\u0437 \u0437\u0435\u043b\u0451\u043d\u043e\u0433\u043e \u043d\u043e\u0432\u0438\u0447\u043a\u0430
+        \u043f\u0440\u0435\u0432\u0440\u0430\u0442\u0438\u043b\u0441\u044f \u0432
+        \u0433\u0440\u043e\u0437\u043d\u043e\u0433\u043e \u0432\u043e\u0438\u043d\u0430,
+        \u0441\u043f\u043e\u0441\u043e\u0431\u043d\u043e\u0433\u043e \u0432 \u0441\u043e\u043b\u043e
+        \u0437\u0430\u0447\u0438\u0449\u0430\u0442\u044c \u043f\u043e\u0434\u0437\u0435\u043c\u0435\u043b\u044c\u044f
+        \u043f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u043b\u044e\u0431\u043e\u0439
+        \u0441\u043b\u043e\u0436\u043d\u043e\u0441\u0442\u0438. \u0411\u043e\u043b\u0435\u0435
+        \u0442\u043e\u0433\u043e, \u043d\u0435\u0434\u0430\u0432\u043d\u043e \u043e\u043d
+        \u043f\u043e\u043b\u0443\u0447\u0438\u043b \u043d\u043e\u0432\u044b\u0439
+        \u043f\u043e\u043b\u0435\u0437\u043d\u044b\u0439 \u043d\u0430\u0432\u044b\u043a
+        \u2014 \u0432\u043e\u0441\u043a\u0440\u0435\u0448\u0430\u0442\u044c \u0443\u0431\u0438\u0442\u044b\u0445
+        \u043c\u043e\u043d\u0441\u0442\u0440\u043e\u0432 \u0438 \u043f\u043e\u0434\u0447\u0438\u043d\u044f\u0442\u044c
+        \u0438\u0445 \u0441\u0435\u0431\u0435. \u0422\u0430\u043a \u0447\u0442\u043e
+        \u0442\u0435\u043f\u0435\u0440\u044c \u0432 \u0440\u0430\u0441\u043f\u043e\u0440\u044f\u0436\u0435\u043d\u0438\u0438
+        \u0421\u043e\u043d \u0414\u0436\u0438\u043d \u0412\u0443 \u0446\u0435\u043b\u0430\u044f
+        \u0430\u0440\u043c\u0438\u044f, \u0430 \u0437\u043d\u0430\u0447\u0438\u0442
+        \u0438 \u0443\u0440\u043e\u0432\u0435\u043d\u044c \u043c\u043e\u0436\u043d\u043e
+        \u0431\u0443\u0434\u0435\u0442 \u043f\u043e\u0434\u043d\u0438\u043c\u0430\u0442\u044c
+        \u0443\u0436\u0435 \u0441\u043e\u0432\u0441\u0435\u043c \u043d\u0435 \u0432
+        \u043e\u0434\u0438\u043d\u043e\u0447\u043a\u0443.","notification":null,"episodes_total":13,"external_player":null,"is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":38936,"average_duration_of_episode":24,"added_in_planned_collection":668,"added_in_watched_collection":12932,"added_in_watching_collection":2477,"added_in_postponed_collection":45,"added_in_abandoned_collection":30}}]}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4c1e7643f7f99a5-FRA
+      connection:
+      - keep-alive
+      content-length:
+      - '13801'
+      content-type:
+      - application/json
+      date:
+      - Sat, 17 Oct 2026 20:02:57 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=DQ%2BJl9EPfKTMT20%2B7Tz1%2Fb6%2B7%2BRXmfC3OlBOMJ61mk6tU2oktq4ijM%2BihnFmpV6sTDSxhTiOSq6I1xZLK%2FlJxgaoaEgwfGjg%2B50IKC%2B3I6pJHdYWBdeXhtCUKkEbSGKjPA%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - aniliberty.top
+      user-agent:
+      - py-aniliberty/1.0.0 (+https://github.com/LLIJIYAPNIK/py-aniliberty)
+    method: GET
+    uri: https://aniliberty.top/api/v1/app/search/releases?query=frieren
+  response:
+    body:
+      string: '[{"id":9542,"type":{"value":"TV","description":"\u0422\u0412"},"year":2023,"name":{"main":"\u041f\u0440\u043e\u0432\u043e\u0436\u0430\u044e\u0449\u0430\u044f
+        \u0432 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0439 \u043f\u0443\u0442\u044c
+        \u0424\u0440\u0438\u0440\u0435\u043d","english":"Sousou no Frieren","alternative":null},"alias":"sousou-no-frieren","season":{"value":"autumn","description":"\u041e\u0441\u0435\u043d\u044c"},"shikimori":{"id":52991,"url":"https:\/\/shikimori.io\/animes\/52991","votes":71529,"rating":8.84},"mal":{"id":52991,"url":"https:\/\/myanimelist.net\/anime\/52991","votes":944931,"rating":9.24},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/9542\/PaDTDJMU3ybqwWr5BRXydhSM8qbwIhBd.jpg","preview":"\/storage\/releases\/posters\/9542\/PaDTDJMU3ybqwWr5BRXydhSM8qbwIhBd.jpg","thumbnail":"\/storage\/releases\/posters\/9542\/9Ac5I0uawVr2Esvih7EMuEYXRH2WRkvq.jpg","optimized":{"src":"\/storage\/releases\/posters\/9542\/8UGD4dHHp1kdjquBph2CUSk9pLNsGtYw.webp","preview":"\/storage\/releases\/posters\/9542\/8UGD4dHHp1kdjquBph2CUSk9pLNsGtYw.webp","thumbnail":"\/storage\/releases\/posters\/9542\/SA4cK46Ew9aZtHN22WT2j0aFjKDsPHqI.webp"}},"fresh_at":"2024-03-23T10:08:42+00:00","created_at":"2023-08-21T20:15:30+00:00","updated_at":"2024-08-02T19:57:34+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":6,"description":"\u0421\u0443\u0431\u0431\u043e\u0442\u0430"},"description":"\u041f\u043e\u0441\u043b\u0435
+        \u0434\u0435\u0441\u044f\u0442\u0438 \u043b\u0435\u0442 \u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u0438\u0439
+        \u0433\u0440\u0443\u043f\u043f\u0430 \u0438\u0441\u043a\u0430\u0442\u0435\u043b\u0435\u0439
+        \u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0439 \u0432\u043c\u0435\u0441\u0442\u0435
+        \u0441 \u0432\u043e\u043b\u0448\u0435\u0431\u043d\u0438\u0446\u0435\u0439
+        \u0424\u0440\u0438\u0440\u0435\u043d \u043e\u0434\u043e\u043b\u0435\u043b\u0438
+        \u043a\u043e\u0440\u043e\u043b\u044f \u0434\u0435\u043c\u043e\u043d\u043e\u0432,
+        \u043e\u0441\u0432\u043e\u0431\u043e\u0434\u0438\u0432 \u043c\u0438\u0440
+        \u043e\u0442 \u0433\u043d\u0451\u0442\u0430 \u043c\u043e\u043d\u0441\u0442\u0440\u043e\u0432.
+        \u0418\u043c\u0435\u043d\u0430 \u0433\u0435\u0440\u043e\u0435\u0432 \u0443\u0432\u0435\u043a\u043e\u0432\u0435\u0447\u0435\u043d\u044b
+        \u0432 \u043b\u0435\u0433\u0435\u043d\u0434\u0430\u0445 \u0438 \u0431\u0430\u043b\u043b\u0430\u0434\u0430\u0445,
+        \u0438 \u0442\u0435\u043f\u0435\u0440\u044c \u0438\u0445 \u0436\u0434\u0451\u0442
+        \u0441\u043f\u043e\u043a\u043e\u0439\u043d\u0430\u044f \u0440\u0430\u0437\u043c\u0435\u0440\u0435\u043d\u043d\u0430\u044f
+        \u0436\u0438\u0437\u043d\u044c \u0434\u043e \u0441\u0430\u043c\u043e\u0439
+        \u0441\u0442\u0430\u0440\u043e\u0441\u0442\u0438. \u041d\u043e \u0443 \u0424\u0440\u0438\u0440\u0435\u043d
+        \u0434\u0440\u0443\u0433\u0430\u044f \u0441\u0443\u0434\u044c\u0431\u0430.
+        \u041e\u043d\u0430 \u044d\u043b\u044c\u0444, \u0438 \u0441\u043f\u043e\u0441\u043e\u0431\u043d\u0430
+        \u043f\u0440\u043e\u0436\u0438\u0442\u044c \u0431\u043e\u043b\u044c\u0448\u0435
+        \u0442\u044b\u0441\u044f\u0447\u0438 \u043b\u0435\u0442. \u0427\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u043a\u0430\u044f
+        \u0436\u0438\u0437\u043d\u044c \u0434\u043b\u044f \u043d\u0435\u0451 \u2014
+        \u043b\u0438\u0448\u044c \u043c\u0433\u043d\u043e\u0432\u0435\u043d\u0438\u0435,
+        \u043f\u043e\u044d\u0442\u043e\u043c\u0443, \u043d\u0435 \u0443\u0441\u043f\u0435\u0432
+        \u043e\u043f\u043e\u043c\u043d\u0438\u0442\u044c\u0441\u044f, \u043e\u043d\u0430
+        \u043e\u0441\u0442\u0430\u0451\u0442\u0441\u044f \u0441\u043e\u0432\u0441\u0435\u043c
+        \u043e\u0434\u043d\u0430.\r\n\u042d\u0442\u043e \u0438\u0441\u0442\u043e\u0440\u0438\u044f
+        \u043e \u043d\u0435\u0438\u0437\u043c\u0435\u043d\u043d\u043e\u0439 \u0433\u0435\u0440\u043e\u0438\u043d\u0435,
+        \u043f\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0439
+        \u0432 \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e \u043c\u0435\u043d\u044f\u044e\u0449\u0435\u043c\u0441\u044f
+        \u043c\u0438\u0440\u0435, \u0438 \u043f\u044b\u0442\u0430\u044e\u0449\u0435\u0439\u0441\u044f
+        \u0441\u043a\u0440\u044b\u0442\u044c\u0441\u044f \u043e\u0442 \u0442\u0435\u043d\u0435\u0439
+        \u043f\u0440\u043e\u0448\u043b\u043e\u0433\u043e, \u043a\u043e\u0442\u043e\u0440\u044b\u0435
+        \u0435\u0451 \u043f\u0440\u0435\u0441\u043b\u0435\u0434\u0443\u044e\u0442.","notification":null,"episodes_total":28,"external_player":"\/\/aniqit.com\/serial\/54001\/4430312186765754f248dc8c4f8c9313\/720p?translations=false","is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":31796,"average_duration_of_episode":24,"added_in_planned_collection":1022,"added_in_watched_collection":6387,"added_in_watching_collection":682,"added_in_postponed_collection":162,"added_in_abandoned_collection":167},{"id":10085,"type":{"value":"TV","description":"\u0422\u0412"},"year":2026,"name":{"main":"\u041f\u0440\u043e\u0432\u043e\u0436\u0430\u044e\u0449\u0430\u044f
+        \u0432 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0439 \u043f\u0443\u0442\u044c
+        \u0424\u0440\u0438\u0440\u0435\u043d 2","english":"Sousou no Frieren 2nd Season","alternative":null},"alias":"sousou-no-frieren-2nd-season","season":{"value":"winter","description":"\u0417\u0438\u043c\u0430"},"shikimori":{"id":59978,"url":"https:\/\/shikimori.io\/animes\/59978","votes":22590,"rating":8.51},"mal":{"id":59978,"url":"https:\/\/myanimelist.net\/anime\/59978","votes":307106,"rating":8.84},"rating":{"average":null,"votes":0,"distribution":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0}},"poster":{"src":"\/storage\/releases\/posters\/10085\/RuA0F7yN3SMDZe8njVqZVIFB0TDOYXUX.jpg","preview":"\/storage\/releases\/posters\/10085\/RuA0F7yN3SMDZe8njVqZVIFB0TDOYXUX.jpg","thumbnail":"\/storage\/releases\/posters\/10085\/WBMPYNIW9culrqJL2nhV3IGCFGNfvIRU.jpg","optimized":{"src":"\/storage\/releases\/posters\/10085\/pdQFRI7xYXrZXNNIuuTvZztp9YmpMZXM.webp","preview":"\/storage\/releases\/posters\/10085\/pdQFRI7xYXrZXNNIuuTvZztp9YmpMZXM.webp","thumbnail":"\/storage\/releases\/posters\/10085\/zKNYhDSNLgzJNTvGwHeH0E5BSrkivy3f.webp"}},"fresh_at":"2026-03-28T14:19:32+00:00","created_at":"2025-11-27T23:30:01+00:00","updated_at":"2026-05-06T08:59:05+00:00","is_ongoing":false,"age_rating":{"value":"R16_PLUS","label":"16+","is_adult":false,"description":"\u0414\u043b\u044f
+        \u043b\u044e\u0434\u0435\u0439, \u0434\u043e\u0441\u0442\u0438\u0433\u0448\u0438\u0445
+        \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430 \u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442\u0438
+        \u043b\u0435\u0442 (16+)"},"publish_day":{"value":6,"description":"\u0421\u0443\u0431\u0431\u043e\u0442\u0430"},"description":"\u042d\u0442\u043e
+        \u0440\u0430\u0441\u0441\u043a\u0430\u0437 \u043e \u0436\u0438\u0437\u043d\u0438
+        \u0438 \u0441\u043c\u0435\u0440\u0442\u0438, \u043e \u0445\u043e\u043b\u043e\u0434\u0435
+        \u0431\u0435\u0441\u0441\u0442\u0440\u0430\u0441\u0442\u0438\u044f \u0438
+        \u0433\u043e\u0440\u044f\u0447\u0438\u0445 \u0441\u043b\u0435\u0437\u0430\u0445
+        \u0440\u0430\u0437\u043b\u0443\u043a\u0438.\r\n\u0412\u0440\u0435\u043c\u0435\u043d\u0430
+        \u043c\u0435\u043d\u044f\u044e\u0442\u0441\u044f, \u043d\u043e \u0438\u0441\u0442\u043e\u0440\u0438\u0438
+        \u043e \u043b\u044e\u0434\u044f\u0445, \u043e \u0433\u0435\u0440\u043e\u044f\u0445
+        \u0438 \u0432\u0435\u043b\u0438\u043a\u0438\u0445 \u0434\u0435\u043b\u0430\u0445
+        \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0430\u044e\u0442 \u0438 \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0430\u044e\u0442
+        \u043f\u043e\u0432\u0442\u043e\u0440\u044f\u0442\u044c\u0441\u044f. \u041d\u043e\u0432\u043e\u0435
+        \u043f\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u0435 \u0424\u0440\u0438\u0440\u0435\u043d,
+        \u0432\u043d\u0435\u0448\u043d\u0435 \u0440\u0430\u0432\u043d\u043e\u0434\u0443\u0448\u043d\u043e\u0439,
+        \u043d\u043e \u0432 \u0434\u0443\u0448\u0435 \u043f\u043e\u043b\u043d\u043e\u0439
+        \u043f\u044b\u043b\u0430\u044e\u0449\u0438\u0445 \u0432\u043e\u0441\u043f\u043e\u043c\u0438\u043d\u0430\u043d\u0438\u0439,
+        \u043f\u043e \u0435\u0451 \u043b\u0438\u0447\u043d\u044b\u043c \u043e\u0449\u0443\u0449\u0435\u043d\u0438\u044f\u043c
+        \u0442\u043e\u043b\u044c\u043a\u043e \u043d\u0430\u0447\u0438\u043d\u0430\u0435\u0442\u0441\u044f.
+        \u0414\u043b\u044f \u043d\u0435\u0451 \u0432\u0440\u0435\u043c\u044f \u043d\u0435
+        \u0431\u0443\u0440\u043d\u044b\u0439 \u043f\u043e\u0442\u043e\u043a, \u0430
+        \u0442\u0438\u0445\u0438\u0439 \u043e\u043a\u0435\u0430\u043d.\r\n\u041b\u0435\u0442\u0430
+        \u0438 \u0437\u0438\u043c\u044b \u043f\u0440\u043e\u0445\u043e\u0434\u044f\u0442
+        \u043d\u0435\u0437\u0430\u043c\u0435\u0442\u043d\u043e, \u0438 \u0432\u043e\u0442
+        \u0435\u0451 \u0443\u0447\u0435\u043d\u0438\u0446\u0430 \u0424\u0435\u0440\u043d
+        \u0443\u0436\u0435 \u043d\u0435 \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u043e\u0432\u0437\u0440\u043e\u0441\u043b\u0435\u043b\u0430,
+        \u043d\u043e \u0438 \u043f\u043e\u043b\u0443\u0447\u0438\u043b\u0430 \u0437\u0432\u0430\u043d\u0438\u0435
+        \u0430\u0440\u0445\u0438\u043c\u0430\u0433\u0430, \u0430 \u0421\u0442\u0430\u0440\u043a,
+        \u0432\u043e\u043b\u0435\u0439 \u0441\u0443\u0434\u044c\u0431\u044b \u0441\u0442\u0430\u0432\u0448\u0438\u0439
+        \u0447\u0430\u0441\u0442\u044c\u044e \u043d\u043e\u0432\u043e\u0433\u043e
+        \u043e\u0442\u0440\u044f\u0434\u0430 \u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0446\u0435\u0432,
+        \u043e\u0431\u0440\u0451\u043b \u0441\u0438\u043b\u0443, \u043a\u043e\u0442\u043e\u0440\u043e\u0439
+        \u0435\u0451 \u043f\u0440\u043e\u0448\u043b\u044b\u0435 \u0441\u043e\u0440\u0430\u0442\u043d\u0438\u043a\u0438
+        \u2014 \u0413\u0438\u043c\u043c\u0435\u043b\u044c \u0441 \u0410\u0439\u0437\u0435\u043d\u043e\u043c
+        \u2014 \u043c\u043e\u0433\u043b\u0438 \u0431\u044b \u0442\u043e\u043b\u044c\u043a\u043e
+        \u043f\u043e\u0437\u0430\u0432\u0438\u0434\u043e\u0432\u0430\u0442\u044c.\r\n\u0418
+        \u0442\u0435\u043f\u0435\u0440\u044c \u043f\u0443\u0442\u044c \u0442\u0440\u043e\u0438\u0446\u044b
+        \u043b\u0435\u0436\u0438\u0442 \u0442\u0443\u0434\u0430, \u0433\u0434\u0435
+        \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u043b\u0430\u0441\u044c \u0438\u0441\u0442\u043e\u0440\u0438\u044f
+        \u0433\u0435\u0440\u043e\u0435\u0432 \u043f\u0440\u043e\u0448\u043b\u043e\u0433\u043e
+        \u2014 \u0432 \u0437\u0435\u043c\u043b\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f
+        \u0434\u0435\u043c\u043e\u043d\u043e\u0432.","notification":null,"episodes_total":10,"external_player":null,"is_in_production":false,"is_blocked_by_geo":false,"is_blocked_by_copyrights":false,"added_in_users_favorites":16906,"average_duration_of_episode":24,"added_in_planned_collection":1111,"added_in_watched_collection":3449,"added_in_watching_collection":1478,"added_in_postponed_collection":61,"added_in_abandoned_collection":37}]'
+    headers:
+      accept-ch:
+      - Sec-CH-UA-Mobile, Sec-CH-UA-Platform
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, private
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4c1e7651a2c99a5-FRA
+      connection:
+      - keep-alive
+      content-length:
+      - '11220'
+      content-type:
+      - application/json
+      date:
+      - Sat, 17 Oct 2026 20:02:57 GMT
+      nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      report-to:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=aRln7Xx%2B9A6nkmv4%2BlB0cHOsB9tp8NqrVDnldk7aokyPPoUJ3pJD1Fqo5JaZy65XAMfVCphsise5XwPGRSl7F4QpiLB7jlie21kgQUa5dxmMoFxhfJPLCYCqZGG2MHUZQQ%3D%3D"}]}'
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - accept-encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

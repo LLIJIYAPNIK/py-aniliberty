@@ -25,8 +25,12 @@ class GenresResource(BaseResource):
         ("GET", "/anime/genres/{genreId}/releases"),
     )
 
-    async def list(self) -> builtins.list[Genre]:
+    async def list(self, *, refresh: bool = False) -> builtins.list[Genre]:
         """Get all genres.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             Every genre, with ``image`` and ``total_releases`` filled in.
@@ -42,14 +46,16 @@ class GenresResource(BaseResource):
                 print(genre.name, genre.total_releases)
             ```
         """
-        return await self._get("/anime/genres", builtins.list[Genre])
+        return await self._get("/anime/genres", builtins.list[Genre], cache=True, refresh=refresh)
 
-    async def get(self, genre: int | Genre) -> Genre:
+    async def get(self, genre: int | Genre, *, refresh: bool = False) -> Genre:
         """Get one genre.
 
         Args:
             genre: Genre ID, or a ``Genre`` (e.g. from ``client.catalog.references.genres()``,
                 which has no image) to fetch its full data.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The genre, with ``image`` and ``total_releases``.
@@ -66,7 +72,9 @@ class GenresResource(BaseResource):
             print(genre.name, genre.total_releases)
             ```
         """
-        return await self._get(f"/anime/genres/{_genre_id(genre)}", Genre)
+        return await self._get(
+            f"/anime/genres/{_genre_id(genre)}", Genre, cache=True, refresh=refresh
+        )
 
     async def random(self, *, limit: int | None = None) -> builtins.list[Genre]:
         """Get random genres.
@@ -95,7 +103,12 @@ class GenresResource(BaseResource):
         )
 
     async def releases(
-        self, genre: int | Genre, *, page: int | None = None, limit: int | None = None
+        self,
+        genre: int | Genre,
+        *,
+        page: int | None = None,
+        limit: int | None = None,
+        refresh: bool = False,
     ) -> Page[Release]:
         """Get one page of the releases of a genre.
 
@@ -107,6 +120,8 @@ class GenresResource(BaseResource):
             page: Page number, starting at 1. The API treats 0 and negative numbers as 1.
             limit: Page size, 1 to **30** here (not 50 as in the catalog). Omitted, the API
                 uses 15.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             One page of releases, with ``genres`` filled in.
@@ -128,16 +143,24 @@ class GenresResource(BaseResource):
             f"/anime/genres/{_genre_id(genre)}/releases",
             Page[Release],
             params={"page": page, "limit": limit},
+            cache=True,
+            refresh=refresh,
         )
 
     def iter_releases(
-        self, genre: int | Genre, *, limit: int | None = None
+        self,
+        genre: int | Genre,
+        *,
+        limit: int | None = None,
+        refresh: bool = False,
     ) -> AsyncIterator[Release]:
         """Iterate over all releases of a genre, fetching page by page.
 
         Args:
             genre: Genre ID or ``Genre``.
             limit: Page size, 1 to 30 — affects how many requests are made, not the result.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             An async iterator over the releases.
@@ -154,7 +177,7 @@ class GenresResource(BaseResource):
         genre_id = _genre_id(genre)
 
         async def fetch(page: int) -> Page[Release]:
-            return await self.releases(genre_id, page=page, limit=limit)
+            return await self.releases(genre_id, page=page, limit=limit, refresh=refresh)
 
         return iterate_pages(fetch)
 

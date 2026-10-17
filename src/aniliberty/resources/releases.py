@@ -41,11 +41,15 @@ class ReleasesResource(BaseResource):
         super().__init__(http)
         self.ratings = RatingsResource(http)
 
-    async def latest(self, *, limit: int | None = None) -> builtins.list[Release]:
+    async def latest(
+        self, *, limit: int | None = None, refresh: bool = False
+    ) -> builtins.list[Release]:
         """Get the latest releases — the ones that got new episodes most recently.
 
         Args:
             limit: How many releases to return, 1 to 50. Omitted, the API picks the number.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The releases, with ``genres`` filled in.
@@ -63,7 +67,11 @@ class ReleasesResource(BaseResource):
             ```
         """
         return await self._get(
-            "/anime/releases/latest", builtins.list[Release], params={"limit": limit}
+            "/anime/releases/latest",
+            builtins.list[Release],
+            params={"limit": limit},
+            cache=True,
+            refresh=refresh,
         )
 
     async def random(self, *, limit: int | None = None) -> builtins.list[Release]:
@@ -131,6 +139,7 @@ class ReleasesResource(BaseResource):
         aliases: Sequence[str] | None = None,
         page: int | None = None,
         limit: int | None = None,
+        refresh: bool = False,
     ) -> Page[Release]:
         """Get several releases at once by their IDs and/or aliases.
 
@@ -143,6 +152,8 @@ class ReleasesResource(BaseResource):
             aliases: Release aliases.
             page: Page number, starting at 1.
             limit: Page size, 1 to 50.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             One page of releases, with ``genres``, ``members`` and ``sponsors`` filled in.
@@ -167,6 +178,8 @@ class ReleasesResource(BaseResource):
             "/anime/releases/list",
             Page[Release],
             params={"ids": ids, "aliases": aliases, "page": page, "limit": limit},
+            cache=True,
+            refresh=refresh,
         )
 
     def iter_list(
@@ -175,6 +188,7 @@ class ReleasesResource(BaseResource):
         ids: Sequence[int] | None = None,
         aliases: Sequence[str] | None = None,
         limit: int | None = None,
+        refresh: bool = False,
     ) -> AsyncIterator[Release]:
         """Iterate over all releases matching ``ids``/``aliases``, fetching page by page.
 
@@ -185,6 +199,8 @@ class ReleasesResource(BaseResource):
             ids: Release IDs.
             aliases: Release aliases.
             limit: Page size, 1 to 50 — affects how many requests are made, not the result.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             An async iterator over the releases.
@@ -203,16 +219,20 @@ class ReleasesResource(BaseResource):
             raise ValueError("Pass ids, aliases, or both")
 
         async def fetch(page: int) -> Page[Release]:
-            return await self.list(ids=ids, aliases=aliases, page=page, limit=limit)
+            return await self.list(
+                ids=ids, aliases=aliases, page=page, limit=limit, refresh=refresh
+            )
 
         return iterate_pages(fetch)
 
-    async def get(self, release: int | str | Release) -> Release:
+    async def get(self, release: int | str | Release, *, refresh: bool = False) -> Release:
         """Get one release by its ID or alias.
 
         Args:
             release: Release ID (``10297``), alias (``"sousou-no-frieren"``), or a
                 ``Release`` (e.g. from a list, to get its full details).
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The release, with ``genres``, ``members``, ``sponsors`` and
@@ -230,13 +250,19 @@ class ReleasesResource(BaseResource):
             print(release.name.main, release.episodes_total)
             ```
         """
-        return await self._get(f"/anime/releases/{_release_segment(release)}", Release)
+        return await self._get(
+            f"/anime/releases/{_release_segment(release)}", Release, cache=True, refresh=refresh
+        )
 
-    async def members(self, release: int | str | Release) -> builtins.list[ReleaseMember]:
+    async def members(
+        self, release: int | str | Release, *, refresh: bool = False
+    ) -> builtins.list[ReleaseMember]:
         """Get the people who worked on a release (voice actors, translators, ...).
 
         Args:
             release: Release ID, alias, or a ``Release``.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The release's members.
@@ -254,7 +280,10 @@ class ReleasesResource(BaseResource):
             ```
         """
         return await self._get(
-            f"/anime/releases/{_release_segment(release)}/members", builtins.list[ReleaseMember]
+            f"/anime/releases/{_release_segment(release)}/members",
+            builtins.list[ReleaseMember],
+            cache=True,
+            refresh=refresh,
         )
 
     async def timecodes(self, release: int | str | Release) -> builtins.list[EpisodeView]:

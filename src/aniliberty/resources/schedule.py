@@ -14,8 +14,12 @@ class ScheduleResource(BaseResource):
         ("GET", "/anime/schedule/week"),
     )
 
-    async def now(self) -> ScheduleNow:
+    async def now(self, *, refresh: bool = False) -> ScheduleNow:
         """Get the releases scheduled for yesterday, today and tomorrow.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The schedule for the three days. Each item says whether this week's episode is
@@ -35,13 +39,17 @@ class ScheduleResource(BaseResource):
                 print(item.release.name.main, "—", status)
             ```
         """
-        return await self._get("/anime/schedule/now", ScheduleNow)
+        return await self._get("/anime/schedule/now", ScheduleNow, cache=True, refresh=refresh)
 
-    async def week(self) -> list[ScheduledRelease]:
+    async def week(self, *, refresh: bool = False) -> list[ScheduledRelease]:
         """Get the schedule for the whole current week.
 
         The list is not ordered by weekday; group or sort it by
         ``item.release.publish_day.value`` (1 = Monday ... 7 = Sunday) as needed.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             All releases in this week's schedule.
@@ -60,7 +68,7 @@ class ScheduleResource(BaseResource):
             ```
         """
         path = "/anime/schedule/week"
-        payload = await self._http.request("GET", path)
+        payload = await self._http.request("GET", path, cache=True, refresh=refresh)
         # The spec documents {"data": [...]}, but the live API returns the list itself (see
         # docs/api-notes.md, "Schedule"). Accept both, in case the API is aligned later.
         if isinstance(payload, dict) and "data" in payload:
