@@ -52,6 +52,7 @@
 | Релизы | GitHub Release → `release.yml` → `uv publish` через PyPI Trusted Publishing (OIDC) |
 | CHANGELOG | `git-cliff` (`cliff.toml`) + `changelog.yml`, Conventional Commits |
 | Retry/rate limit | ручная реализация в клиенте (семафор + пейсинг + экспоненциальный backoff, `Retry-After`), без `tenacity` — как в ranobelib |
+| Кэш ответов | опциональный дисковый TTL-кэш сырого JSON (`_cache.py`, `DiskCache` как в ranobelib), `AniLiberty(cache_dir=None, cache_ttl=None)`, по умолчанию выключен (issue #40) |
 | Логирование | стандартный `logging` (`logging.getLogger("aniliberty")`), без `print`/`rich` |
 | Лицензия | MIT |
 | Git workflow | одна фича — одна ветка — один PR, атомарные коммиты, merge — вручную пользователем |
@@ -405,9 +406,23 @@ py-aniliberty/
   HTML-страницей (см. `docs/api-notes.md`).
 - `AniLiberty` пробрасывает только `base_url`, `timeout`, `max_concurrency`, `headers`,
   `http_client` (готовый `httpx.AsyncClient` пользователя — тогда SDK его не закрывает) и
-  `token`. Токен — `client.token` (= `HttpClient.token`), шлётся как `Authorization: Bearer`
-  в каждом запросе (`request(..., with_token=False)` — без него); логин-методы `client.auth`
+  `token`, плюс `cache_dir`/`cache_ttl` (кэш ответов, см. ниже). Токен — `client.token`
+  (= `HttpClient.token`), шлётся как `Authorization: Bearer` в каждом запросе (`request(..., with_token=False)` — без него); логин-методы `client.auth`
   его записывают, `logout()` очищает; cookie `_al1` после логина выкидывается из jar.
+- **Кэш ответов** (issue #40): `HttpClient(cache_dir=..., cache_ttl=...)` →
+  `request(..., cache=True, refresh=False)`. Кэшируется только успешный `GET` без тела и
+  **без токена** (пока `token` задан, кэш не читается и не пишется — в публичных ответах с
+  токеном есть пользовательское: passkey в `magnet`, `isAuthorized=1` в HLS). Ключ — метод +
+  полный URL + отсортированные query-параметры, файл — sha256 ключа, в нём `cached_at` +
+  сырой JSON (модель валидируется заново при каждом попадании). Битый файл — промах,
+  ошибка записи — `warning` в лог, не исключение; запись атомарная (tmp + `os.replace`).
+  Кэшируют методы **ровно те, у которых есть `refresh`** (тест
+  `tests/unit/test_resource_cache.py` это сверяет): `app.search_releases`,
+  `releases.latest/get/members/list/iter_list`, `catalog.releases/iter_releases/references.*`,
+  `schedule.*`, `genres.list/get/releases/iter_releases`, `franchises.list/get/for_release`,
+  `teams.*`, `media.videos`. Никогда: `random()`-методы, `releases.recommended` (без
+  `release` — случайный), `media.promotions` (перемешиваются), `app.status`, `episodes.get`
+  (HLS), торренты, всё аккаунтное. Новый публичный метод чтения — решить, кэшируется ли он.
 - Клиент — async context manager; повторный `__aenter__` после закрытия → понятная ошибка.
   Использование без `async with` разрешено, но с явным `await client.aclose()`.
 - Исключения (`exceptions.py`):
@@ -453,8 +468,8 @@ py-aniliberty/
 `asyncio.gather`/`TaskGroup` и как SDK ограничивает конкурентность),
 `14_error_handling`, `15_custom_http_client_and_mirrors`, `16_teams`, `17_media`,
 `18_authentication`, `19_otp_device_login`, `20_favorites`, `21_collections`,
-`22_watch_progress`, `23_release_ratings`. Аккаунтные примеры (18–23) берут учётные
-данные из `ANILIBERTY_LOGIN`/`ANILIBERTY_PASSWORD`, не печатают секретов (логин тоже —
+`22_watch_progress`, `23_release_ratings`, `24_response_cache` (`cache_dir`/`cache_ttl`,
+`refresh`). Аккаунтные примеры (18–23) берут учётные данные из `ANILIBERTY_LOGIN`/`ANILIBERTY_PASSWORD`, не печатают секретов (логин тоже —
 у тестового аккаунта он совпадает с ником) и возвращают аккаунт в исходное состояние.
 
 `examples/README.md` — таблица «файл → фича» со ссылками; та же таблица со ссылками на GitHub —
@@ -471,7 +486,7 @@ py-aniliberty/
   (`docstring_style: google`, `merge_init_into_class: true`), `navigation.sections`,
   `content.code.copy`, `pymdownx.superfences`, `admonition`.
 - Страницы: Home (`index.md`), Quickstart, Guides (pagination, catalog filters, errors &
-  retries, concurrency, using mirrors / custom httpx client), API reference
+  retries, concurrency, using mirrors / custom httpx client, response cache), API reference
   (`reference.md`), Endpoints (`endpoints.md`), API notes (`api-notes.md`), Changelog
   (включить `CHANGELOG.md` через `pymdownx.snippets` или ссылкой).
 - `docs.yml`: деплой через `actions/upload-pages-artifact` + `actions/deploy-pages`,
