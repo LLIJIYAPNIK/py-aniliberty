@@ -43,13 +43,15 @@ class MediaResource(BaseResource):
         """
         return await self._get_list("/media/promotions", list[Promotion])
 
-    async def videos(self, *, limit: int | None = None) -> list[Video]:
+    async def videos(self, *, limit: int | None = None, refresh: bool = False) -> list[Video]:
         """Get the latest videos from AniLibria's YouTube playlists, newest first.
 
         Args:
             limit: How many videos to return, 1 to 50. Omitted, the API returns 10.
                 **0 or a negative number returns all videos** (over a thousand, more than
                 1 MB of JSON); more than 50 is a ``ValidationError``.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The videos, ordered by ``created_at`` from newest.
@@ -66,15 +68,23 @@ class MediaResource(BaseResource):
                 print(video.created_at.date() if video.created_at else "?", video.title)
             ```
         """
-        return await self._get_list("/media/videos", list[Video], params={"limit": limit})
+        return await self._get_list(
+            "/media/videos", list[Video], params={"limit": limit}, cache=True, refresh=refresh
+        )
 
     async def _get_list(
-        self, path: str, type_: type[T], *, params: Mapping[str, Any] | None = None
+        self,
+        path: str,
+        type_: type[T],
+        *,
+        params: Mapping[str, Any] | None = None,
+        cache: bool = False,
+        refresh: bool = False,
     ) -> T:
         # The spec documents {"data": [...]}, but the live API returns the list itself (see
         # docs/api-notes.md). Accept both, like client.schedule.week().
         query = build_query(params) if params else None
-        payload = await self._http.request("GET", path, params=query)
+        payload = await self._http.request("GET", path, params=query, cache=cache, refresh=refresh)
         if isinstance(payload, dict) and "data" in payload:
             payload = payload["data"]
         return self._parse(payload, type_, path=path)

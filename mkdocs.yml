@@ -32,6 +32,7 @@ nav:
       - Errors and retries: guides/errors.md
       - Concurrency: guides/concurrency.md
       - Mirrors and custom HTTP client: guides/custom-http-client.md
+      - Response cache: guides/caching.md
       - Authentication and account: guides/authentication.md
   - Examples: examples.md
   - API reference: reference.md

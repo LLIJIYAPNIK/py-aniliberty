@@ -51,8 +51,12 @@ class CatalogReferencesResource(BaseResource):
         ("GET", "/anime/catalog/references/years"),
     )
 
-    async def genres(self) -> list[Genre]:
+    async def genres(self, *, refresh: bool = False) -> list[Genre]:
         """Get the genres the catalog can be filtered by.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             Genres with ``id`` and ``name`` only — ``image`` and ``total_releases`` are
@@ -70,10 +74,16 @@ class CatalogReferencesResource(BaseResource):
             page = await client.catalog.releases(genres=[action])
             ```
         """
-        return await self._get("/anime/catalog/references/genres", list[Genre])
+        return await self._get(
+            "/anime/catalog/references/genres", list[Genre], cache=True, refresh=refresh
+        )
 
-    async def types(self) -> list[ValueDescription[str]]:
+    async def types(self, *, refresh: bool = False) -> list[ValueDescription[str]]:
         """Get the release types, e.g. ``value="TV"``, ``description="ТВ"``.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The release types.
@@ -89,10 +99,19 @@ class CatalogReferencesResource(BaseResource):
             print([t.value for t in types])  # ['TV', 'ONA', 'WEB', ...]
             ```
         """
-        return await self._get("/anime/catalog/references/types", list[ValueDescription[str]])
+        return await self._get(
+            "/anime/catalog/references/types",
+            list[ValueDescription[str]],
+            cache=True,
+            refresh=refresh,
+        )
 
-    async def seasons(self) -> list[ValueDescription[str]]:
+    async def seasons(self, *, refresh: bool = False) -> list[ValueDescription[str]]:
         """Get the seasons, e.g. ``value="winter"``, ``description="Зима"``.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The seasons.
@@ -108,12 +127,21 @@ class CatalogReferencesResource(BaseResource):
                 print(season.value, season.description)
             ```
         """
-        return await self._get("/anime/catalog/references/seasons", list[ValueDescription[str]])
+        return await self._get(
+            "/anime/catalog/references/seasons",
+            list[ValueDescription[str]],
+            cache=True,
+            refresh=refresh,
+        )
 
-    async def years(self) -> list[int]:
+    async def years(self, *, refresh: bool = False) -> list[int]:
         """Get the years that have releases in the catalog, oldest first.
 
         Only years with at least one release are listed, so the range can have gaps.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The years.
@@ -129,10 +157,16 @@ class CatalogReferencesResource(BaseResource):
             print(years[0], years[-1])  # the oldest and the newest year
             ```
         """
-        return await self._get("/anime/catalog/references/years", list[int])
+        return await self._get(
+            "/anime/catalog/references/years", list[int], cache=True, refresh=refresh
+        )
 
-    async def age_ratings(self) -> list[AgeRating]:
+    async def age_ratings(self, *, refresh: bool = False) -> list[AgeRating]:
         """Get the age ratings, e.g. ``value="R16_PLUS"``, ``label="16+"``.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The age ratings (``is_adult`` is ``None`` here — this list doesn't include it).
@@ -148,10 +182,16 @@ class CatalogReferencesResource(BaseResource):
                 print(rating.value, rating.label)
             ```
         """
-        return await self._get("/anime/catalog/references/age-ratings", list[AgeRating])
+        return await self._get(
+            "/anime/catalog/references/age-ratings", list[AgeRating], cache=True, refresh=refresh
+        )
 
-    async def publish_statuses(self) -> list[ValueDescription[str]]:
+    async def publish_statuses(self, *, refresh: bool = False) -> list[ValueDescription[str]]:
         """Get the airing statuses, e.g. ``value="IS_ONGOING"``, ``description="Онгоинг"``.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The publish statuses.
@@ -169,11 +209,18 @@ class CatalogReferencesResource(BaseResource):
             ```
         """
         return await self._get(
-            "/anime/catalog/references/publish-statuses", list[ValueDescription[str]]
+            "/anime/catalog/references/publish-statuses",
+            list[ValueDescription[str]],
+            cache=True,
+            refresh=refresh,
         )
 
-    async def production_statuses(self) -> list[ValueDescription[str]]:
+    async def production_statuses(self, *, refresh: bool = False) -> list[ValueDescription[str]]:
         """Get the dubbing statuses, e.g. ``value="IS_IN_PRODUCTION"``.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The production statuses.
@@ -190,11 +237,18 @@ class CatalogReferencesResource(BaseResource):
             ```
         """
         return await self._get(
-            "/anime/catalog/references/production-statuses", list[ValueDescription[str]]
+            "/anime/catalog/references/production-statuses",
+            list[ValueDescription[str]],
+            cache=True,
+            refresh=refresh,
         )
 
-    async def sorting(self) -> list[SortingOption]:
+    async def sorting(self, *, refresh: bool = False) -> list[SortingOption]:
         """Get the ways the catalog can be sorted, e.g. ``value="FRESH_AT_DESC"``.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The sorting options.
@@ -210,7 +264,9 @@ class CatalogReferencesResource(BaseResource):
                 print(option.value, option.label)
             ```
         """
-        return await self._get("/anime/catalog/references/sorting", list[SortingOption])
+        return await self._get(
+            "/anime/catalog/references/sorting", list[SortingOption], cache=True, refresh=refresh
+        )
 
 
 class CatalogResource(BaseResource):
@@ -253,6 +309,7 @@ class CatalogResource(BaseResource):
         production_statuses: Sequence[ProductionStatus | ValueDescription[str]] | None = None,
         page: int | None = None,
         limit: int | None = None,
+        refresh: bool = False,
     ) -> Page[Release]:
         """Get one page of catalog releases matching the filters.
 
@@ -273,6 +330,8 @@ class CatalogResource(BaseResource):
             production_statuses: ``"IS_IN_PRODUCTION"`` and/or ``"IS_NOT_IN_PRODUCTION"``.
             page: Page number, starting at 1. A page past the last one is empty.
             limit: Page size, 1 to 50.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             One page of releases, with ``genres`` filled in.
@@ -308,7 +367,7 @@ class CatalogResource(BaseResource):
             publish_statuses=publish_statuses,
             production_statuses=production_statuses,
         )
-        return await self._fetch_page(params, page=page, limit=limit)
+        return await self._fetch_page(params, page=page, limit=limit, refresh=refresh)
 
     def iter_releases(
         self,
@@ -324,6 +383,7 @@ class CatalogResource(BaseResource):
         publish_statuses: Sequence[PublishStatus | ValueDescription[str]] | None = None,
         production_statuses: Sequence[ProductionStatus | ValueDescription[str]] | None = None,
         limit: int | None = None,
+        refresh: bool = False,
     ) -> AsyncIterator[Release]:
         """Iterate over all catalog releases matching the filters, fetching page by page.
 
@@ -344,6 +404,8 @@ class CatalogResource(BaseResource):
             publish_statuses: See ``releases()``.
             production_statuses: See ``releases()``.
             limit: Page size, 1 to 50 — affects how many requests are made, not the result.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             An async iterator over the releases.
@@ -372,17 +434,19 @@ class CatalogResource(BaseResource):
         )
 
         async def fetch(page: int) -> Page[Release]:
-            return await self._fetch_page(params, page=page, limit=limit)
+            return await self._fetch_page(params, page=page, limit=limit, refresh=refresh)
 
         return iterate_pages(fetch)
 
     async def _fetch_page(
-        self, params: dict[str, Any], *, page: int | None, limit: int | None
+        self, params: dict[str, Any], *, page: int | None, limit: int | None, refresh: bool
     ) -> Page[Release]:
         return await self._get(
             "/anime/catalog/releases",
             Page[Release],
             params={**params, "page": page, "limit": limit},
+            cache=True,
+            refresh=refresh,
         )
 
 

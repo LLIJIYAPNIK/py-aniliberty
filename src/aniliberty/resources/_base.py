@@ -29,17 +29,24 @@ class BaseResource:
         self._http = http
 
     async def _get(
-        self, path: str, type_: type[T], *, params: Mapping[str, Any] | None = None
+        self,
+        path: str,
+        type_: type[T],
+        *,
+        params: Mapping[str, Any] | None = None,
+        cache: bool = False,
+        refresh: bool = False,
     ) -> T:
         """GET ``path`` and validate the JSON body as ``type_``.
 
         ``params`` go through ``build_query`` (lists → comma-joined, nested mappings →
         bracketed keys, ``None`` skipped). Validation runs with
         ``context={"site_url": ...}`` so images resolve to absolute URLs on the host the
-        client talks to.
+        client talks to. ``cache``/``refresh`` are passed to ``HttpClient.request()``: the raw
+        JSON is cached, so a cached response is validated anew on every call.
         """
         query = build_query(params) if params else None
-        payload = await self._http.request("GET", path, params=query)
+        payload = await self._http.request("GET", path, params=query, cache=cache, refresh=refresh)
         return self._parse(payload, type_, path=path)
 
     def _parse(self, payload: Any, type_: type[T], *, path: str) -> T:

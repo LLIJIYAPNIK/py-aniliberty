@@ -4,15 +4,19 @@ from __future__ import annotations
 
 import asyncio
 import contextlib
+import json as jsonlib
 import logging
+import os
 import time
 from collections.abc import AsyncIterator, Awaitable, Callable, Mapping
 from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
+from pathlib import Path
 from typing import Any, NoReturn
 
 import httpx
 
+from aniliberty._cache import DiskCache
 from aniliberty._version import __version__
 from aniliberty.exceptions import (
     AccessBlockedError,
@@ -96,6 +100,10 @@ class HttpClient:
       idempotent methods (``IDEMPOTENT_METHODS``). The delay is the response's
       ``Retry-After`` when it has one, otherwise ``retry_base_delay`` doubled per attempt
       (1 s, 2 s, 4 s by default). Other 4xx and HTML block pages are never retried.
+
+    With ``cache_dir`` set, ``request(..., cache=True)`` keeps the decoded JSON of successful
+    ``GET`` responses on disk and answers repeated identical requests from there until
+    ``cache_ttl`` passes — see ``request()`` for what is and isn't cached.
     """
 
     def __init__(
@@ -111,8 +119,11 @@ class HttpClient:
         max_retries: int = DEFAULT_MAX_RETRIES,
         retry_base_delay: float = DEFAULT_RETRY_BASE_DELAY,
         max_retry_after: float = DEFAULT_MAX_RETRY_AFTER,
+        cache_dir: str | os.PathLike[str] | None = None,
+        cache_ttl: float | None = None,
         sleep: Callable[[float], Awaitable[None]] = asyncio.sleep,
         clock: Callable[[], float] = time.monotonic,
+        cache_clock: Callable[[], float] = time.time,
     ) -> None:
         """Initialize the client.
 
@@ -139,12 +150,19 @@ class HttpClient:
                 has no ``Retry-After``; doubled for every next retry.
             max_retry_after: Longest ``Retry-After``, in seconds, worth waiting for. A 429
                 asking for more raises ``RateLimitError`` right away instead of blocking.
+            cache_dir: Directory for the response cache, created on the first write.
+                ``None`` (the default) disables caching.
+            cache_ttl: Seconds after which a cached response is stale and fetched again.
+                ``None`` means cached responses never expire on their own. Ignored without
+                ``cache_dir``.
             sleep: Async sleep function used for pacing and backoff. Replaceable in tests.
             clock: Monotonic time source used for pacing. Replaceable in tests.
+            cache_clock: Wall-clock time source used to stamp and expire cache entries.
+                Replaceable in tests.
 
         Raises:
             ValueError: A limit is out of range (``max_concurrency < 1`` or a negative
-                delay/retry count).
+                delay, retry count or ``cache_ttl``).
         """
         if max_concurrency < 1:
             raise ValueError(f"max_concurrency must be at least 1, got {max_concurrency}")
@@ -173,6 +191,9 @@ class HttpClient:
         self._clock = clock
         self._pacing_lock = asyncio.Lock()
         self._last_request_at: float | None = None
+        self._cache = (
+            None if cache_dir is None else DiskCache(cache_dir, ttl=cache_ttl, clock=cache_clock)
+        )
 
     @property
     def base_url(self) -> str:
@@ -188,6 +209,11 @@ class HttpClient:
         url = httpx.URL(self._base_url)
         port = f":{url.port}" if url.port is not None else ""
         return f"{url.scheme}://{url.host}{port}"
+
+    @property
+    def cache_dir(self) -> Path | None:
+        """The response cache directory, or ``None`` when caching is off."""
+        return None if self._cache is None else self._cache.directory
 
     @property
     def token(self) -> str | None:
@@ -241,10 +267,19 @@ class HttpClient:
         params: Mapping[str, Any] | None = None,
         json: Any = None,
         with_token: bool = True,
+        cache: bool = False,
+        refresh: bool = False,
     ) -> Any:
         """Send a request and return the decoded JSON body.
 
         Retries and limits described on the class apply.
+
+        A response is read from and saved to the cache only when all of these hold: the
+        client has a ``cache_dir``, ``cache=True``, the method is ``GET``, and no session
+        token goes with the request — so nothing that depends on the logged-in user (or
+        carries their torrent passkey) ever lands on disk. The cache key is the method, the
+        full URL and the query parameters in sorted order. Only successful responses with a
+        body are cached; errors are raised as usual and never stored.
 
         Args:
             method: HTTP method, e.g. ``"GET"``.
@@ -253,6 +288,11 @@ class HttpClient:
             json: JSON request body.
             with_token: Whether to send ``token``. ``False`` for the endpoints that refuse a
                 logged-in caller (``POST /accounts/otp/login`` answers 403 to one).
+            cache: Whether the response may be read from and saved to the cache (see
+                above). The SDK's own methods pass it for endpoints whose data doesn't
+                change from call to call.
+            refresh: Skip reading the cache and fetch from the API; the fresh response
+                still replaces the cached one.
 
         Returns:
             The decoded JSON body (``dict``, ``list``, ...), or ``None`` for an empty body.
@@ -268,13 +308,42 @@ class HttpClient:
 
         Example:
             ```python
-            roles = await client.http.request("GET", "/teams/roles")
+            roles = await client.http.request("GET", "/teams/roles", cache=True)
             ```
         """
-        response = await self._send_with_retries(
-            method, path, params=params, json=json, with_token=with_token
+        store = self._cache
+        cacheable = (
+            cache
+            and store is not None
+            and method.upper() == "GET"
+            and json is None
+            and not (with_token and self._token is not None)
         )
-        return _handle_response(response)
+        if not cacheable or store is None:
+            response = await self._send_with_retries(
+                method, path, params=params, json=json, with_token=with_token
+            )
+            return _handle_response(response)
+
+        query = sorted(httpx.QueryParams(params).multi_items()) if params else []
+        key = jsonlib.dumps(["GET", self.url(path), query], ensure_ascii=False)
+        if not refresh:
+            cached = store.get(key)
+            if cached is not None:
+                logger.debug("GET %s: from cache", httpx.URL(self.url(path), params=params))
+                return cached
+        response = await self._send_with_retries(
+            method, path, params=params, json=None, with_token=with_token
+        )
+        data = _handle_response(response)
+        if data is not None:
+            try:
+                store.set(key, data)
+            except OSError as exc:  # the data is in hand; a cache must not fail the request
+                logger.warning(
+                    "Couldn't write to the response cache in %s: %s", store.directory, exc
+                )
+        return data
 
     async def request_raw(
         self, method: str, path: str, *, params: Mapping[str, Any] | None = None

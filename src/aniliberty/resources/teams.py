@@ -21,8 +21,12 @@ class TeamsResource(BaseResource):
         ("GET", "/teams/users"),
     )
 
-    async def list(self) -> builtins.list[Team]:
+    async def list(self, *, refresh: bool = False) -> builtins.list[Team]:
         """Get all teams.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             Every team, ordered by ``sort_order``.
@@ -39,10 +43,14 @@ class TeamsResource(BaseResource):
             ```
         """
         # The spec spells this path with a trailing slash; both forms answer the same.
-        return await self._get("/teams/", builtins.list[Team])
+        return await self._get("/teams/", builtins.list[Team], cache=True, refresh=refresh)
 
-    async def roles(self) -> builtins.list[TeamRole]:
+    async def roles(self, *, refresh: bool = False) -> builtins.list[TeamRole]:
         """Get all roles team members can have.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             Every role, ordered by ``sort_order``.
@@ -58,10 +66,14 @@ class TeamsResource(BaseResource):
                 print(role.title, role.color)
             ```
         """
-        return await self._get("/teams/roles", builtins.list[TeamRole])
+        return await self._get("/teams/roles", builtins.list[TeamRole], cache=True, refresh=refresh)
 
-    async def users(self) -> builtins.list[TeamMember]:
+    async def users(self, *, refresh: bool = False) -> builtins.list[TeamMember]:
         """Get all team members, each with their team and roles.
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             Every member. **Not sorted** by team: the API interleaves teams, so group by
@@ -78,4 +90,6 @@ class TeamsResource(BaseResource):
             actors = [m.nickname for m in members if any(r.title == "Актёр" for r in m.roles)]
             ```
         """
-        return await self._get("/teams/users", builtins.list[TeamMember])
+        return await self._get(
+            "/teams/users", builtins.list[TeamMember], cache=True, refresh=refresh
+        )

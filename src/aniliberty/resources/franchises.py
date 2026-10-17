@@ -20,8 +20,12 @@ class FranchisesResource(BaseResource):
         ("GET", "/anime/franchises/release/{releaseId}"),
     )
 
-    async def list(self) -> builtins.list[Franchise]:
+    async def list(self, *, refresh: bool = False) -> builtins.list[Franchise]:
         """Get all franchises (a few hundred, in one response).
+
+        Args:
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             Every franchise, without ``franchise_releases``.
@@ -37,14 +41,18 @@ class FranchisesResource(BaseResource):
             biggest = max(franchises, key=lambda f: f.total_releases or 0)
             ```
         """
-        return await self._get("/anime/franchises", builtins.list[Franchise])
+        return await self._get(
+            "/anime/franchises", builtins.list[Franchise], cache=True, refresh=refresh
+        )
 
-    async def get(self, franchise: str | Franchise) -> Franchise:
+    async def get(self, franchise: str | Franchise, *, refresh: bool = False) -> Franchise:
         """Get one franchise with its releases.
 
         Args:
             franchise: Franchise ID (a UUID string), or a ``Franchise`` from ``list()`` /
                 ``random()`` to fetch its releases.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The franchise, with ``franchise_releases`` in order.
@@ -66,7 +74,10 @@ class FranchisesResource(BaseResource):
         if not isinstance(franchise_id, str):
             raise TypeError(f"Expected a franchise ID (str) or a Franchise, got {franchise!r}")
         return await self._get(
-            f"/anime/franchises/{path_segment(franchise_id, what='franchise ID')}", Franchise
+            f"/anime/franchises/{path_segment(franchise_id, what='franchise ID')}",
+            Franchise,
+            cache=True,
+            refresh=refresh,
         )
 
     async def random(self, *, limit: int | None = None) -> builtins.list[Franchise]:
@@ -94,12 +105,16 @@ class FranchisesResource(BaseResource):
             "/anime/franchises/random", builtins.list[Franchise], params={"limit": limit}
         )
 
-    async def for_release(self, release: int | Release) -> builtins.list[Franchise]:
+    async def for_release(
+        self, release: int | Release, *, refresh: bool = False
+    ) -> builtins.list[Franchise]:
         """Get the franchises a release belongs to.
 
         Args:
             release: Release ID, or a ``Release``. Only numeric IDs work here: the API answers
                 an alias with a 404 even for an existing release, so a ``str`` is rejected.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             The franchises (usually one), with ``franchise_releases``; an empty list if the
@@ -120,4 +135,9 @@ class FranchisesResource(BaseResource):
             ```
         """
         release_id = numeric_release_id(release)
-        return await self._get(f"/anime/franchises/release/{release_id}", builtins.list[Franchise])
+        return await self._get(
+            f"/anime/franchises/release/{release_id}",
+            builtins.list[Franchise],
+            cache=True,
+            refresh=refresh,
+        )

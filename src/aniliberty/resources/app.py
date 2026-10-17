@@ -35,7 +35,7 @@ class AppResource(BaseResource):
         """
         return await self._get("/app/status", ApiStatus)
 
-    async def search_releases(self, query: str) -> list[Release]:
+    async def search_releases(self, query: str, *, refresh: bool = False) -> list[Release]:
         """Quick search of releases by name — the search box of the site.
 
         Matches Russian and English names and aliases, fuzzily: ``"frieren"``,
@@ -46,6 +46,8 @@ class AppResource(BaseResource):
 
         Args:
             query: Search text.
+            refresh: Fetch from the API even if the response is cached (see
+                ``AniLiberty(cache_dir=...)``); the new response replaces the cached one.
 
         Returns:
             Matching releases, without the per-endpoint extras (``genres`` etc. are empty);
@@ -63,4 +65,10 @@ class AppResource(BaseResource):
                 print(release.id, release.name.main)
             ```
         """
-        return await self._get("/app/search/releases", list[Release], params={"query": query})
+        return await self._get(
+            "/app/search/releases",
+            list[Release],
+            params={"query": query},
+            cache=True,
+            refresh=refresh,
+        )

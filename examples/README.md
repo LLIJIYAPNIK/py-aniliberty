@@ -43,6 +43,7 @@ mini-tutorial for its feature, not just copy-pasted.
 | [`21_collections.py`](21_collections.py) | `me.collections.add(..., to=...)` / `remove()` / `ids()` / `releases(collection)` / `iter_releases()` / `references` — moving between collections |
 | [`22_watch_progress.py`](22_watch_progress.py) | `me.views.save_timecodes()` / `timecodes()` / `history()` / `iter_history()`, `episodes.timecode()`, `releases.timecodes()` — and the API's delay |
 | [`23_release_ratings.py`](23_release_ratings.py) | `releases.ratings.get()` / `set()` / `remove()` vs the overall `Release.rating` |
+| [`24_response_cache.py`](24_response_cache.py) | `AniLiberty(cache_dir=..., cache_ttl=...)` — answering repeated calls from disk, `refresh=True`, what is never cached |
 
 See the [API reference](https://llijiyapnik.github.io/py-aniliberty/reference/) for every
 public class and method.
