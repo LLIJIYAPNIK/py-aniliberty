@@ -12,6 +12,8 @@ the ad ones.
 - **Polite by default**: at most 5 requests in flight, requests spaced 0.1 s apart, and
   automatic retries with backoff on 429, 5xx and network errors (see
   [`HttpClient`][aniliberty.HttpClient]).
+- **Optional response cache** on disk with a TTL, for data that changes rarely — franchises,
+  genres, references, searches ([Response cache](guides/caching.md)).
 - **Clear errors**: one exception per failure kind — `NotFoundError`, `ValidationError`,
   `RateLimitError`, `AccessBlockedError`, ... — all under `AniLibertyError`.
 - **Built from the official OpenAPI spec**, checked against the live API; what the spec gets
